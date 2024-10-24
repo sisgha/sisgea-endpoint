@@ -35,7 +35,7 @@ export class TurmaService {
 
   //
 
-  async turmaFindAll(accessContext: AccessContext, dto: PocTypings.TurmaListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.TurmaListCombinedSuccessOutput["body"]> {
+  async turmaFindAll(accessContext: AccessContext, dto: PocTypings.TurmaListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.TurmaListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.turmaRepository.createQueryBuilder(aliasTurma);
@@ -107,7 +107,7 @@ export class TurmaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Turma.Views.FindOneResult, qb, aliasTurma, selection);
+    QbEfficientLoad(PocTypings.Tokens.TurmaFindOneResultView, qb, aliasTurma, selection);
 
     // =========================================================
 
@@ -119,7 +119,7 @@ export class TurmaService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async turmaFindById(accessContext: AccessContext | null, dto: PocTypings.TurmaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.TurmaFindOneResult | null> {
+  async turmaFindById(accessContext: AccessContext | null, dto: PocTypings.TurmaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.TurmaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.turmaRepository.createQueryBuilder(aliasTurma);
@@ -137,7 +137,7 @@ export class TurmaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Turma.Views.FindOneResult, qb, aliasTurma, selection);
+    QbEfficientLoad(PocTypings.Tokens.TurmaFindOneResultView, qb, aliasTurma, selection);
 
     // =========================================================
 
@@ -158,7 +158,7 @@ export class TurmaService {
     return turma;
   }
 
-  async turmaFindByIdSimple(accessContext: AccessContext, id: PocTypings.TurmaFindOneInputView["id"], selection?: string[]): Promise<PocTypings.TurmaFindOneResult | null> {
+  async turmaFindByIdSimple(accessContext: AccessContext, id: PocTypings.TurmaFindOneInputView["id"], selection?: string[]): Promise<PocTypings.TurmaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.turmaRepository.createQueryBuilder(aliasTurma);
@@ -174,7 +174,7 @@ export class TurmaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Turma.Views.FindOneResult, qb, aliasTurma, selection);
+    QbEfficientLoad(PocTypings.Tokens.TurmaFindOneResultView, qb, aliasTurma, selection);
 
     // =========================================================
 

@@ -17,7 +17,7 @@ export class HorarioGeradoAulaController {
   async horarioGeradoAulaFindAll(
     @AccessContextHttp() clientAccess: AccessContext,
     @CombinedInput() dto: PocTypings.HorarioGeradoAulaListOperationInput,
-  ): Promise<PocTypings.HorarioGeradoAulaListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.HorarioGeradoAulaListOperationOutput["success"]> {
     return this.horarioGeradoAulaService.horarioGeradoAulaFindAll(clientAccess, dto);
   }
 
@@ -28,7 +28,7 @@ export class HorarioGeradoAulaController {
   async horarioGeradoAulaFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoAulaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.HorarioGeradoAulaFindByIdOperationOutput,
   ) {
     return this.horarioGeradoAulaService.horarioGeradoAulaFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -64,7 +64,7 @@ export class HorarioGeradoAulaController {
   async HorarioGeradoAulaDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoAulaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.HorarioGeradoAulaDeleteByIdOperationInput,
   ) {
     return this.horarioGeradoAulaService.horarioGeradoAulaDeleteOneById(accessContext, { id: dto.params.id });
   }

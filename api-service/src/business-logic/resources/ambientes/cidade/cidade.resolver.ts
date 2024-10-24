@@ -31,7 +31,7 @@ export class CidadeResolver {
   async cidadeFindById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CidadeFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.CidadeFindOneByIdOperationOutput,
     @Info() info: GraphQLResolveInfo,
   ) {
     return this.cidadeService.findByIdStrict(accessContext, { id: dto.params.id }, graphqlExtractSelection(info));

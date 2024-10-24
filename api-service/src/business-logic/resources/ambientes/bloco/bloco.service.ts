@@ -38,7 +38,7 @@ export class BlocoService {
     accessContext: AccessContext,
     dto: PocTypings.BlocoListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.BlocoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.BlocoListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.blocoRepository.createQueryBuilder(aliasBloco);
@@ -96,7 +96,7 @@ export class BlocoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Bloco.Views.FindOneResult, qb, aliasBloco, selection);
+    QbEfficientLoad(PocTypings.Tokens.BlocoFindOneResultView, qb, aliasBloco, selection);
 
     // =========================================================
     const pageItemsView = await qb.andWhereInIds(map(paginated.data, "id")).getMany();
@@ -106,7 +106,7 @@ export class BlocoService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async blocoFindById(accessContext: AccessContext | null, dto: PocTypings.BlocoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.BlocoFindOneResult | null> {
+  async blocoFindById(accessContext: AccessContext | null, dto: PocTypings.BlocoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.BlocoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.blocoRepository.createQueryBuilder(aliasBloco);
@@ -124,7 +124,7 @@ export class BlocoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Bloco.Views.FindOneResult, qb, aliasBloco, selection);
+    QbEfficientLoad(PocTypings.Tokens.BlocoFindOneResultView, qb, aliasBloco, selection);
 
     // =========================================================
 
@@ -145,7 +145,7 @@ export class BlocoService {
     return bloco;
   }
 
-  async blocoFindByIdSimple(accessContext: AccessContext, id: PocTypings.BlocoFindOneInputView["id"], selection?: string[]): Promise<PocTypings.BlocoFindOneResult | null> {
+  async blocoFindByIdSimple(accessContext: AccessContext, id: PocTypings.BlocoFindOneInputView["id"], selection?: string[]): Promise<PocTypings.BlocoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.blocoRepository.createQueryBuilder(aliasBloco);
@@ -161,7 +161,7 @@ export class BlocoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Bloco.Views.FindOneResult, qb, aliasBloco, selection);
+    QbEfficientLoad(PocTypings.Tokens.BlocoFindOneResultView, qb, aliasBloco, selection);
 
     // =========================================================
 

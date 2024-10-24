@@ -28,7 +28,7 @@ export class ModalidadeResolver {
   async modalidadeFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.ModalidadeFindOneByIdOperationOutput,
     @GqlInfo() info: GraphQLResolveInfo,
   ) {
     return this.modalidadeService.modalidadeFindByIdStrict(accessContext, { id: dto.params.id }, ["id", ...graphqlExtractSelection(info)]);
@@ -54,7 +54,7 @@ export class ModalidadeResolver {
   async modalidadeDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.ModalidadeDeleteByIdOperationInput,
   ) {
     return this.modalidadeService.modalidadeDeleteOneById(accessContext, {
       id: dto.params.id,

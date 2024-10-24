@@ -1,7 +1,7 @@
+import { COMBINED_INPUT_PARAM } from "@/business-logic/standards/especificacao/business-logic/CombinedInput";
 import type { ISpecDecorateHandler, ISpecDecorateOperationContext } from "@/business-logic/standards/especificacao/business-logic/Decorators/Operation/Core/ISpecDecorateHandler";
 import { OPERATION_KEY } from "@/business-logic/standards/especificacao/business-logic/Decorators/Tokens";
 import type { ISpecNodesStore } from "@/business-logic/standards/especificacao/business-logic/SpecNodesStore";
-import { COMBINED_INPUT_PARAM } from "@/business-logic/standards/ladesa-spec";
 import { SetMetadata, applyDecorators, createParamDecorator } from "@nestjs/common";
 import { ExecutionContextHost } from "@nestjs/core/helpers/execution-context-host";
 

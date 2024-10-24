@@ -28,7 +28,7 @@ export class BlocoResolver {
   async blocoFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.BlocoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.BlocoFindOneByIdOperationOutput,
   ) {
     return this.blocoService.blocoFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -55,7 +55,7 @@ export class BlocoResolver {
   async blocoDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.BlocoDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.BlocoDeleteByIdOperationInput,
   ) {
     return this.blocoService.blocoDeleteOneById(accessContext, {
       id: dto.params.id,

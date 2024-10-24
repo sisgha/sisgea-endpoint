@@ -26,7 +26,7 @@ export class UsuarioResolver {
   async usuarioFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.UsuarioFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.UsuarioFindOneByIdOperationOutput,
   ) {
     return this.usuarioService.usuarioFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -53,7 +53,7 @@ export class UsuarioResolver {
   async usuarioDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.UsuarioDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.UsuarioDeleteByIdOperationInput,
   ) {
     return this.usuarioService.usuarioDeleteOneById(accessContext, {
       id: dto.params.id,

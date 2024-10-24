@@ -50,7 +50,7 @@ export class HorarioGeradoResolver {
   async horarioGeradoDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.HorarioGeradoDeleteByIdOperationInput,
   ) {
     return this.horarioGeradoService.horarioGeradoDeleteOneById(accessContext, {
       id: dto.params.id,

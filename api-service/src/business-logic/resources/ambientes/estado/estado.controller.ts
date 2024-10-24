@@ -18,7 +18,7 @@ export class EstadoController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.EstadoListOperationInput,
-  ): Promise<PocTypings.EstadoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.EstadoListOperationOutput["success"]> {
     return this.estadoService.findAll(accessContext, dto);
   }
 
@@ -27,7 +27,7 @@ export class EstadoController {
   async findById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EstadoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.EstadoFindOneByIdOperationOutput,
   ) {
     return this.estadoService.findByIdStrict(accessContext, {
       id: dto.params.id,

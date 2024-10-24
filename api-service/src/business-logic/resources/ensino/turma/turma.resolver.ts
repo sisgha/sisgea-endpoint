@@ -26,7 +26,7 @@ export class TurmaResolver {
   async turmaFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.TurmaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.TurmaFindOneByIdOperationOutput,
   ) {
     return this.turmaService.turmaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -53,7 +53,7 @@ export class TurmaResolver {
   async turmaDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.TurmaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.TurmaFindOneByIdOperationOutput,
   ) {
     return this.turmaService.turmaDeleteOneById(accessContext, {
       id: dto.params.id,

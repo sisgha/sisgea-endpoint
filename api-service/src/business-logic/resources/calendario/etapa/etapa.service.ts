@@ -29,7 +29,7 @@ export class EtapaService {
 
   //
 
-  async etapaFindAll(accessContext: AccessContext, dto: PocTypings.EtapaListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.EtapaListCombinedSuccessOutput["body"]> {
+  async etapaFindAll(accessContext: AccessContext, dto: PocTypings.EtapaListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.EtapaListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.etapaRepository.createQueryBuilder(aliasEtapa);
@@ -92,7 +92,7 @@ export class EtapaService {
 
     qb.select([]);
 
-    QbEfficientLoad(PocTypings.Tokens.Etapa.Views.FindOneResult, qb, aliasEtapa, selection);
+    QbEfficientLoad(PocTypings.Tokens.EtapaFindOneResultView, qb, aliasEtapa, selection);
 
     // =========================================================
 
@@ -104,7 +104,7 @@ export class EtapaService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async etapaFindById(accessContext: AccessContext, dto: PocTypings.EtapaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.EtapaFindOneResult | null> {
+  async etapaFindById(accessContext: AccessContext, dto: PocTypings.EtapaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.EtapaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.etapaRepository.createQueryBuilder(aliasEtapa);
@@ -121,7 +121,7 @@ export class EtapaService {
 
     qb.select([]);
 
-    QbEfficientLoad(PocTypings.Tokens.Etapa.Views.FindOneResult, qb, aliasEtapa, selection);
+    QbEfficientLoad(PocTypings.Tokens.EtapaFindOneResultView, qb, aliasEtapa, selection);
 
     // =========================================================
 
@@ -142,7 +142,7 @@ export class EtapaService {
     return etapa;
   }
 
-  async etapaFindByIdSimple(accessContext: AccessContext, id: PocTypings.EtapaFindOneInputView["id"], selection?: string[]): Promise<PocTypings.EtapaFindOneResult | null> {
+  async etapaFindByIdSimple(accessContext: AccessContext, id: PocTypings.EtapaFindOneInputView["id"], selection?: string[]): Promise<PocTypings.EtapaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.etapaRepository.createQueryBuilder(aliasEtapa);
@@ -158,7 +158,7 @@ export class EtapaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Etapa.Views.FindOneResult, qb, aliasEtapa, selection);
+    QbEfficientLoad(PocTypings.Tokens.EtapaFindOneResultView, qb, aliasEtapa, selection);
 
     // =========================================================
 

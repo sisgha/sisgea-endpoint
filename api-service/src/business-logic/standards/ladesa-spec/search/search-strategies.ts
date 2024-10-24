@@ -1,4 +1,4 @@
-import { PaginatedResultLinks, PaginatedResultMeta } from "@ladesa-ro/especificacao";
+import * as PocTypings from "@ladesa-ro/especificacao";
 import { castArray } from "lodash";
 import { PaginateConfig, PaginateQuery, Paginated, paginate } from "nestjs-paginate";
 import { SelectQueryBuilder } from "typeorm";
@@ -79,8 +79,8 @@ export const LadesaSearch = async <T>(path: string, dto: OperationListInput | nu
 
 export type LadesaPaginatedResult<T> = {
   data: T[];
-  links: PaginatedResultLinks;
-  meta: PaginatedResultMeta;
+  links: PocTypings.PaginationResultLinks;
+  meta: PocTypings.PaginationResultMeta;
 };
 
 export const LadesaPaginatedResultDto = <T>(paginated: Paginated<T>): LadesaPaginatedResult<T> => {

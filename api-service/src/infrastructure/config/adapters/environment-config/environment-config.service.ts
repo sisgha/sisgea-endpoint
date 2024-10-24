@@ -15,6 +15,10 @@ export class EnvironmentConfigService implements IConfig {
     private nestConfigService: NestConfigService,
   ) {}
 
+  getRootSrc(): string {
+    return join(__dirname, "../../../..");
+  }
+
   getRuntimeVersion(): string {
     return this.nestConfigService.get<string>("LADESA_API_VERSION") ?? pkg.version;
   }
@@ -82,7 +86,7 @@ export class EnvironmentConfigService implements IConfig {
   }
 
   getTypeOrmBasePath(): string {
-    return join(__dirname, "../../..", "@/infrastructure/integrations/database/typeorm");
+    return join(this.getRootSrc(), "./infrastructure/integrations/database/typeorm");
   }
 
   getTypeOrmPathEntities(): string {
@@ -214,7 +218,7 @@ export class EnvironmentConfigService implements IConfig {
   getTypeOrmMigrationDataSourceOptions(): DataSourceOptions {
     const options = {
       ...this.getTypeOrmSharedDataSourceOptions(),
-      migrations: [`${this.getTypeOrmPathMigrations()}/**/*{.ts,.js}`],
+      migrations: [`${this.getTypeOrmPathMigrations()}/*{.ts,.js}`],
       migrationsTableName: "app_migration_db",
     };
 

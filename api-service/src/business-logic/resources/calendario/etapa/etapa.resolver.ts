@@ -23,7 +23,7 @@ export class EtapaResolver {
   async etapaFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EtapaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.EtapaFindOneByIdOperationOutput,
   ) {
     return this.etapaService.etapaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -52,7 +52,7 @@ export class EtapaResolver {
   async etapaDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EtapaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.EtapaDeleteByIdOperationInput,
   ) {
     return this.etapaService.etapaDeleteOneById(accessContext, {
       id: dto.params.id,

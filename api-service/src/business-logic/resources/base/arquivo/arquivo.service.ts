@@ -5,6 +5,7 @@ import { AppConfigService } from "@/infrastructure/config";
 import { isValidUuid } from "@/infrastructure/fixtures/validation/isValidUuid";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import { type ArquivoEntity, UsuarioEntity } from "@/infrastructure/integrations/database/typeorm/entities";
+import * as PocTypings from "@ladesa-ro/especificacao";
 import { ForbiddenException, Inject, Injectable, NotFoundException, ServiceUnavailableException, StreamableFile } from "@nestjs/common";
 import jetpack, { createReadStream } from "fs-jetpack";
 import { v4 } from "uuid";

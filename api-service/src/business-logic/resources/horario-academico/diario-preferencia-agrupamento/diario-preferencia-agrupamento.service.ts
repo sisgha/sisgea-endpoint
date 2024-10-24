@@ -35,7 +35,7 @@ export class DiarioPreferenciaAgrupamentoService {
     accessContext: AccessContext,
     dto: PocTypings.DiarioPreferenciaAgrupamentoListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.DiarioPreferenciaAgrupamentoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.DiarioPreferenciaAgrupamentoListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.diarioPreferenciaAgrupamentoRepository.createQueryBuilder(aliasDiarioPreferenciaAgrupamento);
@@ -101,7 +101,7 @@ export class DiarioPreferenciaAgrupamentoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.DiarioPreferenciaAgrupamento.Views.FindOneResult, qb, aliasDiarioPreferenciaAgrupamento, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioPreferenciaAgrupamentoFindOneResultView, qb, aliasDiarioPreferenciaAgrupamento, selection);
 
     // =========================================================
 
@@ -117,7 +117,7 @@ export class DiarioPreferenciaAgrupamentoService {
     accessContext: AccessContext,
     dto: PocTypings.DiarioPreferenciaAgrupamentoFindOneInputView,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.DiarioPreferenciaAgrupamentoFindOneResult | null> {
+  ): Promise<PocTypings.DiarioPreferenciaAgrupamentoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diarioPreferenciaAgrupamentoRepository.createQueryBuilder(aliasDiarioPreferenciaAgrupamento);
@@ -135,7 +135,7 @@ export class DiarioPreferenciaAgrupamentoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.DiarioPreferenciaAgrupamento.Views.FindOneResult, qb, aliasDiarioPreferenciaAgrupamento, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioPreferenciaAgrupamentoFindOneResultView, qb, aliasDiarioPreferenciaAgrupamento, selection);
     // =========================================================
 
     const diarioPreferenciaAgrupamento = await qb.getOne();
@@ -159,7 +159,7 @@ export class DiarioPreferenciaAgrupamentoService {
     accessContext: AccessContext,
     id: PocTypings.DiarioPreferenciaAgrupamentoFindOneInputView["id"],
     selection?: string[],
-  ): Promise<PocTypings.DiarioPreferenciaAgrupamentoFindOneResult | null> {
+  ): Promise<PocTypings.DiarioPreferenciaAgrupamentoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diarioPreferenciaAgrupamentoRepository.createQueryBuilder(aliasDiarioPreferenciaAgrupamento);
@@ -175,7 +175,7 @@ export class DiarioPreferenciaAgrupamentoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.DiarioPreferenciaAgrupamento.Views.FindOneResult, qb, aliasDiarioPreferenciaAgrupamento, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioPreferenciaAgrupamentoFindOneResultView, qb, aliasDiarioPreferenciaAgrupamento, selection);
 
     // =========================================================
 

@@ -33,7 +33,7 @@ export class DiaCalendarioService {
     accessContext: AccessContext,
     dto: PocTypings.DiaCalendarioListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.DiaCalendarioListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.DiaCalendarioListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.diaCalendarioRepository.createQueryBuilder(aliasDiaCalendario);
@@ -92,7 +92,7 @@ export class DiaCalendarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.DiaCalendario.Views.FindOneResult, qb, aliasDiaCalendario, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiaCalendarioFindOneResultView, qb, aliasDiaCalendario, selection);
 
     // =========================================================
 
@@ -104,7 +104,7 @@ export class DiaCalendarioService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async diaCalendarioFindById(accessContext: AccessContext, dto: PocTypings.DiaCalendarioFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.DiaCalendarioFindOneResult | null> {
+  async diaCalendarioFindById(accessContext: AccessContext, dto: PocTypings.DiaCalendarioFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.DiaCalendarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diaCalendarioRepository.createQueryBuilder(aliasDiaCalendario);
@@ -120,7 +120,7 @@ export class DiaCalendarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.DiaCalendario.Views.FindOneResult, qb, aliasDiaCalendario, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiaCalendarioFindOneResultView, qb, aliasDiaCalendario, selection);
 
     // =========================================================
 
@@ -141,7 +141,7 @@ export class DiaCalendarioService {
     return diaCalendario;
   }
 
-  async diaCalendarioFindByIdSimple(accessContext: AccessContext, id: PocTypings.DiaCalendarioFindOneInputView["id"], selection?: string[]): Promise<PocTypings.DiaCalendarioFindOneResult | null> {
+  async diaCalendarioFindByIdSimple(accessContext: AccessContext, id: PocTypings.DiaCalendarioFindOneInputView["id"], selection?: string[]): Promise<PocTypings.DiaCalendarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diaCalendarioRepository.createQueryBuilder(aliasDiaCalendario);
@@ -157,7 +157,7 @@ export class DiaCalendarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.DiaCalendario.Views.FindOneResult, qb, aliasDiaCalendario, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiaCalendarioFindOneResultView, qb, aliasDiaCalendario, selection);
 
     // =========================================================
 
@@ -187,7 +187,7 @@ export class DiaCalendarioService {
 
     // =========================================================
 
-    const dtoDiaCalendario = pick(dto.body, ["data", "dia_letivo", "feriado"]);
+    const dtoDiaCalendario = pick(dto.body, ["data", "dia_letivo", "feriado"]) as Pick<typeof dto.body, "data" | "diaLetivo" | "feriado">;
 
     const diaCalendario = this.diaCalendarioRepository.create();
 
@@ -229,7 +229,7 @@ export class DiaCalendarioService {
 
     await accessContext.ensurePermission("dia_calendario:update", { dto }, dto.params.id, this.diaCalendarioRepository.createQueryBuilder(aliasDiaCalendario));
 
-    const dtoDiaCalendario = pick(dto.body, ["data", "dia_letivo", "feriado"]);
+    const dtoDiaCalendario = pick(dto.body, ["data", "dia_letivo", "feriado"]) as Pick<typeof dto.body, "data" | "diaLetivo" | "feriado">;
 
     const diaCalendario = {
       id: currentDiaCalendario.id,

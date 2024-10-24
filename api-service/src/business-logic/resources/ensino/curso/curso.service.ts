@@ -35,7 +35,7 @@ export class CursoService {
 
   //
 
-  async cursoFindAll(accessContext: AccessContext, dto: PocTypings.CursoListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.CursoListCombinedSuccessOutput["body"]> {
+  async cursoFindAll(accessContext: AccessContext, dto: PocTypings.CursoListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.CursoListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.cursoRepository.createQueryBuilder(aliasCurso);
@@ -104,7 +104,7 @@ export class CursoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Curso.Views.FindOneResult, qb, aliasCurso, selection);
+    QbEfficientLoad(PocTypings.Tokens.CursoFindOneResultView, qb, aliasCurso, selection);
 
     // =========================================================
 
@@ -116,7 +116,7 @@ export class CursoService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async cursoFindById(accessContext: AccessContext | null, dto: PocTypings.CursoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.CursoFindOneResult | null> {
+  async cursoFindById(accessContext: AccessContext | null, dto: PocTypings.CursoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.CursoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.cursoRepository.createQueryBuilder(aliasCurso);
@@ -134,7 +134,7 @@ export class CursoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Curso.Views.FindOneResult, qb, aliasCurso, selection);
+    QbEfficientLoad(PocTypings.Tokens.CursoFindOneResultView, qb, aliasCurso, selection);
 
     // =========================================================
 
@@ -155,7 +155,7 @@ export class CursoService {
     return curso;
   }
 
-  async cursoFindByIdSimple(accessContext: AccessContext, id: PocTypings.CursoFindOneInputView["id"], selection?: string[]): Promise<PocTypings.CursoFindOneResult | null> {
+  async cursoFindByIdSimple(accessContext: AccessContext, id: PocTypings.CursoFindOneInputView["id"], selection?: string[]): Promise<PocTypings.CursoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.cursoRepository.createQueryBuilder(aliasCurso);
@@ -171,7 +171,7 @@ export class CursoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Curso.Views.FindOneResult, qb, aliasCurso, selection);
+    QbEfficientLoad(PocTypings.Tokens.CursoFindOneResultView, qb, aliasCurso, selection);
 
     // =========================================================
 

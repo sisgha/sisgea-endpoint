@@ -1,10 +1,13 @@
-import { CompileYupSchema, getLadesaNodesRepository } from "@/business-logic/standards";
+import { EnderecoInput } from "@ladesa-ro/especificacao";
+import * as yup from "yup";
 
 export const GetEnderecoInputSchema = () => {
-  const repository = getLadesaNodesRepository();
-  const yupCompiler = new CompileYupSchema(repository);
-
-  const enderecoInputView = repository.GetRealTargetStrict(PocTypings.Tokens.Endereco.Views.Input);
-
-  return yupCompiler.Handle(enderecoInputView);
+  return yup
+    .mixed<EnderecoInput>()
+    .test(() => {
+      console.warn("GetEnderecoInputSchema");
+      return true;
+    })
+    .required()
+    .nonNullable();
 };

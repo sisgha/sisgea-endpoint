@@ -35,11 +35,7 @@ export class DiarioService {
 
   //
 
-  async diarioFindAll(
-    accessContext: AccessContext,
-    dto: PocTypings.DiarioListOperationInput | null = null,
-    selection?: string[] | boolean,
-  ): Promise<PocTypings.DiarioListCombinedSuccessOutput["body"]> {
+  async diarioFindAll(accessContext: AccessContext, dto: PocTypings.DiarioListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.DiarioListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.diarioRepository.createQueryBuilder(aliasDiario);
@@ -100,7 +96,7 @@ export class DiarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Diario.Views.FindOneResult, qb, aliasDiario, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioFindOneResultView, qb, aliasDiario, selection);
 
     // =========================================================
 
@@ -112,7 +108,7 @@ export class DiarioService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async diarioFindById(accessContext: AccessContext, dto: PocTypings.DiarioFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.DiarioFindOneResult | null> {
+  async diarioFindById(accessContext: AccessContext, dto: PocTypings.DiarioFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.DiarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diarioRepository.createQueryBuilder(aliasDiario);
@@ -128,7 +124,7 @@ export class DiarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Diario.Views.FindOneResult, qb, aliasDiario, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioFindOneResultView, qb, aliasDiario, selection);
 
     // =========================================================
 
@@ -149,7 +145,7 @@ export class DiarioService {
     return diario;
   }
 
-  async diarioFindByIdSimple(accessContext: AccessContext, id: PocTypings.DiarioFindOneInputView["id"], selection?: string[] | boolean): Promise<PocTypings.DiarioFindOneResult | null> {
+  async diarioFindByIdSimple(accessContext: AccessContext, id: PocTypings.DiarioFindOneInputView["id"], selection?: string[] | boolean): Promise<PocTypings.DiarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diarioRepository.createQueryBuilder(aliasDiario);
@@ -165,7 +161,7 @@ export class DiarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Diario.Views.FindOneResult, qb, aliasDiario, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioFindOneResultView, qb, aliasDiario, selection);
 
     // =========================================================
 

@@ -14,7 +14,7 @@ export class AmbienteController {
 
   @Get("/")
   @PocOperation(PocTokens.AmbienteList)
-  async ambienteFindAll(@AccessContextHttp() accessContext: AccessContext, @CombinedInput() dto: PocTypings.AmbienteListOperationInput): Promise<PocTypings.AmbienteListCombinedSuccessOutput["body"]> {
+  async ambienteFindAll(@AccessContextHttp() accessContext: AccessContext, @CombinedInput() dto: PocTypings.AmbienteListOperationInput): Promise<PocTypings.AmbienteListOperationOutput["success"]> {
     return this.ambienteService.ambienteFindAll(accessContext, dto);
   }
 
@@ -25,7 +25,7 @@ export class AmbienteController {
   async ambienteFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AmbienteFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.AmbienteFindOneByIdOperationOutput,
   ) {
     return this.ambienteService.ambienteFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -84,7 +84,7 @@ export class AmbienteController {
   async ambienteDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AmbienteDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.AmbienteDeleteByIdOperationInput,
   ) {
     return this.ambienteService.ambienteDeleteOneById(accessContext, {
       id: dto.params.id,

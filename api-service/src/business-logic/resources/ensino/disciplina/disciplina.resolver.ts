@@ -26,7 +26,7 @@ export class DisciplinaResolver {
   async disciplinaFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.DisciplinaFindOneByIdOperationOutput,
   ) {
     return this.disciplinaService.disciplinaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -53,7 +53,7 @@ export class DisciplinaResolver {
   async disciplinaDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.DisciplinaDeleteByIdOperationInput,
   ) {
     return this.disciplinaService.disciplinaDeleteOneById(accessContext, {
       id: dto.params.id,

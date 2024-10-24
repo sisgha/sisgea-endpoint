@@ -23,7 +23,7 @@ export class HorarioGeradoAulaResolver {
   async horarioGeradoAulaFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoAulaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.HorarioGeradoAulaFindByIdOperationOutput,
   ) {
     return this.horarioGeradoAulaService.horarioGeradoAulaFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -50,7 +50,7 @@ export class HorarioGeradoAulaResolver {
   async horarioGeradoAulaOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoAulaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.HorarioGeradoAulaDeleteByIdOperationInput,
   ) {
     return this.horarioGeradoAulaService.horarioGeradoAulaDeleteOneById(accessContext, { id: dto.params.id });
   }

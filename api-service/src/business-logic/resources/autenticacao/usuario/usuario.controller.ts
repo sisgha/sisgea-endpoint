@@ -20,7 +20,7 @@ export class UsuarioController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.UsuarioListOperationInput,
-  ): Promise<PocTypings.UsuarioListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.UsuarioListOperationOutput["success"]> {
     return this.usuarioService.usuarioFindAll(accessContext, dto);
   }
 
@@ -31,7 +31,7 @@ export class UsuarioController {
   async usuarioFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.UsuarioFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.UsuarioFindOneByIdOperationOutput,
   ) {
     return this.usuarioService.usuarioFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -65,7 +65,7 @@ export class UsuarioController {
   async usuarioGetImagemCapa(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.UsuarioFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.UsuarioFindOneByIdOperationOutput,
   ) {
     return this.usuarioService.usuarioGetImagemCapa(accessContext, dto.params.id);
   }
@@ -88,7 +88,7 @@ export class UsuarioController {
   async usuarioGetImagemPerfil(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.UsuarioFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.UsuarioFindOneByIdOperationOutput,
   ) {
     return this.usuarioService.usuarioGetImagemPerfil(accessContext, dto.params.id);
   }
@@ -111,7 +111,7 @@ export class UsuarioController {
   async usuarioDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.UsuarioDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.UsuarioDeleteByIdOperationInput,
   ) {
     return this.usuarioService.usuarioDeleteOneById(accessContext, {
       id: dto.params.id,

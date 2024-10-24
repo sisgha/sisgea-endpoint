@@ -33,7 +33,7 @@ export class AulaService {
 
   //
 
-  async aulaFindAll(accessContext: AccessContext, dto: PocTypings.AulaListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.AulaListCombinedSuccessOutput["body"]> {
+  async aulaFindAll(accessContext: AccessContext, dto: PocTypings.AulaListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.AulaListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.aulaRepository.createQueryBuilder(aliasAula);
@@ -95,7 +95,7 @@ export class AulaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Aula.Views.FindOneResult, qb, aliasAula, selection);
+    QbEfficientLoad(PocTypings.Tokens.AulaFindOneResultView, qb, aliasAula, selection);
 
     // =========================================================
 
@@ -107,7 +107,7 @@ export class AulaService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async aulaFindById(accessContext: AccessContext, dto: PocTypings.AulaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.AulaFindOneResult | null> {
+  async aulaFindById(accessContext: AccessContext, dto: PocTypings.AulaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.AulaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.aulaRepository.createQueryBuilder(aliasAula);
@@ -123,7 +123,7 @@ export class AulaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Aula.Views.FindOneResult, qb, aliasAula, selection);
+    QbEfficientLoad(PocTypings.Tokens.AulaFindOneResultView, qb, aliasAula, selection);
 
     // =========================================================
 
@@ -144,7 +144,7 @@ export class AulaService {
     return aula;
   }
 
-  async aulaFindByIdSimple(accessContext: AccessContext, id: PocTypings.AulaFindOneInputView["id"], selection?: string[] | boolean): Promise<PocTypings.AulaFindOneResult | null> {
+  async aulaFindByIdSimple(accessContext: AccessContext, id: PocTypings.AulaFindOneInputView["id"], selection?: string[] | boolean): Promise<PocTypings.AulaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.aulaRepository.createQueryBuilder(aliasAula);
@@ -160,7 +160,7 @@ export class AulaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Aula.Views.FindOneResult, qb, aliasAula, selection);
+    QbEfficientLoad(PocTypings.Tokens.AulaFindOneResultView, qb, aliasAula, selection);
 
     // =========================================================
 

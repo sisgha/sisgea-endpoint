@@ -19,7 +19,7 @@ export class DiarioProfessorController {
   async diarioProfessorFindAll(
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.DiarioProfessorListOperationInput,
-  ): Promise<PocTypings.DiarioProfessorListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.DiarioProfessorListOperationOutput["success"]> {
     return this.diarioProfessorService.diarioProfessorFindAll(accessContext, dto);
   }
 
@@ -30,7 +30,7 @@ export class DiarioProfessorController {
   async diarioProfessorFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiarioProfessorFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.DiarioProfessorFindOneByIdOperationOutput,
   ) {
     return this.diarioProfessorService.diarioProfessorFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -66,7 +66,7 @@ export class DiarioProfessorController {
   async diarioProfessorDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiarioProfessorDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.DiarioProfessorDeleteByIdOperationInput,
   ) {
     return this.diarioProfessorService.diarioProfessorDeleteOneById(accessContext, { id: dto.params.id });
   }

@@ -20,7 +20,7 @@ export class ReservaController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.ReservaListOperationInput,
-  ): Promise<PocTypings.ReservaListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.ReservaListOperationOutput["success"]> {
     return this.reservaService.reservaFindAll(accessContext, dto);
   }
 
@@ -31,7 +31,7 @@ export class ReservaController {
   async reservaFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ReservaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.ReservaFindOneByIdOperationOutput,
   ) {
     return this.reservaService.reservaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -69,7 +69,7 @@ export class ReservaController {
   async reservaDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ReservaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.ReservaDeleteByIdOperationInput,
   ) {
     return this.reservaService.reservaDeleteOneById(accessContext, {
       id: dto.params.id,

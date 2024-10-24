@@ -26,7 +26,7 @@ export class AulaResolver {
   async aulaFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AulaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.AulaFindOneByIdOperationOutput,
   ) {
     return this.aulaService.aulaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -53,7 +53,7 @@ export class AulaResolver {
   async aulaDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AulaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.AulaDeleteByIdOperationInput,
   ) {
     return this.aulaService.aulaDeleteOneById(accessContext, {
       id: dto.params.id,

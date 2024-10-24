@@ -1,5 +1,6 @@
 import type { AccessContext } from "@/infrastructure/access-context";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
+import * as PocTypings from "@ladesa-ro/especificacao";
 import { Injectable } from "@nestjs/common";
 import { pick } from "lodash";
 
@@ -15,7 +16,7 @@ export class IntervaloDeTempoService {
 
   //
 
-  private async intervaloFindOne(dto: PocTypings.IntervaloDeTempoInput) {
+  private async intervaloFindOne(dto: PocTypings.IntervaloDeTempoInputView) {
     return this.intervaloTempoRepository.findOne({
       where: {
         periodoFim: dto.periodoFim,
@@ -24,7 +25,7 @@ export class IntervaloDeTempoService {
     });
   }
 
-  async intervaloCreateOrUpdate(accessContext: AccessContext, dto: PocTypings.IntervaloDeTempoInput) {
+  async intervaloCreateOrUpdate(accessContext: AccessContext, dto: PocTypings.IntervaloDeTempoInputView) {
     const intervalExisting = await this.intervaloFindOne(dto);
 
     if (intervalExisting) return intervalExisting;

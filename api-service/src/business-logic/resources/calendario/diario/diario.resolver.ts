@@ -26,7 +26,7 @@ export class DiarioResolver {
   async diarioFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiarioFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.DiarioFindOneByIdOperationOutput,
   ) {
     return this.diarioService.diarioFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -53,7 +53,7 @@ export class DiarioResolver {
   async diarioDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiarioDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.DiarioDeleteByIdOperationInput,
   ) {
     return this.diarioService.diarioDeleteOneById(accessContext, {
       id: dto.params.id,

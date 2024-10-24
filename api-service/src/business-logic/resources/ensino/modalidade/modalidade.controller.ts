@@ -20,7 +20,7 @@ export class ModalidadeController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.ModalidadeListOperationInput,
-  ): Promise<PocTypings.ModalidadeListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.ModalidadeListOperationOutput["success"]> {
     return this.modalidadeService.modalidadeFindAll(accessContext, dto);
   }
 
@@ -31,7 +31,7 @@ export class ModalidadeController {
   async modalidadeFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.ModalidadeFindOneByIdOperationOutput,
   ) {
     return this.modalidadeService.modalidadeFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -69,7 +69,7 @@ export class ModalidadeController {
   async modalidadeDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.ModalidadeDeleteByIdOperationInput,
   ) {
     return this.modalidadeService.modalidadeDeleteOneById(accessContext, {
       id: dto.params.id,

@@ -33,7 +33,7 @@ export class HorarioGeradoService {
     accessContext: AccessContext,
     dto: PocTypings.HorarioGeradoListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.HorarioGeradoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.HorarioGeradoListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.horarioGeradoRepository.createQueryBuilder(aliasHorarioGerado);
@@ -99,7 +99,7 @@ export class HorarioGeradoService {
 
     qb.select([]);
 
-    QbEfficientLoad(PocTypings.Tokens.HorarioGerado.Views.FindOneResult, qb, aliasHorarioGerado, selection);
+    QbEfficientLoad(PocTypings.Tokens.HorarioGeradoFindOneResultView, qb, aliasHorarioGerado, selection);
 
     // =========================================================
 
@@ -111,7 +111,7 @@ export class HorarioGeradoService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async horarioGeradoFindById(accessContext: AccessContext, dto: PocTypings.HorarioGeradoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.HorarioGeradoFindOneResult | null> {
+  async horarioGeradoFindById(accessContext: AccessContext, dto: PocTypings.HorarioGeradoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.HorarioGeradoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.horarioGeradoRepository.createQueryBuilder(aliasHorarioGerado);
@@ -128,7 +128,7 @@ export class HorarioGeradoService {
 
     qb.select([]);
 
-    QbEfficientLoad(PocTypings.Tokens.HorarioGerado.Views.FindOneResult, qb, aliasHorarioGerado, selection);
+    QbEfficientLoad(PocTypings.Tokens.HorarioGeradoFindOneResultView, qb, aliasHorarioGerado, selection);
 
     // =========================================================
 
@@ -149,7 +149,7 @@ export class HorarioGeradoService {
     return horario;
   }
 
-  async horarioGeradoFindByIdSimple(accessContext: AccessContext, id: PocTypings.HorarioGeradoFindOneInputView["id"], selection?: string[]): Promise<PocTypings.HorarioGeradoFindOneResult | null> {
+  async horarioGeradoFindByIdSimple(accessContext: AccessContext, id: PocTypings.HorarioGeradoFindOneInputView["id"], selection?: string[]): Promise<PocTypings.HorarioGeradoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.horarioGeradoRepository.createQueryBuilder(aliasHorarioGerado);
@@ -165,7 +165,7 @@ export class HorarioGeradoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.HorarioGerado.Views.FindOneResult, qb, aliasHorarioGerado, selection);
+    QbEfficientLoad(PocTypings.Tokens.HorarioGeradoFindOneResultView, qb, aliasHorarioGerado, selection);
 
     // =========================================================
 

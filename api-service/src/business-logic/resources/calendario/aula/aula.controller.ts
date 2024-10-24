@@ -20,7 +20,7 @@ export class AulaController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.AulaListOperationInput,
-  ): Promise<PocTypings.AulaListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.AulaListOperationOutput["success"]> {
     return this.aulaService.aulaFindAll(accessContext, dto);
   }
 
@@ -31,7 +31,7 @@ export class AulaController {
   async aulaFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AulaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.AulaFindOneByIdOperationOutput,
   ) {
     return this.aulaService.aulaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -69,7 +69,7 @@ export class AulaController {
   async aulaDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AulaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.AulaDeleteByIdOperationInput,
   ) {
     return this.aulaService.aulaDeleteOneById(accessContext, {
       id: dto.params.id,

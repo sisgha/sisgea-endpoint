@@ -14,7 +14,7 @@ export class EtapaController {
 
   @Get("/")
   @PocOperation(PocTokens.EtapaList)
-  async etapaFindAll(@AccessContextHttp() clientAccess: AccessContext, @CombinedInput() dto: PocTypings.EtapaListOperationInput): Promise<PocTypings.EtapaListCombinedSuccessOutput["body"]> {
+  async etapaFindAll(@AccessContextHttp() clientAccess: AccessContext, @CombinedInput() dto: PocTypings.EtapaListOperationInput): Promise<PocTypings.EtapaListOperationOutput["success"]> {
     return this.etapaService.etapaFindAll(clientAccess, dto);
   }
 
@@ -25,7 +25,7 @@ export class EtapaController {
   async etapaFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EtapaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.EtapaFindOneByIdOperationOutput,
   ) {
     return this.etapaService.etapaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -63,7 +63,7 @@ export class EtapaController {
   async etapaDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EtapaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.EtapaDeleteByIdOperationInput,
   ) {
     return this.etapaService.etapaDeleteOneById(accessContext, {
       id: dto.params.id,

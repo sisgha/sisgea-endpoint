@@ -34,7 +34,7 @@ export class DiarioProfessorService {
     accessContext: AccessContext,
     dto: PocTypings.DiarioProfessorListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.DiarioProfessorListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.DiarioProfessorListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.diarioProfessorRepository.createQueryBuilder(aliasDiarioProfessor);
@@ -91,7 +91,7 @@ export class DiarioProfessorService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.DiarioProfessor.Views.FindOneResult, qb, aliasDiarioProfessor, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioProfessorFindOneResultView, qb, aliasDiarioProfessor, selection);
 
     // =========================================================
 
@@ -107,7 +107,7 @@ export class DiarioProfessorService {
     accessContext: AccessContext,
     dto: PocTypings.DiarioProfessorFindOneInputView,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.DiarioProfessorFindOneResult | null> {
+  ): Promise<PocTypings.DiarioProfessorFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diarioProfessorRepository.createQueryBuilder(aliasDiarioProfessor);
@@ -123,7 +123,7 @@ export class DiarioProfessorService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.DiarioProfessor.Views.FindOneResult, qb, aliasDiarioProfessor, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioProfessorFindOneResultView, qb, aliasDiarioProfessor, selection);
 
     // =========================================================
 
@@ -148,7 +148,7 @@ export class DiarioProfessorService {
     accessContext: AccessContext,
     id: PocTypings.DiarioProfessorFindOneInputView["id"],
     selection?: string[] | boolean,
-  ): Promise<PocTypings.DiarioProfessorFindOneResult | null> {
+  ): Promise<PocTypings.DiarioProfessorFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diarioProfessorRepository.createQueryBuilder(aliasDiarioProfessor);
@@ -164,7 +164,7 @@ export class DiarioProfessorService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.DiarioProfessor.Views.FindOneResult, qb, aliasDiarioProfessor, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioProfessorFindOneResultView, qb, aliasDiarioProfessor, selection);
 
     // =========================================================
 

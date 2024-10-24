@@ -37,7 +37,7 @@ export class ReservaService {
     accessContext: AccessContext,
     dto: PocTypings.ReservaListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.ReservaListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.ReservaListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.reservaRepository.createQueryBuilder(aliasReserva);
@@ -123,7 +123,7 @@ export class ReservaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Reserva.Views.FindOneResult, qb, aliasReserva, selection);
+    QbEfficientLoad(PocTypings.Tokens.ReservaFindOneResultView, qb, aliasReserva, selection);
 
     // =========================================================
 
@@ -135,7 +135,7 @@ export class ReservaService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async reservaFindById(accessContext: AccessContext, dto: PocTypings.ReservaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.ReservaFindOneResult | null> {
+  async reservaFindById(accessContext: AccessContext, dto: PocTypings.ReservaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.ReservaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.reservaRepository.createQueryBuilder(aliasReserva);
@@ -151,7 +151,7 @@ export class ReservaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Reserva.Views.FindOneResult, qb, aliasReserva, selection);
+    QbEfficientLoad(PocTypings.Tokens.ReservaFindOneResultView, qb, aliasReserva, selection);
 
     // =========================================================
 
@@ -172,7 +172,7 @@ export class ReservaService {
     return reserva;
   }
 
-  async reservaFindByIdSimple(accessContext: AccessContext, id: PocTypings.ReservaFindOneInputView["id"], selection?: string[]): Promise<PocTypings.ReservaFindOneResult | null> {
+  async reservaFindByIdSimple(accessContext: AccessContext, id: PocTypings.ReservaFindOneInputView["id"], selection?: string[]): Promise<PocTypings.ReservaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.reservaRepository.createQueryBuilder(aliasReserva);
@@ -188,7 +188,7 @@ export class ReservaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Reserva.Views.FindOneResult, qb, aliasReserva, selection);
+    QbEfficientLoad(PocTypings.Tokens.ReservaFindOneResultView, qb, aliasReserva, selection);
 
     // =========================================================
 
@@ -248,15 +248,16 @@ export class ReservaService {
 
     // =========================================================
 
-    if (has(dto.body, "intervaloDeTempo") && dto.body.intervaloDeTempo !== undefined) {
-      const intervaloDeTempo = await this.intervaloService.intervaloCreateOrUpdate(accessContext, dto.body.intervaloDeTempo!);
+    // TODO
+    // if (has(dto.body, "intervaloDeTempo") && dto.body.intervaloDeTempo !== undefined) {
+    //   const intervaloDeTempo = await this.intervaloService.intervaloCreateOrUpdate(accessContext, dto.body.intervaloDeTempo!);
 
-      this.reservaRepository.merge(reserva, {
-        intervaloDeTempo: {
-          id: intervaloDeTempo!.id,
-        },
-      });
-    }
+    //   this.reservaRepository.merge(reserva, {
+    //     intervaloDeTempo: {
+    //       id: intervaloDeTempo!.id,
+    //     },
+    //   });
+    // }
 
     // =========================================================
 
@@ -314,15 +315,16 @@ export class ReservaService {
 
     // =========================================================
 
-    if (has(dto.body, "intervaloDeTempo") && dto.body.intervaloDeTempo !== undefined) {
-      const intervaloDeTempo = await this.intervaloService.intervaloCreateOrUpdate(accessContext, dto.body.intervaloDeTempo!);
+    // TODO
+    // if (has(dto.body, "intervaloDeTempo") && dto.body.intervaloDeTempo !== undefined) {
+    //   const intervaloDeTempo = await this.intervaloService.intervaloCreateOrUpdate(accessContext, dto.body.intervaloDeTempo!);
 
-      this.reservaRepository.merge(reserva, {
-        intervaloDeTempo: {
-          id: intervaloDeTempo!.id,
-        },
-      });
-    }
+    //   this.reservaRepository.merge(reserva, {
+    //     intervaloDeTempo: {
+    //       id: intervaloDeTempo!.id,
+    //     },
+    //   });
+    // }
 
     // =========================================================
 

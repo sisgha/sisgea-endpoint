@@ -28,7 +28,7 @@ export class AmbienteResolver {
   async ambienteFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AmbienteFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.AmbienteFindOneByIdOperationOutput,
   ) {
     return this.ambienteService.ambienteFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -56,7 +56,7 @@ export class AmbienteResolver {
   async ambienteDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AmbienteDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.AmbienteDeleteByIdOperationInput,
   ) {
     return this.ambienteService.ambienteDeleteOneById(accessContext, {
       id: dto.params.id,

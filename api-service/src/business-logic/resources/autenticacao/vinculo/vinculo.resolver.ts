@@ -28,7 +28,7 @@ export class VinculoResolver {
   async vinculoSetVinculos(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.VinculoUpdateCombinedInput,
+    @CombinedInput() dto: PocTypings.PerfilUpdateOperationInput,
   ) {
     return this.vinculoService.vinculoSetVinculos(accessContext, dto);
   }

@@ -14,7 +14,7 @@ export class EventoController {
 
   @Get("/")
   @PocOperation(PocTokens.EventoList)
-  async eventoFindAll(@AccessContextHttp() clientAccess: AccessContext, @CombinedInput() dto: PocTypings.EventoListOperationInput): Promise<PocTypings.EventoListCombinedSuccessOutput["body"]> {
+  async eventoFindAll(@AccessContextHttp() clientAccess: AccessContext, @CombinedInput() dto: PocTypings.EventoListOperationInput): Promise<PocTypings.EventoListOperationOutput["success"]> {
     return this.eventoService.eventoFindAll(clientAccess, dto);
   }
 
@@ -25,7 +25,7 @@ export class EventoController {
   async eventoFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EventoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.EventoFindOneByIdOperationOutput,
   ) {
     return this.eventoService.eventoFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -63,7 +63,7 @@ export class EventoController {
   async eventoDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EventoDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.EventoDeleteByIdOperationInput,
   ) {
     return this.eventoService.eventoDeleteOneById(accessContext, {
       id: dto.params.id,

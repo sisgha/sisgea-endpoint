@@ -1,3 +1,4 @@
 export * from "./AppStandards";
-export * from "./exceptions/ValidationFailedException";
+export * from "./especificacao";
+export * from "./exceptions";
 export * from "./ladesa-spec";

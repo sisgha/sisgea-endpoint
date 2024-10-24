@@ -20,7 +20,7 @@ export class BlocoController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() combinedInput: PocTypings.BlocoListOperationInput,
-  ): Promise<PocTypings.BlocoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.BlocoListOperationOutput["success"]> {
     return this.blocoService.blocoFindAll(accessContext, combinedInput);
   }
 
@@ -90,7 +90,7 @@ export class BlocoController {
   async blocoDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() combinedInput: PocTypings.BlocoDeleteByIDCombinedInput,
+    @CombinedInput() combinedInput: PocTypings.BlocoDeleteByIdOperationInput,
   ) {
     return this.blocoService.blocoDeleteOneById(accessContext, {
       id: combinedInput.params.id,

@@ -26,7 +26,7 @@ export class CursoResolver {
   async cursoFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.CursoFindOneByIdOperationOutput,
   ) {
     return this.cursoService.cursoFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -53,7 +53,7 @@ export class CursoResolver {
   async cursoDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.CursoDeleteByIdOperationInput,
   ) {
     return this.cursoService.cursoDeleteOneById(accessContext, {
       id: dto.params.id,

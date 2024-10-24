@@ -37,7 +37,7 @@ export class AmbienteService {
     accessContext: AccessContext,
     dto: PocTypings.AmbienteListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.AmbienteListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.AmbienteListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.ambienteRepository.createQueryBuilder(aliasAmbiente);
@@ -107,7 +107,7 @@ export class AmbienteService {
 
     qb.select([]);
 
-    QbEfficientLoad(PocTypings.Tokens.Ambiente.Views.FindOneResult, qb, aliasAmbiente, selection);
+    QbEfficientLoad(PocTypings.Tokens.AmbienteFindOneResultView, qb, aliasAmbiente, selection);
 
     // =========================================================
 
@@ -119,7 +119,7 @@ export class AmbienteService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async ambienteFindById(accessContext: AccessContext | null, dto: PocTypings.AmbienteFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.AmbienteFindOneResult | null> {
+  async ambienteFindById(accessContext: AccessContext | null, dto: PocTypings.AmbienteFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.AmbienteFindOneResultView | null> {
     // =========================================================
 
     const qb = this.ambienteRepository.createQueryBuilder(aliasAmbiente);
@@ -137,7 +137,7 @@ export class AmbienteService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Ambiente.Views.FindOneResult, qb, aliasAmbiente, selection);
+    QbEfficientLoad(PocTypings.Tokens.AmbienteFindOneResultView, qb, aliasAmbiente, selection);
 
     // =========================================================
 

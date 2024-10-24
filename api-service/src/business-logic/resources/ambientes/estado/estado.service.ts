@@ -19,7 +19,7 @@ export class EstadoService {
 
   //
 
-  async findAll(accessContext: AccessContext, dto: PocTypings.EstadoListOperationInput | null = null, selection?: string[]): Promise<PocTypings.EstadoListCombinedSuccessOutput["body"]> {
+  async findAll(accessContext: AccessContext, dto: PocTypings.EstadoListOperationInput | null = null, selection?: string[]): Promise<PocTypings.EstadoListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.baseEstadoRepository.createQueryBuilder(aliasEstado);
@@ -57,7 +57,7 @@ export class EstadoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Estado.Entity, qb, aliasEstado, selection);
+    QbEfficientLoad(PocTypings.Tokens.EstadoView, qb, aliasEstado, selection);
 
     // =========================================================
 
@@ -86,7 +86,7 @@ export class EstadoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Estado.Entity, qb, aliasEstado, selection);
+    QbEfficientLoad(PocTypings.Tokens.EstadoView, qb, aliasEstado, selection);
 
     // =========================================================
 

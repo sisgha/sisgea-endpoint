@@ -1,6 +1,7 @@
 import { QbEfficientLoad } from "@/business-logic/standards/ladesa-spec/QbEfficientLoad";
 import type { AccessContext } from "@/infrastructure/access-context";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
+import * as PocTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { pick } from "lodash";
 import { GetEnderecoInputSchema } from "./endereco.dtos";
@@ -45,6 +46,7 @@ export class EnderecoService {
 
   async internalEnderecoCreateOrUpdate(id: PocTypings.Endereco["id"] | null, payload: PocTypings.EnderecoInput) {
     const enderecoInputSchema = GetEnderecoInputSchema();
+
     const dto = await enderecoInputSchema.validate(payload, {
       stripUnknown: true,
     });
@@ -76,7 +78,7 @@ export class EnderecoService {
 
   //
 
-  async findById(accessContext: AccessContext, dto: PocTypings.EnderecoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.EnderecoFindOneResult | null> {
+  async findById(accessContext: AccessContext, dto: PocTypings.EnderecoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.EnderecoFindOneResultView | null> {
     const qb = this.enderecoRepository.createQueryBuilder(aliasEndereco);
 
     // =========================================================
@@ -90,7 +92,7 @@ export class EnderecoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Endereco.Views.FindOneResult, qb, aliasEndereco, selection);
+    QbEfficientLoad(PocTypings.Tokens.EnderecoFindOneResultView, qb, aliasEndereco, selection);
 
     // =========================================================
 

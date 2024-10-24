@@ -1,6 +1,7 @@
 import type { AccessContext } from "@/infrastructure/access-context";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import { KeycloakService, OpenidConnectService } from "@/infrastructure/integrations/identity-provider";
+import * as PocTypings from "@ladesa-ro/especificacao";
 import { BadRequestException, ForbiddenException, HttpException, Injectable, ServiceUnavailableException } from "@nestjs/common";
 import type { BaseClient, TokenSet } from "openid-client";
 import { UsuarioService } from "./usuario/usuario.service";
@@ -24,7 +25,7 @@ export class AutenticacaoService {
 
   //
 
-  async whoAmI(accessContext: AccessContext): Promise<PocTypings.AuthWhoAmIResult> {
+  async whoAmI(accessContext: AccessContext): Promise<PocTypings.AuthWhoAmIResultView> {
     const usuario = accessContext.requestActor
       ? await this.usuarioService.usuarioFindById(accessContext, {
           id: accessContext.requestActor.id,
@@ -32,21 +33,21 @@ export class AutenticacaoService {
       : null;
 
     if (usuario) {
-      const vinculosAtivos = await this.vinculoService.vinculoGetAllActive(null, usuario.id);
+      const perfisAtivos = await this.vinculoService.vinculoGetAllActive(null, usuario.id);
 
       return {
         usuario,
-        vinculosAtivos: vinculosAtivos,
+        perfisAtivos: perfisAtivos,
       };
     }
 
     return {
       usuario: null,
-      vinculosAtivos: [],
+      perfisAtivos: [],
     };
   }
 
-  async login(accessContext: AccessContext, dto: PocTypings.AuthLoginCombinedInput): Promise<PocTypings.AuthLoginCombinedSuccessOutput["body"]> {
+  async login(accessContext: AccessContext, dto: PocTypings.AuthLoginOperationInput): Promise<PocTypings.AuthLoginOperationOutput["success"]> {
     if (accessContext.requestActor !== null) {
       throw new BadRequestException("Você não pode usar a rota de login caso já esteja logado.");
     }
@@ -79,7 +80,7 @@ export class AutenticacaoService {
     throw new ForbiddenException("Credenciais inválidas.");
   }
 
-  async refresh(_: AccessContext, dto: PocTypings.AuthRefreshCombinedInput): Promise<PocTypings.AuthLoginCombinedSuccessOutput["body"]> {
+  async refresh(_: AccessContext, dto: PocTypings.AuthRefreshOperationInput): Promise<PocTypings.AuthLoginOperationOutput["success"]> {
     let trustIssuerClient: BaseClient;
 
     try {
@@ -101,7 +102,7 @@ export class AutenticacaoService {
     throw new ForbiddenException("Credenciais inválidas ou expiradas.");
   }
 
-  async definirSenha(_accessContext: AccessContext, dto: PocTypings.AuthSetInitialPasswordCombinedInput): Promise<PocTypings.AuthSetInitialPasswordCombinedSuccessOutput["body"]> {
+  async definirSenha(_accessContext: AccessContext, dto: PocTypings.AuthCredentialsSetInitialPasswordOperationInput): Promise<PocTypings.AuthCredentialsSetInitialPasswordOperationOutput["success"]> {
     try {
       const kcAdminClient = await this.keycloakService.getAdminClient();
 

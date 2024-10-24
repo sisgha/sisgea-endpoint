@@ -2,6 +2,7 @@ import { CombinedInput } from "@/business-logic/standards";
 import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextHttp } from "@/infrastructure/access-context";
 import { Public } from "@/infrastructure/authentication";
+import * as PocTypings from "@ladesa-ro/especificacao";
 import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
 import { Controller, Get, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
@@ -27,7 +28,7 @@ export class AutenticacaoController {
   login(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AuthLoginCombinedInput,
+    @CombinedInput() dto: PocTypings.AuthLoginOperationInput,
   ) {
     return this.autenticacaoService.login(accessContext, dto);
   }
@@ -38,7 +39,7 @@ export class AutenticacaoController {
   refresh(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AuthRefreshCombinedInput,
+    @CombinedInput() dto: PocTypings.AuthRefreshOperationInput,
   ) {
     return this.autenticacaoService.refresh(accessContext, dto);
   }
@@ -48,7 +49,7 @@ export class AutenticacaoController {
   definirSenha(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AuthSetInitialPasswordCombinedInput,
+    @CombinedInput() dto: PocTypings.AuthCredentialsSetInitialPasswordOperationInput,
   ) {
     return this.autenticacaoService.definirSenha(accessContext, dto);
   }

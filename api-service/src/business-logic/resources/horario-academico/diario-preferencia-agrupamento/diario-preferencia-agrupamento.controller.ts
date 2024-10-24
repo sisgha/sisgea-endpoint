@@ -18,7 +18,7 @@ export class DiarioPreferenciaAgrupamentoController {
     @AccessContextHttp() clientAccess: AccessContext,
     @CombinedInput()
     dto: PocTypings.DiarioPreferenciaAgrupamentoListOperationInput,
-  ): Promise<PocTypings.DiarioPreferenciaAgrupamentoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.DiarioPreferenciaAgrupamentoListOperationOutput["success"]> {
     return this.diarioPreferenciaAgrupamentoService.diarioPreferenciaAgrupamentoFindAll(clientAccess, dto);
   }
 
@@ -30,7 +30,7 @@ export class DiarioPreferenciaAgrupamentoController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput()
-    dto: PocTypings.DiarioPreferenciaAgrupamentoFindOneByIdOperationInput,
+    dto: PocTypings.DiarioPreferenciaAgrupamentoFindByIdOperationOutput,
   ) {
     return this.diarioPreferenciaAgrupamentoService.diarioPreferenciaAgrupamentoFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -69,7 +69,7 @@ export class DiarioPreferenciaAgrupamentoController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput()
-    dto: PocTypings.DiarioPreferenciaAgrupamentoDeleteByIDCombinedInput,
+    dto: PocTypings.DiarioPreferenciaAgrupamentoDeleteByIdOperationInput,
   ) {
     return this.diarioPreferenciaAgrupamentoService.diarioPreferenciaAgrupamentoDeleteOneById(accessContext, { id: dto.params.id });
   }

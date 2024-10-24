@@ -35,7 +35,7 @@ export class CalendarioLetivoService {
     accessContext: AccessContext,
     dto: PocTypings.CalendarioLetivoListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.CalendarioLetivoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.CalendarioLetivoListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.calendarioLetivoRepository.createQueryBuilder(aliasCalendarioLetivo);
@@ -110,7 +110,7 @@ export class CalendarioLetivoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.CalendarioLetivo.Views.FindOneResult, qb, aliasCalendarioLetivo, selection);
+    QbEfficientLoad(PocTypings.Tokens.CalendarioLetivoFindOneResultView, qb, aliasCalendarioLetivo, selection);
 
     // =========================================================
 
@@ -126,7 +126,7 @@ export class CalendarioLetivoService {
     accessContext: AccessContext,
     dto: PocTypings.CalendarioLetivoFindOneInputView,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.CalendarioLetivoFindOneResult | null> {
+  ): Promise<PocTypings.CalendarioLetivoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.calendarioLetivoRepository.createQueryBuilder(aliasCalendarioLetivo);
@@ -142,7 +142,7 @@ export class CalendarioLetivoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.CalendarioLetivo.Views.FindOneResult, qb, aliasCalendarioLetivo, selection);
+    QbEfficientLoad(PocTypings.Tokens.CalendarioLetivoFindOneResultView, qb, aliasCalendarioLetivo, selection);
 
     // =========================================================
 
@@ -167,7 +167,7 @@ export class CalendarioLetivoService {
     accessContext: AccessContext,
     id: PocTypings.CalendarioLetivoFindOneInputView["id"],
     selection?: string[],
-  ): Promise<PocTypings.CalendarioLetivoFindOneResult | null> {
+  ): Promise<PocTypings.CalendarioLetivoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.calendarioLetivoRepository.createQueryBuilder(aliasCalendarioLetivo);
@@ -183,7 +183,7 @@ export class CalendarioLetivoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.CalendarioLetivo.Views.FindOneResult, qb, aliasCalendarioLetivo, selection);
+    QbEfficientLoad(PocTypings.Tokens.CalendarioLetivoFindOneResultView, qb, aliasCalendarioLetivo, selection);
 
     // =========================================================
 

@@ -26,7 +26,7 @@ export class CampusResolver {
   async campusFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CampusFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.CampusFindOneByIdOperationOutput,
   ) {
     return this.campusService.campusFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -54,7 +54,7 @@ export class CampusResolver {
   async campusDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CampusDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.CampusDeleteOneByIdOperationInput,
   ) {
     return this.campusService.campusDeleteOneById(accessContext, {
       id: dto.params.id,

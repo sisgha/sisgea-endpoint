@@ -35,7 +35,7 @@ export class UsuarioService {
 
   //
 
-  async internalFindByMatriculaSiape(matriculaSiape: string, selection?: string[] | boolean): Promise<PocTypings.UsuarioFindOneResult | null> {
+  async internalFindByMatriculaSiape(matriculaSiape: string, selection?: string[] | boolean): Promise<PocTypings.UsuarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.usuarioRepository.createQueryBuilder(aliasUsuario);
@@ -49,7 +49,7 @@ export class UsuarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Usuario.Views.FindOneResult, qb, aliasUsuario, selection);
+    QbEfficientLoad(PocTypings.Tokens.UsuarioFindOneResultView, qb, aliasUsuario, selection);
     // =========================================================
 
     const usuario = await qb.getOne();
@@ -65,7 +65,7 @@ export class UsuarioService {
     accessContext: AccessContext,
     dto: PocTypings.UsuarioListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.UsuarioListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.UsuarioListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.usuarioRepository.createQueryBuilder(aliasUsuario);
@@ -117,7 +117,7 @@ export class UsuarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Usuario.Views.FindOneResult, qb, aliasUsuario, selection);
+    QbEfficientLoad(PocTypings.Tokens.UsuarioFindOneResultView, qb, aliasUsuario, selection);
     // =========================================================
 
     const pageItemsView = await qb.andWhereInIds(map(paginated.data, "id")).getMany();
@@ -128,7 +128,7 @@ export class UsuarioService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async usuarioFindById(accessContext: AccessContext | null, dto: PocTypings.UsuarioFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.UsuarioFindOneResult | null> {
+  async usuarioFindById(accessContext: AccessContext | null, dto: PocTypings.UsuarioFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.UsuarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.usuarioRepository.createQueryBuilder(aliasUsuario);
@@ -146,7 +146,7 @@ export class UsuarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Usuario.Views.FindOneResult, qb, aliasUsuario, selection);
+    QbEfficientLoad(PocTypings.Tokens.UsuarioFindOneResultView, qb, aliasUsuario, selection);
 
     // =========================================================
 
@@ -167,7 +167,7 @@ export class UsuarioService {
     return usuario;
   }
 
-  async usuarioFindByIdSimple(accessContext: AccessContext, id: PocTypings.UsuarioFindOneInputView["id"], selection?: string[]): Promise<PocTypings.UsuarioFindOneResult | null> {
+  async usuarioFindByIdSimple(accessContext: AccessContext, id: PocTypings.UsuarioFindOneInputView["id"], selection?: string[]): Promise<PocTypings.UsuarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.usuarioRepository.createQueryBuilder(aliasUsuario);
@@ -183,7 +183,7 @@ export class UsuarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Usuario.Views.FindOneResult, qb, aliasUsuario, selection);
+    QbEfficientLoad(PocTypings.Tokens.UsuarioFindOneResultView, qb, aliasUsuario, selection);
 
     // =========================================================
 
@@ -454,8 +454,8 @@ export class UsuarioService {
         await kcAdminClient.users.create({
           enabled: true,
 
-          username: input.matriculaSiape,
-          email: input.email,
+          username: input.matriculaSiape ?? undefined,
+          email: input.email ?? undefined,
 
           requiredActions: ["UPDATE_PASSWORD"],
 
@@ -481,7 +481,7 @@ export class UsuarioService {
 
     const currentMatriculaSiape = currentUsuario.matriculaSiape ?? (await this.internalResolveMatriculaSiape(currentUsuario.id));
 
-    const kcUser = await this.keycloakService.findUserByMatriculaSiape(currentMatriculaSiape);
+    const kcUser = currentMatriculaSiape && (await this.keycloakService.findUserByMatriculaSiape(currentMatriculaSiape));
 
     if (!kcUser) {
       throw new ServiceUnavailableException();
@@ -518,7 +518,7 @@ export class UsuarioService {
           await kcAdminClient.users.update(
             { id: kcUser.id! },
             {
-              username: input.matriculaSiape,
+              username: input.matriculaSiape ?? undefined,
               attributes: {
                 "usuario.matriculaSiape": input.matriculaSiape,
               },
@@ -530,7 +530,7 @@ export class UsuarioService {
           await kcAdminClient.users.update(
             { id: kcUser.id! },
             {
-              email: dto.body.email,
+              email: dto.body.email ?? undefined,
             },
           );
         }

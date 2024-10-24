@@ -27,7 +27,7 @@ export class VinculoController {
   async vinculoSetVinculos(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.VinculoUpdateCombinedInput,
+    @CombinedInput() dto: PocTypings.PerfilUpdateOperationInput,
   ) {
     return this.vinculoService.vinculoSetVinculos(accessContext, dto);
   }

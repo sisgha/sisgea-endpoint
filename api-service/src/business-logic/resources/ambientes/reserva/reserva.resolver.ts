@@ -26,7 +26,7 @@ export class ReservaResolver {
   async reservaFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ReservaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.ReservaFindOneByIdOperationOutput,
   ) {
     return this.reservaService.reservaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -53,7 +53,7 @@ export class ReservaResolver {
   async reservaDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ReservaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.ReservaDeleteByIdOperationInput,
   ) {
     return this.reservaService.reservaDeleteOneById(accessContext, {
       id: dto.params.id,

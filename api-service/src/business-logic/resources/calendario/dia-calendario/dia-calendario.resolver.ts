@@ -23,7 +23,7 @@ export class DiaCalendarioResolver {
   async diaCalendarioFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiaCalendarioFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.DiaCalendarioFindOneByIdOperationOutput,
   ) {
     return this.diaCalendarioService.diaCalendarioFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -50,7 +50,7 @@ export class DiaCalendarioResolver {
   async diaCalendarioDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiaCalendarioDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.DiaCalendarioDeleteByIdOperationInput,
   ) {
     return this.diaCalendarioService.diaCalendarioDeleteOneById(accessContext, {
       id: dto.params.id,

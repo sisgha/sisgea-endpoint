@@ -23,7 +23,7 @@ export class EventoResolver {
   async eventoFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EventoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.EventoFindOneByIdOperationOutput,
   ) {
     return this.eventoService.eventoFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -52,7 +52,7 @@ export class EventoResolver {
   async eventoDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EventoDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.EventoDeleteByIdOperationInput,
   ) {
     return this.eventoService.eventoDeleteOneById(accessContext, {
       id: dto.params.id,

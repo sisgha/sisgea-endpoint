@@ -20,7 +20,7 @@ export class CidadeController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.CidadeListOperationInput,
-  ): Promise<PocTypings.CidadeListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.CidadeListOperationOutput["success"]> {
     return this.cidadeService.findAll(accessContext, dto);
   }
 
@@ -31,8 +31,8 @@ export class CidadeController {
   async findById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CidadeFindOneByIdOperationInput,
-  ): Promise<PocTypings.CidadeFindOneResult> {
+    @CombinedInput() dto: PocTypings.CidadeFindOneByIdOperationOutput,
+  ): Promise<PocTypings.CidadeFindOneResultView> {
     return this.cidadeService.findByIdStrict(accessContext, {
       id: dto.params.id,
     });

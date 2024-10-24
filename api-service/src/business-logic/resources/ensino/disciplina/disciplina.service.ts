@@ -34,7 +34,7 @@ export class DisciplinaService {
     accessContext: AccessContext,
     dto: PocTypings.DisciplinaListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.DisciplinaListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.DisciplinaListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.disciplinaRepository.createQueryBuilder(aliasDisciplina);
@@ -80,7 +80,7 @@ export class DisciplinaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Disciplina.Views.FindOneResult, qb, aliasDisciplina, selection);
+    QbEfficientLoad(PocTypings.Tokens.DisciplinaFindOneResultView, qb, aliasDisciplina, selection);
 
     // =========================================================
 
@@ -92,7 +92,7 @@ export class DisciplinaService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async disciplinaFindById(accessContext: AccessContext | null, dto: PocTypings.DisciplinaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.DisciplinaFindOneResult | null> {
+  async disciplinaFindById(accessContext: AccessContext | null, dto: PocTypings.DisciplinaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.DisciplinaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.disciplinaRepository.createQueryBuilder(aliasDisciplina);
@@ -110,7 +110,7 @@ export class DisciplinaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Disciplina.Views.FindOneResult, qb, aliasDisciplina, selection);
+    QbEfficientLoad(PocTypings.Tokens.DisciplinaFindOneResultView, qb, aliasDisciplina, selection);
 
     // =========================================================
 
@@ -131,7 +131,11 @@ export class DisciplinaService {
     return disciplina;
   }
 
-  async disciplinaFindByIdSimple(accessContext: AccessContext, id: PocTypings.DisciplinaFindOneInputView["id"], selection?: string[] | boolean): Promise<PocTypings.DisciplinaFindOneResult | null> {
+  async disciplinaFindByIdSimple(
+    accessContext: AccessContext,
+    id: PocTypings.DisciplinaFindOneInputView["id"],
+    selection?: string[] | boolean,
+  ): Promise<PocTypings.DisciplinaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.disciplinaRepository.createQueryBuilder(aliasDisciplina);
@@ -147,7 +151,7 @@ export class DisciplinaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Disciplina.Views.FindOneResult, qb, aliasDisciplina, selection);
+    QbEfficientLoad(PocTypings.Tokens.DisciplinaFindOneResultView, qb, aliasDisciplina, selection);
 
     // =========================================================
 

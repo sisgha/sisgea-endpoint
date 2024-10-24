@@ -25,7 +25,7 @@ export class DiarioPreferenciaAgrupamentoResolver {
     //
     @AccessContextGraphQl() accessContext: AccessContext,
     @CombinedInput()
-    dto: PocTypings.DiarioPreferenciaAgrupamentoFindOneByIdOperationInput,
+    dto: PocTypings.DiarioPreferenciaAgrupamentoFindByIdOperationOutput,
   ) {
     return this.diarioPreferenciaAgrupamentoService.diarioPreferenciaAgrupamentoFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -55,7 +55,7 @@ export class DiarioPreferenciaAgrupamentoResolver {
     //
     @AccessContextGraphQl() accessContext: AccessContext,
     @CombinedInput()
-    dto: PocTypings.DiarioPreferenciaAgrupamentoDeleteByIDCombinedInput,
+    dto: PocTypings.DiarioPreferenciaAgrupamentoDeleteByIdOperationInput,
   ) {
     return this.diarioPreferenciaAgrupamentoService.diarioPreferenciaAgrupamentoDeleteOneById(accessContext, { id: dto.params.id });
   }

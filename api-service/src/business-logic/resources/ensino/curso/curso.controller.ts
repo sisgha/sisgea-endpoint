@@ -20,7 +20,7 @@ export class CursoController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.CursoListOperationInput,
-  ): Promise<PocTypings.CursoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.CursoListOperationOutput["success"]> {
     return this.cursoService.cursoFindAll(accessContext, dto);
   }
 
@@ -31,7 +31,7 @@ export class CursoController {
   async cursoFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.CursoFindOneByIdOperationOutput,
   ) {
     return this.cursoService.cursoFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -88,7 +88,7 @@ export class CursoController {
   async cursoDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.CursoFindOneByIdOperationOutput,
   ) {
     return this.cursoService.cursoDeleteOneById(accessContext, {
       id: dto.params.id,

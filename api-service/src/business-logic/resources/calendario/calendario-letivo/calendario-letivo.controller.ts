@@ -17,7 +17,7 @@ export class CalendarioLetivoController {
   async calendarioFindAll(
     @AccessContextHttp() clientAccess: AccessContext,
     @CombinedInput() dto: PocTypings.CalendarioLetivoListOperationInput,
-  ): Promise<PocTypings.CalendarioLetivoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.CalendarioLetivoListOperationOutput["success"]> {
     return this.calendarioLetivoService.calendarioLetivoFindAll(clientAccess, dto);
   }
 
@@ -28,7 +28,7 @@ export class CalendarioLetivoController {
   async calendarioLetivoFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CalendarioLetivoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.CalendarioLetivoFindOneByIdOperationOutput,
   ) {
     return this.calendarioLetivoService.calendarioLetivoFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -64,7 +64,7 @@ export class CalendarioLetivoController {
   async CalendarioLetivoDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CalendarioLetivoDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.CalendarioLetivoDeleteByIdOperationInput,
   ) {
     return this.calendarioLetivoService.calendarioLetivoDeleteOneById(accessContext, { id: dto.params.id });
   }

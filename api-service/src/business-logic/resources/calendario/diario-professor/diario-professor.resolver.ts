@@ -21,7 +21,7 @@ export class DiarioProfessorResolver {
   async diarioProfessorFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiarioProfessorFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.DiarioProfessorFindOneByIdOperationOutput,
   ) {
     return this.diarioProfessorService.diarioProfessorFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -45,7 +45,7 @@ export class DiarioProfessorResolver {
   async diarioProfessorDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiarioProfessorDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.DiarioProfessorDeleteByIdOperationInput,
   ) {
     return this.diarioProfessorService.diarioProfessorDeleteOneById(accessContext, { id: dto.params.id });
   }

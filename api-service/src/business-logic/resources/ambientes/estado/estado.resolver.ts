@@ -29,7 +29,7 @@ export class EstadoResolver {
   async estadoFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.EstadoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.EstadoFindOneByIdOperationOutput,
     @Info() info: GraphQLResolveInfo,
   ) {
     return this.estadoService.findByIdStrict(accessContext, { id: dto.params.id }, graphqlExtractSelection(info));

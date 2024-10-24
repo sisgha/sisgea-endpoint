@@ -23,7 +23,7 @@ export class CalendarioLetivoResolver {
   async calendarioLetivoFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CalendarioLetivoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.CalendarioLetivoFindOneByIdOperationOutput,
   ) {
     return this.calendarioLetivoService.calendarioLetivoFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -50,7 +50,7 @@ export class CalendarioLetivoResolver {
   async calendarioLetivoDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CalendarioLetivoDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.CalendarioLetivoDeleteByIdOperationInput,
   ) {
     return this.calendarioLetivoService.calendarioLetivoDeleteOneById(accessContext, { id: dto.params.id });
   }

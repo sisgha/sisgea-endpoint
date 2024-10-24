@@ -28,7 +28,7 @@ export class ModalidadeService {
     accessContext: AccessContext,
     dto: PocTypings.ModalidadeListOperationInput | null = null,
     selection?: string[],
-  ): Promise<PocTypings.ModalidadeListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.ModalidadeListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.modalidadeRepository.createQueryBuilder(aliasModalidade);
@@ -74,7 +74,7 @@ export class ModalidadeService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Modalidade.Entity, qb, aliasModalidade, selection);
+    QbEfficientLoad(PocTypings.Tokens.ModalidadeView, qb, aliasModalidade, selection);
 
     // =========================================================
 
@@ -86,7 +86,7 @@ export class ModalidadeService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async modalidadeFindById(accessContext: AccessContext | null, dto: PocTypings.ModalidadeFindOneInputView, selection?: string[]): Promise<PocTypings.ModalidadeFindOneResult | null> {
+  async modalidadeFindById(accessContext: AccessContext | null, dto: PocTypings.ModalidadeFindOneInputView, selection?: string[]): Promise<PocTypings.ModalidadeFindOneResultView | null> {
     // =========================================================
 
     const qb = this.modalidadeRepository.createQueryBuilder(aliasModalidade);
@@ -104,7 +104,7 @@ export class ModalidadeService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Modalidade.Entity, qb, aliasModalidade, selection);
+    QbEfficientLoad(PocTypings.Tokens.ModalidadeView, qb, aliasModalidade, selection);
 
     // =========================================================
 
@@ -125,7 +125,7 @@ export class ModalidadeService {
     return modalidade;
   }
 
-  async modalidadeFindByIdSimple(accessContext: AccessContext, id: PocTypings.ModalidadeFindOneInputView["id"], selection?: string[]): Promise<PocTypings.ModalidadeFindOneResult | null> {
+  async modalidadeFindByIdSimple(accessContext: AccessContext, id: PocTypings.ModalidadeFindOneInputView["id"], selection?: string[]): Promise<PocTypings.ModalidadeFindOneResultView | null> {
     // =========================================================
 
     const qb = this.modalidadeRepository.createQueryBuilder(aliasModalidade);
@@ -141,7 +141,7 @@ export class ModalidadeService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Modalidade.Entity, qb, aliasModalidade, selection);
+    QbEfficientLoad(PocTypings.Tokens.ModalidadeView, qb, aliasModalidade, selection);
 
     // =========================================================
 

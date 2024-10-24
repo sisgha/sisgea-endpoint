@@ -17,7 +17,7 @@ export class DiaCalendarioController {
   async diaCalendarioFindAll(
     @AccessContextHttp() clientAccess: AccessContext,
     @CombinedInput() dto: PocTypings.DiaCalendarioListOperationInput,
-  ): Promise<PocTypings.DiaCalendarioListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.DiaCalendarioListOperationOutput["success"]> {
     return this.diaCalendarioService.diaCalendarioFindAll(clientAccess, dto);
   }
 
@@ -28,7 +28,7 @@ export class DiaCalendarioController {
   async diaCalendarioFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiaCalendarioFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.DiaCalendarioFindOneByIdOperationOutput,
   ) {
     return this.diaCalendarioService.diaCalendarioFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -64,7 +64,7 @@ export class DiaCalendarioController {
   async diaCalendarioDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DiaCalendarioDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.DiaCalendarioDeleteByIdOperationInput,
   ) {
     return this.diaCalendarioService.diaCalendarioDeleteOneById(accessContext, {
       id: dto.params.id,

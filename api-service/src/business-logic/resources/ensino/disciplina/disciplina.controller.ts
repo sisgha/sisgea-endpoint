@@ -20,7 +20,7 @@ export class DisciplinaController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.DisciplinaListOperationInput,
-  ): Promise<PocTypings.DisciplinaListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.DisciplinaListOperationOutput["success"]> {
     return this.disciplinaService.disciplinaFindAll(accessContext, dto);
   }
 
@@ -31,7 +31,7 @@ export class DisciplinaController {
   async disciplinaFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.DisciplinaFindOneByIdOperationOutput,
   ) {
     return this.disciplinaService.disciplinaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -92,7 +92,7 @@ export class DisciplinaController {
   async disciplinaDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.DisciplinaDeleteByIdOperationInput,
   ) {
     return this.disciplinaService.disciplinaDeleteOneById(accessContext, {
       id: dto.params.id,

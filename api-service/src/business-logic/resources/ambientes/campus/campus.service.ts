@@ -30,17 +30,9 @@ export class CampusService {
     return this.databaseContext.campusRepository;
   }
 
-  get campusPossuiModalidadeRepository() {
-    return this.databaseContext.campusPossuiModalidadeRepository;
-  }
-
   //
 
-  async campusFindAll(
-    accessContext: AccessContext,
-    dto: PocTypings.CampusListOperationInput | null = null,
-    selection?: string[] | boolean,
-  ): Promise<PocTypings.CampusListCombinedSuccessOutput["body"]> {
+  async campusFindAll(accessContext: AccessContext, dto: PocTypings.CampusListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.CampusListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.campusRepository.createQueryBuilder(aliasCampus);
@@ -123,7 +115,7 @@ export class CampusService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Campus.Views.FindOneResult, qb, aliasCampus, selection);
+    QbEfficientLoad(PocTypings.Tokens.CampusFindOneResultView, qb, aliasCampus, selection);
 
     // =========================================================
 
@@ -135,7 +127,7 @@ export class CampusService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async campusFindById(accessContext: AccessContext, dto: PocTypings.CampusFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.CampusFindOneResult | null> {
+  async campusFindById(accessContext: AccessContext, dto: PocTypings.CampusFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.CampusFindOneResultView | null> {
     // =========================================================
 
     const qb = this.campusRepository.createQueryBuilder(aliasCampus);
@@ -151,7 +143,7 @@ export class CampusService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Campus.Views.FindOneResult, qb, aliasCampus, selection);
+    QbEfficientLoad(PocTypings.Tokens.CampusFindOneResultView, qb, aliasCampus, selection);
 
     // =========================================================
 
@@ -172,7 +164,7 @@ export class CampusService {
     return campus;
   }
 
-  async campusFindByIdSimple(accessContext: AccessContext, id: PocTypings.CampusFindOneInputView["id"], selection?: string[] | boolean): Promise<PocTypings.CampusFindOneResult | null> {
+  async campusFindByIdSimple(accessContext: AccessContext, id: PocTypings.CampusFindOneInputView["id"], selection?: string[] | boolean): Promise<PocTypings.CampusFindOneResultView | null> {
     // =========================================================
 
     const qb = this.campusRepository.createQueryBuilder(aliasCampus);
@@ -188,7 +180,7 @@ export class CampusService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Campus.Views.FindOneResult, qb, aliasCampus, selection);
+    QbEfficientLoad(PocTypings.Tokens.CampusFindOneResultView, qb, aliasCampus, selection);
 
     // =========================================================
 

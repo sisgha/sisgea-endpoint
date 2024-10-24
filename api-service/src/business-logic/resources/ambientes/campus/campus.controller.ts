@@ -20,7 +20,7 @@ export class CampusController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.CampusListOperationInput,
-  ): Promise<PocTypings.CampusListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.CampusListOperationOutput["success"]> {
     return this.campusService.campusFindAll(accessContext, dto);
   }
 
@@ -31,7 +31,7 @@ export class CampusController {
   async campusFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CampusFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.CampusFindOneByIdOperationOutput,
   ) {
     return this.campusService.campusFindByIdStrict(accessContext, {
       id: dto.params.id,

@@ -65,7 +65,7 @@ export class CidadeService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Cidade.Entity, qb, aliasCidade, selection);
+    QbEfficientLoad(PocTypings.Tokens.CidadeView, qb, aliasCidade, selection);
 
     // =========================================================
 
@@ -97,7 +97,7 @@ export class CidadeService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Cidade.Entity, qb, aliasCidade, selection);
+    QbEfficientLoad(PocTypings.Tokens.CidadeView, qb, aliasCidade, selection);
 
     // =========================================================
 

@@ -20,7 +20,7 @@ export class TurmaController {
     //
     @AccessContextHttp() accessContext: AccessContext,
     @CombinedInput() dto: PocTypings.TurmaListOperationInput,
-  ): Promise<PocTypings.TurmaListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.TurmaListOperationOutput["success"]> {
     return this.turmaService.turmaFindAll(accessContext, dto);
   }
 
@@ -31,7 +31,7 @@ export class TurmaController {
   async turmaFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.TurmaFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.TurmaFindOneByIdOperationOutput,
   ) {
     return this.turmaService.turmaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -92,7 +92,7 @@ export class TurmaController {
   async turmaDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.TurmaDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.TurmaDeleteByIdOperationInput,
   ) {
     return this.turmaService.turmaDeleteOneById(accessContext, {
       id: dto.params.id,

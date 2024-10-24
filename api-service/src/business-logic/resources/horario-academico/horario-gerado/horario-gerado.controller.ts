@@ -17,7 +17,7 @@ export class HorarioGeradoController {
   async horarioGeradoFindAll(
     @AccessContextHttp() clientAccess: AccessContext,
     @CombinedInput() dto: PocTypings.HorarioGeradoListOperationInput,
-  ): Promise<PocTypings.HorarioGeradoListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.HorarioGeradoListOperationOutput["success"]> {
     return this.horarioGeradoService.horarioGeradoFindAll(clientAccess, dto);
   }
 
@@ -28,7 +28,7 @@ export class HorarioGeradoController {
   async horarioGeradoFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoFindOneByIdOperationInput,
+    @CombinedInput() dto: PocTypings.HorarioGeradoFindByIdOperationOutput,
   ) {
     return this.horarioGeradoService.horarioGeradoFindByIdStrict(accessContext, { id: dto.params.id });
   }
@@ -64,7 +64,7 @@ export class HorarioGeradoController {
   async horarioGeradoDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoDeleteByIDCombinedInput,
+    @CombinedInput() dto: PocTypings.HorarioGeradoDeleteByIdOperationInput,
   ) {
     return this.horarioGeradoService.horarioGeradoDeleteOneById(accessContext, {
       id: dto.params.id,

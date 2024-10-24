@@ -29,11 +29,7 @@ export class EventoService {
 
   //
 
-  async eventoFindAll(
-    accessContext: AccessContext,
-    dto: PocTypings.EventoListOperationInput | null = null,
-    selection?: string[] | boolean,
-  ): Promise<PocTypings.EventoListCombinedSuccessOutput["body"]> {
+  async eventoFindAll(accessContext: AccessContext, dto: PocTypings.EventoListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.EventoListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.eventoRepository.createQueryBuilder(aliasEvento);
@@ -95,7 +91,7 @@ export class EventoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Evento.Views.FindOneResult, qb, aliasEvento, selection);
+    QbEfficientLoad(PocTypings.Tokens.EventoFindOneResultView, qb, aliasEvento, selection);
 
     // =========================================================
 
@@ -107,7 +103,7 @@ export class EventoService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async eventoFindById(accessContext: AccessContext, dto: PocTypings.EventoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.EventoFindOneResult | null> {
+  async eventoFindById(accessContext: AccessContext, dto: PocTypings.EventoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.EventoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.eventoRepository.createQueryBuilder(aliasEvento);
@@ -123,7 +119,7 @@ export class EventoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Evento.Views.FindOneResult, qb, aliasEvento, selection);
+    QbEfficientLoad(PocTypings.Tokens.EventoFindOneResultView, qb, aliasEvento, selection);
     // =========================================================
 
     const evento = await qb.getOne();
@@ -143,7 +139,7 @@ export class EventoService {
     return evento;
   }
 
-  async eventoFindByIdSimple(accessContext: AccessContext, id: PocTypings.EventoFindOneInputView["id"], selection?: string[]): Promise<PocTypings.EventoFindOneResult | null> {
+  async eventoFindByIdSimple(accessContext: AccessContext, id: PocTypings.EventoFindOneInputView["id"], selection?: string[]): Promise<PocTypings.EventoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.eventoRepository.createQueryBuilder(aliasEvento);
@@ -159,7 +155,7 @@ export class EventoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.Evento.Views.FindOneResult, qb, aliasEvento, selection);
+    QbEfficientLoad(PocTypings.Tokens.EventoFindOneResultView, qb, aliasEvento, selection);
 
     // =========================================================
 
