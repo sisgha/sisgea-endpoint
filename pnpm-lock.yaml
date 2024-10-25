@@ -148,7 +148,7 @@ importers:
         version: 10.4.3
       nestjs-paginate:
         specifier: ^8.6.3
-        version: 8.6.3(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/swagger@7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2))(express@4.21.1)(fastify@4.28.1)(typeorm@0.3.20(pg@8.13.0)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3)))
+        version: 8.6.3(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/swagger@7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2))(express@4.21.1)(fastify@4.28.1)(typeorm@0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3)))
       openid-client:
         specifier: ^5.7.0
         version: 5.7.0
@@ -159,8 +159,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       pg:
-        specifier: ^8.13.0
-        version: 8.13.0
+        specifier: ^8.13.1
+        version: 8.13.1
       rascal:
         specifier: ^20.1.0
         version: 20.1.0(amqplib@0.10.4)
@@ -184,7 +184,7 @@ importers:
         version: 4.19.1
       typeorm:
         specifier: ^0.3.20
-        version: 0.3.20(pg@8.13.0)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3))
+        version: 0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3))
       uuid:
         specifier: ^10.0.0
         version: 10.0.0
@@ -4595,8 +4595,8 @@ packages:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
 
-  pg@8.13.0:
-    resolution: {integrity: sha512-34wkUTh3SxTClfoHB3pQ7bIMvw9dpFU1audQQeZG837fmHfHpr14n/AELVDoOYVDW2h5RDWU78tFjkD+erSBsw==}
+  pg@8.13.1:
+    resolution: {integrity: sha512-OUir1A0rPNZlX//c7ksiu7crsGZTKSOXJPgtNiHGIlC9H0lO+NC6ZDYksSgBYY/thSWhnSRBv8w1lieNNGATNQ==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
@@ -9961,14 +9961,14 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  nestjs-paginate@8.6.3(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/swagger@7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2))(express@4.21.1)(fastify@4.28.1)(typeorm@0.3.20(pg@8.13.0)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3))):
+  nestjs-paginate@8.6.3(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/swagger@7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2))(express@4.21.1)(fastify@4.28.1)(typeorm@0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3))):
     dependencies:
       '@nestjs/common': 10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/swagger': 7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2)
       express: 4.21.1
       fastify: 4.28.1
       lodash: 4.17.21
-      typeorm: 0.3.20(pg@8.13.0)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3))
+      typeorm: 0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3))
 
   no-case@3.0.4:
     dependencies:
@@ -10272,9 +10272,9 @@ snapshots:
 
   pg-int8@1.0.1: {}
 
-  pg-pool@3.7.0(pg@8.13.0):
+  pg-pool@3.7.0(pg@8.13.1):
     dependencies:
-      pg: 8.13.0
+      pg: 8.13.1
 
   pg-protocol@1.7.0: {}
 
@@ -10286,10 +10286,10 @@ snapshots:
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
 
-  pg@8.13.0:
+  pg@8.13.1:
     dependencies:
       pg-connection-string: 2.7.0
-      pg-pool: 3.7.0(pg@8.13.0)
+      pg-pool: 3.7.0(pg@8.13.1)
       pg-protocol: 1.7.0
       pg-types: 2.2.0
       pgpass: 1.0.5
@@ -11177,7 +11177,7 @@ snapshots:
       typescript: 5.6.3
       yaml: 2.6.0
 
-  typeorm@0.3.20(pg@8.13.0)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3)):
+  typeorm@0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3)):
     dependencies:
       '@sqltools/formatter': 1.2.5
       app-root-path: 3.1.0
@@ -11195,7 +11195,7 @@ snapshots:
       uuid: 9.0.1
       yargs: 17.7.2
     optionalDependencies:
-      pg: 8.13.0
+      pg: 8.13.1
       ts-node: 10.9.2(@swc/core@1.7.39)(@types/node@22.7.9)(typescript@5.6.3)
     transitivePeerDependencies:
       - supports-color
