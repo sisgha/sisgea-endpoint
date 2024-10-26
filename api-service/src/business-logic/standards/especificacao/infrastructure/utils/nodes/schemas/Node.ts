@@ -1,9 +1,11 @@
-import { NodeBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeBase";
-import { NodeType } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeType";
+import { INodeCore, NodeCore } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeCore";
+import { INodeRef, NodeRef } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeRef";
 import * as valibot from "valibot";
 
-export const Node = valibot.union([NodeType, NodeBase]);
+export type INode = INodeCore | INodeRef;
 
-export type Node = typeof Node;
-
-export type INode = valibot.InferOutput<Node>;
+export const Node = valibot.union([
+  //
+  valibot.lazy(() => NodeCore),
+  valibot.lazy(() => NodeRef),
+]);

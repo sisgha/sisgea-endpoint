@@ -1,5 +1,11 @@
-import { NodeBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeBase";
+import { INodeBase, NodeBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeBase";
+import { BuildCheckType } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/helpers";
 import * as valibot from "valibot";
+
+export type INodeTypeString = INodeBase & {
+  type: "string";
+  format?: string;
+};
 
 export const NodeTypeString = valibot.object({
   ...NodeBase.entries,
@@ -7,6 +13,4 @@ export const NodeTypeString = valibot.object({
   format: valibot.optional(valibot.string()),
 });
 
-export type NodeTypeString = typeof NodeTypeString;
-
-export type INodeTypeString = valibot.InferOutput<NodeTypeString>;
+export const CheckNodeTypeString = BuildCheckType<any, INodeTypeString>(NodeTypeString);

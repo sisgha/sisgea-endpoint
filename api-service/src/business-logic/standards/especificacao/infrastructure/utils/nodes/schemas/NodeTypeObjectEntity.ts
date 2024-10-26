@@ -1,5 +1,12 @@
-import { NodeTypeObjectBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeTypeObjectBase";
+import { INodeTypeObjectBase, NodeTypeObjectBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeTypeObjectBase";
+import { BuildCheckType, BuildParseType } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/helpers";
 import * as valibot from "valibot";
+
+export type INodeTypeObjectEntity = INodeTypeObjectBase & {
+  "x-unispec-kind": "entity";
+  "x-unispec-entity-id": string;
+  "x-unispec-entity-partial-of"?: string;
+};
 
 export const NodeTypeObjectEntity = valibot.strictObject({
   ...NodeTypeObjectBase.entries,
@@ -8,6 +15,5 @@ export const NodeTypeObjectEntity = valibot.strictObject({
   ["x-unispec-entity-partial-of"]: valibot.optional(valibot.string()),
 });
 
-export type NodeTypeObjectEntity = typeof NodeTypeObjectEntity;
-
-export type INodeTypeObjectEntity = valibot.InferOutput<NodeTypeObjectEntity>;
+export const CheckNodeTypeObjectEntity = BuildCheckType<any, INodeTypeObjectEntity>(NodeTypeObjectEntity);
+export const ParseNodeTypeObjectEntity = BuildParseType(NodeTypeObjectEntity);

@@ -1,5 +1,4 @@
 import { ISpecDecorateHandler, ISpecDecorateOperationContext } from "@/business-logic/standards/especificacao/business-logic/Decorators/Operation/Core/ISpecDecorateHandler";
-import { dtoCompiler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/DtoCompiler";
 import { Param as HttpParam, Query as HttpQuery, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiParam, ApiProduces, ApiQuery, ApiResponse } from "@nestjs/swagger";
@@ -29,6 +28,8 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
   }
 
   private HandleInputParams(context: ISpecDecorateOperationContext): void {
+    const { dtoCompiler } = context;
+
     const node = context.meta.node;
 
     const input = node.properties.input;
@@ -69,6 +70,8 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
   }
 
   private HandleInputQueries(context: ISpecDecorateOperationContext): void {
+    const { dtoCompiler } = context;
+
     const node = context.meta.node;
 
     const input = node.properties.input;
@@ -109,6 +112,8 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
   }
 
   private HandleInputBody(context: ISpecDecorateOperationContext): void {
+    const { dtoCompiler } = context;
+
     const node = context.meta.node;
 
     const input = node.properties.input;
@@ -155,6 +160,8 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
   }
 
   private HandleResponseOutputs(context: ISpecDecorateOperationContext): void {
+    const { dtoCompiler } = context;
+
     const node = context.meta.node;
 
     const output = node.properties.output;
@@ -175,7 +182,7 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
 
       const dtoCompilerContext = dtoCompiler.GetContext("output");
 
-      const swaggerTypings: any = dtoCompiler.swaggerNodeCompiler.Handle(outputs, dtoCompilerContext);
+      const swaggerTypings = dtoCompiler.swaggerNodeCompiler.Handle(outputs, dtoCompilerContext);
 
       if (swaggerTypings.type === "string" && swaggerTypings.format === "binary") {
         context.AddMethodDecorator(ApiProduces(...swaggerTypings.mimeTypes));
@@ -185,7 +192,7 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
             status,
 
             schema: {
-              ...swaggerTypings,
+              ...(swaggerTypings as any),
             },
           }),
         );
@@ -193,7 +200,7 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
         context.AddMethodDecorator(
           ApiResponse({
             status,
-            ...swaggerTypings,
+            ...(swaggerTypings as any),
           }),
         );
       }

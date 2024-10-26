@@ -1,6 +1,16 @@
-import { NestedNode } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NestedNode";
-import { NodeBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeBase";
+import { INestedNode, NestedNode } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NestedNode";
+import { INodeBase, NodeBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeBase";
 import * as valibot from "valibot";
+
+export type INodeTypeObjectBase = INodeBase & {
+  ["x-unispec-kind"]: never;
+
+  type: "object";
+  properties: Record<string, INestedNode>;
+
+  required?: string[] | boolean;
+  additionalProperties?: boolean;
+};
 
 export const NodeTypeObjectBase = valibot.object({
   ...NodeBase.entries,
@@ -14,11 +24,7 @@ export const NodeTypeObjectBase = valibot.object({
     valibot.lazy(() => NestedNode),
   ),
 
-  required: valibot.optional(valibot.array(valibot.string())),
+  required: valibot.optional(valibot.union([valibot.boolean(), valibot.array(valibot.string())])),
 
   additionalProperties: valibot.optional(valibot.boolean()),
 });
-
-export type NodeTypeObjectBase = typeof NodeTypeObjectBase;
-
-export type INodeTypeObjectBase = valibot.InferOutput<NodeTypeObjectBase>;

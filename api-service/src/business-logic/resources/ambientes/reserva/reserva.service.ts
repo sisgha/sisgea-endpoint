@@ -248,19 +248,6 @@ export class ReservaService {
 
     // =========================================================
 
-    // TODO
-    // if (has(dto.body, "intervaloDeTempo") && dto.body.intervaloDeTempo !== undefined) {
-    //   const intervaloDeTempo = await this.intervaloService.intervaloCreateOrUpdate(accessContext, dto.body.intervaloDeTempo!);
-
-    //   this.reservaRepository.merge(reserva, {
-    //     intervaloDeTempo: {
-    //       id: intervaloDeTempo!.id,
-    //     },
-    //   });
-    // }
-
-    // =========================================================
-
     await this.reservaRepository.save(reserva);
 
     // =========================================================
@@ -312,19 +299,6 @@ export class ReservaService {
         },
       });
     }
-
-    // =========================================================
-
-    // TODO
-    // if (has(dto.body, "intervaloDeTempo") && dto.body.intervaloDeTempo !== undefined) {
-    //   const intervaloDeTempo = await this.intervaloService.intervaloCreateOrUpdate(accessContext, dto.body.intervaloDeTempo!);
-
-    //   this.reservaRepository.merge(reserva, {
-    //     intervaloDeTempo: {
-    //       id: intervaloDeTempo!.id,
-    //     },
-    //   });
-    // }
 
     // =========================================================
 

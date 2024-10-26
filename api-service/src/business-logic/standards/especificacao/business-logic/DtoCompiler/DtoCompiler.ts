@@ -1,10 +1,11 @@
 import { GenericClassCompilerFromUnispecEntity } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/Adapters/FromUnispec/Core/GenericClassCompilerFromUnispecEntity";
 import { GraphQlClassCompilerFromUnispecEntityHandler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/Adapters/FromUnispec/Integrations/GraphQl/GraphQlClassCompilerFromUnispecEntityHandler";
+import { GraphQlNodeCompiler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/Adapters/FromUnispec/Integrations/GraphQl/GraphQlNodeCompiler";
 import { SwaggerClassCompilerFromUnispecEntityHandler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/Adapters/FromUnispec/Integrations/Swagger/SwaggerClassCompilerFromUnispecEntityHandler";
+import { SwaggerNodeCompiler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/Adapters/FromUnispec/Integrations/Swagger/SwaggerNodeCompiler";
 import { IDtoCompilerContext } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/typings";
 import { getSpecNodesStore } from "@/business-logic/standards/especificacao/business-logic/SpecNodesStore";
-import { CheckType, INode, INodeTypeObjectEntity, NodeTypeObjectEntity } from "@/business-logic/standards/especificacao/infrastructure";
-import defu from "defu";
+import { CheckNodeTypeObjectEntity, INode, NodeTypeObjectEntity } from "@/business-logic/standards/especificacao/infrastructure";
 import * as valibot from "valibot";
 
 const CursorContractNode = valibot.union([
@@ -19,6 +20,9 @@ const CursorContractNode = valibot.union([
 const CursorContract = valibot.union([valibot.string(), CursorContractNode]);
 
 export interface IDtoCompiler extends GenericClassCompilerFromUnispecEntity {
+  graphQlNodeCompiler: GraphQlNodeCompiler;
+  swaggerNodeCompiler: SwaggerNodeCompiler;
+
   GetContext(mode: IDtoCompilerContext["mode"]): IDtoCompilerContext;
   CompileClass(node: INode, classesMap?: Map<string, any>): any;
   CompileNode(cursor: string | INode, classesMap?: Map<string, any>): any;
@@ -27,7 +31,14 @@ export interface IDtoCompiler extends GenericClassCompilerFromUnispecEntity {
 export class DtoCompiler extends GenericClassCompilerFromUnispecEntity implements IDtoCompiler {
   #store = getSpecNodesStore();
 
+  #classesMap = new Map<string, any>();
+
+  graphQlClassCompiler = new GraphQlClassCompilerFromUnispecEntityHandler();
   swaggerClassCompiler = new SwaggerClassCompilerFromUnispecEntityHandler();
+
+  get graphQlNodeCompiler() {
+    return this.graphQlClassCompiler.graphQlNodeCompiler;
+  }
 
   get swaggerNodeCompiler() {
     return this.swaggerClassCompiler.swaggerNodeCompiler;
@@ -37,7 +48,7 @@ export class DtoCompiler extends GenericClassCompilerFromUnispecEntity implement
     super();
 
     this.AddHandler(this.swaggerClassCompiler);
-    this.AddHandler(new GraphQlClassCompilerFromUnispecEntityHandler());
+    this.AddHandler(this.graphQlClassCompiler);
   }
 
   GetContext(mode: IDtoCompilerContext["mode"]): IDtoCompilerContext {
@@ -48,56 +59,14 @@ export class DtoCompiler extends GenericClassCompilerFromUnispecEntity implement
     };
   }
 
-  private ResolveCursor(cursor: string | INode): INodeTypeObjectEntity {
-    const nodesStore = this.#store;
+  CompileNode(cursor: string | INode, classesMap: Map<string, any> = this.#classesMap) {
+    const { node } = this.#store.Compose(cursor);
 
-    const nestedNodes: INode[] = [];
-
-    let nextCursor: INode | string = cursor;
-
-    do {
-      let targetId: string | null = null;
-
-      if (!CheckType(CursorContract, nextCursor)) {
-        const safeParseResult = valibot.safeParse(CursorContract, nextCursor);
-        console.debug(safeParseResult);
-
-        console.debug(`${DtoCompiler.name}#${this.ResolveCursor.name}: invalid cursor`);
-        debugger;
-
-        throw new TypeError("invalid cursor");
-      }
-
-      if (typeof nextCursor === "string") {
-        targetId = nextCursor;
-      } else {
-        nestedNodes.push(nextCursor);
-        targetId = nextCursor.$ref ?? null;
-      }
-
-      if (targetId !== null) {
-        const targetNode = nodesStore.GetNodeWithId(targetId);
-        nextCursor = targetNode;
-        continue;
-      }
-
-      nextCursor = null;
-    } while (nextCursor !== null);
-
-    const finalNode = defu<INode, INode[]>({}, ...nestedNodes);
-
-    delete finalNode.$ref;
-
-    return finalNode;
+    return this.CompileClass(node, classesMap);
   }
 
-  CompileNode(cursor: string | INode, classesMap?: Map<string, any>) {
-    const entityNode = this.ResolveCursor(cursor);
-    return this.CompileClass(entityNode, classesMap);
-  }
-
-  CompileClass(node: INode, classesMap?: Map<string, any>) {
-    if (!CheckType(NodeTypeObjectEntity, node)) {
+  CompileClass(node: INode, classesMap: Map<string, any> = this.#classesMap) {
+    if (!CheckNodeTypeObjectEntity(node)) {
       const output = valibot.safeParse(NodeTypeObjectEntity, node);
       console.debug(output.issues);
       console.debug(node);

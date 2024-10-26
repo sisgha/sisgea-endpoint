@@ -1,7 +1,14 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
-  "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
-  "files": { "ignoreUnknown": false, "ignore": [] },
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "ignore": [".pnpm-store"]
+  },
   "formatter": {
     "enabled": true,
 

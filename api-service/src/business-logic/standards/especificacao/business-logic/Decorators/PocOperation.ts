@@ -5,6 +5,7 @@ import { getSpecNodesStore } from "@/business-logic/standards/especificacao/busi
 const operationDecoratorsManager = new SpecDecorate(getSpecNodesStore());
 
 operationDecoratorsManager.AddHandler(new SwaggerSpecDecorateHandler());
+// operationDecoratorsManager.AddHandler(new GraphQlSpecDecorateHandler());
 
 export const PocOperation = (token: string): MethodDecorator => {
   return operationDecoratorsManager.DecorateOperation(token);

@@ -1,6 +1,7 @@
 import { COMBINED_INPUT_PARAM } from "@/business-logic/standards/especificacao/business-logic/CombinedInput";
 import type { ISpecDecorateHandler, ISpecDecorateOperationContext } from "@/business-logic/standards/especificacao/business-logic/Decorators/Operation/Core/ISpecDecorateHandler";
 import { OPERATION_KEY } from "@/business-logic/standards/especificacao/business-logic/Decorators/Tokens";
+import { dtoCompiler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler";
 import type { ISpecNodesStore } from "@/business-logic/standards/especificacao/business-logic/SpecNodesStore";
 import { SetMetadata, applyDecorators, createParamDecorator } from "@nestjs/common";
 import { ExecutionContextHost } from "@nestjs/core/helpers/execution-context-host";
@@ -29,6 +30,7 @@ export class SpecDecorate implements ISpecDecorate {
 
     const context: ISpecDecorateOperationContext = {
       operationNode,
+      dtoCompiler: dtoCompiler,
 
       methodDecorators: [],
       AddMethodDecorator(decorator) {
@@ -70,6 +72,8 @@ export class SpecDecorate implements ISpecDecorate {
             createParamDecorator((_, executionContext: ExecutionContextHost) => {
               if (executionContext.getType<string>() === "graphql") {
                 const [, input] = executionContext.getArgs();
+
+                // TODO
                 // return InputCombinerGraphQl.DecombineInput(operation, input);
                 return { input, status: "fixme" };
               } else {

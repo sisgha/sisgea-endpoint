@@ -1,16 +1,20 @@
-import { NestedNode } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NestedNode";
-import { NodeBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeBase";
+import { INestedNode, NestedNode } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NestedNode";
+import { INodeBase, NodeBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeBase";
 import { BuildCheckType } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/helpers";
 import * as valibot from "valibot";
 
-export const NodeTypeArray = valibot.object({
-  ...NodeBase.entries,
-  type: valibot.literal("array"),
-  items: valibot.lazy(() => NestedNode),
-});
+export type INodeTypeArray = INodeBase & {
+  type: "array";
+  items: INestedNode;
+};
 
-export type NodeTypeArray = typeof NodeTypeArray;
+export const NodeTypeArray = valibot.intersect([
+  NodeBase,
 
-export type INodeTypeArray = valibot.InferOutput<NodeTypeArray>;
+  valibot.object({
+    type: valibot.literal("array"),
+    items: valibot.lazy(() => NestedNode),
+  }),
+]);
 
-export const CheckNodeTypeArray = BuildCheckType(NodeTypeArray);
+export const CheckNodeTypeArray = BuildCheckType<any, INodeTypeArray>(NodeTypeArray);

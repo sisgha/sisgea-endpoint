@@ -47,12 +47,15 @@ importers:
       '@apollo/utils.keyvaluecache':
         specifier: ^3.1.0
         version: 3.1.0
+      '@fastify/merge-json-schemas':
+        specifier: ^0.2.0
+        version: 0.2.0
       '@keycloak/keycloak-admin-client':
         specifier: ^25.0.6
         version: 25.0.6
       '@ladesa-ro/especificacao':
-        specifier: ^3.3.2
-        version: 3.3.2
+        specifier: ^3.3.3
+        version: 3.3.3
       '@nestjs/apollo':
         specifier: ^12.2.0
         version: 12.2.0(@apollo/server@4.11.0(graphql@16.9.0))(@nestjs/common@10.4.5(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.5)(@nestjs/graphql@12.2.0(@nestjs/common@10.4.5(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.5)(graphql@16.9.0)(reflect-metadata@0.2.2))(graphql@16.9.0)
@@ -86,24 +89,6 @@ importers:
       '@nestjs/throttler':
         specifier: ^6.2.1
         version: 6.2.1(@nestjs/common@10.4.5(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.5)(reflect-metadata@0.2.2)
-      '@unispec/ast-builder':
-        specifier: 0.26.1-next.51
-        version: 0.26.1-next.51
-      '@unispec/ast-types':
-        specifier: 0.26.1-next.48
-        version: 0.26.1-next.48
-      '@unispec/ast-utils':
-        specifier: 0.26.1-next.49
-        version: 0.26.1-next.49
-      '@unispec/driver-nestjs':
-        specifier: 0.26.1-next.48
-        version: 0.26.1-next.48
-      '@unispec/driver-nestjs-graphql':
-        specifier: 0.26.1-next.48
-        version: 0.26.1-next.48(@nestjs/graphql@12.2.0(@nestjs/common@10.4.5(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.5)(graphql@16.9.0)(reflect-metadata@0.2.2))
-      '@unispec/driver-nestjs-swagger':
-        specifier: 0.26.1-next.48
-        version: 0.26.1-next.48(@nestjs/swagger@7.4.2(@nestjs/common@10.4.5(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.5)(reflect-metadata@0.2.2))
       amqplib:
         specifier: ^0.10.4
         version: 0.10.4
@@ -131,9 +116,6 @@ importers:
       helmet:
         specifier: ^8.0.0
         version: 8.0.0
-      json-schema-ref-resolver:
-        specifier: ^2.0.0
-        version: 2.0.0
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
@@ -1158,6 +1140,9 @@ packages:
   '@fastify/merge-json-schemas@0.1.1':
     resolution: {integrity: sha512-fERDVz7topgNjtXsJTTW1JKLy0rhuLRcquYqNR9rF7OcVpCa2OVW49ZPDIhaRRCaUuvVxI+N416xUoF76HNSXA==}
 
+  '@fastify/merge-json-schemas@0.2.0':
+    resolution: {integrity: sha512-9ql2tM7wdn7McvOg1V799G6/M6N5MM/Exp9SQvy8rld3xO07YhpxT9taR6vy7FU8o3ppU6M19M7P6GURP5RsPA==}
+
   '@graphql-tools/merge@8.4.2':
     resolution: {integrity: sha512-XbrHAaj8yDuINph+sAfuq3QCZ/tKblrTLOpirK0+CAgNlZUCHs0Fa+xtMUURgwCVThLle1AF7svJCxFizygLsw==}
     peerDependencies:
@@ -1347,8 +1332,8 @@ packages:
     resolution: {integrity: sha512-rUvo6L0aT9+y/R2wFhDKb+lRD5rwj36XwnIGIbmC2HeQVfgroYB5u/79yc/Mo0inBFNIG8VuiwjRzU878fRE0Q==}
     engines: {node: '>=18'}
 
-  '@ladesa-ro/especificacao@3.3.2':
-    resolution: {integrity: sha512-giJcvzreGtpnc5XfG3pXyiakJ+DsFrWSsTf8ZiWv7bRLf/UMzMGPGhUFGkhyVJoI3OudkVGlMIOJLLqEg6IO9Q==}
+  '@ladesa-ro/especificacao@3.3.3':
+    resolution: {integrity: sha512-w5GKhl1jqrUKGbBroWJWrbzK0rtkaZOxeSCpbvLqE0z+KGkoHzIYqAPhYRLKCtNdYbBSguS0YjaI9nPGpN7gfA==}
 
   '@ljharb/through@2.3.13':
     resolution: {integrity: sha512-/gKJun8NNiWGZJkGzI/Ragc53cOdcLNdzjLaIa+GEjguQs0ulsurx8WN0jijdK9yPqDvziX995sMRLyLt1uZMQ==}
@@ -2046,28 +2031,6 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
-
-  '@unispec/ast-builder@0.26.1-next.51':
-    resolution: {integrity: sha512-2KmrRCt7SZLhd3DJkeT+4yTnxJS6gFmWlRm5QX33jFvNjl6sk1WVyRvOsUQwkI+JMtGVv97SF5G7MP3Uy+Fsog==}
-
-  '@unispec/ast-types@0.26.1-next.48':
-    resolution: {integrity: sha512-9N22w4agNGcGgFRInIP6B75/xrT1VEpyPv7/EAoiHzTtlCf0lh/GGg/ehQalmovFhx94wfVViu6lNP4JUONYlQ==}
-
-  '@unispec/ast-utils@0.26.1-next.49':
-    resolution: {integrity: sha512-obEGVQHdF7we2BBN6nvklDeZXlpHL+TXKuNDKfmpLXjlTDyUktJhJuF0/u8qG4jF9H52YuSea50/qeN0RwuX1w==}
-
-  '@unispec/driver-nestjs-graphql@0.26.1-next.48':
-    resolution: {integrity: sha512-BWl6SUud6JWpnJNdCLcOk41JjFRHdPHibqLpi3a2A5z258RRdv6zEqzLn3gi4L+mFLpzBI0ril2J12F+btoIeg==}
-    peerDependencies:
-      '@nestjs/graphql': ^12.1.1
-
-  '@unispec/driver-nestjs-swagger@0.26.1-next.48':
-    resolution: {integrity: sha512-wQxhrvYtyjCsRtO2m2ESLGwTs92z1ihT8//6qPd5AAUdFzK8q8P8jYcRB1uZKtShlz0+Yjo26lJyg+FA2rZH1w==}
-    peerDependencies:
-      '@nestjs/swagger': ^7.3.1
-
-  '@unispec/driver-nestjs@0.26.1-next.48':
-    resolution: {integrity: sha512-nU5KQ5II+79rq5EhYBr61R1Tnp+S688BPVAFEt8tinhbze8Or8FqOeiKMYK9DPL2/49iP93bY8HV/Lk/c2WOmA==}
 
   '@vitest/coverage-v8@2.1.3':
     resolution: {integrity: sha512-2OJ3c7UPoFSmBZwqD2VEkUw6A/tzPF0LmW0ZZhhB8PFxuc+9IBG/FaSM+RLEenc7ljzFvGN+G0nGQoZnh7sy2A==}
@@ -3657,9 +3620,6 @@ packages:
 
   json-schema-ref-resolver@1.0.1:
     resolution: {integrity: sha512-EJAj1pgHc1hxF6vo2Z3s69fMjO1INq6eGHXZ8Z6wCQeldCuwxGK9Sxf4/cScGn3FZubCVUehfWtcDM/PLteCQw==}
-
-  json-schema-ref-resolver@2.0.0:
-    resolution: {integrity: sha512-E5URQlADRoIHrMv9vEYrRBYF5Q9vUd4gh60guha6VfS79KbOBRS967gbR4OKW1xGhbSzXmS9uH5SMHGbEmIvhA==}
 
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
@@ -6363,6 +6323,10 @@ snapshots:
     dependencies:
       fast-deep-equal: 3.1.3
 
+  '@fastify/merge-json-schemas@0.2.0':
+    dependencies:
+      dequal: 2.0.3
+
   '@graphql-tools/merge@8.4.2(graphql@16.9.0)':
     dependencies:
       '@graphql-tools/utils': 9.2.1(graphql@16.9.0)
@@ -6542,7 +6506,7 @@ snapshots:
       url-join: 5.0.0
       url-template: 3.1.1
 
-  '@ladesa-ro/especificacao@3.3.2': {}
+  '@ladesa-ro/especificacao@3.3.3': {}
 
   '@ljharb/through@2.3.13':
     dependencies:
@@ -7224,44 +7188,6 @@ snapshots:
   '@types/uuid@10.0.0': {}
 
   '@ungap/structured-clone@1.2.0': {}
-
-  '@unispec/ast-builder@0.26.1-next.51':
-    dependencies:
-      '@unispec/ast-types': 0.26.1-next.48
-      defu: 6.1.4
-      yup: 1.4.0
-
-  '@unispec/ast-types@0.26.1-next.48':
-    dependencies:
-      '@types/json-schema': 7.0.15
-
-  '@unispec/ast-utils@0.26.1-next.49':
-    dependencies:
-      '@types/json-schema': 7.0.15
-      '@unispec/ast-builder': 0.26.1-next.51
-      '@unispec/ast-types': 0.26.1-next.48
-      tslib: 2.8.0
-
-  '@unispec/driver-nestjs-graphql@0.26.1-next.48(@nestjs/graphql@12.2.0(@nestjs/common@10.4.5(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.5)(graphql@16.9.0)(reflect-metadata@0.2.2))':
-    dependencies:
-      '@nestjs/graphql': 12.2.0(@nestjs/common@10.4.5(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.5)(graphql@16.9.0)(reflect-metadata@0.2.2)
-      '@unispec/ast-builder': 0.26.1-next.51
-      '@unispec/ast-types': 0.26.1-next.48
-      '@unispec/ast-utils': 0.26.1-next.49
-
-  '@unispec/driver-nestjs-swagger@0.26.1-next.48(@nestjs/swagger@7.4.2(@nestjs/common@10.4.5(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.5)(reflect-metadata@0.2.2))':
-    dependencies:
-      '@nestjs/swagger': 7.4.2(@nestjs/common@10.4.5(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.5)(reflect-metadata@0.2.2)
-      '@unispec/ast-builder': 0.26.1-next.51
-      '@unispec/ast-types': 0.26.1-next.48
-      '@unispec/ast-utils': 0.26.1-next.49
-
-  '@unispec/driver-nestjs@0.26.1-next.48':
-    dependencies:
-      '@unispec/ast-builder': 0.26.1-next.51
-      '@unispec/ast-types': 0.26.1-next.48
-      '@unispec/ast-utils': 0.26.1-next.49
-      change-case: 5.4.4
 
   '@vitest/coverage-v8@2.1.3(vitest@2.1.3(@types/node@22.7.7)(terser@5.36.0))':
     dependencies:
@@ -9075,10 +9001,6 @@ snapshots:
   json-schema-ref-resolver@1.0.1:
     dependencies:
       fast-deep-equal: 3.1.3
-
-  json-schema-ref-resolver@2.0.0:
-    dependencies:
-      dequal: 2.0.3
 
   json-schema-traverse@0.4.1: {}
 

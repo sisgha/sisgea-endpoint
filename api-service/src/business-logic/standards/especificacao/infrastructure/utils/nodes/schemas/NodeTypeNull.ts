@@ -1,14 +1,16 @@
-import { NodeBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeBase";
+import { INodeBase, NodeBase } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/NodeBase";
 import { BuildCheckType } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas/helpers";
 import * as valibot from "valibot";
 
-export const NodeTypeNull = valibot.object({
-  ...NodeBase.entries,
-  type: valibot.literal("null"),
-});
+export type INodeTypeNull = INodeBase & {
+  type: "null";
+};
 
-export type NodeTypeNull = typeof NodeTypeNull;
-
-export type INodeTypeNull = valibot.InferOutput<NodeTypeNull>;
+export const NodeTypeNull: valibot.GenericSchema<INodeTypeNull> = valibot.intersect([
+  NodeBase,
+  valibot.object({
+    type: valibot.literal("null"),
+  }),
+]);
 
 export const CheckNodeTypeNull = BuildCheckType(NodeTypeNull);

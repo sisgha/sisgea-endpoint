@@ -1,20 +1,22 @@
 import {
+  CheckNodeTypeArray,
+  CheckNodeTypeObject,
+  CheckNodeTypeObjectEntity,
+  CheckNodeTypeObjectOperation,
+  CheckNodeTypeString,
   CheckType,
   INode,
   INodeTypeArray,
+  INodeTypeBoolean,
   INodeTypeNull,
   INodeTypeObject,
   INodeTypeObjectBase,
   INodeTypeObjectEntity,
   INodeTypeObjectOperation,
   INodeTypeString,
-  NodeTypeArray,
+  NodeTypeBoolean,
   NodeTypeNull,
-  NodeTypeObject,
   NodeTypeObjectBase,
-  NodeTypeObjectEntity,
-  NodeTypeObjectOperation,
-  NodeTypeString,
 } from "@/business-logic/standards/especificacao/infrastructure/utils/nodes/schemas";
 
 export class NodeHandler<Out = unknown, Context = void> {
@@ -36,11 +38,11 @@ export class NodeHandler<Out = unknown, Context = void> {
   }
 
   HandleTypeObject(node: INodeTypeObject, context: Context): Out {
-    if (CheckType(NodeTypeObjectOperation, node)) {
+    if (CheckNodeTypeObjectOperation(node)) {
       return this.HandleTypeObjectOperation(node, context);
     }
 
-    if (CheckType(NodeTypeObjectEntity, node)) {
+    if (CheckNodeTypeObjectEntity(node)) {
       return this.HandleTypeObjectEntity(node, context);
     }
 
@@ -59,6 +61,10 @@ export class NodeHandler<Out = unknown, Context = void> {
     return this.HandleDefault(node, context);
   }
 
+  HandleTypeBoolean(node: INodeTypeBoolean, context: Context): Out {
+    return this.HandleDefault(node, context);
+  }
+
   HandleTypeString(node: INodeTypeString, context: Context): Out {
     return this.HandleDefault(node, context);
   }
@@ -68,15 +74,19 @@ export class NodeHandler<Out = unknown, Context = void> {
       return this.HandleTypeNull(node, context);
     }
 
-    if (CheckType(NodeTypeArray, node)) {
+    if (CheckType(NodeTypeBoolean, node)) {
+      return this.HandleTypeBoolean(node, context);
+    }
+
+    if (CheckNodeTypeArray(node)) {
       return this.HandleTypeArray(node, context);
     }
 
-    if (CheckType(NodeTypeString, node)) {
+    if (CheckNodeTypeString(node)) {
       return this.HandleTypeString(node, context);
     }
 
-    if (CheckType(NodeTypeObject, node)) {
+    if (CheckNodeTypeObject(node)) {
       return this.HandleTypeObject(node, context);
     }
 
