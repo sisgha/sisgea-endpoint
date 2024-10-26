@@ -128,7 +128,7 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
 
     const swaggerTypings: any = dtoCompiler.swaggerNodeCompiler.Handle(inputBody, dtoCompilerContext);
 
-    if (swaggerTypings.type === "string" && swaggerTypings.format === "binary") {
+    if (swaggerTypings.type === "string" && (swaggerTypings.format === "binary" || swaggerTypings.mimeTypes !== undefined)) {
       context.AddMethodDecorator(ApiConsumes("multipart/form-data"));
 
       context.AddMethodDecorator(
@@ -137,7 +137,10 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
             type: "object",
             required: inputBodyRequired ? ["file"] : [],
             properties: {
-              file: { ...swaggerTypings },
+              file: {
+                format: "binary",
+                ...swaggerTypings,
+              },
             },
           },
         }),
@@ -200,7 +203,10 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
         context.AddMethodDecorator(
           ApiResponse({
             status,
-            ...(swaggerTypings as any),
+
+            schema: {
+              ...(swaggerTypings as any),
+            },
           }),
         );
       }

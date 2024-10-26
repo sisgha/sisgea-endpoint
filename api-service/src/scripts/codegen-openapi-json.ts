@@ -26,7 +26,7 @@ async function buildOpenApiJson() {
 
   await app.close();
 
-  return structuredClone(document);
+  return document;
 }
 
 async function buildOpenApiFile() {

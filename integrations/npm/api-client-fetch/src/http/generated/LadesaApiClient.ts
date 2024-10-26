@@ -18,8 +18,6 @@ import { DiariosService } from "./services.gen";
 import { DiariosPreferenciaAgrupamentoService } from "./services.gen";
 import { DiasCalendarioService } from "./services.gen";
 import { DisciplinasService } from "./services.gen";
-import { DisponibilidadesProfessorService } from "./services.gen";
-import { DisponibilidadesProfessorDiaService } from "./services.gen";
 import { EstadosService } from "./services.gen";
 import { EtapasService } from "./services.gen";
 import { EventosService } from "./services.gen";
@@ -28,8 +26,6 @@ import { HorariosGeradosAulaService } from "./services.gen";
 import { ModalidadesService } from "./services.gen";
 import { ReservasService } from "./services.gen";
 import { TurmasService } from "./services.gen";
-import { TurmasDisponibilidadeService } from "./services.gen";
-import { TurmasDisponibilidadeDiaService } from "./services.gen";
 import { UsuariosService } from "./services.gen";
 import { VinculosService } from "./services.gen";
 
@@ -51,8 +47,6 @@ export class LadesaApiClient {
   public readonly diariosPreferenciaAgrupamento: DiariosPreferenciaAgrupamentoService;
   public readonly diasCalendario: DiasCalendarioService;
   public readonly disciplinas: DisciplinasService;
-  public readonly disponibilidadesProfessor: DisponibilidadesProfessorService;
-  public readonly disponibilidadesProfessorDia: DisponibilidadesProfessorDiaService;
   public readonly estados: EstadosService;
   public readonly etapas: EtapasService;
   public readonly eventos: EventosService;
@@ -61,8 +55,6 @@ export class LadesaApiClient {
   public readonly modalidades: ModalidadesService;
   public readonly reservas: ReservasService;
   public readonly turmas: TurmasService;
-  public readonly turmasDisponibilidade: TurmasDisponibilidadeService;
-  public readonly turmasDisponibilidadeDia: TurmasDisponibilidadeDiaService;
   public readonly usuarios: UsuariosService;
   public readonly vinculos: VinculosService;
 
@@ -100,8 +92,6 @@ export class LadesaApiClient {
     this.diariosPreferenciaAgrupamento = new DiariosPreferenciaAgrupamentoService(this.request);
     this.diasCalendario = new DiasCalendarioService(this.request);
     this.disciplinas = new DisciplinasService(this.request);
-    this.disponibilidadesProfessor = new DisponibilidadesProfessorService(this.request);
-    this.disponibilidadesProfessorDia = new DisponibilidadesProfessorDiaService(this.request);
     this.estados = new EstadosService(this.request);
     this.etapas = new EtapasService(this.request);
     this.eventos = new EventosService(this.request);
@@ -110,8 +100,6 @@ export class LadesaApiClient {
     this.modalidades = new ModalidadesService(this.request);
     this.reservas = new ReservasService(this.request);
     this.turmas = new TurmasService(this.request);
-    this.turmasDisponibilidade = new TurmasDisponibilidadeService(this.request);
-    this.turmasDisponibilidadeDia = new TurmasDisponibilidadeDiaService(this.request);
     this.usuarios = new UsuariosService(this.request);
     this.vinculos = new VinculosService(this.request);
   }

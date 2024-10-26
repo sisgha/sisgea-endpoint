@@ -7,7 +7,7 @@ export abstract class GenericClassCompilerFromUnispecEntityHandler extends Class
 
 export class GenericClassCompilerFromUnispecEntity extends ClassCompiler<IGenericClassCompilerFromUnispecEntityTypings> {
   GetNodeIdentifier(classContext: ICompileClassContext<IGenericClassCompilerFromUnispecEntityTypings>): string {
-    return `Poc${classContext.node["x-unispec-entity-id"]}`;
+    return `${classContext.node["x-unispec-entity-id"]}`;
   }
 
   *GetNodeProperties(context: ICompileClassContext<IGenericClassCompilerFromUnispecEntityTypings>): Iterable<INodeProperty<IGenericClassCompilerFromUnispecEntityTypings>> {

@@ -284,8 +284,8 @@ importers:
   integrations/npm/api-client-fetch:
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: ^0.49.0
-        version: 0.49.0(magicast@0.3.5)(typescript@5.6.3)
+        specifier: ^0.53.12
+        version: 0.53.12(magicast@0.3.5)(typescript@5.6.3)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -375,6 +375,10 @@ packages:
 
   '@apidevtools/json-schema-ref-parser@11.6.4':
     resolution: {integrity: sha512-9K6xOqeevacvweLGik6LnZCb1fBtCOSIWQs8d096XGeqoLKC33UVMGz9+77Gw44KvbH4pKcQPWo4ZpxkXYj05w==}
+    engines: {node: '>= 16'}
+
+  '@apidevtools/json-schema-ref-parser@11.7.2':
+    resolution: {integrity: sha512-4gY54eEGEstClvEkGnwVkTkrx0sqwemEFG5OSRRn3tD91XH0+Q8XIkYIfo7IwEWPpJZwILb9GUXeShtplRc/eA==}
     engines: {node: '>= 16'}
 
   '@apollo/cache-control-types@1.0.3':
@@ -1183,6 +1187,13 @@ packages:
 
   '@hey-api/openapi-ts@0.49.0':
     resolution: {integrity: sha512-x6JK3nJpIEEEdvgpSZfsE3dwGmI4GNivENKj0rHhwQDHOkP8CK4tP0at53WPKtbq4xlbRFvgIMKp36o0zsW04g==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      typescript: ^5.x
+
+  '@hey-api/openapi-ts@0.53.12':
+    resolution: {integrity: sha512-cOm8AlUqJIWdLXq+Pk4mTXhEApRSc9xEWTVT8MZAyEqrN1Yhiisl2wyZGH9quzKpolq+oqvgcx61txtwHwi8vQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -2395,6 +2406,14 @@ packages:
       magicast:
         optional: true
 
+  c12@2.0.1:
+    resolution: {integrity: sha512-Z4JgsKXHG37C6PYUtIxCfLJZvo6FyhHJoClwwb9ftUkLpPSkuYqn6Tr+vnaN8hymm0kIbcg6Ey3kv/Q71k5w/A==}
+    peerDependencies:
+      magicast: ^0.3.5
+    peerDependenciesMeta:
+      magicast:
+        optional: true
+
   cac@6.7.14:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
@@ -3600,6 +3619,10 @@ packages:
 
   jiti@1.21.6:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
+    hasBin: true
+
+  jiti@2.3.3:
+    resolution: {integrity: sha512-EX4oNDwcXSivPrw2qKH2LB5PoFxEvgtv2JgwW0bU858HoLQ+kutSvjLMUqBd0PeJYEinLWhoI9Ol0eYMqj/wNQ==}
     hasBin: true
 
   jose@4.15.9:
@@ -5635,6 +5658,12 @@ snapshots:
       '@types/json-schema': 7.0.15
       js-yaml: 4.1.0
 
+  '@apidevtools/json-schema-ref-parser@11.7.2':
+    dependencies:
+      '@jsdevtools/ono': 7.1.3
+      '@types/json-schema': 7.0.15
+      js-yaml: 4.1.0
+
   '@apollo/cache-control-types@1.0.3(graphql@16.9.0)':
     dependencies:
       graphql: 16.9.0
@@ -6383,6 +6412,16 @@ snapshots:
       '@apidevtools/json-schema-ref-parser': 11.6.4
       c12: 1.11.1(magicast@0.3.5)
       camelcase: 8.0.0
+      commander: 12.1.0
+      handlebars: 4.7.8
+      typescript: 5.6.3
+    transitivePeerDependencies:
+      - magicast
+
+  '@hey-api/openapi-ts@0.53.12(magicast@0.3.5)(typescript@5.6.3)':
+    dependencies:
+      '@apidevtools/json-schema-ref-parser': 11.7.2
+      c12: 2.0.1(magicast@0.3.5)
       commander: 12.1.0
       handlebars: 4.7.8
       typescript: 5.6.3
@@ -7619,6 +7658,23 @@ snapshots:
       dotenv: 16.4.5
       giget: 1.2.3
       jiti: 1.21.6
+      mlly: 1.7.2
+      ohash: 1.1.4
+      pathe: 1.1.2
+      perfect-debounce: 1.0.0
+      pkg-types: 1.2.1
+      rc9: 2.1.2
+    optionalDependencies:
+      magicast: 0.3.5
+
+  c12@2.0.1(magicast@0.3.5):
+    dependencies:
+      chokidar: 4.0.1
+      confbox: 0.1.8
+      defu: 6.1.4
+      dotenv: 16.4.5
+      giget: 1.2.3
+      jiti: 2.3.3
       mlly: 1.7.2
       ohash: 1.1.4
       pathe: 1.1.2
@@ -8989,6 +9045,8 @@ snapshots:
       supports-color: 8.1.1
 
   jiti@1.21.6: {}
+
+  jiti@2.3.3: {}
 
   jose@4.15.9: {}
 
