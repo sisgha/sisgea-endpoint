@@ -4,9 +4,7 @@
   "main": "dist/index.js",
   "license": "MIT",
   "files": ["*.md", "dist/**/*.*"],
-
   "description": "LADESA - Biblioteca de integração a API - Pacote NPM.",
-
   "homepage": "https://github.com/ladesa-ro/api/tree/development/integrations/npm/api-client-fetch#readme",
   "repository": {
     "type": "git",
@@ -17,7 +15,6 @@
     "url": "https://github.com/ladesa-ro/api/issues"
   },
   "keywords": ["ladesa-ro", "api", "api-client", "fetch", "sisgha", "sisgea"],
-
   "scripts": {
     "prebuild": "wireit",
     "test": "wireit",
@@ -27,48 +24,39 @@
     "generate:client": "wireit",
     "cleanup:generated": "wireit"
   },
-
   "wireit": {
     "prebuild": {
       "command": "rimraf dist"
     },
-
     "test": {
       "command": "pnpm exec tsc --noEmit"
     },
-
     "dev": {
       "command": "tsc -p tsconfig.json --watch"
     },
-
     "build": {
       "command": "tsc -p tsconfig.json",
       "dependencies": ["generate"]
     },
-
     "generate": {
       "dependencies": ["generate:client"]
     },
-
     "generate:client": {
       "command": "openapi-ts && pnpm run -w code-static:fix $(pwd)",
       "dependencies": ["cleanup:generated", "../../openapi-json:build"],
       "files": ["../../openapi-json/generated.json"],
       "output": ["./src/http/generated/**/*"]
     },
-
     "cleanup:generated": {
       "command": "rimraf ./src/http/generated"
     }
   },
-
   "devDependencies": {
-    "@hey-api/openapi-ts": "^0.49.0",
+    "@hey-api/openapi-ts": "^0.53.12",
     "rimraf": "^6.0.1",
     "typescript": "^5.6.3",
     "wireit": "^0.14.9"
   },
-
   "publishConfig": {
     "provenance": true,
     "access": "public"

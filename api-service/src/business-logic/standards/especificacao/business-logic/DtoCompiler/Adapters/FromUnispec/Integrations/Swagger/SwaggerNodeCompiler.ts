@@ -1,5 +1,5 @@
 import { IDtoCompilerContext } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/typings";
-import { INode, INodeTypeArray, INodeTypeObjectEntity, NodeHandler } from "@/business-logic/standards/especificacao/infrastructure";
+import { INode, INodeRef, INodeTypeArray, INodeTypeObjectEntity, NodeHandler } from "@/business-logic/standards/especificacao/infrastructure";
 import { SchemaObjectMetadata } from "@nestjs/swagger/dist/interfaces/schema-object-metadata.interface";
 
 export type ISwaggerType = SchemaObjectMetadata & {
@@ -21,7 +21,8 @@ export class SwaggerNodeCompiler extends NodeHandler<ISwaggerType, IDtoCompilerC
     const dto = context.dtoCompiler.CompileNode(node);
 
     return {
-      ...composed,
+      ...composed.node,
+      nullable: composed.nullable,
 
       type: dto,
 
@@ -38,9 +39,17 @@ export class SwaggerNodeCompiler extends NodeHandler<ISwaggerType, IDtoCompilerC
     } satisfies ISwaggerType;
   }
 
+  HandleRef(node: INodeRef, context: IDtoCompilerContext): ISwaggerType {
+    const composed = context.nodesStore.ComposeNestedRefs(node);
+    return this.Handle(composed, context);
+  }
+
   HandleDefault(node: any, context: IDtoCompilerContext): ISwaggerType {
-    const decomposed = this.ComposeNode(node, context);
-    return { ...decomposed };
+    const composed = this.ComposeNode(node, context);
+    return {
+      ...composed.node,
+      nullable: composed.nullable,
+    };
   }
 
   Handle(node: INode, context: IDtoCompilerContext): ISwaggerType {

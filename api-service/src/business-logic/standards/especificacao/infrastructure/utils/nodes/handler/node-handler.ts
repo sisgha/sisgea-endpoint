@@ -1,4 +1,5 @@
 import {
+  CheckNodeRef,
   CheckNodeTypeArray,
   CheckNodeTypeObject,
   CheckNodeTypeObjectEntity,
@@ -6,6 +7,7 @@ import {
   CheckNodeTypeString,
   CheckType,
   INode,
+  INodeRef,
   INodeTypeArray,
   INodeTypeBoolean,
   INodeTypeNull,
@@ -69,7 +71,15 @@ export class NodeHandler<Out = unknown, Context = void> {
     return this.HandleDefault(node, context);
   }
 
+  HandleRef(node: INodeRef, context: Context): Out {
+    return this.HandleDefault(node, context);
+  }
+
   Handle(node: INode, context: Context): Out {
+    if (CheckNodeRef(node)) {
+      return this.HandleRef(node, context);
+    }
+
     if (CheckType(NodeTypeNull, node)) {
       return this.HandleTypeNull(node, context);
     }
