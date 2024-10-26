@@ -19,7 +19,7 @@ export class CreateTableArquivo1710028829501 implements MigrationInterface {
           //
 
           {
-            name: "nome",
+            name: "name",
             type: "text",
             isNullable: true,
           },

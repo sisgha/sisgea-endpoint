@@ -37,25 +37,19 @@ export class CreateTableReserva1710183953950 implements MigrationInterface {
           },
 
           {
-            name: "data_inicio",
-            type: "timestamptz",
+            name: "rrule",
+            type: "text",
             isNullable: false,
           },
-          {
-            name: "data_termino",
-            type: "timestamptz",
-            isNullable: true,
-          },
+
+          //
+
           {
             name: "id_ambiente_fk",
             type: "uuid",
             isNullable: false,
           },
-          {
-            name: "id_intervalo_de_tempo_fk",
-            type: "uuid",
-            isNullable: false,
-          },
+
           {
             name: "id_usuario_fk",
             type: "uuid",

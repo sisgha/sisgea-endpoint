@@ -1,83 +1,71 @@
-import { CheckTypeArray, CheckTypeObject, CheckView } from "@unispec/ast-builder";
-import { IUniNodeView } from "@unispec/ast-types";
-import { UniRepository } from "@unispec/ast-utils";
+import { CheckNodeTypeArray, CheckNodeTypeObjectEntity, INodeTypeObjectEntity, ISpecNodesStore, getSpecNodesStore } from "@/business-logic/standards/especificacao";
 import { uniq } from "lodash";
 import { SelectQueryBuilder } from "typeorm";
-import { getLadesaNodesRepository } from "./providers";
 
 // ==========================
 
-export const QbEfficientLoadForView = (repository: UniRepository, realTargetNodeView: IUniNodeView, qb: SelectQueryBuilder<any>, alias: string, selection: boolean | string[] = true) => {
-  const opaqueTargetNodeViewType = realTargetNodeView.type;
+export const QbEfficientLoadForEntity = (repository: ISpecNodesStore, nodeEntity: INodeTypeObjectEntity, qb: SelectQueryBuilder<any>, alias: string, selection: boolean | string[] = true) => {
+  let counter = 0;
 
-  const realTargetViewNodeType = opaqueTargetNodeViewType && repository.GetRealTarget(opaqueTargetNodeViewType);
+  let rootSelection: boolean | string[] = [];
 
-  if (CheckTypeObject(realTargetViewNodeType)) {
-    let counter = 0;
+  if (typeof selection === "boolean") {
+    rootSelection = selection;
+  } else {
+    rootSelection = uniq(["id", ...selection.map((i) => i.split(".")[0])]);
+  }
 
-    let rootSelection: boolean | string[] = [];
+  const metadata = qb.expressionMap.findAliasByName(alias).metadata;
 
-    if (typeof selection === "boolean") {
-      rootSelection = selection;
-    } else {
-      rootSelection = uniq(["id", ...selection.map((i) => i.split(".")[0])]);
+  const propertiesMap = metadata.propertiesMap;
+
+  for (const [propertyKey, propertyNode] of Object.entries(nodeEntity.properties)) {
+    counter++;
+
+    if (!Object.hasOwn(propertiesMap, propertyKey)) {
+      console.warn(`-> entity ${metadata.name} dont have path ${propertyKey}.`);
+      continue;
     }
 
-    const metadata = qb.expressionMap.findAliasByName(alias).metadata;
+    if (!rootSelection) {
+      continue;
+    }
 
-    const propertiesMap = metadata.propertiesMap;
+    const includeProperty = Array.isArray(rootSelection) ? rootSelection.includes(propertyKey) : rootSelection;
 
-    for (const [propertyKey, opaquePropertyNode] of Object.entries(realTargetViewNodeType.properties)) {
-      counter++;
+    if (!includeProperty) {
+      continue;
+    }
 
-      if (!Object.hasOwn(propertiesMap, propertyKey)) {
-        console.warn(`-> entity ${metadata.name} dont have path ${propertyKey}.`);
-        continue;
-      }
+    const subPath = `${alias}.${propertyKey}`;
 
-      if (!rootSelection) {
-        continue;
-      }
+    let { node: propertyNodeComposed } = repository.Compose(propertyNode);
 
-      const includeProperty = Array.isArray(rootSelection) ? rootSelection.includes(propertyKey) : rootSelection;
+    if (CheckNodeTypeArray(propertyNodeComposed)) {
+      propertyNodeComposed = repository.Compose(propertyNodeComposed.items);
+    }
 
-      if (!includeProperty) {
-        continue;
-      }
+    if (CheckNodeTypeObjectEntity(propertyNodeComposed)) {
+      const propertyNodeEntityId = propertyNodeComposed["x-unispec-entity-id"];
 
-      const subPath = `${alias}.${propertyKey}`;
+      const childSelection = rootSelection === true ? true : uniq(rootSelection.filter((i) => i.startsWith(`${propertyKey}.`)).map((i) => i.slice(i.indexOf(".") + 1)));
 
-      let realPropertyNode = repository.GetRealTargetStrict(opaquePropertyNode);
+      const childAlias = `${alias}_${propertyKey[0]}${counter}`;
 
-      if (CheckTypeArray(realPropertyNode)) {
-        realPropertyNode = repository.GetRealTargetStrict(realPropertyNode.items);
-      }
-
-      if (CheckView(realPropertyNode)) {
-        const childNodeViewName = realPropertyNode.name;
-        const opaqueChildNodeType = realPropertyNode.type;
-
-        if (CheckTypeObject(opaqueChildNodeType)) {
-          const childSelection = rootSelection === true ? true : uniq(rootSelection.filter((i) => i.startsWith(`${propertyKey}.`)).map((i) => i.slice(i.indexOf(".") + 1)));
-
-          const childAlias = `${alias}_${propertyKey[0]}${counter}`;
-
-          qb.leftJoin(subPath, childAlias);
-          QbEfficientLoad(childNodeViewName, qb, childAlias, childSelection);
-        }
-      } else {
-        qb.addSelect(subPath);
-      }
+      qb.leftJoin(subPath, childAlias);
+      QbEfficientLoad(propertyNodeEntityId, qb, childAlias, childSelection);
+    } else {
+      qb.addSelect(subPath);
     }
   }
 };
 
-export const QbEfficientLoad = (opaqueTargetViewCursor: string, qb: SelectQueryBuilder<any>, alias: string, selection: boolean | string[] = true) => {
-  const repository = getLadesaNodesRepository();
+export const QbEfficientLoad = (entityId: string, qb: SelectQueryBuilder<any>, alias: string, selection: boolean | string[] = true) => {
+  const store = getSpecNodesStore();
 
-  const realTargetNodeView = repository.GetRealTargetStrict(opaqueTargetViewCursor);
+  const targetEntity = store.GetEntityNode(entityId);
 
-  if (CheckView(realTargetNodeView)) {
-    return QbEfficientLoadForView(repository, realTargetNodeView, qb, alias, selection);
+  if (CheckNodeTypeObjectEntity(targetEntity)) {
+    return QbEfficientLoadForEntity(store, targetEntity, qb, alias, selection);
   }
 };

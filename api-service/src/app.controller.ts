@@ -1,3 +1,5 @@
+import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
 import { Controller, Get } from "@nestjs/common";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
 import { AppService } from "./app.service";
@@ -6,6 +8,10 @@ import { AppService } from "./app.service";
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
+
+  @Get("aaaa")
+  @PocOperation(PocTokens.AmbienteFindOneById)
+  teste() {}
 
   @Get()
   @ApiResponse({

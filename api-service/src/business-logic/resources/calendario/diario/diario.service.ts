@@ -4,7 +4,7 @@ import type { AccessContext } from "@/infrastructure/access-context";
 import { paginateConfig } from "@/infrastructure/fixtures";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import type { DiarioEntity } from "@/infrastructure/integrations/database/typeorm/entities";
-import * as LadesaTypings from "@ladesa-ro/especificacao";
+import * as PocTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { has, map, pick } from "lodash";
 import { FilterOperator } from "nestjs-paginate";
@@ -35,11 +35,7 @@ export class DiarioService {
 
   //
 
-  async diarioFindAll(
-    accessContext: AccessContext,
-    dto: LadesaTypings.DiarioListCombinedInput | null = null,
-    selection?: string[] | boolean,
-  ): Promise<LadesaTypings.DiarioListCombinedSuccessOutput["body"]> {
+  async diarioFindAll(accessContext: AccessContext, dto: PocTypings.DiarioListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.DiarioListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.diarioRepository.createQueryBuilder(aliasDiario);
@@ -100,7 +96,7 @@ export class DiarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(LadesaTypings.Tokens.Diario.Views.FindOneResult, qb, aliasDiario, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioFindOneResultView, qb, aliasDiario, selection);
 
     // =========================================================
 
@@ -112,7 +108,7 @@ export class DiarioService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async diarioFindById(accessContext: AccessContext, dto: LadesaTypings.DiarioFindOneInput, selection?: string[] | boolean): Promise<LadesaTypings.DiarioFindOneResult | null> {
+  async diarioFindById(accessContext: AccessContext, dto: PocTypings.DiarioFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.DiarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diarioRepository.createQueryBuilder(aliasDiario);
@@ -128,7 +124,7 @@ export class DiarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(LadesaTypings.Tokens.Diario.Views.FindOneResult, qb, aliasDiario, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioFindOneResultView, qb, aliasDiario, selection);
 
     // =========================================================
 
@@ -139,7 +135,7 @@ export class DiarioService {
     return diario;
   }
 
-  async diarioFindByIdStrict(accessContext: AccessContext, dto: LadesaTypings.DiarioFindOneInput, selection?: string[] | boolean) {
+  async diarioFindByIdStrict(accessContext: AccessContext, dto: PocTypings.DiarioFindOneInputView, selection?: string[] | boolean) {
     const diario = await this.diarioFindById(accessContext, dto, selection);
 
     if (!diario) {
@@ -149,7 +145,7 @@ export class DiarioService {
     return diario;
   }
 
-  async diarioFindByIdSimple(accessContext: AccessContext, id: LadesaTypings.DiarioFindOneInput["id"], selection?: string[] | boolean): Promise<LadesaTypings.DiarioFindOneResult | null> {
+  async diarioFindByIdSimple(accessContext: AccessContext, id: PocTypings.DiarioFindOneInputView["id"], selection?: string[] | boolean): Promise<PocTypings.DiarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.diarioRepository.createQueryBuilder(aliasDiario);
@@ -165,7 +161,7 @@ export class DiarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(LadesaTypings.Tokens.Diario.Views.FindOneResult, qb, aliasDiario, selection);
+    QbEfficientLoad(PocTypings.Tokens.DiarioFindOneResultView, qb, aliasDiario, selection);
 
     // =========================================================
 
@@ -176,7 +172,7 @@ export class DiarioService {
     return diario;
   }
 
-  async diarioFindByIdSimpleStrict(accessContext: AccessContext, id: LadesaTypings.DiarioFindOneInput["id"], selection?: string[] | boolean) {
+  async diarioFindByIdSimpleStrict(accessContext: AccessContext, id: PocTypings.DiarioFindOneInputView["id"], selection?: string[] | boolean) {
     const diario = await this.diarioFindByIdSimple(accessContext, id, selection);
 
     if (!diario) {
@@ -188,7 +184,7 @@ export class DiarioService {
 
   //
 
-  async diarioCreate(accessContext: AccessContext, dto: LadesaTypings.DiarioCreateCombinedInput) {
+  async diarioCreate(accessContext: AccessContext, dto: PocTypings.DiarioCreateOperationInput) {
     // =========================================================
 
     await accessContext.ensurePermission("diario:create", { dto });
@@ -200,7 +196,6 @@ export class DiarioService {
     const diario = this.diarioRepository.create();
 
     this.diarioRepository.merge(diario, {
-      ativo: true,
       ...dtoDiario,
     });
 
@@ -243,7 +238,7 @@ export class DiarioService {
     return this.diarioFindByIdStrict(accessContext, { id: diario.id });
   }
 
-  async diarioUpdate(accessContext: AccessContext, dto: LadesaTypings.DiarioUpdateByIDCombinedInput) {
+  async diarioUpdate(accessContext: AccessContext, dto: PocTypings.DiarioUpdateByIdOperationInput) {
     // =========================================================
 
     const currentDiario = await this.diarioFindByIdStrict(accessContext, {
@@ -317,7 +312,7 @@ export class DiarioService {
 
   //
 
-  async diarioDeleteOneById(accessContext: AccessContext, dto: LadesaTypings.DiarioFindOneInput) {
+  async diarioDeleteOneById(accessContext: AccessContext, dto: PocTypings.DiarioFindOneInputView) {
     // =========================================================
 
     await accessContext.ensurePermission("diario:delete", { dto }, dto.id, this.diarioRepository.createQueryBuilder(aliasDiario));

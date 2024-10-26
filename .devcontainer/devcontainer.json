@@ -21,7 +21,22 @@
 
   "customizations": {
     "vscode": {
-      "extensions": ["ms-azuretools.vscode-docker", "biomejs.biome"],
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "biomejs.biome",
+        "JannisX11.batch-rename-extension",
+        "fega.export-all-typescript",
+        "sleistner.vscode-fileutils",
+        "mkxml.vscode-filesize",
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "huizhou.githd",
+        "pipme.indent-travel",
+        "oderwat.indent-rainbow",
+        "YoavBls.pretty-ts-errors",
+        "Gruntfuggly.todo-tree",
+        "meganrogge.template-string-converter"
+      ],
       "settings": {
         "[javascript]": {
           "editor.defaultFormatter": "biomejs.biome"

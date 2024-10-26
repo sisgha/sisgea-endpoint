@@ -6,7 +6,7 @@ import { paginateConfig } from "@/infrastructure/fixtures";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import type { UsuarioEntity } from "@/infrastructure/integrations/database/typeorm/entities";
 import { KeycloakService } from "@/infrastructure/integrations/identity-provider";
-import * as LadesaTypings from "@ladesa-ro/especificacao";
+import * as PocTypings from "@ladesa-ro/especificacao";
 import { Injectable, InternalServerErrorException, NotFoundException, ServiceUnavailableException } from "@nestjs/common";
 import { has, map, pick } from "lodash";
 import { ArquivoService } from "../../base/arquivo/arquivo.service";
@@ -35,7 +35,7 @@ export class UsuarioService {
 
   //
 
-  async internalFindByMatriculaSiape(matriculaSiape: string, selection?: string[] | boolean): Promise<LadesaTypings.UsuarioFindOneResult | null> {
+  async internalFindByMatriculaSiape(matriculaSiape: string, selection?: string[] | boolean): Promise<PocTypings.UsuarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.usuarioRepository.createQueryBuilder(aliasUsuario);
@@ -49,7 +49,7 @@ export class UsuarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(LadesaTypings.Tokens.Usuario.Views.FindOneResult, qb, aliasUsuario, selection);
+    QbEfficientLoad(PocTypings.Tokens.UsuarioFindOneResultView, qb, aliasUsuario, selection);
     // =========================================================
 
     const usuario = await qb.getOne();
@@ -63,9 +63,9 @@ export class UsuarioService {
 
   async usuarioFindAll(
     accessContext: AccessContext,
-    dto: LadesaTypings.UsuarioListCombinedInput | null = null,
+    dto: PocTypings.UsuarioListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<LadesaTypings.UsuarioListCombinedSuccessOutput["body"]> {
+  ): Promise<PocTypings.UsuarioListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.usuarioRepository.createQueryBuilder(aliasUsuario);
@@ -117,7 +117,7 @@ export class UsuarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(LadesaTypings.Tokens.Usuario.Views.FindOneResult, qb, aliasUsuario, selection);
+    QbEfficientLoad(PocTypings.Tokens.UsuarioFindOneResultView, qb, aliasUsuario, selection);
     // =========================================================
 
     const pageItemsView = await qb.andWhereInIds(map(paginated.data, "id")).getMany();
@@ -128,7 +128,7 @@ export class UsuarioService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async usuarioFindById(accessContext: AccessContext | null, dto: LadesaTypings.UsuarioFindOneInput, selection?: string[] | boolean): Promise<LadesaTypings.UsuarioFindOneResult | null> {
+  async usuarioFindById(accessContext: AccessContext | null, dto: PocTypings.UsuarioFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.UsuarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.usuarioRepository.createQueryBuilder(aliasUsuario);
@@ -146,7 +146,7 @@ export class UsuarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(LadesaTypings.Tokens.Usuario.Views.FindOneResult, qb, aliasUsuario, selection);
+    QbEfficientLoad(PocTypings.Tokens.UsuarioFindOneResultView, qb, aliasUsuario, selection);
 
     // =========================================================
 
@@ -157,7 +157,7 @@ export class UsuarioService {
     return usuario;
   }
 
-  async usuarioFindByIdStrict(accessContext: AccessContext | null, dto: LadesaTypings.UsuarioFindOneInput, selection?: string[] | boolean) {
+  async usuarioFindByIdStrict(accessContext: AccessContext | null, dto: PocTypings.UsuarioFindOneInputView, selection?: string[] | boolean) {
     const usuario = await this.usuarioFindById(accessContext, dto, selection);
 
     if (!usuario) {
@@ -167,7 +167,7 @@ export class UsuarioService {
     return usuario;
   }
 
-  async usuarioFindByIdSimple(accessContext: AccessContext, id: LadesaTypings.UsuarioFindOneInput["id"], selection?: string[]): Promise<LadesaTypings.UsuarioFindOneResult | null> {
+  async usuarioFindByIdSimple(accessContext: AccessContext, id: PocTypings.UsuarioFindOneInputView["id"], selection?: string[]): Promise<PocTypings.UsuarioFindOneResultView | null> {
     // =========================================================
 
     const qb = this.usuarioRepository.createQueryBuilder(aliasUsuario);
@@ -183,7 +183,7 @@ export class UsuarioService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(LadesaTypings.Tokens.Usuario.Views.FindOneResult, qb, aliasUsuario, selection);
+    QbEfficientLoad(PocTypings.Tokens.UsuarioFindOneResultView, qb, aliasUsuario, selection);
 
     // =========================================================
 
@@ -194,7 +194,7 @@ export class UsuarioService {
     return usuario;
   }
 
-  async usuarioFindByIdSimpleStrict(accessContext: AccessContext, id: LadesaTypings.UsuarioFindOneInput["id"], selection?: string[]) {
+  async usuarioFindByIdSimpleStrict(accessContext: AccessContext, id: PocTypings.UsuarioFindOneInputView["id"], selection?: string[]) {
     const usuario = await this.usuarioFindByIdSimple(accessContext, id, selection);
 
     if (!usuario) {
@@ -241,7 +241,7 @@ export class UsuarioService {
     return isAvailable;
   }
 
-  private async ensureDtoAvailability(dto: Partial<Pick<LadesaTypings.Usuario, "email" | "matriculaSiape">>, currentUsuarioId: string | null = null) {
+  private async ensureDtoAvailability(dto: Partial<Pick<PocTypings.Usuario, "email" | "matriculaSiape">>, currentUsuarioId: string | null = null) {
     // ===================================
 
     let isEmailAvailable = true;
@@ -328,7 +328,7 @@ export class UsuarioService {
     throw new NotFoundException();
   }
 
-  async usuarioUpdateImagemCapa(accessContext: AccessContext, dto: LadesaTypings.UsuarioFindOneInput, file: Express.Multer.File) {
+  async usuarioUpdateImagemCapa(accessContext: AccessContext, dto: PocTypings.UsuarioFindOneInputView, file: Express.Multer.File) {
     // =========================================================
 
     const currentUsuario = await this.usuarioFindByIdStrict(accessContext, {
@@ -383,7 +383,7 @@ export class UsuarioService {
     throw new NotFoundException();
   }
 
-  async usuarioUpdateImagemPerfil(accessContext: AccessContext, dto: LadesaTypings.UsuarioFindOneInput, file: Express.Multer.File) {
+  async usuarioUpdateImagemPerfil(accessContext: AccessContext, dto: PocTypings.UsuarioFindOneInputView, file: Express.Multer.File) {
     // =========================================================
 
     const currentUsuario = await this.usuarioFindByIdStrict(accessContext, {
@@ -425,7 +425,7 @@ export class UsuarioService {
 
   //
 
-  async usuarioCreate(accessContext: AccessContext, dto: LadesaTypings.UsuarioCreateCombinedInput) {
+  async usuarioCreate(accessContext: AccessContext, dto: PocTypings.UsuarioCreateOperationInput) {
     // =========================================================
 
     await accessContext.ensurePermission("usuario:create", { dto });
@@ -454,8 +454,8 @@ export class UsuarioService {
         await kcAdminClient.users.create({
           enabled: true,
 
-          username: input.matriculaSiape,
-          email: input.email,
+          username: input.matriculaSiape ?? undefined,
+          email: input.email ?? undefined,
 
           requiredActions: ["UPDATE_PASSWORD"],
 
@@ -472,7 +472,7 @@ export class UsuarioService {
     return this.usuarioFindByIdStrict(accessContext, { id: usuario.id });
   }
 
-  async usuarioUpdate(accessContext: AccessContext, dto: LadesaTypings.UsuarioUpdateByIDCombinedInput) {
+  async usuarioUpdate(accessContext: AccessContext, dto: PocTypings.UsuarioUpdateByIdOperationInput) {
     // =========================================================
 
     const currentUsuario = await this.usuarioFindByIdStrict(accessContext, {
@@ -481,7 +481,7 @@ export class UsuarioService {
 
     const currentMatriculaSiape = currentUsuario.matriculaSiape ?? (await this.internalResolveMatriculaSiape(currentUsuario.id));
 
-    const kcUser = await this.keycloakService.findUserByMatriculaSiape(currentMatriculaSiape);
+    const kcUser = currentMatriculaSiape && (await this.keycloakService.findUserByMatriculaSiape(currentMatriculaSiape));
 
     if (!kcUser) {
       throw new ServiceUnavailableException();
@@ -518,7 +518,7 @@ export class UsuarioService {
           await kcAdminClient.users.update(
             { id: kcUser.id! },
             {
-              username: input.matriculaSiape,
+              username: input.matriculaSiape ?? undefined,
               attributes: {
                 "usuario.matriculaSiape": input.matriculaSiape,
               },
@@ -530,7 +530,7 @@ export class UsuarioService {
           await kcAdminClient.users.update(
             { id: kcUser.id! },
             {
-              email: dto.body.email,
+              email: dto.body.email ?? undefined,
             },
           );
         }
@@ -544,7 +544,7 @@ export class UsuarioService {
 
   //
 
-  async usuarioDeleteOneById(accessContext: AccessContext, dto: LadesaTypings.UsuarioFindOneInput) {
+  async usuarioDeleteOneById(accessContext: AccessContext, dto: PocTypings.UsuarioFindOneInputView) {
     // =========================================================
 
     await accessContext.ensurePermission("usuario:delete", { dto }, dto.id, this.usuarioRepository.createQueryBuilder(aliasUsuario));

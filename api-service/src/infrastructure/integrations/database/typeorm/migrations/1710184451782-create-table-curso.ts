@@ -37,7 +37,7 @@ export class CreateTableCurso1710184451782 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: "id_modalidade_fk",
+            name: "id_oferta_formacao_fk",
             type: "uuid",
             isNullable: false,
           },
@@ -74,10 +74,10 @@ export class CreateTableCurso1710184451782 implements MigrationInterface {
             referencedTableName: "campus",
           },
           {
-            name: `fk__${tableName}__depende__modalidade`,
-            columnNames: ["id_modalidade_fk"],
+            name: `fk__${tableName}__depende__oferta_formacao`,
+            columnNames: ["id_oferta_formacao_fk"],
             referencedColumnNames: ["id"],
-            referencedTableName: "modalidade",
+            referencedTableName: "oferta_formacao",
           },
           {
             name: `fk__${tableName}__possui__imagem_capa`,

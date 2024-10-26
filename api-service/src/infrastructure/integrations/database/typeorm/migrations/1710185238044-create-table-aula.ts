@@ -19,14 +19,14 @@ export class CreateTableAula1710185238044 implements MigrationInterface {
           //
 
           {
-            name: "formato",
-            type: "text",
+            name: "data",
+            type: "date",
             isNullable: true,
           },
 
           {
-            name: "data",
-            type: "date",
+            name: "modalidade",
+            type: "text",
             isNullable: true,
           },
 
