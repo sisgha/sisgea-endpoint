@@ -3,12 +3,12 @@ name: Release
 on:
   push:
     branches:
-      - development
+      - next
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
-  node-version: 22
+  node-version: 23
 
   CI_CD_LOCAL_API_SERVICE_IMAGE: ci-cd.local/api-service
   CI_DEVELOPMENT_BRANCH: ${{ vars.CI_DEVELOPMENT_BRANCH }}
