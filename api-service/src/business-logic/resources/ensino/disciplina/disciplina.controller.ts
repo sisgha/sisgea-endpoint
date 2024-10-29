@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextHttp } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, UploadedFile } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { DisciplinaService } from "./disciplina.service";
@@ -15,23 +15,23 @@ export class DisciplinaController {
   //
 
   @Get("/")
-  @PocOperation(PocTokens.DisciplinaList)
+  @Operation(Tokens.DisciplinaList)
   async disciplinaFindAll(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaListOperationInput,
-  ): Promise<PocTypings.DisciplinaListOperationOutput["success"]> {
+    @CombinedInput() dto: LadesaTypings.DisciplinaListOperationInput,
+  ): Promise<LadesaTypings.DisciplinaListOperationOutput["success"]> {
     return this.disciplinaService.disciplinaFindAll(accessContext, dto);
   }
 
   //
 
   @Get("/:id")
-  @PocOperation(PocTokens.DisciplinaFindOneById)
+  @Operation(Tokens.DisciplinaFindOneById)
   async disciplinaFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.DisciplinaFindOneByIdOperationOutput,
   ) {
     return this.disciplinaService.disciplinaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -41,11 +41,11 @@ export class DisciplinaController {
   //
 
   @Post("/")
-  @PocOperation(PocTokens.DisciplinaCreate)
+  @Operation(Tokens.DisciplinaCreate)
   async disciplinaCreate(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.DisciplinaCreateOperationInput,
   ) {
     return this.disciplinaService.disciplinaCreate(accessContext, dto);
   }
@@ -53,11 +53,11 @@ export class DisciplinaController {
   //
 
   @Patch("/:id")
-  @PocOperation(PocTokens.DisciplinaUpdateOneById)
+  @Operation(Tokens.DisciplinaUpdateOneById)
   async disciplinaUpdate(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.DisciplinaUpdateByIdOperationInput,
   ) {
     return this.disciplinaService.disciplinaUpdate(accessContext, dto);
   }
@@ -65,7 +65,7 @@ export class DisciplinaController {
   //
 
   @Get("/:id/imagem/capa")
-  @PocOperation(PocTokens.DisciplinaGetImagemCapa)
+  @Operation(Tokens.DisciplinaGetImagemCapa)
   async disciplinaGetImagemCapa(
     //
     @AccessContextHttp() accessContext: AccessContext,
@@ -75,7 +75,7 @@ export class DisciplinaController {
   }
 
   @Put("/:id/imagem/capa")
-  @PocOperation(PocTokens.DisciplinaSetImagemCapa)
+  @Operation(Tokens.DisciplinaSetImagemCapa)
   async disciplinaImagemCapaSave(
     //
     @AccessContextHttp() accessContext: AccessContext,
@@ -88,11 +88,11 @@ export class DisciplinaController {
   //
 
   @Delete("/:id")
-  @PocOperation(PocTokens.DisciplinaDeleteOneById)
+  @Operation(Tokens.DisciplinaDeleteOneById)
   async disciplinaDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaDeleteByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.DisciplinaDeleteByIdOperationInput,
   ) {
     return this.disciplinaService.disciplinaDeleteOneById(accessContext, {
       id: dto.params.id,

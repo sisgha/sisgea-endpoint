@@ -1,10 +1,10 @@
 import { OfertaFormacaoEntity } from "@/infrastructure/integrations/database/typeorm/entities/04-ensino-institucional";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { CampusEntity } from "../02-ambientes/campus.entity";
 
 @Entity("calendario_letivo")
-export class CalendarioLetivoEntity implements PocTypings.CalendarioLetivo {
+export class CalendarioLetivoEntity implements LadesaTypings.CalendarioLetivo {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -20,11 +20,11 @@ export class CalendarioLetivoEntity implements PocTypings.CalendarioLetivo {
 
   @ManyToOne(() => CampusEntity)
   @JoinColumn({ name: "id_campus_fk" })
-  campus!: PocTypings.Campus;
+  campus!: LadesaTypings.Campus;
 
   @ManyToOne(() => OfertaFormacaoEntity)
   @JoinColumn({ name: "id_oferta_formacao_fk" })
-  ofertaFormacao!: PocTypings.OfertaFormacao;
+  ofertaFormacao!: LadesaTypings.OfertaFormacao;
 
   //
 

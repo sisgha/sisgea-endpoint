@@ -1,4 +1,4 @@
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UsuarioEntity } from "../01-autenticacao/usuario.entity";
 import { AmbienteEntity } from "../02-ambientes/ambiente.entity";
@@ -6,7 +6,7 @@ import { BlocoEntity } from "../02-ambientes/bloco.entity";
 import { ImagemArquivoEntity } from "./imagem-arquivo.entity";
 
 @Entity("imagem")
-export class ImagemEntity implements PocTypings.Imagem {
+export class ImagemEntity implements LadesaTypings.Imagem {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -20,7 +20,9 @@ export class ImagemEntity implements PocTypings.Imagem {
   @OneToMany(
     () => ImagemArquivoEntity,
     (entity) => entity.imagem,
-    { cascade: true },
+    {
+      cascade: true,
+    },
   )
   versoes!: ImagemArquivoEntity[];
 

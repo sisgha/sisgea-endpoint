@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextGraphQl } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Resolver } from "@nestjs/graphql";
 import { HorarioGeradoService } from "./horario-gerado.service";
 
@@ -10,47 +10,47 @@ import { HorarioGeradoService } from "./horario-gerado.service";
 export class HorarioGeradoResolver {
   constructor(private horarioGeradoService: HorarioGeradoService) {}
   //
-  @PocOperation(PocTokens.HorarioGeradoList)
+  @Operation(Tokens.HorarioGeradoList)
   async horarioGeradoFindAll(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoListOperationInput,
+    @CombinedInput() dto: LadesaTypings.HorarioGeradoListOperationInput,
   ) {
     return this.horarioGeradoService.horarioGeradoFindAll(accessContext, dto);
   }
   //
-  @PocOperation(PocTokens.HorarioGeradoFindOneById)
+  @Operation(Tokens.HorarioGeradoFindOneById)
   async horarioGeradoFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoFindByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.HorarioGeradoFindByIdOperationInput,
   ) {
     return this.horarioGeradoService.horarioGeradoFindByIdStrict(accessContext, { id: dto.params.id });
   }
   //
-  @PocOperation(PocTokens.HorarioGeradoCreate)
+  @Operation(Tokens.HorarioGeradoCreate)
   async horarioGeradoCreate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.HorarioGeradoCreateOperationInput,
   ) {
     return this.horarioGeradoService.horarioGeradoCreate(accessContext, dto);
   }
   //
-  @PocOperation(PocTokens.HorarioGeradoUpdateOneById)
+  @Operation(Tokens.HorarioGeradoUpdateOneById)
   async horarioGeradoUpdate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.HorarioGeradoUpdateByIdOperationInput,
   ) {
     return this.horarioGeradoService.horarioGeradoUpdate(accessContext, dto);
   }
   //
-  @PocOperation(PocTokens.HorarioGeradoDeleteOneById)
+  @Operation(Tokens.HorarioGeradoDeleteOneById)
   async horarioGeradoDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.HorarioGeradoDeleteByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.HorarioGeradoDeleteByIdOperationInput,
   ) {
     return this.horarioGeradoService.horarioGeradoDeleteOneById(accessContext, {
       id: dto.params.id,

@@ -1,11 +1,11 @@
 import { OfertaFormacaoEntity } from "@/infrastructure/integrations/database/typeorm/entities/04-ensino-institucional/oferta-formacao.entity";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ImagemEntity } from "../00-00-base/imagem.entity";
 import { CampusEntity } from "../02-ambientes/campus.entity";
 
 @Entity("curso")
-export class CursoEntity implements PocTypings.Curso {
+export class CursoEntity implements LadesaTypings.Curso {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 

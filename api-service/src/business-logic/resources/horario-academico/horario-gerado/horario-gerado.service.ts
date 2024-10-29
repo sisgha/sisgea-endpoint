@@ -5,7 +5,7 @@ import type { AccessContext } from "@/infrastructure/access-context";
 import { paginateConfig } from "@/infrastructure/fixtures";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import type { HorarioGeradoEntity } from "@/infrastructure/integrations/database/typeorm/entities";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { has, map, pick } from "lodash";
 import { FilterOperator } from "nestjs-paginate";
@@ -31,9 +31,9 @@ export class HorarioGeradoService {
 
   async horarioGeradoFindAll(
     accessContext: AccessContext,
-    dto: PocTypings.HorarioGeradoListOperationInput | null = null,
+    dto: LadesaTypings.HorarioGeradoListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.HorarioGeradoListOperationOutput["success"]> {
+  ): Promise<LadesaTypings.HorarioGeradoListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.horarioGeradoRepository.createQueryBuilder(aliasHorarioGerado);
@@ -99,7 +99,7 @@ export class HorarioGeradoService {
 
     qb.select([]);
 
-    QbEfficientLoad(PocTypings.Tokens.HorarioGeradoFindOneResultView, qb, aliasHorarioGerado, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.HorarioGeradoFindOneResultView, qb, aliasHorarioGerado, selection);
 
     // =========================================================
 
@@ -111,7 +111,11 @@ export class HorarioGeradoService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async horarioGeradoFindById(accessContext: AccessContext, dto: PocTypings.HorarioGeradoFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.HorarioGeradoFindOneResultView | null> {
+  async horarioGeradoFindById(
+    accessContext: AccessContext,
+    dto: LadesaTypings.HorarioGeradoFindOneInputView,
+    selection?: string[] | boolean,
+  ): Promise<LadesaTypings.HorarioGeradoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.horarioGeradoRepository.createQueryBuilder(aliasHorarioGerado);
@@ -128,7 +132,7 @@ export class HorarioGeradoService {
 
     qb.select([]);
 
-    QbEfficientLoad(PocTypings.Tokens.HorarioGeradoFindOneResultView, qb, aliasHorarioGerado, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.HorarioGeradoFindOneResultView, qb, aliasHorarioGerado, selection);
 
     // =========================================================
 
@@ -139,7 +143,7 @@ export class HorarioGeradoService {
     return horario;
   }
 
-  async horarioGeradoFindByIdStrict(accessContext: AccessContext, dto: PocTypings.HorarioGeradoFindOneInputView, selection?: string[] | boolean) {
+  async horarioGeradoFindByIdStrict(accessContext: AccessContext, dto: LadesaTypings.HorarioGeradoFindOneInputView, selection?: string[] | boolean) {
     const horario = await this.horarioGeradoFindById(accessContext, dto, selection);
 
     if (!horario) {
@@ -149,7 +153,11 @@ export class HorarioGeradoService {
     return horario;
   }
 
-  async horarioGeradoFindByIdSimple(accessContext: AccessContext, id: PocTypings.HorarioGeradoFindOneInputView["id"], selection?: string[]): Promise<PocTypings.HorarioGeradoFindOneResultView | null> {
+  async horarioGeradoFindByIdSimple(
+    accessContext: AccessContext,
+    id: LadesaTypings.HorarioGeradoFindOneInputView["id"],
+    selection?: string[],
+  ): Promise<LadesaTypings.HorarioGeradoFindOneResultView | null> {
     // =========================================================
 
     const qb = this.horarioGeradoRepository.createQueryBuilder(aliasHorarioGerado);
@@ -165,7 +173,7 @@ export class HorarioGeradoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.HorarioGeradoFindOneResultView, qb, aliasHorarioGerado, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.HorarioGeradoFindOneResultView, qb, aliasHorarioGerado, selection);
 
     // =========================================================
 
@@ -176,7 +184,7 @@ export class HorarioGeradoService {
     return horario;
   }
 
-  async horarioGeradoFindByIdSimpleStrict(accessContext: AccessContext, id: PocTypings.HorarioGeradoFindOneInputView["id"], selection?: string[]) {
+  async horarioGeradoFindByIdSimpleStrict(accessContext: AccessContext, id: LadesaTypings.HorarioGeradoFindOneInputView["id"], selection?: string[]) {
     const horarioGerado = await this.horarioGeradoFindByIdSimple(accessContext, id, selection);
 
     if (!horarioGerado) {
@@ -188,7 +196,7 @@ export class HorarioGeradoService {
 
   //
 
-  async horarioGeradoCreate(accessContext: AccessContext, dto: PocTypings.HorarioGeradoCreateOperationInput) {
+  async horarioGeradoCreate(accessContext: AccessContext, dto: LadesaTypings.HorarioGeradoCreateOperationInput) {
     // =========================================================
 
     await accessContext.ensurePermission("horario_gerado:create", { dto });
@@ -226,7 +234,7 @@ export class HorarioGeradoService {
     });
   }
 
-  async horarioGeradoUpdate(accessContext: AccessContext, dto: PocTypings.HorarioGeradoUpdateByIdOperationInput) {
+  async horarioGeradoUpdate(accessContext: AccessContext, dto: LadesaTypings.HorarioGeradoUpdateByIdOperationInput) {
     // =========================================================
 
     const currentHorarioGerado = await this.horarioGeradoFindByIdStrict(accessContext, {
@@ -272,7 +280,7 @@ export class HorarioGeradoService {
 
   //
 
-  async horarioGeradoDeleteOneById(accessContext: AccessContext, dto: PocTypings.HorarioGeradoFindOneInputView) {
+  async horarioGeradoDeleteOneById(accessContext: AccessContext, dto: LadesaTypings.HorarioGeradoFindOneInputView) {
     // =========================================================
 
     await accessContext.ensurePermission("horario_gerado:delete", { dto }, dto.id, this.horarioGeradoRepository.createQueryBuilder(aliasHorarioGerado));

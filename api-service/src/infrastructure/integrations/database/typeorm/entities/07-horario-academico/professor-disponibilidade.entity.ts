@@ -1,10 +1,10 @@
 import { PerfilEntity } from "@/infrastructure/integrations/database/typeorm/entities/03-autorizacao";
 import { DisponibilidadeEntity } from "@/infrastructure/integrations/database/typeorm/entities/07-horario-academico/disponibilidade.entity";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("professor_disponibilidade")
-export class ProfessorDisponibilidadeEntity implements PocTypings.ProfessorDisponibilidade {
+export class ProfessorDisponibilidadeEntity implements LadesaTypings.ProfessorDisponibilidade {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -12,11 +12,11 @@ export class ProfessorDisponibilidadeEntity implements PocTypings.ProfessorDispo
 
   @ManyToOne(() => PerfilEntity)
   @JoinColumn({ name: "id_perfil_fk" })
-  perfil!: PocTypings.Perfil;
+  perfil!: LadesaTypings.Perfil;
 
   @ManyToOne(() => DisponibilidadeEntity)
   @JoinColumn({ name: "id_disponibilidade_fk" })
-  disponibilidade!: PocTypings.Disponibilidade;
+  disponibilidade!: LadesaTypings.Disponibilidade;
 
   //
 

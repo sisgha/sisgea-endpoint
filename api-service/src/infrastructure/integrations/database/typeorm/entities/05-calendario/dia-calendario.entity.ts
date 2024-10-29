@@ -1,9 +1,9 @@
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { CalendarioLetivoEntity } from "./calendario-letivo.entity";
 
 @Entity("dia_calendario")
-export class DiaCalendarioEntity implements PocTypings.DiaCalendario {
+export class DiaCalendarioEntity implements LadesaTypings.DiaCalendario {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -22,7 +22,7 @@ export class DiaCalendarioEntity implements PocTypings.DiaCalendario {
 
   @ManyToOne(() => CalendarioLetivoEntity)
   @JoinColumn({ name: "id_calendario_letivo_fk" })
-  calendario!: PocTypings.CalendarioLetivo;
+  calendario!: LadesaTypings.CalendarioLetivo;
 
   //
 

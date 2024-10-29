@@ -1,10 +1,10 @@
 import { IntervaloDeTempoEntity } from "@/infrastructure/integrations/database/typeorm/entities/00-00-base";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { DisponibilidadeEntity } from "./disponibilidade.entity";
 
 @Entity("disponibilidade_dia")
-export class DisponibilidadeDiaEntity implements PocTypings.DisponibilidadeDia {
+export class DisponibilidadeDiaEntity implements LadesaTypings.DisponibilidadeDia {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -17,11 +17,11 @@ export class DisponibilidadeDiaEntity implements PocTypings.DisponibilidadeDia {
 
   @ManyToOne(() => DisponibilidadeEntity)
   @JoinColumn({ name: "id_disponibilidade__fk" })
-  disponibilidade!: PocTypings.DisponibilidadeFindOneResultView;
+  disponibilidade!: LadesaTypings.DisponibilidadeFindOneResultView;
 
   @ManyToOne(() => IntervaloDeTempoEntity)
   @JoinColumn({ name: "id_intervalo_de_tempo_fk" })
-  intervaloDeTempo!: PocTypings.IntervaloDeTempoFindOneResultView;
+  intervaloDeTempo!: LadesaTypings.IntervaloDeTempoFindOneResultView;
 
   //
 

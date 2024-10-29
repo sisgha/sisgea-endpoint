@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextHttp } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { ReservaService } from "./reserva.service";
@@ -15,23 +15,23 @@ export class ReservaController {
   //
 
   @Get("/")
-  @PocOperation(PocTokens.ReservaList)
+  @Operation(Tokens.ReservaList)
   async reservaFindAll(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ReservaListOperationInput,
-  ): Promise<PocTypings.ReservaListOperationOutput["success"]> {
+    @CombinedInput() dto: LadesaTypings.ReservaListOperationInput,
+  ): Promise<LadesaTypings.ReservaListOperationOutput["success"]> {
     return this.reservaService.reservaFindAll(accessContext, dto);
   }
 
   //
 
   @Get("/:id")
-  @PocOperation(PocTokens.ReservaFindOneById)
+  @Operation(Tokens.ReservaFindOneById)
   async reservaFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ReservaFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.ReservaFindOneByIdOperationOutput,
   ) {
     return this.reservaService.reservaFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -41,11 +41,11 @@ export class ReservaController {
   //
 
   @Post("/")
-  @PocOperation(PocTokens.ReservaCreate)
+  @Operation(Tokens.ReservaCreate)
   async reservaCreate(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ReservaCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.ReservaCreateOperationInput,
   ) {
     return this.reservaService.reservaCreate(accessContext, dto);
   }
@@ -53,11 +53,11 @@ export class ReservaController {
   //
 
   @Patch("/:id")
-  @PocOperation(PocTokens.ReservaUpdateOneById)
+  @Operation(Tokens.ReservaUpdateOneById)
   async reservaUpdate(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ReservaUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.ReservaUpdateByIdOperationInput,
   ) {
     return this.reservaService.reservaUpdate(accessContext, dto);
   }
@@ -65,11 +65,11 @@ export class ReservaController {
   //
 
   @Delete("/:id")
-  @PocOperation(PocTokens.ReservaDeleteOneById)
+  @Operation(Tokens.ReservaDeleteOneById)
   async reservaDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ReservaDeleteByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.ReservaDeleteByIdOperationInput,
   ) {
     return this.reservaService.reservaDeleteOneById(accessContext, {
       id: dto.params.id,

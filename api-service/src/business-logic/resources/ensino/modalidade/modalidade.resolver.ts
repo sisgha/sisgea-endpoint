@@ -1,8 +1,8 @@
 import { CombinedInput, graphqlExtractSelection } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextGraphQl } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Info as GqlInfo, Resolver as GqlResolver } from "@nestjs/graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { ModalidadeService } from "./modalidade.service";
@@ -14,47 +14,47 @@ export class ModalidadeResolver {
     private modalidadeService: ModalidadeService,
   ) {}
   //
-  @PocOperation(PocTokens.ModalidadeList)
+  @Operation(Tokens.ModalidadeList)
   async modalidadeFindAll(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeListOperationInput,
+    @CombinedInput() dto: LadesaTypings.ModalidadeListOperationInput,
     @GqlInfo() info: GraphQLResolveInfo,
   ) {
     return this.modalidadeService.modalidadeFindAll(accessContext, dto, graphqlExtractSelection(info, "paginated"));
   }
   //
-  @PocOperation(PocTokens.ModalidadeFindOneById)
+  @Operation(Tokens.ModalidadeFindOneById)
   async modalidadeFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.ModalidadeFindOneByIdOperationOutput,
     @GqlInfo() info: GraphQLResolveInfo,
   ) {
     return this.modalidadeService.modalidadeFindByIdStrict(accessContext, { id: dto.params.id }, ["id", ...graphqlExtractSelection(info)]);
   }
   //
-  @PocOperation(PocTokens.ModalidadeCreate)
+  @Operation(Tokens.ModalidadeCreate)
   async modalidadeCreate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.ModalidadeCreateOperationInput,
   ) {
     return this.modalidadeService.modalidadeCreate(accessContext, dto);
   }
-  @PocOperation(PocTokens.ModalidadeUpdateOneById)
+  @Operation(Tokens.ModalidadeUpdateOneById)
   async modalidadeUpdate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.ModalidadeUpdateByIdOperationInput,
   ) {
     return this.modalidadeService.modalidadeUpdate(accessContext, dto);
   }
-  @PocOperation(PocTokens.ModalidadeDeleteOneById)
+  @Operation(Tokens.ModalidadeDeleteOneById)
   async modalidadeDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeDeleteByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.ModalidadeDeleteByIdOperationInput,
   ) {
     return this.modalidadeService.modalidadeDeleteOneById(accessContext, {
       id: dto.params.id,

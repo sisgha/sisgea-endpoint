@@ -1,8 +1,8 @@
 import { CombinedInput, graphqlExtractSelection } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextGraphQl } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Info as GqlInfo, Resolver as GqlResolver } from "@nestjs/graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { AmbienteService } from "./ambiente.service";
@@ -14,49 +14,49 @@ export class AmbienteResolver {
     private ambienteService: AmbienteService,
   ) {}
   //
-  @PocOperation(PocTokens.AmbienteList)
+  @Operation(Tokens.AmbienteList)
   async ambienteFindAll(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AmbienteListOperationInput,
+    @CombinedInput() dto: LadesaTypings.AmbienteListOperationInput,
     @GqlInfo() info: GraphQLResolveInfo,
   ) {
     return this.ambienteService.ambienteFindAll(accessContext, dto, graphqlExtractSelection(info, "paginated"));
   }
   //
-  @PocOperation(PocTokens.AmbienteFindOneById)
+  @Operation(Tokens.AmbienteFindOneById)
   async ambienteFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AmbienteFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.AmbienteFindOneByIdOperationOutput,
   ) {
     return this.ambienteService.ambienteFindByIdStrict(accessContext, {
       id: dto.params.id,
     });
   }
   //
-  @PocOperation(PocTokens.AmbienteCreate)
+  @Operation(Tokens.AmbienteCreate)
   async ambienteCreate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AmbienteCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.AmbienteCreateOperationInput,
   ) {
     return this.ambienteService.ambienteCreate(accessContext, dto);
   }
-  @PocOperation(PocTokens.AmbienteUpdateOneById)
+  @Operation(Tokens.AmbienteUpdateOneById)
   async ambienteUpdate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AmbienteUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.AmbienteUpdateByIdOperationInput,
   ) {
     return this.ambienteService.ambienteUpdate(accessContext, dto);
   }
 
-  @PocOperation(PocTokens.AmbienteDeleteOneById)
+  @Operation(Tokens.AmbienteDeleteOneById)
   async ambienteDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.AmbienteDeleteByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.AmbienteDeleteByIdOperationInput,
   ) {
     return this.ambienteService.ambienteDeleteOneById(accessContext, {
       id: dto.params.id,

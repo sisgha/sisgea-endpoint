@@ -1,10 +1,10 @@
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PerfilEntity } from "../03-autorizacao/perfil.entity";
 import { DiarioEntity } from "./diario.entity";
 
 @Entity("diario_professor")
-export class DiarioProfessorEntity implements PocTypings.DiarioProfessor {
+export class DiarioProfessorEntity implements LadesaTypings.DiarioProfessor {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -15,11 +15,11 @@ export class DiarioProfessorEntity implements PocTypings.DiarioProfessor {
 
   @ManyToOne(() => DiarioEntity)
   @JoinColumn({ name: "id_diario_fk" })
-  diario!: PocTypings.Diario;
+  diario!: LadesaTypings.Diario;
 
   @ManyToOne(() => PerfilEntity)
   @JoinColumn({ name: "id_perfil_fk" })
-  perfil!: PocTypings.Perfil;
+  perfil!: LadesaTypings.Perfil;
 
   //
 

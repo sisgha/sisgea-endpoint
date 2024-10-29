@@ -1,11 +1,11 @@
 import { IntervaloDeTempoEntity } from "@/infrastructure/integrations/database/typeorm/entities/00-00-base";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { DiarioProfessorEntity } from "../06-ensino-discente";
 import { HorarioGeradoEntity } from "./horario-gerado.entity";
 
 @Entity("horario_gerado_dia")
-export class HorarioGeradoAulaEntity implements PocTypings.HorarioGeradoAula {
+export class HorarioGeradoAulaEntity implements LadesaTypings.HorarioGeradoAula {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -18,15 +18,15 @@ export class HorarioGeradoAulaEntity implements PocTypings.HorarioGeradoAula {
 
   @ManyToOne(() => DiarioProfessorEntity)
   @JoinColumn({ name: "id_diario_professor_fk" })
-  diarioProfessor!: PocTypings.DiarioProfessor;
+  diarioProfessor!: LadesaTypings.DiarioProfessor;
 
   @ManyToOne(() => HorarioGeradoEntity)
   @JoinColumn({ name: "id_horario_gerado_fk" })
-  horarioGerado!: PocTypings.HorarioGerado;
+  horarioGerado!: LadesaTypings.HorarioGerado;
 
   @ManyToOne(() => IntervaloDeTempoEntity)
   @JoinColumn({ name: "id_intervalo_de_tempo_fk" })
-  intervaloDeTempo!: PocTypings.IntervaloDeTempo;
+  intervaloDeTempo!: LadesaTypings.IntervaloDeTempo;
 
   //
 

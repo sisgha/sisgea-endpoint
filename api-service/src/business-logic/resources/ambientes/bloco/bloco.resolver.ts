@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextGraphQl } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Resolver } from "@nestjs/graphql";
 import { BlocoService } from "./bloco.service";
 
@@ -15,47 +15,47 @@ export class BlocoResolver {
 
   //
 
-  @PocOperation(PocTokens.BlocoList)
+  @Operation(Tokens.BlocoList)
   async blocoFindAll(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.BlocoListOperationInput,
+    @CombinedInput() dto: LadesaTypings.BlocoListOperationInput,
   ) {
     return this.blocoService.blocoFindAll(accessContext, dto);
   }
   //
-  @PocOperation(PocTokens.BlocoFindOneById)
+  @Operation(Tokens.BlocoFindOneById)
   async blocoFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.BlocoFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.BlocoFindOneByIdOperationOutput,
   ) {
     return this.blocoService.blocoFindByIdStrict(accessContext, {
       id: dto.params.id,
     });
   }
   //
-  @PocOperation(PocTokens.BlocoCreate)
+  @Operation(Tokens.BlocoCreate)
   async blocoCreate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.BlocoCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.BlocoCreateOperationInput,
   ) {
     return this.blocoService.blocoCreate(accessContext, dto);
   }
-  @PocOperation(PocTokens.BlocoUpdateOneById)
+  @Operation(Tokens.BlocoUpdateOneById)
   async blocoUpdate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.BlocoUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.BlocoUpdateByIdOperationInput,
   ) {
     return this.blocoService.blocoUpdate(accessContext, dto);
   }
-  @PocOperation(PocTokens.BlocoDeleteOneById)
+  @Operation(Tokens.BlocoDeleteOneById)
   async blocoDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.BlocoDeleteByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.BlocoDeleteByIdOperationInput,
   ) {
     return this.blocoService.blocoDeleteOneById(accessContext, {
       id: dto.params.id,

@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextGraphQl } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Resolver } from "@nestjs/graphql";
 import { TurmaService } from "./turma.service";
 
@@ -13,47 +13,47 @@ export class TurmaResolver {
     private turmaService: TurmaService,
   ) {}
   //
-  @PocOperation(PocTokens.TurmaList)
+  @Operation(Tokens.TurmaList)
   async turmaFindAll(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.TurmaListOperationInput,
+    @CombinedInput() dto: LadesaTypings.TurmaListOperationInput,
   ) {
     return this.turmaService.turmaFindAll(accessContext, dto);
   }
   //
-  @PocOperation(PocTokens.TurmaFindOneById)
+  @Operation(Tokens.TurmaFindOneById)
   async turmaFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.TurmaFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.TurmaFindOneByIdOperationOutput,
   ) {
     return this.turmaService.turmaFindByIdStrict(accessContext, {
       id: dto.params.id,
     });
   }
   //
-  @PocOperation(PocTokens.TurmaCreate)
+  @Operation(Tokens.TurmaCreate)
   async turmaCreate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.TurmaCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.TurmaCreateOperationInput,
   ) {
     return this.turmaService.turmaCreate(accessContext, dto);
   }
-  @PocOperation(PocTokens.TurmaUpdateOneById)
+  @Operation(Tokens.TurmaUpdateOneById)
   async turmaUpdate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.TurmaUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.TurmaUpdateByIdOperationInput,
   ) {
     return this.turmaService.turmaUpdate(accessContext, dto);
   }
-  @PocOperation(PocTokens.TurmaDeleteOneById)
+  @Operation(Tokens.TurmaDeleteOneById)
   async turmaDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.TurmaFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.TurmaFindOneByIdOperationOutput,
   ) {
     return this.turmaService.turmaDeleteOneById(accessContext, {
       id: dto.params.id,

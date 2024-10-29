@@ -1,5 +1,3 @@
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
 import { Controller, Get } from "@nestjs/common";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
 import { AppService } from "./app.service";
@@ -12,7 +10,7 @@ export class AppController {
   @Get()
   @ApiResponse({
     status: 200,
-    description: "Olá, Mundo!",
+    description: "Olá, Mundo!!",
     schema: {
       type: "object",
       properties: {

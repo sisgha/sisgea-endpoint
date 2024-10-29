@@ -1,9 +1,9 @@
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { CidadeEntity } from "./cidade.entity";
 
 @Entity("endereco")
-export class EnderecoEntity implements PocTypings.Endereco {
+export class EnderecoEntity implements LadesaTypings.Endereco {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -31,7 +31,7 @@ export class EnderecoEntity implements PocTypings.Endereco {
 
   @ManyToOne(() => CidadeEntity, {})
   @JoinColumn({ name: "id_cidade_fk" })
-  cidade!: PocTypings.Cidade;
+  cidade!: LadesaTypings.Cidade;
 
   //
 

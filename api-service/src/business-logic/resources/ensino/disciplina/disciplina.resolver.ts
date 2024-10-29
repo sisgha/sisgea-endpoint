@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextGraphQl } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Resolver } from "@nestjs/graphql";
 import { DisciplinaService } from "./disciplina.service";
 
@@ -13,47 +13,47 @@ export class DisciplinaResolver {
     private disciplinaService: DisciplinaService,
   ) {}
   //
-  @PocOperation(PocTokens.DisciplinaList)
+  @Operation(Tokens.DisciplinaList)
   async disciplinaFindAll(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaListOperationInput,
+    @CombinedInput() dto: LadesaTypings.DisciplinaListOperationInput,
   ) {
     return this.disciplinaService.disciplinaFindAll(accessContext, dto);
   }
   //
-  @PocOperation(PocTokens.DisciplinaFindOneById)
+  @Operation(Tokens.DisciplinaFindOneById)
   async disciplinaFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.DisciplinaFindOneByIdOperationOutput,
   ) {
     return this.disciplinaService.disciplinaFindByIdStrict(accessContext, {
       id: dto.params.id,
     });
   }
   //
-  @PocOperation(PocTokens.DisciplinaCreate)
+  @Operation(Tokens.DisciplinaCreate)
   async disciplinaCreate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.DisciplinaCreateOperationInput,
   ) {
     return this.disciplinaService.disciplinaCreate(accessContext, dto);
   }
-  @PocOperation(PocTokens.DisciplinaUpdateOneById)
+  @Operation(Tokens.DisciplinaUpdateOneById)
   async disciplinaUpdate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.DisciplinaUpdateByIdOperationInput,
   ) {
     return this.disciplinaService.disciplinaUpdate(accessContext, dto);
   }
-  @PocOperation(PocTokens.DisciplinaDeleteOneById)
+  @Operation(Tokens.DisciplinaDeleteOneById)
   async disciplinaDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.DisciplinaDeleteByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.DisciplinaDeleteByIdOperationInput,
   ) {
     return this.disciplinaService.disciplinaDeleteOneById(accessContext, {
       id: dto.params.id,

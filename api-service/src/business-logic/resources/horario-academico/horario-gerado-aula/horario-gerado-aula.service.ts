@@ -6,7 +6,7 @@ import type { AccessContext } from "@/infrastructure/access-context";
 import { paginateConfig } from "@/infrastructure/fixtures";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import type { HorarioGeradoAulaEntity } from "@/infrastructure/integrations/database/typeorm/entities";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { has, map, pick } from "lodash";
 import { FilterOperator } from "nestjs-paginate";
@@ -35,9 +35,9 @@ export class HorarioGeradoAulaService {
 
   async horarioGeradoAulaFindAll(
     accessContext: AccessContext,
-    dto: PocTypings.HorarioGeradoAulaListOperationInput | null = null,
+    dto: LadesaTypings.HorarioGeradoAulaListOperationInput | null = null,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.HorarioGeradoAulaListOperationOutput["success"]> {
+  ): Promise<LadesaTypings.HorarioGeradoAulaListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.horarioGeradoAulaRepository.createQueryBuilder(aliasHorarioGeradoAula);
@@ -108,7 +108,7 @@ export class HorarioGeradoAulaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.HorarioGeradoAulaFindOneResultView, qb, aliasHorarioGeradoAula, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.HorarioGeradoAulaFindOneResultView, qb, aliasHorarioGeradoAula, selection);
 
     // =========================================================
 
@@ -122,9 +122,9 @@ export class HorarioGeradoAulaService {
 
   async horarioGeradoAulaFindById(
     accessContext: AccessContext,
-    dto: PocTypings.HorarioGeradoAulaFindOneInputView,
+    dto: LadesaTypings.HorarioGeradoAulaFindOneInputView,
     selection?: string[] | boolean,
-  ): Promise<PocTypings.HorarioGeradoAulaFindOneResultView | null> {
+  ): Promise<LadesaTypings.HorarioGeradoAulaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.horarioGeradoAulaRepository.createQueryBuilder(aliasHorarioGeradoAula);
@@ -140,7 +140,7 @@ export class HorarioGeradoAulaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.HorarioGeradoAulaFindOneResultView, qb, aliasHorarioGeradoAula, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.HorarioGeradoAulaFindOneResultView, qb, aliasHorarioGeradoAula, selection);
     // =========================================================
 
     const horarioGeradoAula = await qb.getOne();
@@ -150,7 +150,7 @@ export class HorarioGeradoAulaService {
     return horarioGeradoAula;
   }
 
-  async horarioGeradoAulaFindByIdStrict(accessContext: AccessContext, dto: PocTypings.HorarioGeradoAulaFindOneInputView, selection?: string[] | boolean) {
+  async horarioGeradoAulaFindByIdStrict(accessContext: AccessContext, dto: LadesaTypings.HorarioGeradoAulaFindOneInputView, selection?: string[] | boolean) {
     const horarioGeradoAula = await this.horarioGeradoAulaFindById(accessContext, dto, selection);
 
     if (!horarioGeradoAula) {
@@ -162,9 +162,9 @@ export class HorarioGeradoAulaService {
 
   async horarioGeradoAulaFindByIdSimple(
     accessContext: AccessContext,
-    id: PocTypings.HorarioGeradoAulaFindOneInputView["id"],
+    id: LadesaTypings.HorarioGeradoAulaFindOneInputView["id"],
     selection?: string[],
-  ): Promise<PocTypings.HorarioGeradoAulaFindOneResultView | null> {
+  ): Promise<LadesaTypings.HorarioGeradoAulaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.horarioGeradoAulaRepository.createQueryBuilder(aliasHorarioGeradoAula);
@@ -180,7 +180,7 @@ export class HorarioGeradoAulaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.HorarioGeradoAulaFindOneResultView, qb, aliasHorarioGeradoAula, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.HorarioGeradoAulaFindOneResultView, qb, aliasHorarioGeradoAula, selection);
 
     // =========================================================
 
@@ -191,7 +191,7 @@ export class HorarioGeradoAulaService {
     return horarioGeradoAula;
   }
 
-  async horarioGeradoAulaFindByIdSimpleStrict(accessContext: AccessContext, id: PocTypings.HorarioGeradoAulaFindOneInputView["id"], selection?: string[]) {
+  async horarioGeradoAulaFindByIdSimpleStrict(accessContext: AccessContext, id: LadesaTypings.HorarioGeradoAulaFindOneInputView["id"], selection?: string[]) {
     const horarioGeradoAula = await this.horarioGeradoAulaFindByIdSimple(accessContext, id, selection);
 
     if (!horarioGeradoAula) {
@@ -203,7 +203,7 @@ export class HorarioGeradoAulaService {
 
   //
 
-  async HorarioGeradoAulaCreate(accessContext: AccessContext, dto: PocTypings.HorarioGeradoAulaCreateOperationInput) {
+  async HorarioGeradoAulaCreate(accessContext: AccessContext, dto: LadesaTypings.HorarioGeradoAulaCreateOperationInput) {
     // =========================================================
 
     await accessContext.ensurePermission("horario_gerado_aula:create", { dto });
@@ -261,7 +261,7 @@ export class HorarioGeradoAulaService {
     });
   }
 
-  async HorarioGeradoAulaUpdate(accessContext: AccessContext, dto: PocTypings.HorarioGeradoAulaUpdateByIdOperationInput) {
+  async HorarioGeradoAulaUpdate(accessContext: AccessContext, dto: LadesaTypings.HorarioGeradoAulaUpdateByIdOperationInput) {
     // =========================================================
 
     const currentHorarioGeradoAula = await this.horarioGeradoAulaFindByIdStrict(accessContext, {
@@ -327,7 +327,7 @@ export class HorarioGeradoAulaService {
 
   //
 
-  async horarioGeradoAulaDeleteOneById(accessContext: AccessContext, dto: PocTypings.HorarioGeradoAulaFindOneInputView) {
+  async horarioGeradoAulaDeleteOneById(accessContext: AccessContext, dto: LadesaTypings.HorarioGeradoAulaFindOneInputView) {
     // =========================================================
 
     await accessContext.ensurePermission("horario_gerado_aula:delete", { dto }, dto.id, this.horarioGeradoAulaRepository.createQueryBuilder(aliasHorarioGeradoAula));

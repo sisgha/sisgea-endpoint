@@ -1,11 +1,11 @@
 import { IntervaloDeTempoEntity } from "@/infrastructure/integrations/database/typeorm/entities/00-00-base";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { DiarioEntity } from ".";
 import { AmbienteEntity } from "../02-ambientes/ambiente.entity";
 
 @Entity("aula")
-export class AulaEntity implements PocTypings.Aula {
+export class AulaEntity implements LadesaTypings.Aula {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 

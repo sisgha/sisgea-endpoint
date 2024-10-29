@@ -1,10 +1,10 @@
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UsuarioEntity } from "../01-autenticacao/usuario.entity";
 import { AmbienteEntity } from "./ambiente.entity";
 
 @Entity("reserva")
-export class ReservaEntity implements PocTypings.Reserva {
+export class ReservaEntity implements LadesaTypings.Reserva {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 

@@ -4,7 +4,7 @@ import type { AccessContext } from "@/infrastructure/access-context";
 import { paginateConfig } from "@/infrastructure/fixtures";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import type { EtapaEntity } from "@/infrastructure/integrations/database/typeorm/entities/05-calendario/etapa.entity";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { has, map, pick } from "lodash";
 import { FilterOperator } from "nestjs-paginate";
@@ -29,7 +29,11 @@ export class EtapaService {
 
   //
 
-  async etapaFindAll(accessContext: AccessContext, dto: PocTypings.EtapaListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.EtapaListOperationOutput["success"]> {
+  async etapaFindAll(
+    accessContext: AccessContext,
+    dto: LadesaTypings.EtapaListOperationInput | null = null,
+    selection?: string[] | boolean,
+  ): Promise<LadesaTypings.EtapaListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.etapaRepository.createQueryBuilder(aliasEtapa);
@@ -92,7 +96,7 @@ export class EtapaService {
 
     qb.select([]);
 
-    QbEfficientLoad(PocTypings.Tokens.EtapaFindOneResultView, qb, aliasEtapa, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.EtapaFindOneResultView, qb, aliasEtapa, selection);
 
     // =========================================================
 
@@ -104,7 +108,7 @@ export class EtapaService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async etapaFindById(accessContext: AccessContext, dto: PocTypings.EtapaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.EtapaFindOneResultView | null> {
+  async etapaFindById(accessContext: AccessContext, dto: LadesaTypings.EtapaFindOneInputView, selection?: string[] | boolean): Promise<LadesaTypings.EtapaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.etapaRepository.createQueryBuilder(aliasEtapa);
@@ -121,7 +125,7 @@ export class EtapaService {
 
     qb.select([]);
 
-    QbEfficientLoad(PocTypings.Tokens.EtapaFindOneResultView, qb, aliasEtapa, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.EtapaFindOneResultView, qb, aliasEtapa, selection);
 
     // =========================================================
 
@@ -132,7 +136,7 @@ export class EtapaService {
     return etapa;
   }
 
-  async etapaFindByIdStrict(accessContext: AccessContext, dto: PocTypings.EtapaFindOneInputView, selection?: string[] | boolean) {
+  async etapaFindByIdStrict(accessContext: AccessContext, dto: LadesaTypings.EtapaFindOneInputView, selection?: string[] | boolean) {
     const etapa = await this.etapaFindById(accessContext, dto, selection);
 
     if (!etapa) {
@@ -142,7 +146,7 @@ export class EtapaService {
     return etapa;
   }
 
-  async etapaFindByIdSimple(accessContext: AccessContext, id: PocTypings.EtapaFindOneInputView["id"], selection?: string[]): Promise<PocTypings.EtapaFindOneResultView | null> {
+  async etapaFindByIdSimple(accessContext: AccessContext, id: LadesaTypings.EtapaFindOneInputView["id"], selection?: string[]): Promise<LadesaTypings.EtapaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.etapaRepository.createQueryBuilder(aliasEtapa);
@@ -158,7 +162,7 @@ export class EtapaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.EtapaFindOneResultView, qb, aliasEtapa, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.EtapaFindOneResultView, qb, aliasEtapa, selection);
 
     // =========================================================
 
@@ -169,7 +173,7 @@ export class EtapaService {
     return etapa;
   }
 
-  async EtapaFindByIdSimpleStrict(accessContext: AccessContext, id: PocTypings.EtapaFindOneInputView["id"], selection?: string[]) {
+  async EtapaFindByIdSimpleStrict(accessContext: AccessContext, id: LadesaTypings.EtapaFindOneInputView["id"], selection?: string[]) {
     const etapa = await this.etapaFindByIdSimple(accessContext, id, selection);
 
     if (!etapa) {
@@ -181,7 +185,7 @@ export class EtapaService {
 
   //
 
-  async etapaCreate(accessContext: AccessContext, dto: PocTypings.EtapaCreateOperationInput) {
+  async etapaCreate(accessContext: AccessContext, dto: LadesaTypings.EtapaCreateOperationInput) {
     // =========================================================
 
     await accessContext.ensurePermission("etapa:create", { dto });
@@ -217,7 +221,7 @@ export class EtapaService {
     return this.etapaFindByIdStrict(accessContext, { id: etapa.id });
   }
 
-  async etapaUpdate(accessContext: AccessContext, dto: PocTypings.EtapaUpdateByIdOperationInput) {
+  async etapaUpdate(accessContext: AccessContext, dto: LadesaTypings.EtapaUpdateByIdOperationInput) {
     // =========================================================
 
     const currentEtapa = await this.etapaFindByIdStrict(accessContext, {
@@ -261,7 +265,7 @@ export class EtapaService {
 
   //
 
-  async etapaDeleteOneById(accessContext: AccessContext, dto: PocTypings.EtapaFindOneInputView) {
+  async etapaDeleteOneById(accessContext: AccessContext, dto: LadesaTypings.EtapaFindOneInputView) {
     // =========================================================
 
     await accessContext.ensurePermission("etapa:delete", { dto }, dto.id, this.etapaRepository.createQueryBuilder(aliasEtapa));

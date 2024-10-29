@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextGraphQl } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Resolver } from "@nestjs/graphql";
 import { CampusService } from "./campus.service";
 
@@ -13,48 +13,48 @@ export class CampusResolver {
     private campusService: CampusService,
   ) {}
   //
-  @PocOperation(PocTokens.CampusList)
+  @Operation(Tokens.CampusList)
   async campusFindAll(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CampusListOperationInput,
+    @CombinedInput() dto: LadesaTypings.CampusListOperationInput,
   ) {
     return this.campusService.campusFindAll(accessContext, dto);
   }
   //
-  @PocOperation(PocTokens.CampusFindOneById)
+  @Operation(Tokens.CampusFindOneById)
   async campusFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CampusFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.CampusFindOneByIdOperationOutput,
   ) {
     return this.campusService.campusFindByIdStrict(accessContext, {
       id: dto.params.id,
     });
   }
   //
-  @PocOperation(PocTokens.CampusCreate)
+  @Operation(Tokens.CampusCreate)
   async campusCreate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CampusCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.CampusCreateOperationInput,
   ) {
     return this.campusService.campusCreate(accessContext, dto);
   }
 
-  @PocOperation(PocTokens.CampusUpdateOneById)
+  @Operation(Tokens.CampusUpdateOneById)
   async campusUpdate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CampusUpdateOperationInput,
+    @CombinedInput() dto: LadesaTypings.CampusUpdateOperationInput,
   ) {
     return this.campusService.campusUpdate(accessContext, dto);
   }
-  @PocOperation(PocTokens.CampusDeleteOneById)
+  @Operation(Tokens.CampusDeleteOneById)
   async campusDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CampusDeleteOneByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.CampusDeleteOneByIdOperationInput,
   ) {
     return this.campusService.campusDeleteOneById(accessContext, {
       id: dto.params.id,

@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextHttp } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, UploadedFile } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { BlocoService } from "./bloco.service";
@@ -15,19 +15,19 @@ export class BlocoController {
   //
 
   @Get("/")
-  @PocOperation(PocTokens.BlocoList)
+  @Operation(Tokens.BlocoList)
   async blocoFindAll(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() combinedInput: PocTypings.BlocoListOperationInput,
-  ): Promise<PocTypings.BlocoListOperationOutput["success"]> {
+    @CombinedInput() combinedInput: LadesaTypings.BlocoListOperationInput,
+  ): Promise<LadesaTypings.BlocoListOperationOutput["success"]> {
     return this.blocoService.blocoFindAll(accessContext, combinedInput);
   }
 
   //
 
   @Get("/:id")
-  @PocOperation(PocTokens.BlocoFindOneById)
+  @Operation(Tokens.BlocoFindOneById)
   async blocoFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
@@ -39,11 +39,11 @@ export class BlocoController {
   //
 
   @Post("/")
-  @PocOperation(PocTokens.BlocoCreate)
+  @Operation(Tokens.BlocoCreate)
   async blocoCreate(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() combinedInput: PocTypings.BlocoCreateOperationInput,
+    @CombinedInput() combinedInput: LadesaTypings.BlocoCreateOperationInput,
   ) {
     return this.blocoService.blocoCreate(accessContext, combinedInput);
   }
@@ -51,11 +51,11 @@ export class BlocoController {
   //
 
   @Patch("/:id")
-  @PocOperation(PocTokens.BlocoUpdateOneById)
+  @Operation(Tokens.BlocoUpdateOneById)
   async blocoUpdate(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() combinedInput: PocTypings.BlocoUpdateByIdOperationInput,
+    @CombinedInput() combinedInput: LadesaTypings.BlocoUpdateByIdOperationInput,
   ) {
     return this.blocoService.blocoUpdate(accessContext, combinedInput);
   }
@@ -63,7 +63,7 @@ export class BlocoController {
   //
 
   @Get("/:id/imagem/capa")
-  @PocOperation(PocTokens.BlocoGetImagemCapa)
+  @Operation(Tokens.BlocoGetImagemCapa)
   async blocoGetImagemCapa(
     //
     @AccessContextHttp() accessContext: AccessContext,
@@ -73,7 +73,7 @@ export class BlocoController {
   }
 
   @Put("/:id/imagem/capa")
-  @PocOperation(PocTokens.BlocoSetImagemCapa)
+  @Operation(Tokens.BlocoSetImagemCapa)
   async blocoImagemCapaSave(
     //
     @AccessContextHttp() accessContext: AccessContext,
@@ -86,11 +86,11 @@ export class BlocoController {
   //
 
   @Delete("/:id")
-  @PocOperation(PocTokens.BlocoDeleteOneById)
+  @Operation(Tokens.BlocoDeleteOneById)
   async blocoDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() combinedInput: PocTypings.BlocoDeleteByIdOperationInput,
+    @CombinedInput() combinedInput: LadesaTypings.BlocoDeleteByIdOperationInput,
   ) {
     return this.blocoService.blocoDeleteOneById(accessContext, {
       id: combinedInput.params.id,

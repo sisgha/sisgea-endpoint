@@ -1,8 +1,8 @@
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("disponibilidade")
-export class DisponibilidadeEntity implements PocTypings.Disponibilidade {
+export class DisponibilidadeEntity implements LadesaTypings.Disponibilidade {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 

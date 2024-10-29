@@ -1,10 +1,10 @@
 import { DisponibilidadeEntity } from "@/infrastructure/integrations/database/typeorm/entities/07-horario-academico/disponibilidade.entity";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { TurmaEntity } from "../06-ensino-discente";
 
 @Entity("turma_disponibilidade")
-export class TurmaDisponibilidadeEntity implements PocTypings.TurmaDisponibilidade {
+export class TurmaDisponibilidadeEntity implements LadesaTypings.TurmaDisponibilidade {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -12,11 +12,11 @@ export class TurmaDisponibilidadeEntity implements PocTypings.TurmaDisponibilida
 
   @ManyToOne(() => TurmaEntity)
   @JoinColumn({ name: "id_turma_fk" })
-  turma!: PocTypings.Turma;
+  turma!: LadesaTypings.Turma;
 
   @ManyToOne(() => DisponibilidadeEntity)
   @JoinColumn({ name: "id_disponibilidade_fk" })
-  disponibilidade!: PocTypings.Disponibilidade;
+  disponibilidade!: LadesaTypings.Disponibilidade;
 
   //
 

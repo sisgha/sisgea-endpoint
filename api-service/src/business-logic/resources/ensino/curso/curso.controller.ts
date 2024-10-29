@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextHttp } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, UploadedFile } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CursoService } from "./curso.service";
@@ -15,23 +15,23 @@ export class CursoController {
   //
 
   @Get("/")
-  @PocOperation(PocTokens.CursoList)
+  @Operation(Tokens.CursoList)
   async cursoFindAll(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoListOperationInput,
-  ): Promise<PocTypings.CursoListOperationOutput["success"]> {
+    @CombinedInput() dto: LadesaTypings.CursoListOperationInput,
+  ): Promise<LadesaTypings.CursoListOperationOutput["success"]> {
     return this.cursoService.cursoFindAll(accessContext, dto);
   }
 
   //
 
   @Get("/:id")
-  @PocOperation(PocTokens.CursoFindOneById)
+  @Operation(Tokens.CursoFindOneById)
   async cursoFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.CursoFindOneByIdOperationOutput,
   ) {
     return this.cursoService.cursoFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -41,11 +41,11 @@ export class CursoController {
   //
 
   @Post("/")
-  @PocOperation(PocTokens.CursoCreate)
+  @Operation(Tokens.CursoCreate)
   async cursoCreate(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.CursoCreateOperationInput,
   ) {
     return this.cursoService.cursoCreate(accessContext, dto);
   }
@@ -53,15 +53,15 @@ export class CursoController {
   //
 
   @Patch("/:id")
-  @PocOperation(PocTokens.CursoUpdateOneById)
-  async cursoUpdate(@AccessContextHttp() accessContext: AccessContext, @CombinedInput() dto: PocTypings.CursoUpdateByIdOperationInput) {
+  @Operation(Tokens.CursoUpdateOneById)
+  async cursoUpdate(@AccessContextHttp() accessContext: AccessContext, @CombinedInput() dto: LadesaTypings.CursoUpdateByIdOperationInput) {
     return this.cursoService.cursoUpdate(accessContext, dto);
   }
 
   //
 
   @Get("/:id/imagem/capa")
-  @PocOperation(PocTokens.CursoGetImagemCapa)
+  @Operation(Tokens.CursoGetImagemCapa)
   async cursoGetImagemCapa(
     //
     @AccessContextHttp() accessContext: AccessContext,
@@ -71,7 +71,7 @@ export class CursoController {
   }
 
   @Put("/:id/imagem/capa")
-  @PocOperation(PocTokens.CursoSetImagemCapa)
+  @Operation(Tokens.CursoSetImagemCapa)
   async cursoImagemCapaSave(
     //
     @AccessContextHttp() accessContext: AccessContext,
@@ -84,11 +84,11 @@ export class CursoController {
   //
 
   @Delete("/:id")
-  @PocOperation(PocTokens.CursoDeleteOneById)
+  @Operation(Tokens.CursoDeleteOneById)
   async cursoDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.CursoFindOneByIdOperationOutput,
   ) {
     return this.cursoService.cursoDeleteOneById(accessContext, {
       id: dto.params.id,

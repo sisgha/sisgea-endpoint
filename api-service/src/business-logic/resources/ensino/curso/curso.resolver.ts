@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextGraphQl } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Resolver } from "@nestjs/graphql";
 import { CursoService } from "./curso.service";
 
@@ -13,47 +13,47 @@ export class CursoResolver {
     private cursoService: CursoService,
   ) {}
   //
-  @PocOperation(PocTokens.CursoList)
+  @Operation(Tokens.CursoList)
   async cursoFindAll(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoListOperationInput,
+    @CombinedInput() dto: LadesaTypings.CursoListOperationInput,
   ) {
     return this.cursoService.cursoFindAll(accessContext, dto);
   }
   //
-  @PocOperation(PocTokens.CursoFindOneById)
+  @Operation(Tokens.CursoFindOneById)
   async cursoFindOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.CursoFindOneByIdOperationOutput,
   ) {
     return this.cursoService.cursoFindByIdStrict(accessContext, {
       id: dto.params.id,
     });
   }
   //
-  @PocOperation(PocTokens.CursoCreate)
+  @Operation(Tokens.CursoCreate)
   async cursoCreate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.CursoCreateOperationInput,
   ) {
     return this.cursoService.cursoCreate(accessContext, dto);
   }
-  @PocOperation(PocTokens.CursoUpdateOneById)
+  @Operation(Tokens.CursoUpdateOneById)
   async cursoUpdate(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.CursoUpdateByIdOperationInput,
   ) {
     return this.cursoService.cursoUpdate(accessContext, dto);
   }
-  @PocOperation(PocTokens.CursoDeleteOneById)
+  @Operation(Tokens.CursoDeleteOneById)
   async cursoDeleteOneById(
     //
     @AccessContextGraphQl() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CursoDeleteByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.CursoDeleteByIdOperationInput,
   ) {
     return this.cursoService.cursoDeleteOneById(accessContext, {
       id: dto.params.id,

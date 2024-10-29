@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextHttp } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Controller, Get } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CidadeService } from "./cidade.service";
@@ -15,24 +15,24 @@ export class CidadeController {
   // ========================================================
 
   @Get("/")
-  @PocOperation(PocTokens.CidadeList)
+  @Operation(Tokens.CidadeList)
   async findAll(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CidadeListOperationInput,
-  ): Promise<PocTypings.CidadeListOperationOutput["success"]> {
+    @CombinedInput() dto: LadesaTypings.CidadeListOperationInput,
+  ): Promise<LadesaTypings.CidadeListOperationOutput["success"]> {
     return this.cidadeService.findAll(accessContext, dto);
   }
 
   // ========================================================
 
   @Get("/:id")
-  @PocOperation(PocTokens.CidadeFindOneById)
+  @Operation(Tokens.CidadeFindOneById)
   async findById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.CidadeFindOneByIdOperationOutput,
-  ): Promise<PocTypings.CidadeFindOneResultView> {
+    @CombinedInput() dto: LadesaTypings.CidadeFindOneByIdOperationOutput,
+  ): Promise<LadesaTypings.CidadeFindOneResultView> {
     return this.cidadeService.findByIdStrict(accessContext, {
       id: dto.params.id,
     });

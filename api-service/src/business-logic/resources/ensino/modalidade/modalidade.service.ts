@@ -4,7 +4,7 @@ import type { AccessContext } from "@/infrastructure/access-context";
 import { paginateConfig } from "@/infrastructure/fixtures";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import type { ModalidadeEntity } from "@/infrastructure/integrations/database/typeorm/entities";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { map, pick } from "lodash";
 
@@ -26,9 +26,9 @@ export class ModalidadeService {
 
   async modalidadeFindAll(
     accessContext: AccessContext,
-    dto: PocTypings.ModalidadeListOperationInput | null = null,
+    dto: LadesaTypings.ModalidadeListOperationInput | null = null,
     selection?: string[],
-  ): Promise<PocTypings.ModalidadeListOperationOutput["success"]> {
+  ): Promise<LadesaTypings.ModalidadeListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.modalidadeRepository.createQueryBuilder(aliasModalidade);
@@ -74,7 +74,7 @@ export class ModalidadeService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.ModalidadeView, qb, aliasModalidade, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.ModalidadeView, qb, aliasModalidade, selection);
 
     // =========================================================
 
@@ -86,7 +86,7 @@ export class ModalidadeService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async modalidadeFindById(accessContext: AccessContext | null, dto: PocTypings.ModalidadeFindOneInputView, selection?: string[]): Promise<PocTypings.ModalidadeFindOneResultView | null> {
+  async modalidadeFindById(accessContext: AccessContext | null, dto: LadesaTypings.ModalidadeFindOneInputView, selection?: string[]): Promise<LadesaTypings.ModalidadeFindOneResultView | null> {
     // =========================================================
 
     const qb = this.modalidadeRepository.createQueryBuilder(aliasModalidade);
@@ -104,7 +104,7 @@ export class ModalidadeService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.ModalidadeView, qb, aliasModalidade, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.ModalidadeView, qb, aliasModalidade, selection);
 
     // =========================================================
 
@@ -115,7 +115,7 @@ export class ModalidadeService {
     return modalidade;
   }
 
-  async modalidadeFindByIdStrict(accessContext: AccessContext, dto: PocTypings.ModalidadeFindOneInputView, selection?: string[]) {
+  async modalidadeFindByIdStrict(accessContext: AccessContext, dto: LadesaTypings.ModalidadeFindOneInputView, selection?: string[]) {
     const modalidade = await this.modalidadeFindById(accessContext, dto, selection);
 
     if (!modalidade) {
@@ -125,7 +125,7 @@ export class ModalidadeService {
     return modalidade;
   }
 
-  async modalidadeFindByIdSimple(accessContext: AccessContext, id: PocTypings.ModalidadeFindOneInputView["id"], selection?: string[]): Promise<PocTypings.ModalidadeFindOneResultView | null> {
+  async modalidadeFindByIdSimple(accessContext: AccessContext, id: LadesaTypings.ModalidadeFindOneInputView["id"], selection?: string[]): Promise<LadesaTypings.ModalidadeFindOneResultView | null> {
     // =========================================================
 
     const qb = this.modalidadeRepository.createQueryBuilder(aliasModalidade);
@@ -141,7 +141,7 @@ export class ModalidadeService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.ModalidadeView, qb, aliasModalidade, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.ModalidadeView, qb, aliasModalidade, selection);
 
     // =========================================================
 
@@ -152,7 +152,7 @@ export class ModalidadeService {
     return modalidade;
   }
 
-  async modalidadeFindByIdSimpleStrict(accessContext: AccessContext, id: PocTypings.ModalidadeFindOneInputView["id"], selection?: string[]) {
+  async modalidadeFindByIdSimpleStrict(accessContext: AccessContext, id: LadesaTypings.ModalidadeFindOneInputView["id"], selection?: string[]) {
     const modalidade = await this.modalidadeFindByIdSimple(accessContext, id, selection);
 
     if (!modalidade) {
@@ -164,7 +164,7 @@ export class ModalidadeService {
 
   //
 
-  async modalidadeCreate(accessContext: AccessContext, dto: PocTypings.ModalidadeCreateOperationInput) {
+  async modalidadeCreate(accessContext: AccessContext, dto: LadesaTypings.ModalidadeCreateOperationInput) {
     // =========================================================
 
     await accessContext.ensurePermission("modalidade:create", { dto });
@@ -188,7 +188,7 @@ export class ModalidadeService {
     return this.modalidadeFindByIdStrict(accessContext, { id: modalidade.id });
   }
 
-  async modalidadeUpdate(accessContext: AccessContext, dto: PocTypings.ModalidadeUpdateByIdOperationInput) {
+  async modalidadeUpdate(accessContext: AccessContext, dto: LadesaTypings.ModalidadeUpdateByIdOperationInput) {
     // =========================================================
 
     const currentModalidade = await this.modalidadeFindByIdStrict(accessContext, {
@@ -201,9 +201,9 @@ export class ModalidadeService {
 
     const dtoModalidade = pick(dto.body, ["nome", "slug"]);
 
-    const modalidade = {
+    const modalidade = <ModalidadeEntity>{
       id: currentModalidade.id,
-    } as ModalidadeEntity;
+    };
 
     this.modalidadeRepository.merge(modalidade, {
       ...dtoModalidade,
@@ -220,7 +220,7 @@ export class ModalidadeService {
 
   //
 
-  async modalidadeDeleteOneById(accessContext: AccessContext, dto: PocTypings.ModalidadeFindOneInputView) {
+  async modalidadeDeleteOneById(accessContext: AccessContext, dto: LadesaTypings.ModalidadeFindOneInputView) {
     // =========================================================
 
     await accessContext.ensurePermission("modalidade:delete", { dto }, dto.id, this.modalidadeRepository.createQueryBuilder(aliasModalidade));

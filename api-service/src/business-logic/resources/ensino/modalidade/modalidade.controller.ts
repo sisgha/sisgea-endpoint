@@ -1,8 +1,8 @@
 import { CombinedInput } from "@/business-logic/standards";
-import { PocOperation } from "@/business-logic/standards/especificacao/business-logic";
+import { Operation } from "@/business-logic/standards/especificacao/business-logic";
 import { type AccessContext, AccessContextHttp } from "@/infrastructure/access-context";
-import * as PocTypings from "@ladesa-ro/especificacao";
-import { Tokens as PocTokens } from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
+import { Tokens } from "@ladesa-ro/especificacao";
 import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { ModalidadeService } from "./modalidade.service";
@@ -15,23 +15,23 @@ export class ModalidadeController {
   //
 
   @Get("/")
-  @PocOperation(PocTokens.ModalidadeList)
+  @Operation(Tokens.ModalidadeList)
   async modalidadeFindAll(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeListOperationInput,
-  ): Promise<PocTypings.ModalidadeListOperationOutput["success"]> {
+    @CombinedInput() dto: LadesaTypings.ModalidadeListOperationInput,
+  ): Promise<LadesaTypings.ModalidadeListOperationOutput["success"]> {
     return this.modalidadeService.modalidadeFindAll(accessContext, dto);
   }
 
   //
 
   @Get("/:id")
-  @PocOperation(PocTokens.ModalidadeFindOneById)
+  @Operation(Tokens.ModalidadeFindOneById)
   async modalidadeFindById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeFindOneByIdOperationOutput,
+    @CombinedInput() dto: LadesaTypings.ModalidadeFindOneByIdOperationOutput,
   ) {
     return this.modalidadeService.modalidadeFindByIdStrict(accessContext, {
       id: dto.params.id,
@@ -41,11 +41,11 @@ export class ModalidadeController {
   //
 
   @Post("/")
-  @PocOperation(PocTokens.ModalidadeCreate)
+  @Operation(Tokens.ModalidadeCreate)
   async modalidadeCreate(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeCreateOperationInput,
+    @CombinedInput() dto: LadesaTypings.ModalidadeCreateOperationInput,
   ) {
     return this.modalidadeService.modalidadeCreate(accessContext, dto);
   }
@@ -53,11 +53,11 @@ export class ModalidadeController {
   //
 
   @Patch("/:id")
-  @PocOperation(PocTokens.ModalidadeUpdateOneById)
+  @Operation(Tokens.ModalidadeUpdateOneById)
   async modalidadeUpdate(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeUpdateByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.ModalidadeUpdateByIdOperationInput,
   ) {
     return this.modalidadeService.modalidadeUpdate(accessContext, dto);
   }
@@ -65,11 +65,11 @@ export class ModalidadeController {
   //
 
   @Delete("/:id")
-  @PocOperation(PocTokens.ModalidadeDeleteOneById)
+  @Operation(Tokens.ModalidadeDeleteOneById)
   async modalidadeDeleteOneById(
     //
     @AccessContextHttp() accessContext: AccessContext,
-    @CombinedInput() dto: PocTypings.ModalidadeDeleteByIdOperationInput,
+    @CombinedInput() dto: LadesaTypings.ModalidadeDeleteByIdOperationInput,
   ) {
     return this.modalidadeService.modalidadeDeleteOneById(accessContext, {
       id: dto.params.id,

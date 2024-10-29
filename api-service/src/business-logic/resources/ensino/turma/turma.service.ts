@@ -4,7 +4,7 @@ import type { AccessContext } from "@/infrastructure/access-context";
 import { paginateConfig } from "@/infrastructure/fixtures";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import type { TurmaEntity } from "@/infrastructure/integrations/database/typeorm/entities";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { has, map, pick } from "lodash";
 import { FilterOperator } from "nestjs-paginate";
@@ -35,7 +35,11 @@ export class TurmaService {
 
   //
 
-  async turmaFindAll(accessContext: AccessContext, dto: PocTypings.TurmaListOperationInput | null = null, selection?: string[] | boolean): Promise<PocTypings.TurmaListOperationOutput["success"]> {
+  async turmaFindAll(
+    accessContext: AccessContext,
+    dto: LadesaTypings.TurmaListOperationInput | null = null,
+    selection?: string[] | boolean,
+  ): Promise<LadesaTypings.TurmaListOperationOutput["success"]> {
     // =========================================================
 
     const qb = this.turmaRepository.createQueryBuilder(aliasTurma);
@@ -107,7 +111,7 @@ export class TurmaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.TurmaFindOneResultView, qb, aliasTurma, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.TurmaFindOneResultView, qb, aliasTurma, selection);
 
     // =========================================================
 
@@ -119,7 +123,7 @@ export class TurmaService {
     return LadesaPaginatedResultDto(paginated);
   }
 
-  async turmaFindById(accessContext: AccessContext | null, dto: PocTypings.TurmaFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.TurmaFindOneResultView | null> {
+  async turmaFindById(accessContext: AccessContext | null, dto: LadesaTypings.TurmaFindOneInputView, selection?: string[] | boolean): Promise<LadesaTypings.TurmaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.turmaRepository.createQueryBuilder(aliasTurma);
@@ -137,7 +141,7 @@ export class TurmaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.TurmaFindOneResultView, qb, aliasTurma, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.TurmaFindOneResultView, qb, aliasTurma, selection);
 
     // =========================================================
 
@@ -148,7 +152,7 @@ export class TurmaService {
     return turma;
   }
 
-  async turmaFindByIdStrict(accessContext: AccessContext | null, dto: PocTypings.TurmaFindOneInputView, selection?: string[] | boolean) {
+  async turmaFindByIdStrict(accessContext: AccessContext | null, dto: LadesaTypings.TurmaFindOneInputView, selection?: string[] | boolean) {
     const turma = await this.turmaFindById(accessContext, dto, selection);
 
     if (!turma) {
@@ -158,7 +162,7 @@ export class TurmaService {
     return turma;
   }
 
-  async turmaFindByIdSimple(accessContext: AccessContext, id: PocTypings.TurmaFindOneInputView["id"], selection?: string[]): Promise<PocTypings.TurmaFindOneResultView | null> {
+  async turmaFindByIdSimple(accessContext: AccessContext, id: LadesaTypings.TurmaFindOneInputView["id"], selection?: string[]): Promise<LadesaTypings.TurmaFindOneResultView | null> {
     // =========================================================
 
     const qb = this.turmaRepository.createQueryBuilder(aliasTurma);
@@ -174,7 +178,7 @@ export class TurmaService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.TurmaFindOneResultView, qb, aliasTurma, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.TurmaFindOneResultView, qb, aliasTurma, selection);
 
     // =========================================================
 
@@ -185,7 +189,7 @@ export class TurmaService {
     return turma;
   }
 
-  async turmaFindByIdSimpleStrict(accessContext: AccessContext, id: PocTypings.TurmaFindOneInputView["id"], selection?: string[]) {
+  async turmaFindByIdSimpleStrict(accessContext: AccessContext, id: LadesaTypings.TurmaFindOneInputView["id"], selection?: string[]) {
     const turma = await this.turmaFindByIdSimple(accessContext, id, selection);
 
     if (!turma) {
@@ -197,7 +201,7 @@ export class TurmaService {
 
   //
 
-  async turmaCreate(accessContext: AccessContext, dto: PocTypings.TurmaCreateOperationInput) {
+  async turmaCreate(accessContext: AccessContext, dto: LadesaTypings.TurmaCreateOperationInput) {
     // =========================================================
 
     await accessContext.ensurePermission("turma:create", { dto });
@@ -249,7 +253,7 @@ export class TurmaService {
     return this.turmaFindByIdStrict(accessContext, { id: turma.id });
   }
 
-  async turmaUpdate(accessContext: AccessContext, dto: PocTypings.TurmaUpdateByIdOperationInput) {
+  async turmaUpdate(accessContext: AccessContext, dto: LadesaTypings.TurmaUpdateByIdOperationInput) {
     // =========================================================
 
     const currentTurma = await this.turmaFindByIdStrict(accessContext, {
@@ -328,7 +332,7 @@ export class TurmaService {
     throw new NotFoundException();
   }
 
-  async turmaUpdateImagemCapa(accessContext: AccessContext, dto: PocTypings.TurmaFindOneInputView, file: Express.Multer.File) {
+  async turmaUpdateImagemCapa(accessContext: AccessContext, dto: LadesaTypings.TurmaFindOneInputView, file: Express.Multer.File) {
     // =========================================================
 
     const currentTurma = await this.turmaFindByIdStrict(accessContext, {
@@ -370,7 +374,7 @@ export class TurmaService {
 
   //
 
-  async turmaDeleteOneById(accessContext: AccessContext, dto: PocTypings.TurmaFindOneInputView) {
+  async turmaDeleteOneById(accessContext: AccessContext, dto: LadesaTypings.TurmaFindOneInputView) {
     // =========================================================
 
     await accessContext.ensurePermission("turma:delete", { dto }, dto.id, this.turmaRepository.createQueryBuilder(aliasTurma));

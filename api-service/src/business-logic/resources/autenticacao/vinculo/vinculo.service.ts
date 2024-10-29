@@ -4,7 +4,7 @@ import type { AccessContext } from "@/infrastructure/access-context";
 import { paginateConfig } from "@/infrastructure/fixtures";
 import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import type { UsuarioEntity } from "@/infrastructure/integrations/database/typeorm/entities";
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { FilterOperator } from "nestjs-paginate";
 import { v4 as uuid } from "uuid";
@@ -48,17 +48,17 @@ export class VinculoService {
       await accessContext.applyFilter("vinculo:find", qb, aliasVinculo, null);
     }
 
-    QbEfficientLoad(PocTypings.Tokens.PerfilFindOneResultView, qb, "vinculo");
+    QbEfficientLoad(LadesaTypings.Tokens.PerfilFindOneResultView, qb, "vinculo");
 
     const vinculos = await qb.getMany();
 
     return vinculos;
   }
 
-  async vinculoFindAll(accessContext: AccessContext, dto: PocTypings.PerfilListOperationInput | null = null, selection?: string[] | boolean) {
+  async vinculoFindAll(accessContext: AccessContext, dto: LadesaTypings.PerfilListOperationInput | null = null, selection?: string[] | boolean) {
     const qb = this.vinculoRepository.createQueryBuilder(aliasVinculo);
 
-    QbEfficientLoad(PocTypings.Tokens.PerfilFindOneResultView, qb, aliasVinculo, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.PerfilFindOneResultView, qb, aliasVinculo, selection);
 
     await accessContext.applyFilter("vinculo:find", qb, aliasVinculo, null);
 
@@ -98,7 +98,7 @@ export class VinculoService {
     return paginated;
   }
 
-  async vinculoFindById(accessContext: AccessContext, dto: PocTypings.PerfilFindOneInputView, selection?: string[] | boolean): Promise<PocTypings.PerfilFindOneResultView | null> {
+  async vinculoFindById(accessContext: AccessContext, dto: LadesaTypings.PerfilFindOneInputView, selection?: string[] | boolean): Promise<LadesaTypings.PerfilFindOneResultView | null> {
     // =========================================================
 
     const qb = this.vinculoRepository.createQueryBuilder(aliasVinculo);
@@ -114,7 +114,7 @@ export class VinculoService {
     // =========================================================
 
     qb.select([]);
-    QbEfficientLoad(PocTypings.Tokens.PerfilFindOneResultView, qb, aliasVinculo, selection);
+    QbEfficientLoad(LadesaTypings.Tokens.PerfilFindOneResultView, qb, aliasVinculo, selection);
 
     // =========================================================
 
@@ -125,7 +125,7 @@ export class VinculoService {
     return vinculo;
   }
 
-  async vinculoFindByIdStrict(accessContext: AccessContext, dto: PocTypings.PerfilFindOneInputView, selection?: string[] | boolean) {
+  async vinculoFindByIdStrict(accessContext: AccessContext, dto: LadesaTypings.PerfilFindOneInputView, selection?: string[] | boolean) {
     const vinculo = await this.vinculoFindById(accessContext, dto, selection);
 
     if (!vinculo) {
@@ -135,7 +135,7 @@ export class VinculoService {
     return vinculo;
   }
 
-  async vinculoSetVinculos(accessContext: AccessContext, dto: PocTypings.PerfilUpdateOperationInput) {
+  async vinculoSetVinculos(accessContext: AccessContext, dto: LadesaTypings.PerfilUpdateOperationInput) {
     const campus = await this.campusService.campusFindByIdSimpleStrict(accessContext, dto.body.campus.id);
     const usuario = await this.usuarioService.usuarioFindByIdSimpleStrict(accessContext, dto.body.usuario.id);
 

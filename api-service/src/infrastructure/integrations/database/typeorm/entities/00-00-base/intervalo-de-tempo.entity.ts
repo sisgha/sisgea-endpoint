@@ -1,8 +1,8 @@
-import * as PocTypings from "@ladesa-ro/especificacao";
+import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("intervalo_de_tempo")
-export class IntervaloDeTempoEntity implements PocTypings.IntervaloDeTempo {
+export class IntervaloDeTempoEntity implements LadesaTypings.IntervaloDeTempo {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
