@@ -2,7 +2,7 @@ import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("nivel_formacao")
-export class NivelFormacaoEntity implements LadesaTypings.NivelDeFormacao {
+export class NivelFormacaoEntity implements LadesaTypings.NivelFormacao {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 

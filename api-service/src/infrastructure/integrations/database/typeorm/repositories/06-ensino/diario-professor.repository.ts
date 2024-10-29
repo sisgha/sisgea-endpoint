@@ -1,4 +1,4 @@
-import { DiarioProfessorEntity } from "../../entities/06-ensino-discente/diario_professor.entity";
+import { DiarioProfessorEntity } from "../../entities/06-ensino-discente/diario-professor.entity";
 import { IRepositoryFactoryOutput, createRepositoryFactory } from "../../helpers/create-repository-factory";
 
 export const createDiarioProfessorRepository = createRepositoryFactory((ds) => {

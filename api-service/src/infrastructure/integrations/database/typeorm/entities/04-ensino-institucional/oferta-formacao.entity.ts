@@ -1,5 +1,6 @@
+import { ModalidadeEntity } from "@/infrastructure/integrations/database/typeorm/entities/04-ensino-institucional/modalidade.entity";
 import * as LadesaTypings from "@ladesa-ro/especificacao";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("oferta_formacao")
 export class OfertaFormacaoEntity implements LadesaTypings.OfertaFormacao {
@@ -13,6 +14,10 @@ export class OfertaFormacaoEntity implements LadesaTypings.OfertaFormacao {
 
   @Column({ name: "slug", type: "text", nullable: false })
   slug!: string;
+
+  @ManyToOne(() => ModalidadeEntity)
+  @JoinColumn({ name: "id_modalidade_fk" })
+  modalidade!: ModalidadeEntity;
 
   //
 

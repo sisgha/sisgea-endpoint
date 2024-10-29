@@ -25,6 +25,11 @@ export class CreateTableOfertaFormacao1710184310042 implements MigrationInterfac
             type: "text",
             isNullable: false,
           },
+          {
+            name: "id_modalidade_fk",
+            type: "uuid",
+            isNullable: false,
+          },
           //
           {
             name: "date_created",
@@ -42,6 +47,14 @@ export class CreateTableOfertaFormacao1710184310042 implements MigrationInterfac
             name: "date_deleted",
             type: "timestamptz",
             isNullable: true,
+          },
+        ],
+        foreignKeys: [
+          {
+            name: `fk__${tableName}__modalidade`,
+            columnNames: ["id_modalidade_fk"],
+            referencedColumnNames: ["id"],
+            referencedTableName: "modalidade",
           },
         ],
       }),

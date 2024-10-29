@@ -1,7 +1,7 @@
 import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { castArray } from "lodash";
 import { PaginateConfig, PaginateQuery, Paginated, paginate } from "nestjs-paginate";
-import { SelectQueryBuilder } from "typeorm";
+import { ObjectLiteral, SelectQueryBuilder } from "typeorm";
 import * as yup from "yup";
 
 export type OperationListInputQueries = {
@@ -72,7 +72,7 @@ export const ConvertOperationListInputParamToNestPaginate = (path: string, input
   };
 };
 
-export const LadesaSearch = async <T>(path: string, dto: OperationListInput | null, qb: SelectQueryBuilder<any>, config: PaginateConfig<T>) => {
+export const LadesaSearch = async <T extends ObjectLiteral>(path: string, dto: OperationListInput | null, qb: SelectQueryBuilder<T>, config: PaginateConfig<T>) => {
   const paginateQuery = ConvertOperationListInputParamToNestPaginate(path, dto?.queries);
   return paginate(paginateQuery, qb.clone(), config);
 };

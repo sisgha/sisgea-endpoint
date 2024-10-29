@@ -177,11 +177,11 @@ export class DatabaseContext {
     return repositories.createCalendarioLetivoRepository(this.ds);
   }
 
-  get gradeHorarioOfertaFormacao() {
+  get gradeHorarioOfertaFormacaoRepository() {
     return repositories.createGradeHorarioOfertaFormacaoRepository(this.ds);
   }
 
-  get gradeHorarioOfertaFormacaoIntervaloDeTempo() {
+  get gradeHorarioOfertaFormacaoIntervaloDeTempoRepository() {
     return repositories.createGradeHorarioOfertaFormacaoIntervaloDeTempoRepository(this.ds);
   }
 
