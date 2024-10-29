@@ -2343,6 +2343,217 @@ export type DisponibilidadeInputUpdateView = {
   dataFim?: string | null;
 };
 
+export type DisponibilidadeDiaFindOneResultView = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+  /**
+   * Regra RRule para a recorrência do evento. Segue a RFC 5545 do iCalendar.
+   */
+  rrule: string;
+  /**
+   * Visão FindOne de um Intervalo de Tempo.
+   */
+  intervaloDeTempo: IntervaloDeTempoFindOneResultView;
+  /**
+   * Visão FindOne de uma Disponibilidade.
+   */
+  disponibilidade: DisponibilidadeFindOneResultView;
+  /**
+   * Data e hora da criação do registro.
+   */
+  dateCreated: string;
+  /**
+   * Data e hora da alteração do registro.
+   */
+  dateUpdated: string;
+  /**
+   * Data e hora da exclusão do registro.
+   */
+  dateDeleted: string | null;
+};
+
+export type DisponibilidadeDiaListResultView = {
+  /**
+   * Metadados da busca.
+   */
+  meta: PaginatedResultMetaView;
+  /**
+   * Visão FindOne de um DisponibilidadeDia.
+   */
+  data: Array<DisponibilidadeDiaFindOneResultView>;
+  /**
+   * Links da busca.
+   */
+  links: PaginatedResultLinksView;
+};
+
+export type DisponibilidadeFindOneInputView = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+};
+
+export type DisponibilidadeDiaInputCreateView = {
+  /**
+   * Regra RRule para a recorrência do evento. Segue a RFC 5545 do iCalendar.
+   */
+  rrule: string;
+  /**
+   * Dados de entrada para um Intervalo de Tempo.
+   */
+  intervaloDeTempo: IntervaloDeTempoInputView;
+  /**
+   * Dados de entrada para encontrar uma Disponibilidade por ID.
+   */
+  disponibilidade: DisponibilidadeFindOneInputView;
+};
+
+export type DisponibilidadeDiaInputUpdateView = {
+  /**
+   * Regra RRule para a recorrência do evento. Segue a RFC 5545 do iCalendar.
+   */
+  rrule?: string;
+  /**
+   * Dados de entrada para um Intervalo de Tempo.
+   */
+  intervaloDeTempo?: IntervaloDeTempoInputView;
+  /**
+   * Dados de entrada para encontrar uma Disponibilidade por ID.
+   */
+  disponibilidade?: DisponibilidadeFindOneInputView;
+};
+
+export type TurmaDisponibilidadeFindOneResultView = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+  /**
+   * Visão FindOne de uma Disponibilidade.
+   */
+  disponibilidade: DisponibilidadeFindOneResultView;
+  /**
+   * Visão FindOne de uma Turma.
+   */
+  turma: TurmaFindOneResultView;
+  /**
+   * Data e hora da criação do registro.
+   */
+  dateCreated: string;
+  /**
+   * Data e hora da alteração do registro.
+   */
+  dateUpdated: string;
+  /**
+   * Data e hora da exclusão do registro.
+   */
+  dateDeleted: string | null;
+};
+
+export type TurmaDisponibilidadeListResultView = {
+  /**
+   * Metadados da busca.
+   */
+  meta: PaginatedResultMetaView;
+  /**
+   * Visão FindOne de uma TurmaDisponibilidade.
+   */
+  data: Array<TurmaDisponibilidadeFindOneResultView>;
+  /**
+   * Links da busca.
+   */
+  links: PaginatedResultLinksView;
+};
+
+export type TurmaDisponibilidadeInputCreateView = {
+  /**
+   * Dados de entrada para encontrar uma Disponibilidade por ID.
+   */
+  disponibilidade: DisponibilidadeFindOneInputView;
+  /**
+   * Dados de entrada para encontrar uma Turma por ID.
+   */
+  turma: TurmaFindOneInputView;
+};
+
+export type TurmaDisponibilidadeInputUpdateView = {
+  /**
+   * Dados de entrada para encontrar uma Disponibilidade por ID.
+   */
+  disponibilidade?: DisponibilidadeFindOneInputView;
+  /**
+   * Dados de entrada para encontrar uma Turma por ID.
+   */
+  turma?: TurmaFindOneInputView;
+};
+
+export type ProfessorDisponibilidadeFindOneResultView = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+  /**
+   * Visão FindOne de uma Disponibilidade.
+   */
+  disponibilidade: DisponibilidadeFindOneResultView;
+  /**
+   * Visão FindOne de um Vínculo.
+   */
+  perfil: PerfilFindOneResultView;
+  /**
+   * Data e hora da criação do registro.
+   */
+  dateCreated: string;
+  /**
+   * Data e hora da alteração do registro.
+   */
+  dateUpdated: string;
+  /**
+   * Data e hora da exclusão do registro.
+   */
+  dateDeleted: string | null;
+};
+
+export type ProfessorDisponibilidadeListResultView = {
+  /**
+   * Metadados da busca.
+   */
+  meta: PaginatedResultMetaView;
+  /**
+   * Visão FindOne de uma ProfessorDisponibilidade.
+   */
+  data: Array<ProfessorDisponibilidadeFindOneResultView>;
+  /**
+   * Links da busca.
+   */
+  links: PaginatedResultLinksView;
+};
+
+export type ProfessorDisponibilidadeInputCreateView = {
+  /**
+   * Dados de entrada para encontrar uma Disponibilidade por ID.
+   */
+  disponibilidade: DisponibilidadeFindOneInputView;
+  /**
+   * Dados de entrada para encontrar um Vínculo por ID.
+   */
+  perfil: PerfilFindOneInputView;
+};
+
+export type ProfessorDisponibilidadeInputUpdateView = {
+  /**
+   * Dados de entrada para encontrar uma Disponibilidade por ID.
+   */
+  disponibilidade?: DisponibilidadeFindOneInputView;
+  /**
+   * Dados de entrada para encontrar um Vínculo por ID.
+   */
+  perfil?: PerfilFindOneInputView;
+};
+
 export type DiarioPreferenciaAgrupamentoFindOneResultView = {
   /**
    * Identificador do registro (uuid).
@@ -4397,6 +4608,130 @@ export type DiarioPreferenciaAgrupamentoDeleteOneByIdData = {
 };
 
 export type DiarioPreferenciaAgrupamentoDeleteOneByIdResponse = boolean;
+
+export type TurmaDisponibilidadeListData = {
+  filterTurmaId: Array<string>;
+  /**
+   * Limite da quantidade de resultados por página.
+   */
+  limit?: number;
+  /**
+   * Página de consulta.
+   */
+  page?: number;
+  /**
+   * Busca textual.
+   */
+  search?: string;
+  /**
+   * Ordenação.
+   */
+  sortBy?: Array<string>;
+};
+
+export type TurmaDisponibilidadeListResponse = TurmaDisponibilidadeListResultView;
+
+export type TurmaDisponibilidadeCreateData = {
+  /**
+   * Dados de entrada para a criação de uma TurmaDisponibilidade.
+   */
+  requestBody: TurmaDisponibilidadeInputCreateView;
+};
+
+export type TurmaDisponibilidadeCreateResponse = TurmaDisponibilidadeFindOneResultView;
+
+export type TurmaDisponibilidadeFindOneByIdData = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+};
+
+export type TurmaDisponibilidadeFindOneByIdResponse = TurmaDisponibilidadeFindOneResultView;
+
+export type TurmaDisponibilidadeUpdateOneByIdData = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+  /**
+   * Dados de entrada para a atualização de uma TurmaDisponibilidade.
+   */
+  requestBody: TurmaDisponibilidadeInputUpdateView;
+};
+
+export type TurmaDisponibilidadeUpdateOneByIdResponse = TurmaDisponibilidadeFindOneResultView;
+
+export type TurmaDisponibilidadeDeleteOneByIdData = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+};
+
+export type TurmaDisponibilidadeDeleteOneByIdResponse = boolean;
+
+export type ProfessorDisponibilidadeListData = {
+  filterProfessorId: Array<string>;
+  /**
+   * Limite da quantidade de resultados por página.
+   */
+  limit?: number;
+  /**
+   * Página de consulta.
+   */
+  page?: number;
+  /**
+   * Busca textual.
+   */
+  search?: string;
+  /**
+   * Ordenação.
+   */
+  sortBy?: Array<string>;
+};
+
+export type ProfessorDisponibilidadeListResponse = ProfessorDisponibilidadeListResultView;
+
+export type ProfessorDisponibilidadeCreateData = {
+  /**
+   * Dados de entrada para a criação de uma ProfessorDisponibilidade.
+   */
+  requestBody: ProfessorDisponibilidadeInputCreateView;
+};
+
+export type ProfessorDisponibilidadeCreateResponse = ProfessorDisponibilidadeFindOneResultView;
+
+export type ProfessorDisponibilidadeFindOneByIdData = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+};
+
+export type ProfessorDisponibilidadeFindOneByIdResponse = ProfessorDisponibilidadeFindOneResultView;
+
+export type ProfessorDisponibilidadeUpdateOneByIdData = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+  /**
+   * Dados de entrada para a atualização de uma ProfessorDisponibilidade.
+   */
+  requestBody: ProfessorDisponibilidadeInputUpdateView;
+};
+
+export type ProfessorDisponibilidadeUpdateOneByIdResponse = ProfessorDisponibilidadeFindOneResultView;
+
+export type ProfessorDisponibilidadeDeleteOneByIdData = {
+  /**
+   * Identificador do registro (uuid).
+   */
+  id: string;
+};
+
+export type ProfessorDisponibilidadeDeleteOneByIdResponse = boolean;
 
 export type HorarioGeradoListData = {
   /**

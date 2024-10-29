@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { OfertaFormacaoService } from "./oferta-formacao.service";
 
-@ApiTags("OfertaFormacao")
+@ApiTags("ofertas-formacoes")
 @Controller("/ofertas-formacoes")
 export class OfertaFormacaoController {
   constructor(private ofertaFormacaoService: OfertaFormacaoService) {}

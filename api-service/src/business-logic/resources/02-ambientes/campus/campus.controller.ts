@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CampusService } from "./campus.service";
 
-@ApiTags("Campi")
+@ApiTags("campi")
 @Controller("/campi")
 export class CampusController {
   constructor(private campusService: CampusService) {}

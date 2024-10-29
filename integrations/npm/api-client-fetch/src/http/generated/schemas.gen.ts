@@ -4827,6 +4827,478 @@ export const $DisponibilidadeInputUpdateView = {
   },
 } as const;
 
+export const $DisponibilidadeDiaFindOneResultView = {
+  type: "object",
+  properties: {
+    id: {
+      type: "string",
+      nullable: false,
+      description: "Identificador do registro (uuid).",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/uuid.json",
+      format: "uuid",
+    },
+    rrule: {
+      type: "string",
+      nullable: false,
+      description: "Regra RRule para a recorrência do evento. Segue a RFC 5545 do iCalendar.",
+    },
+    intervaloDeTempo: {
+      nullable: false,
+      description: "Visão FindOne de um Intervalo de Tempo.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/IntervaloDeTempoFindOneResultView",
+        },
+      ],
+    },
+    disponibilidade: {
+      nullable: false,
+      description: "Visão FindOne de uma Disponibilidade.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/DisponibilidadeFindOneResultView",
+        },
+      ],
+    },
+    dateCreated: {
+      type: "string",
+      nullable: false,
+      description: "Data e hora da criação do registro.",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/date_time.json",
+      format: "date-time",
+    },
+    dateUpdated: {
+      type: "string",
+      nullable: false,
+      description: "Data e hora da alteração do registro.",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/date_time.json",
+      format: "date-time",
+    },
+    dateDeleted: {
+      type: "string",
+      nullable: true,
+      description: "Data e hora da exclusão do registro.",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      format: "date-time",
+    },
+  },
+  required: ["id", "rrule", "intervaloDeTempo", "disponibilidade", "dateCreated", "dateUpdated", "dateDeleted"],
+} as const;
+
+export const $DisponibilidadeDiaListResultView = {
+  type: "object",
+  properties: {
+    meta: {
+      nullable: false,
+      description: "Metadados da busca.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/PaginatedResultMetaView",
+        },
+      ],
+    },
+    data: {
+      nullable: false,
+      description: "Visão FindOne de um DisponibilidadeDia.",
+      kind: "type",
+      type: "array",
+      items: {
+        $ref: "#/components/schemas/DisponibilidadeDiaFindOneResultView",
+      },
+    },
+    links: {
+      nullable: false,
+      description: "Links da busca.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/PaginatedResultLinksView",
+        },
+      ],
+    },
+  },
+  required: ["meta", "data", "links"],
+} as const;
+
+export const $DisponibilidadeFindOneInputView = {
+  type: "object",
+  properties: {
+    id: {
+      type: "string",
+      nullable: false,
+      description: "Identificador do registro (uuid).",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/uuid.json",
+      format: "uuid",
+      "x-unispec-constraint-entity-exists": "Disponibilidade",
+    },
+  },
+  required: ["id"],
+} as const;
+
+export const $DisponibilidadeDiaInputCreateView = {
+  type: "object",
+  properties: {
+    rrule: {
+      type: "string",
+      nullable: false,
+      description: "Regra RRule para a recorrência do evento. Segue a RFC 5545 do iCalendar.",
+    },
+    intervaloDeTempo: {
+      nullable: false,
+      description: "Dados de entrada para um Intervalo de Tempo.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/IntervaloDeTempoInputView",
+        },
+      ],
+    },
+    disponibilidade: {
+      nullable: false,
+      description: "Dados de entrada para encontrar uma Disponibilidade por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/DisponibilidadeFindOneInputView",
+        },
+      ],
+    },
+  },
+  required: ["rrule", "intervaloDeTempo", "disponibilidade"],
+} as const;
+
+export const $DisponibilidadeDiaInputUpdateView = {
+  type: "object",
+  properties: {
+    rrule: {
+      type: "string",
+      nullable: false,
+      description: "Regra RRule para a recorrência do evento. Segue a RFC 5545 do iCalendar.",
+    },
+    intervaloDeTempo: {
+      nullable: false,
+      description: "Dados de entrada para um Intervalo de Tempo.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/IntervaloDeTempoInputView",
+        },
+      ],
+    },
+    disponibilidade: {
+      nullable: false,
+      description: "Dados de entrada para encontrar uma Disponibilidade por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/DisponibilidadeFindOneInputView",
+        },
+      ],
+    },
+  },
+} as const;
+
+export const $TurmaDisponibilidadeFindOneResultView = {
+  type: "object",
+  properties: {
+    id: {
+      type: "string",
+      nullable: false,
+      description: "Identificador do registro (uuid).",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/uuid.json",
+      format: "uuid",
+    },
+    disponibilidade: {
+      nullable: false,
+      description: "Visão FindOne de uma Disponibilidade.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/DisponibilidadeFindOneResultView",
+        },
+      ],
+    },
+    turma: {
+      nullable: false,
+      description: "Visão FindOne de uma Turma.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/TurmaFindOneResultView",
+        },
+      ],
+    },
+    dateCreated: {
+      type: "string",
+      nullable: false,
+      description: "Data e hora da criação do registro.",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/date_time.json",
+      format: "date-time",
+    },
+    dateUpdated: {
+      type: "string",
+      nullable: false,
+      description: "Data e hora da alteração do registro.",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/date_time.json",
+      format: "date-time",
+    },
+    dateDeleted: {
+      type: "string",
+      nullable: true,
+      description: "Data e hora da exclusão do registro.",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      format: "date-time",
+    },
+  },
+  required: ["id", "disponibilidade", "turma", "dateCreated", "dateUpdated", "dateDeleted"],
+} as const;
+
+export const $TurmaDisponibilidadeListResultView = {
+  type: "object",
+  properties: {
+    meta: {
+      nullable: false,
+      description: "Metadados da busca.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/PaginatedResultMetaView",
+        },
+      ],
+    },
+    data: {
+      nullable: false,
+      description: "Visão FindOne de uma TurmaDisponibilidade.",
+      kind: "type",
+      type: "array",
+      items: {
+        $ref: "#/components/schemas/TurmaDisponibilidadeFindOneResultView",
+      },
+    },
+    links: {
+      nullable: false,
+      description: "Links da busca.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/PaginatedResultLinksView",
+        },
+      ],
+    },
+  },
+  required: ["meta", "data", "links"],
+} as const;
+
+export const $TurmaDisponibilidadeInputCreateView = {
+  type: "object",
+  properties: {
+    disponibilidade: {
+      nullable: false,
+      description: "Dados de entrada para encontrar uma Disponibilidade por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/DisponibilidadeFindOneInputView",
+        },
+      ],
+    },
+    turma: {
+      nullable: false,
+      description: "Dados de entrada para encontrar uma Turma por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/TurmaFindOneInputView",
+        },
+      ],
+    },
+  },
+  required: ["disponibilidade", "turma"],
+} as const;
+
+export const $TurmaDisponibilidadeInputUpdateView = {
+  type: "object",
+  properties: {
+    disponibilidade: {
+      nullable: false,
+      description: "Dados de entrada para encontrar uma Disponibilidade por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/DisponibilidadeFindOneInputView",
+        },
+      ],
+    },
+    turma: {
+      nullable: false,
+      description: "Dados de entrada para encontrar uma Turma por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/TurmaFindOneInputView",
+        },
+      ],
+    },
+  },
+} as const;
+
+export const $ProfessorDisponibilidadeFindOneResultView = {
+  type: "object",
+  properties: {
+    id: {
+      type: "string",
+      nullable: false,
+      description: "Identificador do registro (uuid).",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/uuid.json",
+      format: "uuid",
+    },
+    disponibilidade: {
+      nullable: false,
+      description: "Visão FindOne de uma Disponibilidade.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/DisponibilidadeFindOneResultView",
+        },
+      ],
+    },
+    perfil: {
+      nullable: false,
+      description: "Visão FindOne de um Vínculo.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/PerfilFindOneResultView",
+        },
+      ],
+    },
+    dateCreated: {
+      type: "string",
+      nullable: false,
+      description: "Data e hora da criação do registro.",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/date_time.json",
+      format: "date-time",
+    },
+    dateUpdated: {
+      type: "string",
+      nullable: false,
+      description: "Data e hora da alteração do registro.",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      $id: "ladesa://schemas/v3/generics/date_time.json",
+      format: "date-time",
+    },
+    dateDeleted: {
+      type: "string",
+      nullable: true,
+      description: "Data e hora da exclusão do registro.",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
+      format: "date-time",
+    },
+  },
+  required: ["id", "disponibilidade", "perfil", "dateCreated", "dateUpdated", "dateDeleted"],
+} as const;
+
+export const $ProfessorDisponibilidadeListResultView = {
+  type: "object",
+  properties: {
+    meta: {
+      nullable: false,
+      description: "Metadados da busca.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/PaginatedResultMetaView",
+        },
+      ],
+    },
+    data: {
+      nullable: false,
+      description: "Visão FindOne de uma ProfessorDisponibilidade.",
+      kind: "type",
+      type: "array",
+      items: {
+        $ref: "#/components/schemas/ProfessorDisponibilidadeFindOneResultView",
+      },
+    },
+    links: {
+      nullable: false,
+      description: "Links da busca.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/PaginatedResultLinksView",
+        },
+      ],
+    },
+  },
+  required: ["meta", "data", "links"],
+} as const;
+
+export const $ProfessorDisponibilidadeInputCreateView = {
+  type: "object",
+  properties: {
+    disponibilidade: {
+      nullable: false,
+      description: "Dados de entrada para encontrar uma Disponibilidade por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/DisponibilidadeFindOneInputView",
+        },
+      ],
+    },
+    perfil: {
+      nullable: false,
+      description: "Dados de entrada para encontrar um Vínculo por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/PerfilFindOneInputView",
+        },
+      ],
+    },
+  },
+  required: ["disponibilidade", "perfil"],
+} as const;
+
+export const $ProfessorDisponibilidadeInputUpdateView = {
+  type: "object",
+  properties: {
+    disponibilidade: {
+      nullable: false,
+      description: "Dados de entrada para encontrar uma Disponibilidade por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/DisponibilidadeFindOneInputView",
+        },
+      ],
+    },
+    perfil: {
+      nullable: false,
+      description: "Dados de entrada para encontrar um Vínculo por ID.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/PerfilFindOneInputView",
+        },
+      ],
+    },
+  },
+} as const;
+
 export const $DiarioPreferenciaAgrupamentoFindOneResultView = {
   type: "object",
   properties: {

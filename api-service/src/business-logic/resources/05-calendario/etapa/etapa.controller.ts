@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { EtapaService } from "./etapa.service";
 
-@ApiTags("Etapas")
+@ApiTags("etapas")
 @Controller("/etapas")
 export class EtapaController {
   constructor(private etapaService: EtapaService) {}

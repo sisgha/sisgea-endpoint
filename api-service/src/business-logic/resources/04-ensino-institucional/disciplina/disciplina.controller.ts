@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, Upload
 import { ApiTags } from "@nestjs/swagger";
 import { DisciplinaService } from "./disciplina.service";
 
-@ApiTags("Disciplinas")
+@ApiTags("disciplinas")
 @Controller("/disciplinas")
 export class DisciplinaController {
   constructor(private disciplinaService: DisciplinaService) {}

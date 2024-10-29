@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, Upload
 import { ApiTags } from "@nestjs/swagger";
 import { BlocoService } from "./bloco.service";
 
-@ApiTags("Blocos")
+@ApiTags("blocos")
 @Controller("/blocos")
 export class BlocoController {
   constructor(private blocoService: BlocoService) {}

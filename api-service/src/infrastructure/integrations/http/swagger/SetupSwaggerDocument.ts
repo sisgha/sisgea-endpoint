@@ -10,30 +10,41 @@ export function SetupSwaggerDocument(configService: IConfig | null = null) {
 
   config.addBearerAuth();
 
-  config.addTag("Base", "Ladesa - Base");
+  config.addTag("base", "Base");
 
-  config.addTag("Arquivos", "Armazenamento / Arquivos");
+  config.addTag("arquivos", "Base / Armazenamento / Arquivos");
+  config.addTag("estados", "Base / Lugares / Estados");
+  config.addTag("cidades", "Base / Lugares / Estados / Cidades");
 
-  config.addTag("Autenticacao");
-  config.addTag("Usuarios", "Autenticação / Usuários");
+  config.addTag("autenticacao");
+  config.addTag("usuarios", "Autenticação / Usuários");
 
-  config.addTag("Estados", "Ambientes / Estados");
-  config.addTag("Cidades", "Ambientes / Cidades");
-  config.addTag("Campi", "Ambientes / Campi");
-  config.addTag("Blocos", "Ambientes / Campi / Blocos");
-  config.addTag("Ambientes", "Ambientes / Campi / Blocos / Ambiente");
-  config.addTag("Reservas", "Ambientes / Campi / Blocos / Ambiente / Reservas");
+  config.addTag("campi", "Ambientes / Campi");
+  config.addTag("blocos", "Ambientes / Campi / Blocos");
+  config.addTag("ambientes", "Ambientes / Campi / Blocos / Ambiente");
+  config.addTag("reservas", "Ambientes / Campi / Blocos / Ambiente / Reservas");
 
-  config.addTag("Vinculos", "Autenticação / Usuários / Vínculos");
+  config.addTag("perfis", "Autorização / Usuários / Perfis");
 
-  config.addTag("Modalidades", "Ensino / Modalidade");
-  config.addTag("Cursos", "Ensino / Cursos");
-  config.addTag("Disciplinas", "Ensino / Disciplinas");
-  config.addTag("Turmas", "Ensino / Turmas");
-  config.addTag("Diarios", "Ensino / Diarios");
-  config.addTag("DiarioProfessor", "Ensino / Diário Professor");
+  config.addTag("niveis-formacoes", "Ensino Institucional / Níveis de Formações");
+  config.addTag("modalidades", "Ensino Institucional / Modalidades");
+  config.addTag("ofertas-formacoes", "Ensino Institucional / Ofertas de Formações");
+  config.addTag("ofertas-formacoes-niveis-formacoes", "Ensino Institucional / Ofertas de Formações / Níveis de Formação");
+  config.addTag("cursos", "Ensino Institucional / Cursos");
+  config.addTag("disciplinas", "Ensino Institucional / Disciplinas");
 
-  config.addTag("Calendarios Letivos", "Calendario / Calendarios Letivos");
+  config.addTag("grades-horarios-ofertas-formacoes", "Calendário / Grades de Horário para Ofertas de Formações");
+  config.addTag("grades-horarios-ofertas-formacoes-intervalos-de-tempo", "Calendário / Grades de Horário para Ofertas de Formações / Intervalos de Tempo");
+
+  config.addTag("calendarios-letivos", "Calendário / Calendarios Letivos");
+  config.addTag("dias-calendarios", "Calendário / Calendarios Letivos / Dias");
+  config.addTag("etapas", "Calendário / Calendarios Letivos / Etapas");
+  config.addTag("eventos", "Calendário / Calendarios Letivos / Eventos");
+
+  config.addTag("turmas", "Ensino Discente / Turmas");
+  config.addTag("diarios", "Ensino Discente / Diarios");
+  config.addTag("diarios-professor", "Ensino Discente / Professores em Diários");
+  config.addTag("aulas", "Ensino Discente / Aulas");
 
   if (configService) {
     const prefix = configService.getRuntimePrefix();

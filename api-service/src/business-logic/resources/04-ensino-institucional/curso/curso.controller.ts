@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, Upload
 import { ApiTags } from "@nestjs/swagger";
 import { CursoService } from "./curso.service";
 
-@ApiTags("Cursos")
+@ApiTags("cursos")
 @Controller("/cursos")
 export class CursoController {
   constructor(private cursoService: CursoService) {}

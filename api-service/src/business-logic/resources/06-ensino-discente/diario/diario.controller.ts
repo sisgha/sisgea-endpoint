@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { DiarioService } from "./diario.service";
 
-@ApiTags("Diarios")
+@ApiTags("diarios")
 @Controller("/diarios")
 export class DiarioController {
   constructor(private diarioService: DiarioService) {}

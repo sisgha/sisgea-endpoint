@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CalendarioLetivoService } from "./calendario-letivo.service";
 
-@ApiTags("Calendarios Letivos")
+@ApiTags("calendarios-letivos")
 @Controller("/calendarios-letivos")
 export class CalendarioLetivoController {
   constructor(private calendarioLetivoService: CalendarioLetivoService) {}

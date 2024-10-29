@@ -245,7 +245,7 @@ export class OfertaFormacaoNivelFormacaoService {
       this.ofertaFormacaoNivelFormacaoRepository.createQueryBuilder(aliasOfertaFormacaoNivelFormacao),
     );
 
-    const dtoOfertaFormacaoNivelFormacao = pick(dto.body, ["nome", "slug"]);
+    const dtoOfertaFormacaoNivelFormacao = pick(dto.body, []);
 
     const ofertaFormacaoNivelFormacao = <OfertaFormacaoNivelFormacaoEntity>{
       id: currentOfertaFormacaoNivelFormacao.id,

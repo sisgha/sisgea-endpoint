@@ -8,7 +8,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { PerfilService } from "./perfil.service";
 
 @Controller("/vinculos")
-@ApiTags("Vinculos")
+@ApiTags("perfis")
 export class PerfilController {
   constructor(private vinculoService: PerfilService) {}
 

@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { DiaCalendarioService } from "./dia-calendario.service";
 
-@ApiTags("Dias Calendario")
+@ApiTags("dias-calendarios")
 @Controller("/dias-calendario")
 export class DiaCalendarioController {
   constructor(private diaCalendarioService: DiaCalendarioService) {}

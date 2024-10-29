@@ -2,7 +2,7 @@ import { Controller, Get } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { GerarHorarioService } from "./gerar-horario.service";
 
-@ApiTags("Gerar Horario")
+@ApiTags("gerar-horario")
 @Controller("/gerar-horario")
 export class GerarHorarioController {
   constructor(private gerarHorarioService: GerarHorarioService) {}

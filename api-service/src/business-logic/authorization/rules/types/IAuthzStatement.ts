@@ -506,6 +506,72 @@ export type IAuthzStatementDisponibilidadeFind = IBaseAuthzFilter<"disponibilida
 
 // =====================
 
+export type IAuthzStatementDisponibilidadeDiaCreate = IBaseAuthzCheck<
+  "disponibilidade_dia:create",
+  {
+    dto: LadesaTypings.DisponibilidadeDiaCreateOperationInput;
+  }
+>;
+export type IAuthzStatementDisponibilidadeDiaUpdate = IBaseAuthzFilter<
+  "disponibilidade_dia:update",
+  {
+    dto: LadesaTypings.DisponibilidadeDiaUpdateByIdOperationInput;
+  }
+>;
+export type IAuthzStatementDisponibilidadeDiaDelete = IBaseAuthzFilter<
+  "disponibilidade_dia:delete",
+  {
+    dto: LadesaTypings.DisponibilidadeDiaFindOneInputView;
+  }
+>;
+export type IAuthzStatementDisponibilidadeDiaFind = IBaseAuthzFilter<"disponibilidade_dia:find">;
+
+// =====================
+
+export type IAuthzStatementTurmaDisponibilidadeCreate = IBaseAuthzCheck<
+  "turma_disponibilidade:create",
+  {
+    dto: LadesaTypings.TurmaDisponibilidadeCreateOperationInput;
+  }
+>;
+export type IAuthzStatementTurmaDisponibilidadeUpdate = IBaseAuthzFilter<
+  "turma_disponibilidade:update",
+  {
+    dto: LadesaTypings.TurmaDisponibilidadeUpdateByIdOperationInput;
+  }
+>;
+export type IAuthzStatementTurmaDisponibilidadeDelete = IBaseAuthzFilter<
+  "turma_disponibilidade:delete",
+  {
+    dto: LadesaTypings.TurmaDisponibilidadeFindOneInputView;
+  }
+>;
+export type IAuthzStatementTurmaDisponibilidadeFind = IBaseAuthzFilter<"turma_disponibilidade:find">;
+
+// =====================
+
+export type IAuthzStatementProfessorDisponibilidadeCreate = IBaseAuthzCheck<
+  "professor_disponibilidade:create",
+  {
+    dto: LadesaTypings.ProfessorDisponibilidadeCreateOperationInput;
+  }
+>;
+export type IAuthzStatementProfessorDisponibilidadeUpdate = IBaseAuthzFilter<
+  "professor_disponibilidade:update",
+  {
+    dto: LadesaTypings.ProfessorDisponibilidadeUpdateByIdOperationInput;
+  }
+>;
+export type IAuthzStatementProfessorDisponibilidadeDelete = IBaseAuthzFilter<
+  "professor_disponibilidade:delete",
+  {
+    dto: LadesaTypings.ProfessorDisponibilidadeFindOneInputView;
+  }
+>;
+export type IAuthzStatementProfessorDisponibilidadeFind = IBaseAuthzFilter<"professor_disponibilidade:find">;
+
+// =====================
+
 export type IAuthzStatementDiarioPreferenciaAgrupamentoCreate = IBaseAuthzCheck<
   "diario_preferencia_agrupamento:create",
   {
@@ -595,6 +661,9 @@ export type IAuthzStatementCheck =
   | IAuthzStatementEtapaCreate
   | IAuthzStatementAulaCreate
   | IAuthzStatementDisponibilidadeCreate
+  | IAuthzStatementDisponibilidadeDiaCreate
+  | IAuthzStatementTurmaDisponibilidadeCreate
+  | IAuthzStatementProfessorDisponibilidadeCreate
   | IAuthzStatementDiarioPreferenciaAgrupamentoCreate
   | IAuthzStatementHorarioGeradoCreate
   | IAuthzStatementHorarioGeradoAulaCreate;
@@ -673,6 +742,15 @@ export type IAuthzStatementFilter =
   | IAuthzStatementDisponibilidadeUpdate
   | IAuthzStatementDisponibilidadeFind
   | IAuthzStatementDisponibilidadeDelete
+  | IAuthzStatementDisponibilidadeDiaUpdate
+  | IAuthzStatementDisponibilidadeDiaFind
+  | IAuthzStatementDisponibilidadeDiaDelete
+  | IAuthzStatementTurmaDisponibilidadeUpdate
+  | IAuthzStatementTurmaDisponibilidadeFind
+  | IAuthzStatementTurmaDisponibilidadeDelete
+  | IAuthzStatementProfessorDisponibilidadeUpdate
+  | IAuthzStatementProfessorDisponibilidadeFind
+  | IAuthzStatementProfessorDisponibilidadeDelete
   | IAuthzStatementDiarioPreferenciaAgrupamentoUpdate
   | IAuthzStatementDiarioPreferenciaAgrupamentoFind
   | IAuthzStatementDiarioPreferenciaAgrupamentoDelete

@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, Upload
 import { ApiTags } from "@nestjs/swagger";
 import { AmbienteService } from "./ambiente.service";
 
-@ApiTags("Ambientes")
+@ApiTags("ambientes")
 @Controller("/ambientes")
 export class AmbienteController {
   constructor(private ambienteService: AmbienteService) {}

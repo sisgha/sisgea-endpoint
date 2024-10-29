@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { EventoService } from "./evento.service";
 
-@ApiTags("Eventos")
+@ApiTags("eventos")
 @Controller("/eventos")
 export class EventoController {
   constructor(private eventoService: EventoService) {}

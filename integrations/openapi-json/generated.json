@@ -49,7 +49,7 @@
             }
           }
         },
-        "tags": ["Base"]
+        "tags": ["base"]
       }
     },
     "/arquivos/{id}": {
@@ -127,7 +127,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Arquivos"],
+        "tags": ["arquivos"],
         "security": [
           {
             "bearer": []
@@ -212,7 +212,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Estados"],
+        "tags": ["estados"],
         "security": [
           {
             "bearer": []
@@ -261,7 +261,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Estados"],
+        "tags": ["estados"],
         "security": [
           {
             "bearer": []
@@ -360,7 +360,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Cidades"],
+        "tags": ["cidades"],
         "security": [
           {
             "bearer": []
@@ -409,7 +409,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Cidades"],
+        "tags": ["cidades"],
         "security": [
           {
             "bearer": []
@@ -443,7 +443,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Autenticacao"],
+        "tags": ["autenticacao"],
         "security": [
           {
             "bearer": []
@@ -489,7 +489,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Autenticacao"],
+        "tags": ["autenticacao"],
         "security": [
           {
             "bearer": []
@@ -535,7 +535,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Autenticacao"],
+        "tags": ["autenticacao"],
         "security": [
           {
             "bearer": []
@@ -581,7 +581,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Autenticacao"],
+        "tags": ["autenticacao"],
         "security": [
           {
             "bearer": []
@@ -666,7 +666,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Usuarios"],
+        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
@@ -710,7 +710,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Usuarios"],
+        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
@@ -760,7 +760,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Usuarios"],
+        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
@@ -820,7 +820,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Usuarios"],
+        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
@@ -868,7 +868,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Usuarios"],
+        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
@@ -920,7 +920,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Usuarios"],
+        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
@@ -998,7 +998,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Usuarios"],
+        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
@@ -1050,7 +1050,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Usuarios"],
+        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
@@ -1128,7 +1128,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Usuarios"],
+        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
@@ -1255,7 +1255,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Vinculos"],
+        "tags": ["perfis"],
         "security": [
           {
             "bearer": []
@@ -1299,7 +1299,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Vinculos"],
+        "tags": ["perfis"],
         "security": [
           {
             "bearer": []
@@ -1412,7 +1412,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Campi"],
+        "tags": ["campi"],
         "security": [
           {
             "bearer": []
@@ -1456,7 +1456,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Campi"],
+        "tags": ["campi"],
         "security": [
           {
             "bearer": []
@@ -1506,7 +1506,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Campi"],
+        "tags": ["campi"],
         "security": [
           {
             "bearer": []
@@ -1566,7 +1566,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Campi"],
+        "tags": ["campi"],
         "security": [
           {
             "bearer": []
@@ -1614,7 +1614,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Campi"],
+        "tags": ["campi"],
         "security": [
           {
             "bearer": []
@@ -1713,7 +1713,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Blocos"],
+        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
@@ -1757,7 +1757,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Blocos"],
+        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
@@ -1807,7 +1807,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Blocos"],
+        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
@@ -1867,7 +1867,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Blocos"],
+        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
@@ -1915,7 +1915,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Blocos"],
+        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
@@ -1967,7 +1967,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Blocos"],
+        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
@@ -2045,7 +2045,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Blocos"],
+        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
@@ -2158,7 +2158,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Ambientes"],
+        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
@@ -2202,7 +2202,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Ambientes"],
+        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
@@ -2252,7 +2252,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Ambientes"],
+        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
@@ -2312,7 +2312,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Ambientes"],
+        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
@@ -2360,7 +2360,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Ambientes"],
+        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
@@ -2412,7 +2412,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Ambientes"],
+        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
@@ -2490,7 +2490,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Ambientes"],
+        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
@@ -2631,7 +2631,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Reservas"],
+        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
@@ -2675,7 +2675,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Reservas"],
+        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
@@ -2725,7 +2725,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Reservas"],
+        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
@@ -2785,7 +2785,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Reservas"],
+        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
@@ -2833,7 +2833,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Reservas"],
+        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
@@ -2918,7 +2918,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["NivelFormacao"],
+        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -2962,7 +2962,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["NivelFormacao"],
+        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3012,7 +3012,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["NivelFormacao"],
+        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3072,7 +3072,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["NivelFormacao"],
+        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3120,7 +3120,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["NivelFormacao"],
+        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3205,7 +3205,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Modalidades"],
+        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
@@ -3249,7 +3249,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Modalidades"],
+        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
@@ -3299,7 +3299,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Modalidades"],
+        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
@@ -3359,7 +3359,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Modalidades"],
+        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
@@ -3407,7 +3407,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Modalidades"],
+        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
@@ -3492,7 +3492,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacao"],
+        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3536,7 +3536,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacao"],
+        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3586,7 +3586,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacao"],
+        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3646,7 +3646,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacao"],
+        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3694,7 +3694,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacao"],
+        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3779,7 +3779,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacaoNivelFormacao"],
+        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3823,7 +3823,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacaoNivelFormacao"],
+        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3873,7 +3873,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacaoNivelFormacao"],
+        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3933,7 +3933,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacaoNivelFormacao"],
+        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -3981,7 +3981,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["OfertaFormacaoNivelFormacao"],
+        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
@@ -4094,7 +4094,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Cursos"],
+        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
@@ -4138,7 +4138,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Cursos"],
+        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
@@ -4188,7 +4188,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Cursos"],
+        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
@@ -4248,7 +4248,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Cursos"],
+        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
@@ -4296,7 +4296,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Cursos"],
+        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
@@ -4348,7 +4348,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Cursos"],
+        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
@@ -4426,7 +4426,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Cursos"],
+        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
@@ -4511,7 +4511,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disciplinas"],
+        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
@@ -4555,7 +4555,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disciplinas"],
+        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
@@ -4605,7 +4605,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disciplinas"],
+        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
@@ -4665,7 +4665,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disciplinas"],
+        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
@@ -4713,7 +4713,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disciplinas"],
+        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
@@ -4765,7 +4765,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disciplinas"],
+        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
@@ -4843,7 +4843,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disciplinas"],
+        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
@@ -4956,7 +4956,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Calendarios Letivos"],
+        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
@@ -5000,7 +5000,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Calendarios Letivos"],
+        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
@@ -5050,7 +5050,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Calendarios Letivos"],
+        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
@@ -5110,7 +5110,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Calendarios Letivos"],
+        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
@@ -5158,7 +5158,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Calendarios Letivos"],
+        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
@@ -5243,7 +5243,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacao"],
+        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -5287,7 +5287,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacao"],
+        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -5337,7 +5337,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacao"],
+        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -5397,7 +5397,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacao"],
+        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -5445,7 +5445,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacao"],
+        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
@@ -5453,7 +5453,7 @@
         ]
       }
     },
-    "/grades-horario-ofertas-formacao-intervalos-de-tempo": {
+    "/grades-horarios-ofertas-formacoes-intervalos-de-tempo": {
       "get": {
         "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoList",
         "summary": "",
@@ -5530,7 +5530,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacaoIntervaloDeTempo"],
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
@@ -5574,7 +5574,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacaoIntervaloDeTempo"],
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
@@ -5582,7 +5582,7 @@
         ]
       }
     },
-    "/grades-horario-ofertas-formacao-intervalos-de-tempo/{id}": {
+    "/grades-horarios-ofertas-formacoes-intervalos-de-tempo/{id}": {
       "get": {
         "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneById",
         "summary": "",
@@ -5624,7 +5624,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacaoIntervaloDeTempo"],
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
@@ -5684,7 +5684,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacaoIntervaloDeTempo"],
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
@@ -5732,7 +5732,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["GradeHorarioOfertaFormacaoIntervaloDeTempo"],
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
@@ -5831,7 +5831,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Eventos"],
+        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
@@ -5875,7 +5875,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Eventos"],
+        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
@@ -5925,7 +5925,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Eventos"],
+        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
@@ -5985,7 +5985,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Eventos"],
+        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
@@ -6033,7 +6033,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Eventos"],
+        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
@@ -6132,7 +6132,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Dias Calendario"],
+        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
@@ -6176,7 +6176,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Dias Calendario"],
+        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
@@ -6226,7 +6226,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Dias Calendario"],
+        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
@@ -6286,7 +6286,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Dias Calendario"],
+        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
@@ -6334,7 +6334,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Dias Calendario"],
+        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
@@ -6433,7 +6433,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Etapas"],
+        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
@@ -6477,7 +6477,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Etapas"],
+        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
@@ -6527,7 +6527,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Etapas"],
+        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
@@ -6587,7 +6587,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Etapas"],
+        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
@@ -6635,7 +6635,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Etapas"],
+        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
@@ -6832,7 +6832,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Turmas"],
+        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
@@ -6876,7 +6876,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Turmas"],
+        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
@@ -6926,7 +6926,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Turmas"],
+        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
@@ -6986,7 +6986,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Turmas"],
+        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
@@ -7034,7 +7034,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Turmas"],
+        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
@@ -7086,7 +7086,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Turmas"],
+        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
@@ -7164,7 +7164,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Turmas"],
+        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
@@ -7305,7 +7305,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios"],
+        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
@@ -7349,7 +7349,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios"],
+        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
@@ -7399,7 +7399,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios"],
+        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
@@ -7459,7 +7459,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios"],
+        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
@@ -7507,7 +7507,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios"],
+        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
@@ -7620,7 +7620,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["DiarioProfessor"],
+        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
@@ -7664,7 +7664,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["DiarioProfessor"],
+        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
@@ -7714,7 +7714,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["DiarioProfessor"],
+        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
@@ -7774,7 +7774,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["DiarioProfessor"],
+        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
@@ -7822,7 +7822,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["DiarioProfessor"],
+        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
@@ -7935,7 +7935,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Aulas"],
+        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
@@ -7979,7 +7979,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Aulas"],
+        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
@@ -8029,7 +8029,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Aulas"],
+        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
@@ -8089,7 +8089,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Aulas"],
+        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
@@ -8137,7 +8137,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Aulas"],
+        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
@@ -8222,7 +8222,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disponibilidades"],
+        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
@@ -8266,7 +8266,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disponibilidades"],
+        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
@@ -8316,7 +8316,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disponibilidades"],
+        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
@@ -8376,7 +8376,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disponibilidades"],
+        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
@@ -8424,7 +8424,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Disponibilidades"],
+        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
@@ -8523,7 +8523,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios Preferencia Agrupamento"],
+        "tags": ["diarios-preferencia-agrupamento"],
         "security": [
           {
             "bearer": []
@@ -8567,7 +8567,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios Preferencia Agrupamento"],
+        "tags": ["diarios-preferencia-agrupamento"],
         "security": [
           {
             "bearer": []
@@ -8617,7 +8617,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios Preferencia Agrupamento"],
+        "tags": ["diarios-preferencia-agrupamento"],
         "security": [
           {
             "bearer": []
@@ -8677,7 +8677,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios Preferencia Agrupamento"],
+        "tags": ["diarios-preferencia-agrupamento"],
         "security": [
           {
             "bearer": []
@@ -8725,7 +8725,609 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Diarios Preferencia Agrupamento"],
+        "tags": ["diarios-preferencia-agrupamento"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/turmas-disponibilidades": {
+      "get": {
+        "operationId": "TurmaDisponibilidadeList",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Página de consulta.",
+            "kind": "schema",
+            "schema": {
+              "minimum": 1,
+              "description": "Página de consulta.",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Limite da quantidade de resultados por página.",
+            "kind": "schema",
+            "schema": {
+              "minimum": 1,
+              "description": "Limite da quantidade de resultados por página.",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Busca textual.",
+            "kind": "schema",
+            "schema": {
+              "description": "Busca textual.",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Ordenação.",
+            "kind": "schema",
+            "schema": {
+              "type": "array",
+              "nullable": false,
+              "items": {
+                "nullable": false,
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "filter_turma_id",
+            "required": true,
+            "in": "query",
+            "kind": "schema",
+            "schema": {
+              "type": "array",
+              "nullable": false,
+              "items": {
+                "nullable": false,
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "Resultados da busca a TurmaDisponibilidades.",
+            "kind": "type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TurmaDisponibilidadeListResultView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["turmas-disponibilidades"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "TurmaDisponibilidadeCreate",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "Dados de entrada para a criação de uma TurmaDisponibilidade.",
+          "kind": "type",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TurmaDisponibilidadeInputCreateView"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "Visão FindOne de uma TurmaDisponibilidade.",
+            "kind": "type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TurmaDisponibilidadeFindOneResultView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["turmas-disponibilidades"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/turmas-disponibilidades/{id}": {
+      "get": {
+        "operationId": "TurmaDisponibilidadeFindOneById",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Identificador do registro (uuid).",
+            "kind": "schema",
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "$id": "ladesa://schemas/v3/generics/uuid.json",
+              "type": "string",
+              "format": "uuid",
+              "description": "Identificador do registro (uuid).",
+              "x-unispec-constraint-entity-exists": "TurmaDisponibilidade"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "Visão FindOne de uma TurmaDisponibilidade.",
+            "kind": "type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TurmaDisponibilidadeFindOneResultView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["turmas-disponibilidades"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "TurmaDisponibilidadeUpdateOneById",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Identificador do registro (uuid).",
+            "kind": "schema",
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "$id": "ladesa://schemas/v3/generics/uuid.json",
+              "type": "string",
+              "format": "uuid",
+              "description": "Identificador do registro (uuid).",
+              "x-unispec-constraint-entity-exists": "TurmaDisponibilidade"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Dados de entrada para a atualização de uma TurmaDisponibilidade.",
+          "kind": "type",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TurmaDisponibilidadeInputUpdateView"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "Visão FindOne de uma TurmaDisponibilidade.",
+            "kind": "type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TurmaDisponibilidadeFindOneResultView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["turmas-disponibilidades"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "TurmaDisponibilidadeDeleteOneById",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Identificador do registro (uuid).",
+            "kind": "schema",
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "$id": "ladesa://schemas/v3/generics/uuid.json",
+              "type": "string",
+              "format": "uuid",
+              "description": "Identificador do registro (uuid).",
+              "x-unispec-constraint-entity-exists": "TurmaDisponibilidade"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "",
+            "kind": "schema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["turmas-disponibilidades"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/professores-disponibilidades": {
+      "get": {
+        "operationId": "ProfessorDisponibilidadeList",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Página de consulta.",
+            "kind": "schema",
+            "schema": {
+              "minimum": 1,
+              "description": "Página de consulta.",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Limite da quantidade de resultados por página.",
+            "kind": "schema",
+            "schema": {
+              "minimum": 1,
+              "description": "Limite da quantidade de resultados por página.",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Busca textual.",
+            "kind": "schema",
+            "schema": {
+              "description": "Busca textual.",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Ordenação.",
+            "kind": "schema",
+            "schema": {
+              "type": "array",
+              "nullable": false,
+              "items": {
+                "nullable": false,
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "filter_professor_id",
+            "required": true,
+            "in": "query",
+            "kind": "schema",
+            "schema": {
+              "type": "array",
+              "nullable": false,
+              "items": {
+                "nullable": false,
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "Resultados da busca a ProfessorDisponibilidades.",
+            "kind": "type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfessorDisponibilidadeListResultView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["professores-disponibilidades"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ProfessorDisponibilidadeCreate",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "Dados de entrada para a criação de uma ProfessorDisponibilidade.",
+          "kind": "type",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfessorDisponibilidadeInputCreateView"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "Visão FindOne de uma ProfessorDisponibilidade.",
+            "kind": "type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfessorDisponibilidadeFindOneResultView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["professores-disponibilidades"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/professores-disponibilidades/{id}": {
+      "get": {
+        "operationId": "ProfessorDisponibilidadeFindOneById",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Identificador do registro (uuid).",
+            "kind": "schema",
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "$id": "ladesa://schemas/v3/generics/uuid.json",
+              "type": "string",
+              "format": "uuid",
+              "description": "Identificador do registro (uuid).",
+              "x-unispec-constraint-entity-exists": "ProfessorDisponibilidade"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "Visão FindOne de uma ProfessorDisponibilidade.",
+            "kind": "type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfessorDisponibilidadeFindOneResultView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["professores-disponibilidades"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ProfessorDisponibilidadeUpdateOneById",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Identificador do registro (uuid).",
+            "kind": "schema",
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "$id": "ladesa://schemas/v3/generics/uuid.json",
+              "type": "string",
+              "format": "uuid",
+              "description": "Identificador do registro (uuid).",
+              "x-unispec-constraint-entity-exists": "ProfessorDisponibilidade"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Dados de entrada para a atualização de uma ProfessorDisponibilidade.",
+          "kind": "type",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfessorDisponibilidadeInputUpdateView"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "Visão FindOne de uma ProfessorDisponibilidade.",
+            "kind": "type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfessorDisponibilidadeFindOneResultView"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["professores-disponibilidades"],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ProfessorDisponibilidadeDeleteOneById",
+        "summary": "",
+        "description": "Sem descrição.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Identificador do registro (uuid).",
+            "kind": "schema",
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "$id": "ladesa://schemas/v3/generics/uuid.json",
+              "type": "string",
+              "format": "uuid",
+              "description": "Identificador do registro (uuid).",
+              "x-unispec-constraint-entity-exists": "ProfessorDisponibilidade"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "nullable": false,
+            "description": "",
+            "kind": "schema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "O solicitante não tem permissão para executar esta ação."
+          },
+          "404": {
+            "description": "Registro não encontrado."
+          }
+        },
+        "tags": ["professores-disponibilidades"],
         "security": [
           {
             "bearer": []
@@ -8810,7 +9412,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios gerados"],
+        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
@@ -8854,7 +9456,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios gerados"],
+        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
@@ -8904,7 +9506,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios gerados"],
+        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
@@ -8964,7 +9566,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios gerados"],
+        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
@@ -9012,7 +9614,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios gerados"],
+        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
@@ -9097,7 +9699,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios Gerados Aula"],
+        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
@@ -9141,7 +9743,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios Gerados Aula"],
+        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
@@ -9191,7 +9793,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios Gerados Aula"],
+        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
@@ -9251,7 +9853,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios Gerados Aula"],
+        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
@@ -9299,7 +9901,7 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["Horarios Gerados Aula"],
+        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
@@ -9316,76 +9918,112 @@
   },
   "tags": [
     {
-      "name": "Base",
-      "description": "Ladesa - Base"
+      "name": "base",
+      "description": "Base"
     },
     {
-      "name": "Arquivos",
-      "description": "Armazenamento / Arquivos"
+      "name": "arquivos",
+      "description": "Base / Armazenamento / Arquivos"
     },
     {
-      "name": "Autenticacao",
+      "name": "estados",
+      "description": "Base / Lugares / Estados"
+    },
+    {
+      "name": "cidades",
+      "description": "Base / Lugares / Estados / Cidades"
+    },
+    {
+      "name": "autenticacao",
       "description": ""
     },
     {
-      "name": "Usuarios",
+      "name": "usuarios",
       "description": "Autenticação / Usuários"
     },
     {
-      "name": "Estados",
-      "description": "Ambientes / Estados"
-    },
-    {
-      "name": "Cidades",
-      "description": "Ambientes / Cidades"
-    },
-    {
-      "name": "Campi",
+      "name": "campi",
       "description": "Ambientes / Campi"
     },
     {
-      "name": "Blocos",
+      "name": "blocos",
       "description": "Ambientes / Campi / Blocos"
     },
     {
-      "name": "Ambientes",
+      "name": "ambientes",
       "description": "Ambientes / Campi / Blocos / Ambiente"
     },
     {
-      "name": "Reservas",
+      "name": "reservas",
       "description": "Ambientes / Campi / Blocos / Ambiente / Reservas"
     },
     {
-      "name": "Vinculos",
-      "description": "Autenticação / Usuários / Vínculos"
+      "name": "perfis",
+      "description": "Autorização / Usuários / Perfis"
     },
     {
-      "name": "Modalidades",
-      "description": "Ensino / Modalidade"
+      "name": "niveis-formacoes",
+      "description": "Ensino Institucional / Níveis de Formações"
     },
     {
-      "name": "Cursos",
-      "description": "Ensino / Cursos"
+      "name": "modalidades",
+      "description": "Ensino Institucional / Modalidades"
     },
     {
-      "name": "Disciplinas",
-      "description": "Ensino / Disciplinas"
+      "name": "ofertas-formacoes",
+      "description": "Ensino Institucional / Ofertas de Formações"
     },
     {
-      "name": "Turmas",
-      "description": "Ensino / Turmas"
+      "name": "ofertas-formacoes-niveis-formacoes",
+      "description": "Ensino Institucional / Ofertas de Formações / Níveis de Formação"
     },
     {
-      "name": "Diarios",
-      "description": "Ensino / Diarios"
+      "name": "cursos",
+      "description": "Ensino Institucional / Cursos"
     },
     {
-      "name": "DiarioProfessor",
-      "description": "Ensino / Diário Professor"
+      "name": "disciplinas",
+      "description": "Ensino Institucional / Disciplinas"
     },
     {
-      "name": "Calendarios Letivos",
-      "description": "Calendario / Calendarios Letivos"
+      "name": "grades-horarios-ofertas-formacoes",
+      "description": "Calendário / Grades de Horário para Ofertas de Formações"
+    },
+    {
+      "name": "grades-horarios-ofertas-formacoes-intervalos-de-tempo",
+      "description": "Calendário / Grades de Horário para Ofertas de Formações / Intervalos de Tempo"
+    },
+    {
+      "name": "calendarios-letivos",
+      "description": "Calendário / Calendarios Letivos"
+    },
+    {
+      "name": "dias-calendarios",
+      "description": "Calendário / Calendarios Letivos / Dias"
+    },
+    {
+      "name": "etapas",
+      "description": "Calendário / Calendarios Letivos / Etapas"
+    },
+    {
+      "name": "eventos",
+      "description": "Calendário / Calendarios Letivos / Eventos"
+    },
+    {
+      "name": "turmas",
+      "description": "Ensino Discente / Turmas"
+    },
+    {
+      "name": "diarios",
+      "description": "Ensino Discente / Diarios"
+    },
+    {
+      "name": "diarios-professor",
+      "description": "Ensino Discente / Professores em Diários"
+    },
+    {
+      "name": "aulas",
+      "description": "Ensino Discente / Aulas"
     }
   ],
   "servers": [],
@@ -14098,6 +14736,465 @@
             "description": "Date ISO 8601.",
             "$schema": "https://json-schema.org/draft/2020-12/schema",
             "format": "date"
+          }
+        }
+      },
+      "DisponibilidadeDiaFindOneResultView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid"
+          },
+          "rrule": {
+            "type": "string",
+            "nullable": false,
+            "description": "Regra RRule para a recorrência do evento. Segue a RFC 5545 do iCalendar."
+          },
+          "intervaloDeTempo": {
+            "nullable": false,
+            "description": "Visão FindOne de um Intervalo de Tempo.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntervaloDeTempoFindOneResultView"
+              }
+            ]
+          },
+          "disponibilidade": {
+            "nullable": false,
+            "description": "Visão FindOne de uma Disponibilidade.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisponibilidadeFindOneResultView"
+              }
+            ]
+          },
+          "dateCreated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da criação do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da alteração do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateDeleted": {
+            "type": "string",
+            "nullable": true,
+            "description": "Data e hora da exclusão do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "rrule", "intervaloDeTempo", "disponibilidade", "dateCreated", "dateUpdated", "dateDeleted"]
+      },
+      "DisponibilidadeDiaListResultView": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "nullable": false,
+            "description": "Metadados da busca.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginatedResultMetaView"
+              }
+            ]
+          },
+          "data": {
+            "nullable": false,
+            "description": "Visão FindOne de um DisponibilidadeDia.",
+            "kind": "type",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DisponibilidadeDiaFindOneResultView"
+            }
+          },
+          "links": {
+            "nullable": false,
+            "description": "Links da busca.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginatedResultLinksView"
+              }
+            ]
+          }
+        },
+        "required": ["meta", "data", "links"]
+      },
+      "DisponibilidadeFindOneInputView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid",
+            "x-unispec-constraint-entity-exists": "Disponibilidade"
+          }
+        },
+        "required": ["id"]
+      },
+      "DisponibilidadeDiaInputCreateView": {
+        "type": "object",
+        "properties": {
+          "rrule": {
+            "type": "string",
+            "nullable": false,
+            "description": "Regra RRule para a recorrência do evento. Segue a RFC 5545 do iCalendar."
+          },
+          "intervaloDeTempo": {
+            "nullable": false,
+            "description": "Dados de entrada para um Intervalo de Tempo.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntervaloDeTempoInputView"
+              }
+            ]
+          },
+          "disponibilidade": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar uma Disponibilidade por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisponibilidadeFindOneInputView"
+              }
+            ]
+          }
+        },
+        "required": ["rrule", "intervaloDeTempo", "disponibilidade"]
+      },
+      "DisponibilidadeDiaInputUpdateView": {
+        "type": "object",
+        "properties": {
+          "rrule": {
+            "type": "string",
+            "nullable": false,
+            "description": "Regra RRule para a recorrência do evento. Segue a RFC 5545 do iCalendar."
+          },
+          "intervaloDeTempo": {
+            "nullable": false,
+            "description": "Dados de entrada para um Intervalo de Tempo.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntervaloDeTempoInputView"
+              }
+            ]
+          },
+          "disponibilidade": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar uma Disponibilidade por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisponibilidadeFindOneInputView"
+              }
+            ]
+          }
+        }
+      },
+      "TurmaDisponibilidadeFindOneResultView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid"
+          },
+          "disponibilidade": {
+            "nullable": false,
+            "description": "Visão FindOne de uma Disponibilidade.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisponibilidadeFindOneResultView"
+              }
+            ]
+          },
+          "turma": {
+            "nullable": false,
+            "description": "Visão FindOne de uma Turma.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TurmaFindOneResultView"
+              }
+            ]
+          },
+          "dateCreated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da criação do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da alteração do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateDeleted": {
+            "type": "string",
+            "nullable": true,
+            "description": "Data e hora da exclusão do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "disponibilidade", "turma", "dateCreated", "dateUpdated", "dateDeleted"]
+      },
+      "TurmaDisponibilidadeListResultView": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "nullable": false,
+            "description": "Metadados da busca.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginatedResultMetaView"
+              }
+            ]
+          },
+          "data": {
+            "nullable": false,
+            "description": "Visão FindOne de uma TurmaDisponibilidade.",
+            "kind": "type",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TurmaDisponibilidadeFindOneResultView"
+            }
+          },
+          "links": {
+            "nullable": false,
+            "description": "Links da busca.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginatedResultLinksView"
+              }
+            ]
+          }
+        },
+        "required": ["meta", "data", "links"]
+      },
+      "TurmaDisponibilidadeInputCreateView": {
+        "type": "object",
+        "properties": {
+          "disponibilidade": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar uma Disponibilidade por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisponibilidadeFindOneInputView"
+              }
+            ]
+          },
+          "turma": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar uma Turma por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TurmaFindOneInputView"
+              }
+            ]
+          }
+        },
+        "required": ["disponibilidade", "turma"]
+      },
+      "TurmaDisponibilidadeInputUpdateView": {
+        "type": "object",
+        "properties": {
+          "disponibilidade": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar uma Disponibilidade por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisponibilidadeFindOneInputView"
+              }
+            ]
+          },
+          "turma": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar uma Turma por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TurmaFindOneInputView"
+              }
+            ]
+          }
+        }
+      },
+      "ProfessorDisponibilidadeFindOneResultView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid"
+          },
+          "disponibilidade": {
+            "nullable": false,
+            "description": "Visão FindOne de uma Disponibilidade.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisponibilidadeFindOneResultView"
+              }
+            ]
+          },
+          "perfil": {
+            "nullable": false,
+            "description": "Visão FindOne de um Vínculo.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PerfilFindOneResultView"
+              }
+            ]
+          },
+          "dateCreated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da criação do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da alteração do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateDeleted": {
+            "type": "string",
+            "nullable": true,
+            "description": "Data e hora da exclusão do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "disponibilidade", "perfil", "dateCreated", "dateUpdated", "dateDeleted"]
+      },
+      "ProfessorDisponibilidadeListResultView": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "nullable": false,
+            "description": "Metadados da busca.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginatedResultMetaView"
+              }
+            ]
+          },
+          "data": {
+            "nullable": false,
+            "description": "Visão FindOne de uma ProfessorDisponibilidade.",
+            "kind": "type",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfessorDisponibilidadeFindOneResultView"
+            }
+          },
+          "links": {
+            "nullable": false,
+            "description": "Links da busca.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginatedResultLinksView"
+              }
+            ]
+          }
+        },
+        "required": ["meta", "data", "links"]
+      },
+      "ProfessorDisponibilidadeInputCreateView": {
+        "type": "object",
+        "properties": {
+          "disponibilidade": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar uma Disponibilidade por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisponibilidadeFindOneInputView"
+              }
+            ]
+          },
+          "perfil": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar um Vínculo por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PerfilFindOneInputView"
+              }
+            ]
+          }
+        },
+        "required": ["disponibilidade", "perfil"]
+      },
+      "ProfessorDisponibilidadeInputUpdateView": {
+        "type": "object",
+        "properties": {
+          "disponibilidade": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar uma Disponibilidade por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DisponibilidadeFindOneInputView"
+              }
+            ]
+          },
+          "perfil": {
+            "nullable": false,
+            "description": "Dados de entrada para encontrar um Vínculo por ID.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PerfilFindOneInputView"
+              }
+            ]
           }
         }
       },

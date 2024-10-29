@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, Upload
 import { ApiTags } from "@nestjs/swagger";
 import { TurmaService } from "./turma.service";
 
-@ApiTags("Turmas")
+@ApiTags("turmas")
 @Controller("/turmas")
 export class TurmaController {
   constructor(private turmaService: TurmaService) {}

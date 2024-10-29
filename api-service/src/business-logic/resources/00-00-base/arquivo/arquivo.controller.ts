@@ -5,7 +5,7 @@ import { Controller, Get, Param, Query, type StreamableFile } from "@nestjs/comm
 import { ApiTags } from "@nestjs/swagger";
 import { ArquivoService } from "./arquivo.service";
 
-@ApiTags("Arquivos")
+@ApiTags("arquivos")
 @Controller("/arquivos")
 export class ArquivoController {
   constructor(private arquivoService: ArquivoService) {}

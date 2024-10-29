@@ -235,6 +235,10 @@ export class DatabaseContext {
     return repositories.createTurmaDisponibilidadeRepository(this.ds);
   }
 
+  get professorDisponibilidadeRepository() {
+    return repositories.createProfessorDisponibilidadeRepository(this.ds);
+  }
+
   get diarioPreferenciaAgrupamentoRepository() {
     return repositories.createDiarioPreferenciaAgrupamentoRepository(this.ds);
   }

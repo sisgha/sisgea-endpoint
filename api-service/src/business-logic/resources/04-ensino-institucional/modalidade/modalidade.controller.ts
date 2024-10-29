@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { ModalidadeService } from "./modalidade.service";
 
-@ApiTags("Modalidades")
+@ApiTags("modalidades")
 @Controller("/modalidades")
 export class ModalidadeController {
   constructor(private modalidadeService: ModalidadeService) {}

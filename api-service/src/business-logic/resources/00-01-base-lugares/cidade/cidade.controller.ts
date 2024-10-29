@@ -7,7 +7,7 @@ import { Controller, Get } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CidadeService } from "./cidade.service";
 
-@ApiTags("Cidades")
+@ApiTags("cidades")
 @Controller("/base/cidades")
 export class CidadeController {
   constructor(private cidadeService: CidadeService) {}

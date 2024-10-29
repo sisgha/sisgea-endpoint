@@ -7,8 +7,8 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { GradeHorarioOfertaFormacaoIntervaloDeTempoService } from "./grade-horario-oferta-formacao-intervalo-de-tempo.service";
 
-@ApiTags("GradeHorarioOfertaFormacaoIntervaloDeTempo")
-@Controller("/grades-horario-ofertas-formacao-intervalos-de-tempo")
+@ApiTags("grades-horarios-ofertas-formacoes-intervalos-de-tempo")
+@Controller("/grades-horarios-ofertas-formacoes-intervalos-de-tempo")
 export class GradeHorarioOfertaFormacaoIntervaloDeTempoController {
   constructor(private gradeHorarioOfertaFormacaoIntervaloDeTempoService: GradeHorarioOfertaFormacaoIntervaloDeTempoService) {}
 

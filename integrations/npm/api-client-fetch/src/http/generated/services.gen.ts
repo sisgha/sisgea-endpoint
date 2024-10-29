@@ -261,6 +261,16 @@ import type {
   PerfilListResponse,
   PerfilUpdateOneByIdData,
   PerfilUpdateOneByIdResponse,
+  ProfessorDisponibilidadeCreateData,
+  ProfessorDisponibilidadeCreateResponse,
+  ProfessorDisponibilidadeDeleteOneByIdData,
+  ProfessorDisponibilidadeDeleteOneByIdResponse,
+  ProfessorDisponibilidadeFindOneByIdData,
+  ProfessorDisponibilidadeFindOneByIdResponse,
+  ProfessorDisponibilidadeListData,
+  ProfessorDisponibilidadeListResponse,
+  ProfessorDisponibilidadeUpdateOneByIdData,
+  ProfessorDisponibilidadeUpdateOneByIdResponse,
   ReservaCreateData,
   ReservaCreateResponse,
   ReservaDeleteOneByIdData,
@@ -275,6 +285,16 @@ import type {
   TurmaCreateResponse,
   TurmaDeleteOneByIdData,
   TurmaDeleteOneByIdResponse,
+  TurmaDisponibilidadeCreateData,
+  TurmaDisponibilidadeCreateResponse,
+  TurmaDisponibilidadeDeleteOneByIdData,
+  TurmaDisponibilidadeDeleteOneByIdResponse,
+  TurmaDisponibilidadeFindOneByIdData,
+  TurmaDisponibilidadeFindOneByIdResponse,
+  TurmaDisponibilidadeListData,
+  TurmaDisponibilidadeListResponse,
+  TurmaDisponibilidadeUpdateOneByIdData,
+  TurmaDisponibilidadeUpdateOneByIdResponse,
   TurmaFindOneByIdData,
   TurmaFindOneByIdResponse,
   TurmaGetImagemCapaData,
@@ -309,7 +329,7 @@ export class BaseService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
-   * @returns unknown Olá, Mundo!!
+   * @returns unknown Olá, Mundo!
    * @throws ApiError
    */
   public appControllerGetHello(): CancelablePromise<AppControllerGetHelloResponse> {
@@ -748,7 +768,7 @@ export class UsuariosService {
   }
 }
 
-export class VinculosService {
+export class PerfisService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
@@ -1381,7 +1401,7 @@ export class ReservasService {
   }
 }
 
-export class NivelFormacaoService {
+export class NiveisFormacoesService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
@@ -1615,7 +1635,7 @@ export class ModalidadesService {
   }
 }
 
-export class OfertaFormacaoService {
+export class OfertasFormacoesService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
@@ -1732,7 +1752,7 @@ export class OfertaFormacaoService {
   }
 }
 
-export class OfertaFormacaoNivelFormacaoService {
+export class OfertasFormacoesNiveisFormacoesService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
@@ -2298,7 +2318,7 @@ export class CalendariosLetivosService {
   }
 }
 
-export class GradeHorarioOfertaFormacaoService {
+export class GradesHorariosOfertasFormacoesService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
@@ -2415,7 +2435,7 @@ export class GradeHorarioOfertaFormacaoService {
   }
 }
 
-export class GradeHorarioOfertaFormacaoIntervaloDeTempoService {
+export class GradesHorariosOfertasFormacoesIntervalosDeTempoService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
@@ -2431,7 +2451,7 @@ export class GradeHorarioOfertaFormacaoIntervaloDeTempoService {
   public gradeHorarioOfertaFormacaoIntervaloDeTempoList(data: GradeHorarioOfertaFormacaoIntervaloDeTempoListData = {}): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoListResponse> {
     return this.httpRequest.request({
       method: "GET",
-      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo",
+      url: "/grades-horarios-ofertas-formacoes-intervalos-de-tempo",
       query: {
         page: data.page,
         limit: data.limit,
@@ -2455,7 +2475,7 @@ export class GradeHorarioOfertaFormacaoIntervaloDeTempoService {
   public gradeHorarioOfertaFormacaoIntervaloDeTempoCreate(data: GradeHorarioOfertaFormacaoIntervaloDeTempoCreateData): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoCreateResponse> {
     return this.httpRequest.request({
       method: "POST",
-      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo",
+      url: "/grades-horarios-ofertas-formacoes-intervalos-de-tempo",
       body: data.requestBody,
       mediaType: "application/json",
       errors: {
@@ -2477,7 +2497,7 @@ export class GradeHorarioOfertaFormacaoIntervaloDeTempoService {
   ): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneByIdResponse> {
     return this.httpRequest.request({
       method: "GET",
-      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo/{id}",
+      url: "/grades-horarios-ofertas-formacoes-intervalos-de-tempo/{id}",
       path: {
         id: data.id,
       },
@@ -2501,7 +2521,7 @@ export class GradeHorarioOfertaFormacaoIntervaloDeTempoService {
   ): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoUpdateOneByIdResponse> {
     return this.httpRequest.request({
       method: "PATCH",
-      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo/{id}",
+      url: "/grades-horarios-ofertas-formacoes-intervalos-de-tempo/{id}",
       path: {
         id: data.id,
       },
@@ -2526,7 +2546,7 @@ export class GradeHorarioOfertaFormacaoIntervaloDeTempoService {
   ): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoDeleteOneByIdResponse> {
     return this.httpRequest.request({
       method: "DELETE",
-      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo/{id}",
+      url: "/grades-horarios-ofertas-formacoes-intervalos-de-tempo/{id}",
       path: {
         id: data.id,
       },
@@ -2657,7 +2677,7 @@ export class EventosService {
   }
 }
 
-export class DiasCalendarioService {
+export class DiasCalendariosService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
@@ -3665,6 +3685,244 @@ export class DiariosPreferenciaAgrupamentoService {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/diarios-preferencia-agrupamento/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class TurmasDisponibilidadesService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.filterTurmaId
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns TurmaDisponibilidadeListResultView Resultados da busca a TurmaDisponibilidades.
+   * @throws ApiError
+   */
+  public turmaDisponibilidadeList(data: TurmaDisponibilidadeListData): CancelablePromise<TurmaDisponibilidadeListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/turmas-disponibilidades",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+        filter_turma_id: data.filterTurmaId,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma TurmaDisponibilidade.
+   * @returns TurmaDisponibilidadeFindOneResultView Visão FindOne de uma TurmaDisponibilidade.
+   * @throws ApiError
+   */
+  public turmaDisponibilidadeCreate(data: TurmaDisponibilidadeCreateData): CancelablePromise<TurmaDisponibilidadeCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/turmas-disponibilidades",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns TurmaDisponibilidadeFindOneResultView Visão FindOne de uma TurmaDisponibilidade.
+   * @throws ApiError
+   */
+  public turmaDisponibilidadeFindOneById(data: TurmaDisponibilidadeFindOneByIdData): CancelablePromise<TurmaDisponibilidadeFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/turmas-disponibilidades/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma TurmaDisponibilidade.
+   * @returns TurmaDisponibilidadeFindOneResultView Visão FindOne de uma TurmaDisponibilidade.
+   * @throws ApiError
+   */
+  public turmaDisponibilidadeUpdateOneById(data: TurmaDisponibilidadeUpdateOneByIdData): CancelablePromise<TurmaDisponibilidadeUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/turmas-disponibilidades/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public turmaDisponibilidadeDeleteOneById(data: TurmaDisponibilidadeDeleteOneByIdData): CancelablePromise<TurmaDisponibilidadeDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/turmas-disponibilidades/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class ProfessoresDisponibilidadesService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.filterProfessorId
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns ProfessorDisponibilidadeListResultView Resultados da busca a ProfessorDisponibilidades.
+   * @throws ApiError
+   */
+  public professorDisponibilidadeList(data: ProfessorDisponibilidadeListData): CancelablePromise<ProfessorDisponibilidadeListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/professores-disponibilidades",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+        filter_professor_id: data.filterProfessorId,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma ProfessorDisponibilidade.
+   * @returns ProfessorDisponibilidadeFindOneResultView Visão FindOne de uma ProfessorDisponibilidade.
+   * @throws ApiError
+   */
+  public professorDisponibilidadeCreate(data: ProfessorDisponibilidadeCreateData): CancelablePromise<ProfessorDisponibilidadeCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/professores-disponibilidades",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns ProfessorDisponibilidadeFindOneResultView Visão FindOne de uma ProfessorDisponibilidade.
+   * @throws ApiError
+   */
+  public professorDisponibilidadeFindOneById(data: ProfessorDisponibilidadeFindOneByIdData): CancelablePromise<ProfessorDisponibilidadeFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/professores-disponibilidades/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma ProfessorDisponibilidade.
+   * @returns ProfessorDisponibilidadeFindOneResultView Visão FindOne de uma ProfessorDisponibilidade.
+   * @throws ApiError
+   */
+  public professorDisponibilidadeUpdateOneById(data: ProfessorDisponibilidadeUpdateOneByIdData): CancelablePromise<ProfessorDisponibilidadeUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/professores-disponibilidades/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public professorDisponibilidadeDeleteOneById(data: ProfessorDisponibilidadeDeleteOneByIdData): CancelablePromise<ProfessorDisponibilidadeDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/professores-disponibilidades/{id}",
       path: {
         id: data.id,
       },

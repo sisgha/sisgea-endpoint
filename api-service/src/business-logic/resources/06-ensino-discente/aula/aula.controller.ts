@@ -7,7 +7,7 @@ import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { AulaService } from "./aula.service";
 
-@ApiTags("Aulas")
+@ApiTags("aulas")
 @Controller("/aulas")
 export class AulaController {
   constructor(private aulaService: AulaService) {}
