@@ -484,6 +484,28 @@ export type IAuthzStatementAulaFind = IBaseAuthzFilter<"aula:find">;
 
 // =====================
 
+export type IAuthzStatementDisponibilidadeCreate = IBaseAuthzCheck<
+  "disponibilidade:create",
+  {
+    dto: LadesaTypings.DisponibilidadeCreateOperationInput;
+  }
+>;
+export type IAuthzStatementDisponibilidadeUpdate = IBaseAuthzFilter<
+  "disponibilidade:update",
+  {
+    dto: LadesaTypings.DisponibilidadeUpdateByIdOperationInput;
+  }
+>;
+export type IAuthzStatementDisponibilidadeDelete = IBaseAuthzFilter<
+  "disponibilidade:delete",
+  {
+    dto: LadesaTypings.DisponibilidadeFindOneInputView;
+  }
+>;
+export type IAuthzStatementDisponibilidadeFind = IBaseAuthzFilter<"disponibilidade:find">;
+
+// =====================
+
 export type IAuthzStatementDiarioPreferenciaAgrupamentoCreate = IBaseAuthzCheck<
   "diario_preferencia_agrupamento:create",
   {
@@ -572,6 +594,7 @@ export type IAuthzStatementCheck =
   | IAuthzStatementDiaCalendarioCreate
   | IAuthzStatementEtapaCreate
   | IAuthzStatementAulaCreate
+  | IAuthzStatementDisponibilidadeCreate
   | IAuthzStatementDiarioPreferenciaAgrupamentoCreate
   | IAuthzStatementHorarioGeradoCreate
   | IAuthzStatementHorarioGeradoAulaCreate;
@@ -647,6 +670,9 @@ export type IAuthzStatementFilter =
   | IAuthzStatementAulaUpdate
   | IAuthzStatementAulaDelete
   | IAuthzStatementAulaFind
+  | IAuthzStatementDisponibilidadeUpdate
+  | IAuthzStatementDisponibilidadeFind
+  | IAuthzStatementDisponibilidadeDelete
   | IAuthzStatementDiarioPreferenciaAgrupamentoUpdate
   | IAuthzStatementDiarioPreferenciaAgrupamentoFind
   | IAuthzStatementDiarioPreferenciaAgrupamentoDelete

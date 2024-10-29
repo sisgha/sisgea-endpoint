@@ -10,7 +10,7 @@ export class AppController {
   @Get()
   @ApiResponse({
     status: 200,
-    description: "Olá, Mundo!!",
+    description: "Olá, Mundo!",
     schema: {
       type: "object",
       properties: {

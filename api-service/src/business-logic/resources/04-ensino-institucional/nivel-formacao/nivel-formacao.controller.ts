@@ -8,7 +8,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { NivelFormacaoService } from "./nivel-formacao.service";
 
 @ApiTags("NivelFormacao")
-@Controller("/niveis-formacao")
+@Controller("/niveis-formacoes")
 export class NivelFormacaoController {
   constructor(private nivelformacaoService: NivelFormacaoService) {}
 

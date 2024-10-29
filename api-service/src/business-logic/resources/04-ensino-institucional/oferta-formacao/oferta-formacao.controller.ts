@@ -8,7 +8,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { OfertaFormacaoService } from "./oferta-formacao.service";
 
 @ApiTags("OfertaFormacao")
-@Controller("/ofertas-formacao")
+@Controller("/ofertas-formacoes")
 export class OfertaFormacaoController {
   constructor(private ofertaFormacaoService: OfertaFormacaoService) {}
 

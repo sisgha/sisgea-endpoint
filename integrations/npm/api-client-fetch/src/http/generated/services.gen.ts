@@ -143,6 +143,16 @@ import type {
   DisciplinaSetImagemCapaResponse,
   DisciplinaUpdateOneByIdData,
   DisciplinaUpdateOneByIdResponse,
+  DisponibilidadeCreateData,
+  DisponibilidadeCreateResponse,
+  DisponibilidadeDeleteOneByIdData,
+  DisponibilidadeDeleteOneByIdResponse,
+  DisponibilidadeFindOneByIdData,
+  DisponibilidadeFindOneByIdResponse,
+  DisponibilidadeListData,
+  DisponibilidadeListResponse,
+  DisponibilidadeUpdateOneByIdData,
+  DisponibilidadeUpdateOneByIdResponse,
   EstadoFindOneByIdData,
   EstadoFindOneByIdResponse,
   EstadoListData,
@@ -167,6 +177,26 @@ import type {
   EventoListResponse,
   EventoUpdateOneByIdData,
   EventoUpdateOneByIdResponse,
+  GradeHorarioOfertaFormacaoCreateData,
+  GradeHorarioOfertaFormacaoCreateResponse,
+  GradeHorarioOfertaFormacaoDeleteOneByIdData,
+  GradeHorarioOfertaFormacaoDeleteOneByIdResponse,
+  GradeHorarioOfertaFormacaoFindOneByIdData,
+  GradeHorarioOfertaFormacaoFindOneByIdResponse,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoCreateData,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoCreateResponse,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoDeleteOneByIdData,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoDeleteOneByIdResponse,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneByIdData,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneByIdResponse,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoListData,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoListResponse,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoUpdateOneByIdData,
+  GradeHorarioOfertaFormacaoIntervaloDeTempoUpdateOneByIdResponse,
+  GradeHorarioOfertaFormacaoListData,
+  GradeHorarioOfertaFormacaoListResponse,
+  GradeHorarioOfertaFormacaoUpdateOneByIdData,
+  GradeHorarioOfertaFormacaoUpdateOneByIdResponse,
   HorarioGeradoAulaCreateData,
   HorarioGeradoAulaCreateResponse,
   HorarioGeradoAulaDeleteOneByIdData,
@@ -197,6 +227,36 @@ import type {
   ModalidadeListResponse,
   ModalidadeUpdateOneByIdData,
   ModalidadeUpdateOneByIdResponse,
+  NivelFormacaoCreateData,
+  NivelFormacaoCreateResponse,
+  NivelFormacaoDeleteOneByIdData,
+  NivelFormacaoDeleteOneByIdResponse,
+  NivelFormacaoFindOneByIdData,
+  NivelFormacaoFindOneByIdResponse,
+  NivelFormacaoListData,
+  NivelFormacaoListResponse,
+  NivelFormacaoUpdateOneByIdData,
+  NivelFormacaoUpdateOneByIdResponse,
+  OfertaFormacaoCreateData,
+  OfertaFormacaoCreateResponse,
+  OfertaFormacaoDeleteOneByIdData,
+  OfertaFormacaoDeleteOneByIdResponse,
+  OfertaFormacaoFindOneByIdData,
+  OfertaFormacaoFindOneByIdResponse,
+  OfertaFormacaoListData,
+  OfertaFormacaoListResponse,
+  OfertaFormacaoNivelFormacaoCreateData,
+  OfertaFormacaoNivelFormacaoCreateResponse,
+  OfertaFormacaoNivelFormacaoDeleteOneByIdData,
+  OfertaFormacaoNivelFormacaoDeleteOneByIdResponse,
+  OfertaFormacaoNivelFormacaoFindOneByIdData,
+  OfertaFormacaoNivelFormacaoFindOneByIdResponse,
+  OfertaFormacaoNivelFormacaoListData,
+  OfertaFormacaoNivelFormacaoListResponse,
+  OfertaFormacaoNivelFormacaoUpdateOneByIdData,
+  OfertaFormacaoNivelFormacaoUpdateOneByIdResponse,
+  OfertaFormacaoUpdateOneByIdData,
+  OfertaFormacaoUpdateOneByIdResponse,
   PerfilListData,
   PerfilListResponse,
   PerfilUpdateOneByIdData,
@@ -249,7 +309,7 @@ export class BaseService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
-   * @returns unknown Olá, Mundo!
+   * @returns unknown Olá, Mundo!!
    * @throws ApiError
    */
   public appControllerGetHello(): CancelablePromise<AppControllerGetHelloResponse> {
@@ -286,6 +346,112 @@ export class ArquivosService {
         "acesso.recurso.nome": data.acessoRecursoNome,
         nomeRecurso: data.nomeRecurso,
         idRecurso: data.idRecurso,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class EstadosService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns EstadoListResultView Resultados da busca a estados.
+   * @throws ApiError
+   */
+  public estadoList(data: EstadoListData = {}): CancelablePromise<EstadoListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/base/estados",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (numérico).
+   * @returns EstadoFindOneResultView Visão FindOne de um estado.
+   * @throws ApiError
+   */
+  public estadoFindOneById(data: EstadoFindOneByIdData): CancelablePromise<EstadoFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/base/estados/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class CidadesService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @param data.filterEstadoId
+   * @returns CidadeListResultView Resultados da busca a cidades.
+   * @throws ApiError
+   */
+  public cidadeList(data: CidadeListData = {}): CancelablePromise<CidadeListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/base/cidades",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+        "filter.estado.id": data.filterEstadoId,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (numérico).
+   * @returns CidadeFindOneResultView Visão FindOne de uma cidade.
+   * @throws ApiError
+   */
+  public cidadeFindOneById(data: CidadeFindOneByIdData): CancelablePromise<CidadeFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/base/cidades/{id}",
+      path: {
+        id: data.id,
       },
       errors: {
         403: "O solicitante não tem permissão para executar esta ação.",
@@ -760,229 +926,6 @@ export class CampiService {
   }
 }
 
-export class ModalidadesService {
-  constructor(public readonly httpRequest: BaseHttpRequest) {}
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.page Página de consulta.
-   * @param data.limit Limite da quantidade de resultados por página.
-   * @param data.search Busca textual.
-   * @param data.sortBy Ordenação.
-   * @returns ModalidadeListResultView Resultados da busca a Modalidades.
-   * @throws ApiError
-   */
-  public modalidadeList(data: ModalidadeListData = {}): CancelablePromise<ModalidadeListResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/modalidades",
-      query: {
-        page: data.page,
-        limit: data.limit,
-        search: data.search,
-        sortBy: data.sortBy,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.requestBody Dados de entrada para a criação de uma modalidade.
-   * @returns ModalidadeFindOneResultView Visão FindOne de uma modalidade.
-   * @throws ApiError
-   */
-  public modalidadeCreate(data: ModalidadeCreateData): CancelablePromise<ModalidadeCreateResponse> {
-    return this.httpRequest.request({
-      method: "POST",
-      url: "/modalidades",
-      body: data.requestBody,
-      mediaType: "application/json",
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @returns ModalidadeFindOneResultView Visão FindOne de uma modalidade.
-   * @throws ApiError
-   */
-  public modalidadeFindOneById(data: ModalidadeFindOneByIdData): CancelablePromise<ModalidadeFindOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/modalidades/{id}",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @param data.requestBody Dados de entrada para a atualização de uma modalidade.
-   * @returns ModalidadeFindOneResultView Visão FindOne de uma modalidade.
-   * @throws ApiError
-   */
-  public modalidadeUpdateOneById(data: ModalidadeUpdateOneByIdData): CancelablePromise<ModalidadeUpdateOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "PATCH",
-      url: "/modalidades/{id}",
-      path: {
-        id: data.id,
-      },
-      body: data.requestBody,
-      mediaType: "application/json",
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @returns boolean
-   * @throws ApiError
-   */
-  public modalidadeDeleteOneById(data: ModalidadeDeleteOneByIdData): CancelablePromise<ModalidadeDeleteOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "DELETE",
-      url: "/modalidades/{id}",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-}
-
-export class EstadosService {
-  constructor(public readonly httpRequest: BaseHttpRequest) {}
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.page Página de consulta.
-   * @param data.limit Limite da quantidade de resultados por página.
-   * @param data.search Busca textual.
-   * @param data.sortBy Ordenação.
-   * @returns EstadoListResultView Resultados da busca a estados.
-   * @throws ApiError
-   */
-  public estadoList(data: EstadoListData = {}): CancelablePromise<EstadoListResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/base/estados",
-      query: {
-        page: data.page,
-        limit: data.limit,
-        search: data.search,
-        sortBy: data.sortBy,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (numérico).
-   * @returns EstadoFindOneResultView Visão FindOne de um estado.
-   * @throws ApiError
-   */
-  public estadoFindOneById(data: EstadoFindOneByIdData): CancelablePromise<EstadoFindOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/base/estados/{id}",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-}
-
-export class CidadesService {
-  constructor(public readonly httpRequest: BaseHttpRequest) {}
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.page Página de consulta.
-   * @param data.limit Limite da quantidade de resultados por página.
-   * @param data.search Busca textual.
-   * @param data.sortBy Ordenação.
-   * @param data.filterEstadoId
-   * @returns CidadeListResultView Resultados da busca a cidades.
-   * @throws ApiError
-   */
-  public cidadeList(data: CidadeListData = {}): CancelablePromise<CidadeListResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/base/cidades",
-      query: {
-        page: data.page,
-        limit: data.limit,
-        search: data.search,
-        sortBy: data.sortBy,
-        "filter.estado.id": data.filterEstadoId,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (numérico).
-   * @returns CidadeFindOneResultView Visão FindOne de uma cidade.
-   * @throws ApiError
-   */
-  public cidadeFindOneById(data: CidadeFindOneByIdData): CancelablePromise<CidadeFindOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/base/cidades/{id}",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-}
-
 export class BlocosService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
@@ -1438,6 +1381,474 @@ export class ReservasService {
   }
 }
 
+export class NivelFormacaoService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns NivelFormacaoListResultView Resultados da busca aos níveis de formações.
+   * @throws ApiError
+   */
+  public nivelFormacaoList(data: NivelFormacaoListData = {}): CancelablePromise<NivelFormacaoListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/niveis-formacoes",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de um nível de formação.
+   * @returns NivelFormacaoFindOneResultView Visão FindOne de um nível de formação.
+   * @throws ApiError
+   */
+  public nivelFormacaoCreate(data: NivelFormacaoCreateData): CancelablePromise<NivelFormacaoCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/niveis-formacoes",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns NivelFormacaoFindOneResultView Visão FindOne de um nível de formação.
+   * @throws ApiError
+   */
+  public nivelFormacaoFindOneById(data: NivelFormacaoFindOneByIdData): CancelablePromise<NivelFormacaoFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/niveis-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de um nível de formação.
+   * @returns NivelFormacaoFindOneResultView Visão FindOne de um nível de formação.
+   * @throws ApiError
+   */
+  public nivelFormacaoUpdateOneById(data: NivelFormacaoUpdateOneByIdData): CancelablePromise<NivelFormacaoUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/niveis-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public nivelFormacaoDeleteOneById(data: NivelFormacaoDeleteOneByIdData): CancelablePromise<NivelFormacaoDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/niveis-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class ModalidadesService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns ModalidadeListResultView Resultados da busca a Modalidades.
+   * @throws ApiError
+   */
+  public modalidadeList(data: ModalidadeListData = {}): CancelablePromise<ModalidadeListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/modalidades",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma modalidade.
+   * @returns ModalidadeFindOneResultView Visão FindOne de uma modalidade.
+   * @throws ApiError
+   */
+  public modalidadeCreate(data: ModalidadeCreateData): CancelablePromise<ModalidadeCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/modalidades",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns ModalidadeFindOneResultView Visão FindOne de uma modalidade.
+   * @throws ApiError
+   */
+  public modalidadeFindOneById(data: ModalidadeFindOneByIdData): CancelablePromise<ModalidadeFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/modalidades/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma modalidade.
+   * @returns ModalidadeFindOneResultView Visão FindOne de uma modalidade.
+   * @throws ApiError
+   */
+  public modalidadeUpdateOneById(data: ModalidadeUpdateOneByIdData): CancelablePromise<ModalidadeUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/modalidades/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public modalidadeDeleteOneById(data: ModalidadeDeleteOneByIdData): CancelablePromise<ModalidadeDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/modalidades/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class OfertaFormacaoService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns OfertaFormacaoListResultView Resultados da busca a OfertaFormacaos.
+   * @throws ApiError
+   */
+  public ofertaFormacaoList(data: OfertaFormacaoListData = {}): CancelablePromise<OfertaFormacaoListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/ofertas-formacoes",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma oferta de formação.
+   * @returns OfertaFormacaoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public ofertaFormacaoCreate(data: OfertaFormacaoCreateData): CancelablePromise<OfertaFormacaoCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/ofertas-formacoes",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns OfertaFormacaoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public ofertaFormacaoFindOneById(data: OfertaFormacaoFindOneByIdData): CancelablePromise<OfertaFormacaoFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/ofertas-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma oferta de formação.
+   * @returns OfertaFormacaoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public ofertaFormacaoUpdateOneById(data: OfertaFormacaoUpdateOneByIdData): CancelablePromise<OfertaFormacaoUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/ofertas-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public ofertaFormacaoDeleteOneById(data: OfertaFormacaoDeleteOneByIdData): CancelablePromise<OfertaFormacaoDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/ofertas-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class OfertaFormacaoNivelFormacaoService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns OfertaFormacaoNivelFormacaoListResultView Resultados da busca a OfertaFormacaoNivelFormacaos.
+   * @throws ApiError
+   */
+  public ofertaFormacaoNivelFormacaoList(data: OfertaFormacaoNivelFormacaoListData = {}): CancelablePromise<OfertaFormacaoNivelFormacaoListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/ofertas-formacoes-niveis-formacoes",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma oferta de formação.
+   * @returns OfertaFormacaoNivelFormacaoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public ofertaFormacaoNivelFormacaoCreate(data: OfertaFormacaoNivelFormacaoCreateData): CancelablePromise<OfertaFormacaoNivelFormacaoCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/ofertas-formacoes-niveis-formacoes",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns OfertaFormacaoNivelFormacaoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public ofertaFormacaoNivelFormacaoFindOneById(data: OfertaFormacaoNivelFormacaoFindOneByIdData): CancelablePromise<OfertaFormacaoNivelFormacaoFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/ofertas-formacoes-niveis-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma oferta de formação.
+   * @returns OfertaFormacaoNivelFormacaoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public ofertaFormacaoNivelFormacaoUpdateOneById(data: OfertaFormacaoNivelFormacaoUpdateOneByIdData): CancelablePromise<OfertaFormacaoNivelFormacaoUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/ofertas-formacoes-niveis-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public ofertaFormacaoNivelFormacaoDeleteOneById(data: OfertaFormacaoNivelFormacaoDeleteOneByIdData): CancelablePromise<OfertaFormacaoNivelFormacaoDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/ofertas-formacoes-niveis-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
 export class CursosService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
@@ -1766,184 +2177,6 @@ export class DisciplinasService {
   }
 }
 
-export class TurmasService {
-  constructor(public readonly httpRequest: BaseHttpRequest) {}
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.page Página de consulta.
-   * @param data.limit Limite da quantidade de resultados por página.
-   * @param data.search Busca textual.
-   * @param data.sortBy Ordenação.
-   * @param data.filterAmbientePadraoAulaNome
-   * @param data.filterAmbientePadraoAulaCodigo
-   * @param data.filterAmbientePadraoAulaCapacidade
-   * @param data.filterAmbientePadraoAulaTipo
-   * @param data.filterCursoNome
-   * @param data.filterCursoNomeAbreviado
-   * @param data.filterCursoCampusId
-   * @param data.filterCursoModalidadeId
-   * @returns TurmaListResultView Resultados da busca a Turmas.
-   * @throws ApiError
-   */
-  public turmaList(data: TurmaListData = {}): CancelablePromise<TurmaListResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/turmas",
-      query: {
-        page: data.page,
-        limit: data.limit,
-        search: data.search,
-        sortBy: data.sortBy,
-        "filter.ambientePadraoAula.nome": data.filterAmbientePadraoAulaNome,
-        "filter.ambientePadraoAula.codigo": data.filterAmbientePadraoAulaCodigo,
-        "filter.ambientePadraoAula.capacidade": data.filterAmbientePadraoAulaCapacidade,
-        "filter.ambientePadraoAula.tipo": data.filterAmbientePadraoAulaTipo,
-        "filter.curso.nome": data.filterCursoNome,
-        "filter.curso.nomeAbreviado": data.filterCursoNomeAbreviado,
-        "filter.curso.campus.id": data.filterCursoCampusId,
-        "filter.curso.modalidade.id": data.filterCursoModalidadeId,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.requestBody Dados de entrada para a criação de uma Turma.
-   * @returns TurmaFindOneResultView Visão FindOne de uma Turma.
-   * @throws ApiError
-   */
-  public turmaCreate(data: TurmaCreateData): CancelablePromise<TurmaCreateResponse> {
-    return this.httpRequest.request({
-      method: "POST",
-      url: "/turmas",
-      body: data.requestBody,
-      mediaType: "application/json",
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @returns TurmaFindOneResultView Visão FindOne de uma Turma.
-   * @throws ApiError
-   */
-  public turmaFindOneById(data: TurmaFindOneByIdData): CancelablePromise<TurmaFindOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/turmas/{id}",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @param data.requestBody Dados de entrada para a atualização de uma Turma.
-   * @returns TurmaFindOneResultView Visão FindOne de uma Turma.
-   * @throws ApiError
-   */
-  public turmaUpdateOneById(data: TurmaUpdateOneByIdData): CancelablePromise<TurmaUpdateOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "PATCH",
-      url: "/turmas/{id}",
-      path: {
-        id: data.id,
-      },
-      body: data.requestBody,
-      mediaType: "application/json",
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @returns boolean
-   * @throws ApiError
-   */
-  public turmaDeleteOneById(data: TurmaDeleteOneByIdData): CancelablePromise<TurmaDeleteOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "DELETE",
-      url: "/turmas/{id}",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @returns binary Binário.
-   * @throws ApiError
-   */
-  public turmaGetImagemCapa(data: TurmaGetImagemCapaData): CancelablePromise<TurmaGetImagemCapaResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/turmas/{id}/imagem/capa",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @param data.formData
-   * @returns boolean Resultado da operação.
-   * @throws ApiError
-   */
-  public turmaSetImagemCapa(data: TurmaSetImagemCapaData): CancelablePromise<TurmaSetImagemCapaResponse> {
-    return this.httpRequest.request({
-      method: "PUT",
-      url: "/turmas/{id}/imagem/capa",
-      path: {
-        id: data.id,
-      },
-      formData: data.formData,
-      mediaType: "multipart/form-data",
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-}
-
 export class CalendariosLetivosService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
@@ -2054,6 +2287,246 @@ export class CalendariosLetivosService {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/calendarios-letivos/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class GradeHorarioOfertaFormacaoService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns GradeHorarioOfertaFormacaoListResultView Resultados da busca a GradeHorarioOfertaFormacaos.
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoList(data: GradeHorarioOfertaFormacaoListData = {}): CancelablePromise<GradeHorarioOfertaFormacaoListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/grades-horarios-ofertas-formacoes",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma oferta de formação.
+   * @returns GradeHorarioOfertaFormacaoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoCreate(data: GradeHorarioOfertaFormacaoCreateData): CancelablePromise<GradeHorarioOfertaFormacaoCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/grades-horarios-ofertas-formacoes",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns GradeHorarioOfertaFormacaoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoFindOneById(data: GradeHorarioOfertaFormacaoFindOneByIdData): CancelablePromise<GradeHorarioOfertaFormacaoFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/grades-horarios-ofertas-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma oferta de formação.
+   * @returns GradeHorarioOfertaFormacaoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoUpdateOneById(data: GradeHorarioOfertaFormacaoUpdateOneByIdData): CancelablePromise<GradeHorarioOfertaFormacaoUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/grades-horarios-ofertas-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoDeleteOneById(data: GradeHorarioOfertaFormacaoDeleteOneByIdData): CancelablePromise<GradeHorarioOfertaFormacaoDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/grades-horarios-ofertas-formacoes/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class GradeHorarioOfertaFormacaoIntervaloDeTempoService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns GradeHorarioOfertaFormacaoIntervaloDeTempoListResultView Resultados da busca a GradeHorarioOfertaFormacaoIntervaloDeTempos.
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoIntervaloDeTempoList(data: GradeHorarioOfertaFormacaoIntervaloDeTempoListData = {}): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma oferta de formação.
+   * @returns GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoIntervaloDeTempoCreate(data: GradeHorarioOfertaFormacaoIntervaloDeTempoCreateData): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoIntervaloDeTempoFindOneById(
+    data: GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneByIdData,
+  ): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma oferta de formação.
+   * @returns GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneResultView Visão FindOne de uma oferta de formação.
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoIntervaloDeTempoUpdateOneById(
+    data: GradeHorarioOfertaFormacaoIntervaloDeTempoUpdateOneByIdData,
+  ): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public gradeHorarioOfertaFormacaoIntervaloDeTempoDeleteOneById(
+    data: GradeHorarioOfertaFormacaoIntervaloDeTempoDeleteOneByIdData,
+  ): CancelablePromise<GradeHorarioOfertaFormacaoIntervaloDeTempoDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/grades-horario-ofertas-formacao-intervalos-de-tempo/{id}",
       path: {
         id: data.id,
       },
@@ -2295,6 +2768,303 @@ export class DiasCalendarioService {
       path: {
         id: data.id,
       },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class EtapasService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @param data.filterCalendarioId
+   * @returns EtapaListResultView Resultados da busca a Etapas.
+   * @throws ApiError
+   */
+  public etapaList(data: EtapaListData = {}): CancelablePromise<EtapaListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/etapas",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+        "filter.calendario.id": data.filterCalendarioId,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma Etapa.
+   * @returns EtapaFindOneResultView Visão FindOne de uma Etapa.
+   * @throws ApiError
+   */
+  public etapaCreate(data: EtapaCreateData): CancelablePromise<EtapaCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/etapas",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns EtapaFindOneResultView Visão FindOne de uma Etapa.
+   * @throws ApiError
+   */
+  public etapaFindOneById(data: EtapaFindOneByIdData): CancelablePromise<EtapaFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/etapas/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma Etapa.
+   * @returns EtapaFindOneResultView Visão FindOne de uma Etapa.
+   * @throws ApiError
+   */
+  public etapaUpdateOneById(data: EtapaUpdateOneByIdData): CancelablePromise<EtapaUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/etapas/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public etapaDeleteOneById(data: EtapaDeleteOneByIdData): CancelablePromise<EtapaDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/etapas/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class TurmasService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @param data.filterAmbientePadraoAulaNome
+   * @param data.filterAmbientePadraoAulaCodigo
+   * @param data.filterAmbientePadraoAulaCapacidade
+   * @param data.filterAmbientePadraoAulaTipo
+   * @param data.filterCursoNome
+   * @param data.filterCursoNomeAbreviado
+   * @param data.filterCursoCampusId
+   * @param data.filterCursoModalidadeId
+   * @returns TurmaListResultView Resultados da busca a Turmas.
+   * @throws ApiError
+   */
+  public turmaList(data: TurmaListData = {}): CancelablePromise<TurmaListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/turmas",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+        "filter.ambientePadraoAula.nome": data.filterAmbientePadraoAulaNome,
+        "filter.ambientePadraoAula.codigo": data.filterAmbientePadraoAulaCodigo,
+        "filter.ambientePadraoAula.capacidade": data.filterAmbientePadraoAulaCapacidade,
+        "filter.ambientePadraoAula.tipo": data.filterAmbientePadraoAulaTipo,
+        "filter.curso.nome": data.filterCursoNome,
+        "filter.curso.nomeAbreviado": data.filterCursoNomeAbreviado,
+        "filter.curso.campus.id": data.filterCursoCampusId,
+        "filter.curso.modalidade.id": data.filterCursoModalidadeId,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma Turma.
+   * @returns TurmaFindOneResultView Visão FindOne de uma Turma.
+   * @throws ApiError
+   */
+  public turmaCreate(data: TurmaCreateData): CancelablePromise<TurmaCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/turmas",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns TurmaFindOneResultView Visão FindOne de uma Turma.
+   * @throws ApiError
+   */
+  public turmaFindOneById(data: TurmaFindOneByIdData): CancelablePromise<TurmaFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/turmas/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma Turma.
+   * @returns TurmaFindOneResultView Visão FindOne de uma Turma.
+   * @throws ApiError
+   */
+  public turmaUpdateOneById(data: TurmaUpdateOneByIdData): CancelablePromise<TurmaUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/turmas/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public turmaDeleteOneById(data: TurmaDeleteOneByIdData): CancelablePromise<TurmaDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/turmas/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns binary Binário.
+   * @throws ApiError
+   */
+  public turmaGetImagemCapa(data: TurmaGetImagemCapaData): CancelablePromise<TurmaGetImagemCapaResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/turmas/{id}/imagem/capa",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.formData
+   * @returns boolean Resultado da operação.
+   * @throws ApiError
+   */
+  public turmaSetImagemCapa(data: TurmaSetImagemCapaData): CancelablePromise<TurmaSetImagemCapaResponse> {
+    return this.httpRequest.request({
+      method: "PUT",
+      url: "/turmas/{id}/imagem/capa",
+      path: {
+        id: data.id,
+      },
+      formData: data.formData,
+      mediaType: "multipart/form-data",
       errors: {
         403: "O solicitante não tem permissão para executar esta ação.",
         404: "Registro não encontrado.",
@@ -2549,125 +3319,6 @@ export class DiarioProfessorService {
   }
 }
 
-export class EtapasService {
-  constructor(public readonly httpRequest: BaseHttpRequest) {}
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.page Página de consulta.
-   * @param data.limit Limite da quantidade de resultados por página.
-   * @param data.search Busca textual.
-   * @param data.sortBy Ordenação.
-   * @param data.filterCalendarioId
-   * @returns EtapaListResultView Resultados da busca a Etapas.
-   * @throws ApiError
-   */
-  public etapaList(data: EtapaListData = {}): CancelablePromise<EtapaListResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/etapas",
-      query: {
-        page: data.page,
-        limit: data.limit,
-        search: data.search,
-        sortBy: data.sortBy,
-        "filter.calendario.id": data.filterCalendarioId,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.requestBody Dados de entrada para a criação de uma Etapa.
-   * @returns EtapaFindOneResultView Visão FindOne de uma Etapa.
-   * @throws ApiError
-   */
-  public etapaCreate(data: EtapaCreateData): CancelablePromise<EtapaCreateResponse> {
-    return this.httpRequest.request({
-      method: "POST",
-      url: "/etapas",
-      body: data.requestBody,
-      mediaType: "application/json",
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @returns EtapaFindOneResultView Visão FindOne de uma Etapa.
-   * @throws ApiError
-   */
-  public etapaFindOneById(data: EtapaFindOneByIdData): CancelablePromise<EtapaFindOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/etapas/{id}",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @param data.requestBody Dados de entrada para a atualização de uma Etapa.
-   * @returns EtapaFindOneResultView Visão FindOne de uma Etapa.
-   * @throws ApiError
-   */
-  public etapaUpdateOneById(data: EtapaUpdateOneByIdData): CancelablePromise<EtapaUpdateOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "PATCH",
-      url: "/etapas/{id}",
-      path: {
-        id: data.id,
-      },
-      body: data.requestBody,
-      mediaType: "application/json",
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @returns boolean
-   * @throws ApiError
-   */
-  public etapaDeleteOneById(data: EtapaDeleteOneByIdData): CancelablePromise<EtapaDeleteOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "DELETE",
-      url: "/etapas/{id}",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-}
-
 export class AulasService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
@@ -2778,6 +3429,123 @@ export class AulasService {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/aulas/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+}
+
+export class DisponibilidadesService {
+  constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.page Página de consulta.
+   * @param data.limit Limite da quantidade de resultados por página.
+   * @param data.search Busca textual.
+   * @param data.sortBy Ordenação.
+   * @returns DisponibilidadeListResultView Resultados da busca a Disponibilidades.
+   * @throws ApiError
+   */
+  public disponibilidadeList(data: DisponibilidadeListData = {}): CancelablePromise<DisponibilidadeListResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/disponibilidades",
+      query: {
+        page: data.page,
+        limit: data.limit,
+        search: data.search,
+        sortBy: data.sortBy,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.requestBody Dados de entrada para a criação de uma Disponibilidade.
+   * @returns DisponibilidadeFindOneResultView Visão FindOne de uma Disponibilidade.
+   * @throws ApiError
+   */
+  public disponibilidadeCreate(data: DisponibilidadeCreateData): CancelablePromise<DisponibilidadeCreateResponse> {
+    return this.httpRequest.request({
+      method: "POST",
+      url: "/disponibilidades",
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns DisponibilidadeFindOneResultView Visão FindOne de uma Disponibilidade.
+   * @throws ApiError
+   */
+  public disponibilidadeFindOneById(data: DisponibilidadeFindOneByIdData): CancelablePromise<DisponibilidadeFindOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/disponibilidades/{id}",
+      path: {
+        id: data.id,
+      },
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @param data.requestBody Dados de entrada para a atualização de uma Disponibilidade.
+   * @returns DisponibilidadeFindOneResultView Visão FindOne de uma Disponibilidade.
+   * @throws ApiError
+   */
+  public disponibilidadeUpdateOneById(data: DisponibilidadeUpdateOneByIdData): CancelablePromise<DisponibilidadeUpdateOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "PATCH",
+      url: "/disponibilidades/{id}",
+      path: {
+        id: data.id,
+      },
+      body: data.requestBody,
+      mediaType: "application/json",
+      errors: {
+        403: "O solicitante não tem permissão para executar esta ação.",
+        404: "Registro não encontrado.",
+      },
+    });
+  }
+
+  /**
+   * Sem descrição.
+   * @param data The data for the request.
+   * @param data.id Identificador do registro (uuid).
+   * @returns boolean
+   * @throws ApiError
+   */
+  public disponibilidadeDeleteOneById(data: DisponibilidadeDeleteOneByIdData): CancelablePromise<DisponibilidadeDeleteOneByIdResponse> {
+    return this.httpRequest.request({
+      method: "DELETE",
+      url: "/disponibilidades/{id}",
       path: {
         id: data.id,
       },
