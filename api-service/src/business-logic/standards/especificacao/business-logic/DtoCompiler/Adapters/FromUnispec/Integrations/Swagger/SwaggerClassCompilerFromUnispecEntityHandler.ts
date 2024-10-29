@@ -1,11 +1,11 @@
 import {
   GenericClassCompilerFromUnispecEntityHandler,
-  IGenericClassCompilerFromUnispecEntityTypings,
+  type IGenericClassCompilerFromUnispecEntityTypings,
 } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/Adapters/FromUnispec/Core/GenericClassCompilerFromUnispecEntity";
 import { SwaggerNodeCompiler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/Adapters/FromUnispec/Integrations/Swagger/SwaggerNodeCompiler";
-import { IDtoCompiler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/DtoCompiler";
-import { INodeTypeObjectEntity } from "@/business-logic/standards/especificacao/infrastructure";
-import { ICompileClassContext, ICompileClassPropertyContext } from "@/business-logic/standards/especificacao/infrastructure/utils/class-compiler";
+import type { IDtoCompiler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/DtoCompiler";
+import type { INodeTypeObjectEntity } from "@/business-logic/standards/especificacao/infrastructure";
+import type { ICompileClassContext, ICompileClassPropertyContext } from "@/business-logic/standards/especificacao/infrastructure/utils/class-compiler";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class SwaggerClassCompilerFromUnispecEntityHandler extends GenericClassCompilerFromUnispecEntityHandler {
@@ -18,18 +18,38 @@ export class SwaggerClassCompilerFromUnispecEntityHandler extends GenericClassCo
 
     const dtoCompilerContext = dtoCompiler.GetContext("core");
 
-    const node: INodeTypeObjectEntity = classPropertyContext.classContext.node;
+    const entityNode: INodeTypeObjectEntity = classPropertyContext.classContext.node;
 
-    const swaggerType = this.swaggerNodeCompiler.Handle(classPropertyContext.propertyNode, dtoCompilerContext);
+    const entityPropertyNode = classPropertyContext.propertyNode;
 
-    const required = node.required?.includes(classPropertyContext.propertyKey) ?? false;
+    const swaggerType = this.swaggerNodeCompiler.Handle(entityPropertyNode, dtoCompilerContext);
 
-    classPropertyContext.AddDecoratorToCurrentProperty(
-      ApiProperty({
-        required: required,
-        name: classPropertyContext.propertyKey,
-        ...swaggerType,
-      }),
-    );
+    const required = entityNode.required?.includes(classPropertyContext.propertyKey) ?? false;
+
+    const representation = swaggerType.representation;
+
+    if (representation.kind === "schema") {
+      const schema = representation.schema;
+
+      classPropertyContext.AddDecoratorToCurrentProperty(
+        ApiProperty({
+          ...swaggerType.metadata,
+          ...schema,
+
+          required: required,
+          name: classPropertyContext.propertyKey,
+        }),
+      );
+    } else {
+      classPropertyContext.AddDecoratorToCurrentProperty(
+        ApiProperty({
+          ...swaggerType.metadata,
+          ...representation,
+
+          required: required,
+          name: classPropertyContext.propertyKey,
+        }),
+      );
+    }
   }
 }

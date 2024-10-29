@@ -1,15 +1,15 @@
 import { inspect } from "node:util";
-import { ISpecNodesStore } from "@/business-logic/standards/especificacao/business-logic/SpecNodesStore/Types/ISpecNodesStore";
+import type { ISpecNodesStore } from "@/business-logic/standards/especificacao/business-logic/SpecNodesStore/Types/ISpecNodesStore";
 import {
   CheckNodeCore,
   CheckNodeRef,
   CheckNodeTypeNull,
   CheckType,
-  INode,
-  INodeCore,
-  INodeRef,
-  INodeTypeObjectEntity,
-  INodeTypeObjectOperation,
+  type INode,
+  type INodeCore,
+  type INodeRef,
+  type INodeTypeObjectEntity,
+  type INodeTypeObjectOperation,
   NodeTypeObjectEntity,
   NodeTypeObjectOperation,
   ParseNodeRef,
@@ -133,11 +133,11 @@ export class SpecNodesStoreFromNpmPackage implements ISpecNodesStore {
 
     delete composedNode.$ref;
 
-    if (CheckNodeCore(composedNode)) {
-      return composedNode;
-    } else {
+    if (!CheckNodeCore(composedNode)) {
       throw new TypeError("composed not was not a valid NodeCore.");
     }
+
+    return composedNode;
   }
 
   ComposeAnyOf(rawAnyOf?: INode[]) {
@@ -147,34 +147,38 @@ export class SpecNodesStoreFromNpmPackage implements ISpecNodesStore {
       if (anyOf && anyOf.length > 0) {
         if (anyOf.length === 1) {
           return {
-            node: anyOf[0],
+            node: this.ComposeNestedRefs(anyOf[0]),
             nullable: false,
           };
-        } else if (anyOf.length === 2 && anyOf.some(Not(CheckNodeTypeNull)) && anyOf.some(CheckNodeTypeNull)) {
-          const otherNode = anyOf.find(Not(CheckNodeTypeNull))!;
-
-          return {
-            node: otherNode,
-            nullable: true,
-          };
-        } else {
-          console.debug(
-            inspect(
-              { rawAnyOf },
-              {
-                depth: Infinity,
-              },
-            ),
-          );
-
-          throw new TypeError(`${SpecNodesStoreFromNpmPackage.name}#${this.ComposeAnyOf.name}: could not handle anyOf`);
         }
+
+        if (anyOf.length === 2 && anyOf.some(Not(CheckNodeTypeNull)) && anyOf.some(CheckNodeTypeNull)) {
+          const otherNode = anyOf.find(Not(CheckNodeTypeNull));
+
+          if (otherNode) {
+            return {
+              node: this.ComposeNestedRefs(otherNode),
+              nullable: true,
+            };
+          }
+        }
+
+        console.debug(
+          inspect(
+            { rawAnyOf },
+            {
+              depth: Number.POSITIVE_INFINITY,
+            },
+          ),
+        );
+
+        throw new TypeError(`${SpecNodesStoreFromNpmPackage.name}#${this.ComposeAnyOf.name}: could not handle anyOf`);
       }
     }
 
     return {
       node: null,
-      nullable: true,
+      nullable: false,
     };
   }
 
@@ -189,7 +193,9 @@ export class SpecNodesStoreFromNpmPackage implements ISpecNodesStore {
 
     if (anyOf.node) {
       const decomposed = this.Compose(anyOf.node);
+
       anyOf.nullable = anyOf.nullable || decomposed.nullable;
+
       schemas.push({ ...decomposed });
     }
 
@@ -202,6 +208,9 @@ export class SpecNodesStoreFromNpmPackage implements ISpecNodesStore {
         },
         anyOf.node,
       ].filter(Boolean),
+      {
+        onConflict: "first",
+      },
     );
 
     return {

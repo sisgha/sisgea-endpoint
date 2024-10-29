@@ -1,4 +1,4 @@
-import { ISpecDecorateHandler, ISpecDecorateOperationContext } from "@/business-logic/standards/especificacao/business-logic/Decorators/Operation/Core/ISpecDecorateHandler";
+import type { ISpecDecorateHandler, ISpecDecorateOperationContext } from "@/business-logic/standards/especificacao/business-logic/Decorators/Operation/Core/ISpecDecorateHandler";
 import { Param as HttpParam, Query as HttpQuery, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiParam, ApiProduces, ApiQuery, ApiResponse } from "@nestjs/swagger";
@@ -55,11 +55,12 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
 
       const dtoCompilerContext = dtoCompiler.GetContext("input");
 
-      const swaggerTypings: any = dtoCompiler.swaggerNodeCompiler.Handle(schema, dtoCompilerContext);
+      const swaggerTypings = dtoCompiler.swaggerNodeCompiler.Handle(schema, dtoCompilerContext);
 
       context.AddMethodDecorator(
         ApiParam({
-          ...swaggerTypings,
+          ...swaggerTypings.metadata,
+          ...swaggerTypings.representation,
           name: name,
           required: required,
         }),
@@ -97,11 +98,12 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
 
       const dtoCompilerContext = dtoCompiler.GetContext("input");
 
-      const swaggerTypings: any = dtoCompiler.swaggerNodeCompiler.Handle(schema, dtoCompilerContext);
+      const swaggerTypings = dtoCompiler.swaggerNodeCompiler.Handle(schema, dtoCompilerContext);
 
       context.AddMethodDecorator(
         ApiQuery({
-          ...swaggerTypings,
+          ...swaggerTypings.metadata,
+          ...swaggerTypings.representation,
           name: name,
           required: required,
         }),
@@ -126,31 +128,45 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
 
     const dtoCompilerContext = dtoCompiler.GetContext("input");
 
-    const swaggerTypings: any = dtoCompiler.swaggerNodeCompiler.Handle(inputBody, dtoCompilerContext);
+    const swaggerTypings = dtoCompiler.swaggerNodeCompiler.Handle(inputBody, dtoCompilerContext);
 
-    if (swaggerTypings.type === "string" && (swaggerTypings.format === "binary" || swaggerTypings.mimeTypes !== undefined)) {
-      context.AddMethodDecorator(ApiConsumes("multipart/form-data"));
+    const representation = swaggerTypings.representation;
 
-      context.AddMethodDecorator(
-        ApiBody({
-          schema: {
-            type: "object",
-            required: inputBodyRequired ? ["file"] : [],
-            properties: {
-              file: {
-                format: "binary",
-                ...swaggerTypings,
+    if (representation.kind === "schema") {
+      const schema = representation.schema;
+
+      if (schema.type === "string" && (schema.format === "binary" || schema.mimeTypes !== undefined)) {
+        context.AddMethodDecorator(ApiConsumes("multipart/form-data"));
+
+        context.AddMethodDecorator(
+          ApiBody({
+            schema: {
+              type: "object",
+              required: inputBodyRequired ? ["file"] : [],
+              properties: {
+                file: {
+                  format: "binary",
+                  ...swaggerTypings,
+                },
               },
             },
-          },
-        }),
-      );
+          }),
+        );
 
-      context.AddMethodDecorator(UseInterceptors(FileInterceptor("file")));
+        context.AddMethodDecorator(UseInterceptors(FileInterceptor("file")));
+      } else {
+        context.AddMethodDecorator(
+          ApiBody({
+            ...swaggerTypings.metadata,
+            ...swaggerTypings.representation,
+          }),
+        );
+      }
     } else {
       context.AddMethodDecorator(
         ApiBody({
-          ...swaggerTypings,
+          ...swaggerTypings.metadata,
+          ...swaggerTypings.representation,
         }),
       );
     }
@@ -187,26 +203,41 @@ export class SwaggerSpecDecorateHandler implements ISpecDecorateHandler {
 
       const swaggerTypings = dtoCompiler.swaggerNodeCompiler.Handle(outputs, dtoCompilerContext);
 
-      if (swaggerTypings.type === "string" && swaggerTypings.format === "binary") {
-        context.AddMethodDecorator(ApiProduces(...swaggerTypings.mimeTypes));
+      const representation = swaggerTypings.representation;
 
-        context.AddMethodDecorator(
-          ApiResponse({
-            status,
+      if (representation.kind === "schema") {
+        const schema = representation.schema;
 
-            schema: {
-              ...(swaggerTypings as any),
-            },
-          }),
-        );
+        if (schema.type === "string" && schema.format === "binary") {
+          context.AddMethodDecorator(ApiProduces(...schema.mimeTypes));
+
+          context.AddMethodDecorator(
+            ApiResponse({
+              status,
+
+              description: swaggerTypings.metadata.description ?? schema.description,
+
+              schema: {
+                ...swaggerTypings.metadata,
+                ...schema,
+              },
+            }),
+          );
+        } else {
+          context.AddMethodDecorator(
+            ApiResponse({
+              status,
+              ...swaggerTypings.metadata,
+              ...swaggerTypings.representation,
+            }),
+          );
+        }
       } else {
         context.AddMethodDecorator(
           ApiResponse({
             status,
-
-            schema: {
-              ...(swaggerTypings as any),
-            },
+            ...swaggerTypings.metadata,
+            ...swaggerTypings.representation,
           }),
         );
       }

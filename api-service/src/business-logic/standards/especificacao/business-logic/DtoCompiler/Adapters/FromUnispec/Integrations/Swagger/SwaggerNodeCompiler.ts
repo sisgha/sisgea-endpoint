@@ -1,15 +1,27 @@
-import { IDtoCompilerContext } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/typings";
-import { INode, INodeRef, INodeTypeArray, INodeTypeObjectEntity, NodeHandler } from "@/business-logic/standards/especificacao/infrastructure";
-import { SchemaObjectMetadata } from "@nestjs/swagger/dist/interfaces/schema-object-metadata.interface";
+import type { IDtoCompilerContext } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/typings";
+import { type INode, type INodeRef, type INodeTypeArray, type INodeTypeObjectEntity, NodeHandler } from "@/business-logic/standards/especificacao/infrastructure";
+import { SchemaObject } from "@nestjs/swagger/dist/interfaces/open-api-spec.interface";
 
-export type ISwaggerType = SchemaObjectMetadata & {
-  nullable?: boolean;
-  $ref?: string;
-  anyOf?: any;
-  mimeTypes?: any;
+export type ISwaggerResultType = {
+  metadata: {
+    nullable?: boolean;
+    mimeTypes?: string[];
+    description?: string;
+  };
+
+  representation:
+    | {
+        kind: "type";
+        type: Function;
+        isArray?: boolean;
+      }
+    | {
+        kind: "schema";
+        schema: SchemaObject & Record<string, any>;
+      };
 };
 
-export class SwaggerNodeCompiler extends NodeHandler<ISwaggerType, IDtoCompilerContext> {
+export class SwaggerNodeCompiler extends NodeHandler<ISwaggerResultType, IDtoCompilerContext> {
   ComposeNode(node: INode, context: IDtoCompilerContext) {
     const composedResult = context.nodesStore.Compose(node);
     return composedResult;
@@ -21,38 +33,91 @@ export class SwaggerNodeCompiler extends NodeHandler<ISwaggerType, IDtoCompilerC
     const dto = context.dtoCompiler.CompileNode(node);
 
     return {
-      ...composed.node,
-      nullable: composed.nullable,
+      representation: {
+        kind: "type",
+        type: dto,
+      },
 
-      type: dto,
-
-      properties: undefined,
-      required: undefined,
-      additionalProperties: undefined,
-    } satisfies ISwaggerType;
+      metadata: {
+        nullable: composed.nullable,
+        description: composed.node?.description,
+      },
+    } satisfies ISwaggerResultType;
   }
 
-  HandleTypeArray(node: INodeTypeArray, context: IDtoCompilerContext): ISwaggerType {
+  HandleTypeArray(node: INodeTypeArray, context: IDtoCompilerContext): ISwaggerResultType {
+    const itemsRepresentation = this.Handle(node.items, context);
+
+    if (itemsRepresentation.representation.kind === "type") {
+      return {
+        ...itemsRepresentation,
+        representation: {
+          ...itemsRepresentation.representation,
+          isArray: true,
+        },
+      };
+    }
+
+    const composed = this.ComposeNode(node, context);
+
     return {
-      isArray: true,
-      ...this.Handle(node.items, context),
-    } satisfies ISwaggerType;
+      ...itemsRepresentation,
+
+      metadata: {
+        nullable: composed.nullable,
+        description: composed.node.description,
+      },
+
+      representation: {
+        ...itemsRepresentation.representation,
+
+        schema: {
+          type: "array",
+          nullable: composed.nullable,
+          items: {
+            ...itemsRepresentation.metadata,
+            ...itemsRepresentation.representation.schema,
+          },
+        },
+      },
+    };
   }
 
-  HandleRef(node: INodeRef, context: IDtoCompilerContext): ISwaggerType {
+  HandleRef(node: INodeRef, context: IDtoCompilerContext): ISwaggerResultType {
     const composed = context.nodesStore.ComposeNestedRefs(node);
     return this.Handle(composed, context);
   }
 
-  HandleDefault(node: any, context: IDtoCompilerContext): ISwaggerType {
+  HandleDefault(node: Exclude<INode, INodeTypeObjectEntity | INodeTypeArray | INodeRef>, context: IDtoCompilerContext): ISwaggerResultType {
     const composed = this.ComposeNode(node, context);
+
+    if (node.anyOf || node.$ref) {
+      const representation = this.Handle(composed.node, context);
+
+      return {
+        ...representation,
+        metadata: {
+          ...representation.metadata,
+          nullable: representation.metadata.nullable || composed.nullable,
+        },
+      };
+    }
+
     return {
-      ...composed.node,
-      nullable: composed.nullable,
+      metadata: {
+        nullable: composed.nullable,
+        description: composed.node.description,
+      },
+      representation: {
+        kind: "schema",
+        schema: {
+          ...composed.node,
+        },
+      },
     };
   }
 
-  Handle(node: INode, context: IDtoCompilerContext): ISwaggerType {
+  Handle(node: INode, context: IDtoCompilerContext): ISwaggerResultType {
     const handled = super.Handle(node, context);
 
     if (handled) {

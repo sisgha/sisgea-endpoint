@@ -1,9 +1,8 @@
 import { ValidationFailedException } from "@/business-logic/standards";
-import { Injectable, PipeTransform } from "@nestjs/common";
+import { Injectable, type PipeTransform } from "@nestjs/common";
 import { omit } from "lodash";
-import type { ISchema } from "yup";
 import * as yup from "yup";
-import { tryCast } from "./tryCast";
+import { tryCast } from "../../../../../infrastructure/fixtures/validation/yup/tryCast";
 
 interface ValidationPipeYupOptions {
   scope?: "body" | "param" | "query" | "arg" | "args";
@@ -11,15 +10,15 @@ interface ValidationPipeYupOptions {
 }
 
 @Injectable()
-export class ValidationPipeYup implements PipeTransform {
+export class ValidationPipeAjv implements PipeTransform {
   constructor(
-    private yupSchema: ISchema<any, any>,
+    private jsonSchema: any,
     private options: ValidationPipeYupOptions = {},
   ) {}
 
   async transform(value: any /*, metadata: ArgumentMetadata */) {
     try {
-      const schema = this.yupSchema;
+      const schema = this.jsonSchema;
 
       const casted = tryCast(schema, value);
       const data = await schema.validate(casted);

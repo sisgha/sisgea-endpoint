@@ -1,5 +1,5 @@
-import { IGraphQlRepresentation } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/Adapters/FromUnispec/Integrations/GraphQl/GraphQlNodeCompiler";
-import { INestedNode, INodeTypeObjectOperation, ParseNodeTypeObjectEntity } from "@/business-logic/standards/especificacao/infrastructure";
+import type { IGraphQlRepresentation } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler/Adapters/FromUnispec/Integrations/GraphQl/GraphQlNodeCompiler";
+import { type INestedNode, type INodeTypeObjectOperation, ParseNodeTypeObjectEntity } from "@/business-logic/standards/especificacao/infrastructure";
 import * as ChangeCase from "change-case";
 
 export class GraphQlOperationInputAdapter {
@@ -29,15 +29,15 @@ export class GraphQlOperationInputAdapter {
     const inputBody = input?.properties?.body;
 
     if (inputBody) {
-      combinedProperties["dto"] = inputBody;
+      combinedProperties.dto = inputBody;
     }
 
     return ParseNodeTypeObjectEntity({
       type: "object",
       properties: combinedProperties,
 
-      ["x-unispec-kind"]: "entity",
-      ["x-unispec-entity-id"]: `${operation["x-unispec-operation-id"]}CombinedInputs`,
+      "x-unispec-kind": "entity",
+      "x-unispec-entity-id": `${operation["x-unispec-operation-id"]}CombinedInputs`,
     });
   }
 
@@ -63,9 +63,8 @@ export class GraphQlOperationInputAdapter {
     };
   }
 
-  DecombineOperationInput(operation: INodeTypeObjectOperation, data: any) {
-    /*
-    const operationInput = operation.input;
+  static DecombineOperationInput(operation: INodeTypeObjectOperation, inputData: any) {
+    const operationInput = operation.properties.input;
 
     if (!operationInput || !inputData) {
       return null;
@@ -77,8 +76,10 @@ export class GraphQlOperationInputAdapter {
       body: undefined,
     };
 
-    if (operationInput.params) {
-      for (const [key] of Object.entries(operationInput.params)) {
+    const params = operationInput.properties.params;
+
+    if (params) {
+      for (const [key] of Object.entries(params.properties)) {
         const projectedKey = ChangeCase.camelCase(key);
 
         if (projectedKey in inputData) {
@@ -87,8 +88,10 @@ export class GraphQlOperationInputAdapter {
       }
     }
 
-    if (operationInput.queries) {
-      for (const [key] of Object.entries(operationInput.queries)) {
+    const queries = operationInput.properties.queries;
+
+    if (queries) {
+      for (const [key] of Object.entries(queries.properties)) {
         const projectedKey = ChangeCase.camelCase(key);
 
         if (projectedKey in inputData) {
@@ -97,11 +100,12 @@ export class GraphQlOperationInputAdapter {
       }
     }
 
-    if (operationInput.body) {
+    const body = operationInput.properties.body;
+
+    if (body) {
       decombined.body = inputData.dto;
     }
 
     return decombined;
-    */
   }
 }

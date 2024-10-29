@@ -252,7 +252,7 @@ export class BaseService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns AmbienteFindOneResultView Visão FindOne de um ambiente.
    * @throws ApiError
    */
   public ambienteFindOneById(data: AmbienteFindOneByIdData): CancelablePromise<AmbienteFindOneByIdResponse> {
@@ -292,7 +292,7 @@ export class ArquivosService {
    * @param data.acessoRecursoNome
    * @param data.nomeRecurso Acesso via recurso: nome.
    * @param data.idRecurso Acesso via recurso: id.
-   * @returns binary
+   * @returns binary Binário do Arquivo.
    * @throws ApiError
    */
   public arquivoGetFile(data: ArquivoGetFileData): CancelablePromise<ArquivoGetFileResponse> {
@@ -321,7 +321,7 @@ export class AutenticacaoService {
 
   /**
    * Obtêm informações sobre o estado de autenticação do ator.
-   * @returns unknown
+   * @returns AuthWhoAmIInputView Informações sobre o ator..
    * @throws ApiError
    */
   public authWhoAmI(): CancelablePromise<AuthWhoAmIResponse> {
@@ -339,7 +339,7 @@ export class AutenticacaoService {
    * Operação de login.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para autenticação.
-   * @returns unknown
+   * @returns AuthSessionCredentialsView Credenciais de sessão.
    * @throws ApiError
    */
   public authLogin(data: AuthLoginData): CancelablePromise<AuthLoginResponse> {
@@ -359,7 +359,7 @@ export class AutenticacaoService {
    * Obtêm as credenciais de sessão por meio do envio do token de refresh.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para refresh de autenticação.
-   * @returns unknown
+   * @returns AuthSessionCredentialsView Credenciais de sessão.
    * @throws ApiError
    */
   public authRefresh(data: AuthRefreshData): CancelablePromise<AuthRefreshResponse> {
@@ -405,8 +405,8 @@ export class UsuariosService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
-   * @returns unknown
+   * @param data.sortBy Ordenação.
+   * @returns UsuarioListResultView Resultados da busca a usuários.
    * @throws ApiError
    */
   public usuarioList(data: UsuarioListData = {}): CancelablePromise<UsuarioListResponse> {
@@ -430,7 +430,7 @@ export class UsuariosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um usuário.
-   * @returns unknown
+   * @returns UsuarioFindOneResultView Visão FindOne de um Usuário.
    * @throws ApiError
    */
   public usuarioCreate(data: UsuarioCreateData): CancelablePromise<UsuarioCreateResponse> {
@@ -450,7 +450,7 @@ export class UsuariosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns UsuarioFindOneResultView Visão FindOne de um Usuário.
    * @throws ApiError
    */
   public usuarioFindOneById(data: UsuarioFindOneByIdData): CancelablePromise<UsuarioFindOneByIdResponse> {
@@ -472,7 +472,7 @@ export class UsuariosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um Usuário.
-   * @returns unknown
+   * @returns UsuarioFindOneResultView Visão FindOne de um Usuário.
    * @throws ApiError
    */
   public usuarioUpdateOneById(data: UsuarioUpdateOneByIdData): CancelablePromise<UsuarioUpdateOneByIdResponse> {
@@ -516,7 +516,7 @@ export class UsuariosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns binary
+   * @returns binary Binário.
    * @throws ApiError
    */
   public usuarioGetImagemCapa(data: UsuarioGetImagemCapaData): CancelablePromise<UsuarioGetImagemCapaResponse> {
@@ -538,7 +538,7 @@ export class UsuariosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.formData
-   * @returns boolean
+   * @returns boolean Resultado da operação.
    * @throws ApiError
    */
   public usuarioSetImagemCapa(data: UsuarioSetImagemCapaData): CancelablePromise<UsuarioSetImagemCapaResponse> {
@@ -561,7 +561,7 @@ export class UsuariosService {
    * Obtêm a imagem de perfil.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns binary
+   * @returns binary Binário.
    * @throws ApiError
    */
   public usuarioGetImagemPerfil(data: UsuarioGetImagemPerfilData): CancelablePromise<UsuarioGetImagemPerfilResponse> {
@@ -583,7 +583,7 @@ export class UsuariosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.formData
-   * @returns boolean
+   * @returns boolean Resultado da operação.
    * @throws ApiError
    */
   public usuarioSetImagemPerfil(data: UsuarioSetImagemPerfilData): CancelablePromise<UsuarioSetImagemPerfilResponse> {
@@ -612,11 +612,11 @@ export class VinculosService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterAtivo
    * @param data.filterCampusId
    * @param data.filterUsuarioId
-   * @returns unknown
+   * @returns PerfilListResultView Resultados da busca a Vínculos.
    * @throws ApiError
    */
   public perfilList(data: PerfilListData = {}): CancelablePromise<PerfilListResponse> {
@@ -643,7 +643,7 @@ export class VinculosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a alteração de vínculo de um Usuário a um Campus.
-   * @returns unknown
+   * @returns PerfilListResultView Resultados da busca a Vínculos.
    * @throws ApiError
    */
   public perfilUpdateOneById(data: PerfilUpdateOneByIdData): CancelablePromise<PerfilUpdateOneByIdResponse> {
@@ -669,10 +669,10 @@ export class CampiService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterEnderecoCidadeId
    * @param data.filterEnderecoCidadeEstadoId
-   * @returns unknown
+   * @returns CampusListResultView Resultados da busca a campi.
    * @throws ApiError
    */
   public campusList(data: CampusListData = {}): CancelablePromise<CampusListResponse> {
@@ -698,7 +698,7 @@ export class CampiService {
    * Operação de criação de um campus.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um campus.
-   * @returns unknown
+   * @returns CampusFindOneResultView Visão FindOne de um campus.
    * @throws ApiError
    */
   public campusCreate(data: CampusCreateData): CancelablePromise<CampusCreateResponse> {
@@ -718,7 +718,7 @@ export class CampiService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns CampusFindOneResultView Visão FindOne de um campus.
    * @throws ApiError
    */
   public campusFindOneById(data: CampusFindOneByIdData): CancelablePromise<CampusFindOneByIdResponse> {
@@ -740,7 +740,7 @@ export class CampiService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um campus.
-   * @returns unknown
+   * @returns CampusFindOneResultView Visão FindOne de um campus.
    * @throws ApiError
    */
   public campusUpdateOneById(data: CampusUpdateOneByIdData): CancelablePromise<CampusUpdateOneByIdResponse> {
@@ -790,8 +790,8 @@ export class ModalidadesService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
-   * @returns unknown
+   * @param data.sortBy Ordenação.
+   * @returns ModalidadeListResultView Resultados da busca a Modalidades.
    * @throws ApiError
    */
   public modalidadeList(data: ModalidadeListData = {}): CancelablePromise<ModalidadeListResponse> {
@@ -815,7 +815,7 @@ export class ModalidadesService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de uma modalidade.
-   * @returns unknown
+   * @returns ModalidadeFindOneResultView Visão FindOne de uma modalidade.
    * @throws ApiError
    */
   public modalidadeCreate(data: ModalidadeCreateData): CancelablePromise<ModalidadeCreateResponse> {
@@ -835,7 +835,7 @@ export class ModalidadesService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns ModalidadeFindOneResultView Visão FindOne de uma modalidade.
    * @throws ApiError
    */
   public modalidadeFindOneById(data: ModalidadeFindOneByIdData): CancelablePromise<ModalidadeFindOneByIdResponse> {
@@ -857,7 +857,7 @@ export class ModalidadesService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de uma modalidade.
-   * @returns unknown
+   * @returns ModalidadeFindOneResultView Visão FindOne de uma modalidade.
    * @throws ApiError
    */
   public modalidadeUpdateOneById(data: ModalidadeUpdateOneByIdData): CancelablePromise<ModalidadeUpdateOneByIdResponse> {
@@ -907,8 +907,8 @@ export class EstadosService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
-   * @returns unknown
+   * @param data.sortBy Ordenação.
+   * @returns EstadoListResultView Resultados da busca a estados.
    * @throws ApiError
    */
   public estadoList(data: EstadoListData = {}): CancelablePromise<EstadoListResponse> {
@@ -932,7 +932,7 @@ export class EstadosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (numérico).
-   * @returns unknown
+   * @returns EstadoFindOneResultView Visão FindOne de um estado.
    * @throws ApiError
    */
   public estadoFindOneById(data: EstadoFindOneByIdData): CancelablePromise<EstadoFindOneByIdResponse> {
@@ -959,9 +959,9 @@ export class CidadesService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterEstadoId
-   * @returns unknown
+   * @returns CidadeListResultView Resultados da busca a cidades.
    * @throws ApiError
    */
   public cidadeList(data: CidadeListData = {}): CancelablePromise<CidadeListResponse> {
@@ -986,7 +986,7 @@ export class CidadesService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (numérico).
-   * @returns unknown
+   * @returns CidadeFindOneResultView Visão FindOne de uma cidade.
    * @throws ApiError
    */
   public cidadeFindOneById(data: CidadeFindOneByIdData): CancelablePromise<CidadeFindOneByIdResponse> {
@@ -1013,9 +1013,9 @@ export class BlocosService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterCampusId
-   * @returns unknown
+   * @returns BlocoListResultView Resultados da busca a blocos.
    * @throws ApiError
    */
   public blocoList(data: BlocoListData = {}): CancelablePromise<BlocoListResponse> {
@@ -1040,7 +1040,7 @@ export class BlocosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um bloco.
-   * @returns unknown
+   * @returns BlocoFindOneResultView Visão FindOne de um bloco.
    * @throws ApiError
    */
   public blocoCreate(data: BlocoCreateData): CancelablePromise<BlocoCreateResponse> {
@@ -1060,7 +1060,7 @@ export class BlocosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns BlocoFindOneResultView Visão FindOne de um bloco.
    * @throws ApiError
    */
   public blocoFindOneById(data: BlocoFindOneByIdData): CancelablePromise<BlocoFindOneByIdResponse> {
@@ -1082,7 +1082,7 @@ export class BlocosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um bloco.
-   * @returns unknown
+   * @returns BlocoFindOneResultView Visão FindOne de um bloco.
    * @throws ApiError
    */
   public blocoUpdateOneById(data: BlocoUpdateOneByIdData): CancelablePromise<BlocoUpdateOneByIdResponse> {
@@ -1126,7 +1126,7 @@ export class BlocosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns binary
+   * @returns binary Binário.
    * @throws ApiError
    */
   public blocoGetImagemCapa(data: BlocoGetImagemCapaData): CancelablePromise<BlocoGetImagemCapaResponse> {
@@ -1148,7 +1148,7 @@ export class BlocosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.formData
-   * @returns boolean
+   * @returns boolean Resultado da operação.
    * @throws ApiError
    */
   public blocoSetImagemCapa(data: BlocoSetImagemCapaData): CancelablePromise<BlocoSetImagemCapaResponse> {
@@ -1177,10 +1177,10 @@ export class AmbientesService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterBlocoId
    * @param data.filterBlocoCampusId
-   * @returns unknown
+   * @returns AmbienteListResultView Resultados da busca a ambientes.
    * @throws ApiError
    */
   public ambienteList(data: AmbienteListData = {}): CancelablePromise<AmbienteListResponse> {
@@ -1206,7 +1206,7 @@ export class AmbientesService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um ambiente.
-   * @returns unknown
+   * @returns AmbienteFindOneResultView Visão FindOne de um ambiente.
    * @throws ApiError
    */
   public ambienteCreate(data: AmbienteCreateData): CancelablePromise<AmbienteCreateResponse> {
@@ -1226,7 +1226,7 @@ export class AmbientesService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns AmbienteFindOneResultView Visão FindOne de um ambiente.
    * @throws ApiError
    */
   public ambienteFindOneById(data: AmbienteFindOneByIdData): CancelablePromise<AmbienteFindOneByIdResponse> {
@@ -1248,7 +1248,7 @@ export class AmbientesService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um ambiente.
-   * @returns unknown
+   * @returns AmbienteFindOneResultView Visão FindOne de um ambiente.
    * @throws ApiError
    */
   public ambienteUpdateOneById(data: AmbienteUpdateOneByIdData): CancelablePromise<AmbienteUpdateOneByIdResponse> {
@@ -1292,7 +1292,7 @@ export class AmbientesService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns binary
+   * @returns binary Binário.
    * @throws ApiError
    */
   public ambienteGetImagemCapa(data: AmbienteGetImagemCapaData): CancelablePromise<AmbienteGetImagemCapaResponse> {
@@ -1314,7 +1314,7 @@ export class AmbientesService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.formData
-   * @returns boolean
+   * @returns boolean Resultado da operação.
    * @throws ApiError
    */
   public ambienteSetImagemCapa(data: AmbienteSetImagemCapaData): CancelablePromise<AmbienteSetImagemCapaResponse> {
@@ -1343,12 +1343,12 @@ export class ReservasService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterDataInicio
    * @param data.filterDataTermino
    * @param data.intervaloDeTempoPeriodoInicio
    * @param data.intervaloDeTempoPeriodoFim
-   * @returns unknown
+   * @returns ReservaListResultView Resultados da busca a Reservas.
    * @throws ApiError
    */
   public reservaList(data: ReservaListData = {}): CancelablePromise<ReservaListResponse> {
@@ -1376,7 +1376,7 @@ export class ReservasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de uma Reserva.
-   * @returns unknown
+   * @returns ReservaFindOneResultView Visão FindOne de uma Reserva.
    * @throws ApiError
    */
   public reservaCreate(data: ReservaCreateData): CancelablePromise<ReservaCreateResponse> {
@@ -1396,7 +1396,7 @@ export class ReservasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns ReservaFindOneResultView Visão FindOne de uma Reserva.
    * @throws ApiError
    */
   public reservaFindOneById(data: ReservaFindOneByIdData): CancelablePromise<ReservaFindOneByIdResponse> {
@@ -1418,7 +1418,7 @@ export class ReservasService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de uma Reserva.
-   * @returns unknown
+   * @returns ReservaFindOneResultView Visão FindOne de uma Reserva.
    * @throws ApiError
    */
   public reservaUpdateOneById(data: ReservaUpdateOneByIdData): CancelablePromise<ReservaUpdateOneByIdResponse> {
@@ -1468,10 +1468,10 @@ export class CursosService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterCampusId
    * @param data.filterOfertaFormacaoId
-   * @returns unknown
+   * @returns CursoListResultView Resultados da busca a Cursos.
    * @throws ApiError
    */
   public cursoList(data: CursoListData = {}): CancelablePromise<CursoListResponse> {
@@ -1497,7 +1497,7 @@ export class CursosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um Curso.
-   * @returns unknown
+   * @returns CursoFindOneResultView Visão FindOne de um Curso.
    * @throws ApiError
    */
   public cursoCreate(data: CursoCreateData): CancelablePromise<CursoCreateResponse> {
@@ -1517,7 +1517,7 @@ export class CursosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns CursoFindOneResultView Visão FindOne de um Curso.
    * @throws ApiError
    */
   public cursoFindOneById(data: CursoFindOneByIdData): CancelablePromise<CursoFindOneByIdResponse> {
@@ -1539,7 +1539,7 @@ export class CursosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um Curso.
-   * @returns unknown
+   * @returns CursoFindOneResultView Visão FindOne de um Curso.
    * @throws ApiError
    */
   public cursoUpdateOneById(data: CursoUpdateOneByIdData): CancelablePromise<CursoUpdateOneByIdResponse> {
@@ -1583,7 +1583,7 @@ export class CursosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns binary
+   * @returns binary Binário.
    * @throws ApiError
    */
   public cursoGetImagemCapa(data: CursoGetImagemCapaData): CancelablePromise<CursoGetImagemCapaResponse> {
@@ -1605,7 +1605,7 @@ export class CursosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.formData
-   * @returns boolean
+   * @returns boolean Resultado da operação.
    * @throws ApiError
    */
   public cursoSetImagemCapa(data: CursoSetImagemCapaData): CancelablePromise<CursoSetImagemCapaResponse> {
@@ -1634,8 +1634,8 @@ export class DisciplinasService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
-   * @returns unknown
+   * @param data.sortBy Ordenação.
+   * @returns DisciplinaListResultView Resultados da busca a Disciplinas.
    * @throws ApiError
    */
   public disciplinaList(data: DisciplinaListData = {}): CancelablePromise<DisciplinaListResponse> {
@@ -1659,7 +1659,7 @@ export class DisciplinasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de uma Disciplina.
-   * @returns unknown
+   * @returns DisciplinaFindOneResultView Visão FindOne de uma Disciplina.
    * @throws ApiError
    */
   public disciplinaCreate(data: DisciplinaCreateData): CancelablePromise<DisciplinaCreateResponse> {
@@ -1679,7 +1679,7 @@ export class DisciplinasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns DisciplinaFindOneResultView Visão FindOne de uma Disciplina.
    * @throws ApiError
    */
   public disciplinaFindOneById(data: DisciplinaFindOneByIdData): CancelablePromise<DisciplinaFindOneByIdResponse> {
@@ -1701,7 +1701,7 @@ export class DisciplinasService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de uma Disciplina.
-   * @returns unknown
+   * @returns DisciplinaFindOneResultView Visão FindOne de uma Disciplina.
    * @throws ApiError
    */
   public disciplinaUpdateOneById(data: DisciplinaUpdateOneByIdData): CancelablePromise<DisciplinaUpdateOneByIdResponse> {
@@ -1745,7 +1745,7 @@ export class DisciplinasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns binary
+   * @returns binary Binário.
    * @throws ApiError
    */
   public disciplinaGetImagemCapa(data: DisciplinaGetImagemCapaData): CancelablePromise<DisciplinaGetImagemCapaResponse> {
@@ -1767,7 +1767,7 @@ export class DisciplinasService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.formData
-   * @returns boolean
+   * @returns boolean Resultado da operação.
    * @throws ApiError
    */
   public disciplinaSetImagemCapa(data: DisciplinaSetImagemCapaData): CancelablePromise<DisciplinaSetImagemCapaResponse> {
@@ -1796,7 +1796,7 @@ export class TurmasService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterAmbientePadraoAulaNome
    * @param data.filterAmbientePadraoAulaCodigo
    * @param data.filterAmbientePadraoAulaCapacidade
@@ -1805,7 +1805,7 @@ export class TurmasService {
    * @param data.filterCursoNomeAbreviado
    * @param data.filterCursoCampusId
    * @param data.filterCursoModalidadeId
-   * @returns unknown
+   * @returns TurmaListResultView Resultados da busca a Turmas.
    * @throws ApiError
    */
   public turmaList(data: TurmaListData = {}): CancelablePromise<TurmaListResponse> {
@@ -1837,7 +1837,7 @@ export class TurmasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de uma Turma.
-   * @returns unknown
+   * @returns TurmaFindOneResultView Visão FindOne de uma Turma.
    * @throws ApiError
    */
   public turmaCreate(data: TurmaCreateData): CancelablePromise<TurmaCreateResponse> {
@@ -1857,7 +1857,7 @@ export class TurmasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns TurmaFindOneResultView Visão FindOne de uma Turma.
    * @throws ApiError
    */
   public turmaFindOneById(data: TurmaFindOneByIdData): CancelablePromise<TurmaFindOneByIdResponse> {
@@ -1879,7 +1879,7 @@ export class TurmasService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de uma Turma.
-   * @returns unknown
+   * @returns TurmaFindOneResultView Visão FindOne de uma Turma.
    * @throws ApiError
    */
   public turmaUpdateOneById(data: TurmaUpdateOneByIdData): CancelablePromise<TurmaUpdateOneByIdResponse> {
@@ -1923,7 +1923,7 @@ export class TurmasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns binary
+   * @returns binary Binário.
    * @throws ApiError
    */
   public turmaGetImagemCapa(data: TurmaGetImagemCapaData): CancelablePromise<TurmaGetImagemCapaResponse> {
@@ -1945,7 +1945,7 @@ export class TurmasService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.formData
-   * @returns boolean
+   * @returns boolean Resultado da operação.
    * @throws ApiError
    */
   public turmaSetImagemCapa(data: TurmaSetImagemCapaData): CancelablePromise<TurmaSetImagemCapaResponse> {
@@ -1974,10 +1974,10 @@ export class CalendariosLetivosService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterCampusId
    * @param data.filterOfertaFormacaoId
-   * @returns unknown
+   * @returns CalendarioLetivoListResultView Resultados da busca a CalendarioLetivos.
    * @throws ApiError
    */
   public calendarioLetivoList(data: CalendarioLetivoListData = {}): CancelablePromise<CalendarioLetivoListResponse> {
@@ -2003,7 +2003,7 @@ export class CalendariosLetivosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um calendário letivo.
-   * @returns unknown
+   * @returns CalendarioLetivoFindOneResultView Visão FindOne de um calendário letivo.
    * @throws ApiError
    */
   public calendarioLetivoCreate(data: CalendarioLetivoCreateData): CancelablePromise<CalendarioLetivoCreateResponse> {
@@ -2023,7 +2023,7 @@ export class CalendariosLetivosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns CalendarioLetivoFindOneResultView Visão FindOne de um calendário letivo.
    * @throws ApiError
    */
   public calendarioLetivoFindOneById(data: CalendarioLetivoFindOneByIdData): CancelablePromise<CalendarioLetivoFindOneByIdResponse> {
@@ -2045,7 +2045,7 @@ export class CalendariosLetivosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um calendário letivo.
-   * @returns unknown
+   * @returns CalendarioLetivoFindOneResultView Visão FindOne de um calendário letivo.
    * @throws ApiError
    */
   public calendarioLetivoUpdateOneById(data: CalendarioLetivoUpdateOneByIdData): CancelablePromise<CalendarioLetivoUpdateOneByIdResponse> {
@@ -2095,9 +2095,9 @@ export class EventosService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterCalendarioId
-   * @returns unknown
+   * @returns EventoListResultView Resultados da busca a Eventos.
    * @throws ApiError
    */
   public eventoList(data: EventoListData = {}): CancelablePromise<EventoListResponse> {
@@ -2122,7 +2122,7 @@ export class EventosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um Evento.
-   * @returns unknown
+   * @returns EventoFindOneResultView Visão FindOne de um Evento.
    * @throws ApiError
    */
   public eventoCreate(data: EventoCreateData): CancelablePromise<EventoCreateResponse> {
@@ -2142,7 +2142,7 @@ export class EventosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns EventoFindOneResultView Visão FindOne de um Evento.
    * @throws ApiError
    */
   public eventoFindOneById(data: EventoFindOneByIdData): CancelablePromise<EventoFindOneByIdResponse> {
@@ -2164,7 +2164,7 @@ export class EventosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um Evento.
-   * @returns unknown
+   * @returns EventoFindOneResultView Visão FindOne de um Evento.
    * @throws ApiError
    */
   public eventoUpdateOneById(data: EventoUpdateOneByIdData): CancelablePromise<EventoUpdateOneByIdResponse> {
@@ -2214,9 +2214,9 @@ export class DiasCalendarioService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterCalendarioId
-   * @returns unknown
+   * @returns DiaCalendarioListResultView Resultados da busca a DiaCalendarios.
    * @throws ApiError
    */
   public diaCalendarioList(data: DiaCalendarioListData = {}): CancelablePromise<DiaCalendarioListResponse> {
@@ -2241,7 +2241,7 @@ export class DiasCalendarioService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um DiaCalendario.
-   * @returns unknown
+   * @returns DiaCalendarioFindOneResultView Visão FindOne de um DiaCalendario.
    * @throws ApiError
    */
   public diaCalendarioCreate(data: DiaCalendarioCreateData): CancelablePromise<DiaCalendarioCreateResponse> {
@@ -2261,7 +2261,7 @@ export class DiasCalendarioService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns DiaCalendarioFindOneResultView Visão FindOne de um DiaCalendario.
    * @throws ApiError
    */
   public diaCalendarioFindOneById(data: DiaCalendarioFindOneByIdData): CancelablePromise<DiaCalendarioFindOneByIdResponse> {
@@ -2283,7 +2283,7 @@ export class DiasCalendarioService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um DiaCalendario.
-   * @returns unknown
+   * @returns DiaCalendarioFindOneResultView Visão FindOne de um DiaCalendario.
    * @throws ApiError
    */
   public diaCalendarioUpdateOneById(data: DiaCalendarioUpdateOneByIdData): CancelablePromise<DiaCalendarioUpdateOneByIdResponse> {
@@ -2333,12 +2333,12 @@ export class DiariosService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterTurmaId
    * @param data.filterDisciplinaId
    * @param data.filterAmbientePadraoId
    * @param data.filterCalendarioLetivoId
-   * @returns unknown
+   * @returns DiarioListResultView Resultados da busca a Diarios.
    * @throws ApiError
    */
   public diarioList(data: DiarioListData = {}): CancelablePromise<DiarioListResponse> {
@@ -2366,7 +2366,7 @@ export class DiariosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um diário.
-   * @returns unknown
+   * @returns DiarioFindOneResultView Visão FindOne de um diário.
    * @throws ApiError
    */
   public diarioCreate(data: DiarioCreateData): CancelablePromise<DiarioCreateResponse> {
@@ -2386,7 +2386,7 @@ export class DiariosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns DiarioFindOneResultView Visão FindOne de um diário.
    * @throws ApiError
    */
   public diarioFindOneById(data: DiarioFindOneByIdData): CancelablePromise<DiarioFindOneByIdResponse> {
@@ -2408,7 +2408,7 @@ export class DiariosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um diário.
-   * @returns unknown
+   * @returns DiarioFindOneResultView Visão FindOne de um diário.
    * @throws ApiError
    */
   public diarioUpdateOneById(data: DiarioUpdateOneByIdData): CancelablePromise<DiarioUpdateOneByIdResponse> {
@@ -2458,10 +2458,10 @@ export class DiarioProfessorService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterPerfilId
    * @param data.filterDiarioId
-   * @returns unknown
+   * @returns DiarioProfessorListResultView Resultados da busca a DiarioProfessor.
    * @throws ApiError
    */
   public diarioProfessorList(data: DiarioProfessorListData = {}): CancelablePromise<DiarioProfessorListResponse> {
@@ -2487,7 +2487,7 @@ export class DiarioProfessorService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um DiarioProfessor.
-   * @returns unknown
+   * @returns DiarioProfessorFindOneResultView Visão FindOne de um DiarioProfessor.
    * @throws ApiError
    */
   public diarioProfessorCreate(data: DiarioProfessorCreateData): CancelablePromise<DiarioProfessorCreateResponse> {
@@ -2507,7 +2507,7 @@ export class DiarioProfessorService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns DiarioProfessorFindOneResultView Visão FindOne de um DiarioProfessor.
    * @throws ApiError
    */
   public diarioProfessorFindOneById(data: DiarioProfessorFindOneByIdData): CancelablePromise<DiarioProfessorFindOneByIdResponse> {
@@ -2529,7 +2529,7 @@ export class DiarioProfessorService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um DiarioProfessor.
-   * @returns unknown
+   * @returns DiarioProfessorFindOneResultView Visão FindOne de um DiarioProfessor.
    * @throws ApiError
    */
   public diarioProfessorUpdateOneById(data: DiarioProfessorUpdateOneByIdData): CancelablePromise<DiarioProfessorUpdateOneByIdResponse> {
@@ -2579,9 +2579,9 @@ export class EtapasService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterCalendarioId
-   * @returns unknown
+   * @returns EtapaListResultView Resultados da busca a Etapas.
    * @throws ApiError
    */
   public etapaList(data: EtapaListData = {}): CancelablePromise<EtapaListResponse> {
@@ -2606,7 +2606,7 @@ export class EtapasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de uma Etapa.
-   * @returns unknown
+   * @returns EtapaFindOneResultView Visão FindOne de uma Etapa.
    * @throws ApiError
    */
   public etapaCreate(data: EtapaCreateData): CancelablePromise<EtapaCreateResponse> {
@@ -2626,7 +2626,7 @@ export class EtapasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns EtapaFindOneResultView Visão FindOne de uma Etapa.
    * @throws ApiError
    */
   public etapaFindOneById(data: EtapaFindOneByIdData): CancelablePromise<EtapaFindOneByIdResponse> {
@@ -2648,7 +2648,7 @@ export class EtapasService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de uma Etapa.
-   * @returns unknown
+   * @returns EtapaFindOneResultView Visão FindOne de uma Etapa.
    * @throws ApiError
    */
   public etapaUpdateOneById(data: EtapaUpdateOneByIdData): CancelablePromise<EtapaUpdateOneByIdResponse> {
@@ -2698,10 +2698,10 @@ export class AulasService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
+   * @param data.sortBy Ordenação.
    * @param data.filterDiarioId
    * @param data.filterAmbienteId
-   * @returns unknown
+   * @returns AulaListResultView Resultados da busca a Aulas.
    * @throws ApiError
    */
   public aulaList(data: AulaListData = {}): CancelablePromise<AulaListResponse> {
@@ -2727,7 +2727,7 @@ export class AulasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de uma Aula.
-   * @returns unknown
+   * @returns AulaFindOneResultView Visão FindOne de uma Aula.
    * @throws ApiError
    */
   public aulaCreate(data: AulaCreateData): CancelablePromise<AulaCreateResponse> {
@@ -2747,7 +2747,7 @@ export class AulasService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns AulaFindOneResultView Visão FindOne de uma Aula.
    * @throws ApiError
    */
   public aulaFindOneById(data: AulaFindOneByIdData): CancelablePromise<AulaFindOneByIdResponse> {
@@ -2769,7 +2769,7 @@ export class AulasService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de uma Aula.
-   * @returns unknown
+   * @returns AulaFindOneResultView Visão FindOne de uma Aula.
    * @throws ApiError
    */
   public aulaUpdateOneById(data: AulaUpdateOneByIdData): CancelablePromise<AulaUpdateOneByIdResponse> {
@@ -2820,8 +2820,8 @@ export class DiariosPreferenciaAgrupamentoService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
-   * @returns unknown
+   * @param data.sortBy Ordenação.
+   * @returns DiarioPreferenciaAgrupamentoListResultView Resultados da busca de DiarioPreferenciaAgrupamentos.
    * @throws ApiError
    */
   public diarioPreferenciaAgrupamentoList(data: DiarioPreferenciaAgrupamentoListData): CancelablePromise<DiarioPreferenciaAgrupamentoListResponse> {
@@ -2846,7 +2846,7 @@ export class DiariosPreferenciaAgrupamentoService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um DiarioPreferenciaAgrupamento.
-   * @returns unknown
+   * @returns DiarioPreferenciaAgrupamentoFindOneResultView Visão FindOne de um DiarioPreferenciaAgrupamento.
    * @throws ApiError
    */
   public diarioPreferenciaAgrupamentoCreate(data: DiarioPreferenciaAgrupamentoCreateData): CancelablePromise<DiarioPreferenciaAgrupamentoCreateResponse> {
@@ -2866,7 +2866,7 @@ export class DiariosPreferenciaAgrupamentoService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns DiarioPreferenciaAgrupamentoFindOneResultView Visão FindOne de um DiarioPreferenciaAgrupamento.
    * @throws ApiError
    */
   public diarioPreferenciaAgrupamentoFindOneById(data: DiarioPreferenciaAgrupamentoFindOneByIdData): CancelablePromise<DiarioPreferenciaAgrupamentoFindOneByIdResponse> {
@@ -2888,7 +2888,7 @@ export class DiariosPreferenciaAgrupamentoService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um DiarioPreferenciaAgrupamento.
-   * @returns unknown
+   * @returns DiarioPreferenciaAgrupamentoFindOneResultView Visão FindOne de um DiarioPreferenciaAgrupamento.
    * @throws ApiError
    */
   public diarioPreferenciaAgrupamentoUpdateOneById(data: DiarioPreferenciaAgrupamentoUpdateOneByIdData): CancelablePromise<DiarioPreferenciaAgrupamentoUpdateOneByIdResponse> {
@@ -2938,8 +2938,8 @@ export class HorariosGeradosService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
-   * @returns unknown
+   * @param data.sortBy Ordenação.
+   * @returns HorarioGeradoListResultView Resultados da busca de HorariosGerados.
    * @throws ApiError
    */
   public horarioGeradoList(data: HorarioGeradoListData = {}): CancelablePromise<HorarioGeradoListResponse> {
@@ -2963,7 +2963,7 @@ export class HorariosGeradosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um HorarioGerado.
-   * @returns unknown
+   * @returns HorarioGeradoFindOneResultView Visão FindOne de um HorarioGerado.
    * @throws ApiError
    */
   public horarioGeradoCreate(data: HorarioGeradoCreateData): CancelablePromise<HorarioGeradoCreateResponse> {
@@ -2983,7 +2983,7 @@ export class HorariosGeradosService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns HorarioGeradoFindOneResultView Visão FindOne de um HorarioGerado.
    * @throws ApiError
    */
   public horarioGeradoFindOneById(data: HorarioGeradoFindOneByIdData): CancelablePromise<HorarioGeradoFindOneByIdResponse> {
@@ -3005,7 +3005,7 @@ export class HorariosGeradosService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um HorarioGerado.
-   * @returns unknown
+   * @returns HorarioGeradoFindOneResultView Visão FindOne de um HorarioGerado.
    * @throws ApiError
    */
   public horarioGeradoUpdateOneById(data: HorarioGeradoUpdateOneByIdData): CancelablePromise<HorarioGeradoUpdateOneByIdResponse> {
@@ -3055,8 +3055,8 @@ export class HorariosGeradosAulaService {
    * @param data.page Página de consulta.
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
-   * @param data.sortBy
-   * @returns unknown
+   * @param data.sortBy Ordenação.
+   * @returns HorarioGeradoAulaListResultView Resultados da busca de HorarioGeradoAulas.
    * @throws ApiError
    */
   public horarioGeradoAulaList(data: HorarioGeradoAulaListData = {}): CancelablePromise<HorarioGeradoAulaListResponse> {
@@ -3080,7 +3080,7 @@ export class HorariosGeradosAulaService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.requestBody Dados de entrada para a criação de um HorarioGeradoAula.
-   * @returns unknown
+   * @returns HorarioGeradoAulaFindOneResultView Visão FindOne de um HorarioGeradoAula.
    * @throws ApiError
    */
   public horarioGeradoAulaCreate(data: HorarioGeradoAulaCreateData): CancelablePromise<HorarioGeradoAulaCreateResponse> {
@@ -3100,7 +3100,7 @@ export class HorariosGeradosAulaService {
    * Sem descrição.
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
-   * @returns unknown
+   * @returns HorarioGeradoAulaFindOneResultView Visão FindOne de um HorarioGeradoAula.
    * @throws ApiError
    */
   public horarioGeradoAulaFindOneById(data: HorarioGeradoAulaFindOneByIdData): CancelablePromise<HorarioGeradoAulaFindOneByIdResponse> {
@@ -3122,7 +3122,7 @@ export class HorariosGeradosAulaService {
    * @param data The data for the request.
    * @param data.id Identificador do registro (uuid).
    * @param data.requestBody Dados de entrada para a atualização de um HorarioGeradoAula.
-   * @returns unknown
+   * @returns HorarioGeradoAulaFindOneResultView Visão FindOne de um HorarioGeradoAula.
    * @throws ApiError
    */
   public horarioGeradoAulaUpdateOneById(data: HorarioGeradoAulaUpdateOneByIdData): CancelablePromise<HorarioGeradoAulaUpdateOneByIdResponse> {

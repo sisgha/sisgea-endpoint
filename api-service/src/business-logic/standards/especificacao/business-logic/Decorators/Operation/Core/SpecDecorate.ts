@@ -1,10 +1,12 @@
-import { COMBINED_INPUT_PARAM } from "@/business-logic/standards/especificacao/business-logic/CombinedInput";
+import { COMBINED_INPUT_PARAM, type ICombinedInputParamMetadata } from "@/business-logic/standards/especificacao/business-logic/CombinedInput";
+import { GraphQlOperationInputAdapter } from "@/business-logic/standards/especificacao/business-logic/Decorators/Operation/Adapters";
 import type { ISpecDecorateHandler, ISpecDecorateOperationContext } from "@/business-logic/standards/especificacao/business-logic/Decorators/Operation/Core/ISpecDecorateHandler";
 import { OPERATION_KEY } from "@/business-logic/standards/especificacao/business-logic/Decorators/Tokens";
 import { dtoCompiler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler";
 import type { ISpecNodesStore } from "@/business-logic/standards/especificacao/business-logic/SpecNodesStore";
+import { ValidationPipeAjv } from "@/business-logic/standards/especificacao/business-logic/Validation/ValidationPipeAjv";
 import { SetMetadata, applyDecorators, createParamDecorator } from "@nestjs/common";
-import { ExecutionContextHost } from "@nestjs/core/helpers/execution-context-host";
+import type { ExecutionContextHost } from "@nestjs/core/helpers/execution-context-host";
 
 export interface ISpecDecorate {
   store: ISpecNodesStore;
@@ -60,36 +62,44 @@ export class SpecDecorate implements ISpecDecorate {
     //
     context.AddMethodDecorator((target, propertyKey, descriptor) => {
       if (descriptor.value) {
-        const combinedInputParam = Reflect.getMetadata(COMBINED_INPUT_PARAM, descriptor.value);
+        const combinedInputParam: ICombinedInputParamMetadata = Reflect.getMetadata(COMBINED_INPUT_PARAM, descriptor.value);
 
         if (combinedInputParam) {
           const { parameterIndex } = combinedInputParam;
 
-          // const validationPipe = new ValidationPipeYup(combinedInputValidator);
-          const validationPipe = null;
+          // TODO: validate input
+          const validationPipe = new ValidationPipeAjv(null);
 
           context.AddCombinedInputDecorator(
             createParamDecorator((_, executionContext: ExecutionContextHost) => {
-              if (executionContext.getType<string>() === "graphql") {
-                const [, input] = executionContext.getArgs();
+              const executionContextType = executionContext.getType<string>();
 
-                // TODO
-                // return InputCombinerGraphQl.DecombineInput(operation, input);
-                return { input, status: "fixme" };
-              } else {
-                const httpContext = executionContext.switchToHttp();
+              switch (executionContextType) {
+                case "graphql": {
+                  const [, input] = executionContext.getArgs();
 
-                const request = httpContext.getRequest();
+                  return GraphQlOperationInputAdapter.DecombineOperationInput(operationNode, input);
+                }
 
-                const body = request.body;
-                const params = request.params;
-                const queries = request.query;
+                case "http": {
+                  const httpContext = executionContext.switchToHttp();
 
-                return {
-                  body,
-                  params,
-                  queries,
-                };
+                  const request = httpContext.getRequest();
+
+                  const body = request.body;
+                  const params = request.params;
+                  const queries = request.query;
+
+                  return {
+                    body,
+                    params,
+                    queries,
+                  };
+                }
+
+                default: {
+                  break;
+                }
               }
             })(null, validationPipe),
           );
