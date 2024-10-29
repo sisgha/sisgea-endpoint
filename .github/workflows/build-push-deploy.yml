@@ -58,8 +58,8 @@ jobs:
           target: api-service
           tags: ${{ env.CI_CD_LOCAL_API_SERVICE_IMAGE }}
           file: "Dockerfile"
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
 
       - name: Build @ladesa-ro/api-client-fetch-docs locally
         if: ${{ env.ENABLE_BUILD_IMAGE == 'true' }}
@@ -70,5 +70,5 @@ jobs:
           target: npm-api-client-fetch-docs
           tags: ${{ env.CI_CD_LOCAL_API_NPM_FETCH_DOCS_IMAGE }}
           file: "Dockerfile"
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
