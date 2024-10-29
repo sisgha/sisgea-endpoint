@@ -1,6 +1,7 @@
 name: Build, Push and Deploy
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - next
@@ -8,30 +9,26 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
-
-  CI_CD_LOCAL_API_SERVICE_IMAGE: registry.ladesa.local/api-service
-  CI_CD_LOCAL_API_NPM_FETCH_DOCS_IMAGE: registry.ladesa.local/api-client-fetch-docs
-
-  CI_DEVELOPMENT_BRANCH: ${{ vars.CI_DEVELOPMENT_BRANCH }}
-  CI_PRODUCTION_BRANCH: ${{ vars.CI_PRODUCTION_BRANCH }}
-
+  # USADOS
   ENABLE_BUILD_IMAGE: ${{ vars.ENABLE_BUILD_IMAGE }}
-  IMAGE_TAG_DEVELOPMENT: ${{ vars.IMAGE_TAG_DEVELOPMENT }}
-  IMAGE_TAG_PRODUCTION: ${{ vars.IMAGE_TAG_PRODUCTION }}
-
   ENABLE_PUSH_IMAGE: ${{ vars.ENABLE_PUSH_IMAGE }}
 
   REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
   REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
   REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
-  IMAGE_NAME: ${{ vars.IMAGE_NAME }}
 
-  ENABLE_TRIGGER_DEPLOY: ${{ vars.ENABLE_TRIGGER_DEPLOY }}
-  DEPLOY_DISPATCH_TOKEN: ${{ secrets.DEPLOY_DISPATCH_TOKEN }}
-  DEPLOY_OWNER: ${{ vars.DEPLOY_OWNER }}
-  DEPLOY_REPOSITORY: ${{ vars.DEPLOY_REPOSITORY }}
-  DEPLOY_WORKFLOW: ${{ vars.DEPLOY_WORKFLOW }}
-  DEPLOY_BRANCH: ${{ vars.DEPLOY_BRANCH }}
+  IMAGE_TAG: ${{ github.ref_name }}
+  IMAGE_NAME_SERVICE: ${{ vars.IMAGE_NAME_SERVICE }}
+  IMAGE_NAME_DOCS_NPM_API_CLIENT_FETCH: ${{ vars.IMAGE_NAME_DOCS_NPM_API_CLIENT_FETCH }}
+
+  # NAO USADOS
+  # ENABLE_TRIGGER_DEPLOY: ${{ vars.ENABLE_TRIGGER_DEPLOY }}
+
+  # DEPLOY_DISPATCH_TOKEN: ${{ secrets.DEPLOY_DISPATCH_TOKEN }}
+  # DEPLOY_OWNER: ${{ vars.DEPLOY_OWNER }}
+  # DEPLOY_REPOSITORY: ${{ vars.DEPLOY_REPOSITORY }}
+  # DEPLOY_WORKFLOW: ${{ vars.DEPLOY_WORKFLOW }}
+  # DEPLOY_BRANCH: ${{ vars.DEPLOY_BRANCH }}
 
 jobs:
   build-and-push:
@@ -49,26 +46,35 @@ jobs:
           username: ${{ env.REGISTRY_USERNAME }}
           password: ${{ env.REGISTRY_TOKEN }}
 
-      - name: Build @ladesa-ro/api.service locally
+      - name: Build and push @ladesa-ro/api.service
         if: ${{ env.ENABLE_BUILD_IMAGE == 'true' }}
         uses: docker/build-push-action@v6
         with:
-          load: true
-          push: false
+          # loas is an alias for outputs: type=docker
+          # please refer to <https://github.com/concourse/oci-build-task/issues/85>
+          # load: true
+          outputs: type=cacheonly
+          provenance: true
+          # platforms: amd64,linux/arm64,linux/arm/v7
+          platforms: amd64
+          push: ${{ env.ENABLE_PUSH_IMAGE == 'true' }}
           target: api-service
-          tags: ${{ env.CI_CD_LOCAL_API_SERVICE_IMAGE }}
-          file: "Dockerfile"
+          tags: ${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME_SERVICE }}:${{ env.IMAGE_TAG }}
           # cache-from: type=gha
           # cache-to: type=gha,mode=max
 
-      - name: Build @ladesa-ro/api-client-fetch-docs locally
+      - name: Build and push @ladesa-ro/api-client-fetch-docs
         if: ${{ env.ENABLE_BUILD_IMAGE == 'true' }}
         uses: docker/build-push-action@v6
         with:
-          load: true
-          push: false
+          # DISABLED LOAD, THAT IS AN ALIAS FOR type=docker
+          # load: true
+          outputs: type=cacheonly
+          provenance: true
+          # platforms: amd64,linux/arm64,linux/arm/v7
+          platforms: amd64
+          push: ${{ env.ENABLE_PUSH_IMAGE == 'true' }}
           target: npm-api-client-fetch-docs
-          tags: ${{ env.CI_CD_LOCAL_API_NPM_FETCH_DOCS_IMAGE }}
-          file: "Dockerfile"
+          tags: ${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME_DOCS_NPM_API_CLIENT_FETCH }}:${{ env.IMAGE_TAG }}
           # cache-from: type=gha
           # cache-to: type=gha,mode=max

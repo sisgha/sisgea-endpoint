@@ -19,14 +19,10 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Use Node.js ${{ env.node-version }}
-        uses: actions/setup-node@v4
+      - name: Install
+        uses: ./.github/actions/prepare/install
         with:
-          node-version: ${{ env.node-version }}
-          cache: "pnpm"
+          install-node: "true"
 
       - name: Install dependencies
         run: pnpm install -w --frozen-lockfile

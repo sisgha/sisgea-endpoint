@@ -3,13 +3,12 @@ name: Generate Integrations
 on:
   push:
     branches:
-      - development
+      - next
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
-  node-version: 22
-  target-branch: development
+  target-branch: next
   generated-branch: robozinho-do-ladesa/generated-integrations
 
 jobs:
@@ -32,7 +31,6 @@ jobs:
       - name: Install
         uses: ./.github/actions/prepare/install
         with:
-          node-version: ${{ env.node-version }}
           install-node: "true"
 
       - id: build-integrations

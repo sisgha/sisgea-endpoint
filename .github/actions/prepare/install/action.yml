@@ -10,7 +10,7 @@ inputs:
   node-version:
     description: "The node version to setup"
     required: true
-    default: "22"
+    default: "23"
 
   node-registry-url:
     description: "Define registry-url"

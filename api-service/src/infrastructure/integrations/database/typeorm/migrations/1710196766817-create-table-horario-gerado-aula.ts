@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-const tableName = "horario_gerado_aul";
+const tableName = "horario_gerado_aula";
 
 export class CreateTableHorarioGeradoAula1710196766817 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
