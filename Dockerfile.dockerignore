@@ -1,7 +1,11 @@
 **/.git
-**/.github
 **/.husky
+**/.github
+
 **/.vscode
+**/.idea
+
+**/.pnpm-store
 **/node_modules
 
 **/*.env
