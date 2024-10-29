@@ -249,27 +249,6 @@ export class BaseService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
-   * Sem descrição.
-   * @param data The data for the request.
-   * @param data.id Identificador do registro (uuid).
-   * @returns AmbienteFindOneResultView Visão FindOne de um ambiente.
-   * @throws ApiError
-   */
-  public ambienteFindOneById(data: AmbienteFindOneByIdData): CancelablePromise<AmbienteFindOneByIdResponse> {
-    return this.httpRequest.request({
-      method: "GET",
-      url: "/aaaa",
-      path: {
-        id: data.id,
-      },
-      errors: {
-        403: "O solicitante não tem permissão para executar esta ação.",
-        404: "Registro não encontrado.",
-      },
-    });
-  }
-
-  /**
    * @returns unknown Olá, Mundo!
    * @throws ApiError
    */

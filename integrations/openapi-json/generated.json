@@ -1,56 +1,6 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/aaaa": {
-      "get": {
-        "operationId": "AmbienteFindOneById",
-        "summary": "",
-        "description": "Sem descrição.",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Identificador do registro (uuid).",
-            "kind": "schema",
-            "schema": {
-              "$schema": "https://json-schema.org/draft/2020-12/schema",
-              "$id": "ladesa://schemas/v3/generics/uuid.json",
-              "type": "string",
-              "format": "uuid",
-              "description": "Identificador do registro (uuid).",
-              "x-unispec-constraint-entity-exists": "Ambiente"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "nullable": false,
-            "description": "Visão FindOne de um ambiente.",
-            "kind": "type",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AmbienteFindOneResultView"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "O solicitante não tem permissão para executar esta ação."
-          },
-          "404": {
-            "description": "Registro não encontrado."
-          }
-        },
-        "tags": ["Base"],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
     "/": {
       "get": {
         "operationId": "AppController_getHello",
@@ -7726,6 +7676,261 @@
       }
     },
     "schemas": {
+      "ArquivoFindOneResultView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Nome do arquivo."
+          },
+          "mimeType": {
+            "type": "string",
+            "nullable": true,
+            "description": "Formato do arquivo."
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Tamanho do arquivo (em bytes)."
+          },
+          "storageType": {
+            "type": "string",
+            "nullable": false,
+            "description": "Estratégia de armazenamento do conteúdo."
+          },
+          "dateCreated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da criação do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da alteração do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateDeleted": {
+            "type": "string",
+            "nullable": true,
+            "description": "Data e hora da exclusão do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "name", "mimeType", "sizeBytes", "storageType", "dateCreated", "dateUpdated", "dateDeleted"]
+      },
+      "ImagemArquivoFindOneFromImagemResultView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid"
+          },
+          "largura": {
+            "type": "integer",
+            "nullable": false,
+            "description": "Largura da imagem."
+          },
+          "altura": {
+            "type": "integer",
+            "nullable": false,
+            "description": "Altura da imagem."
+          },
+          "formato": {
+            "type": "string",
+            "nullable": false,
+            "description": "Formato da imagem."
+          },
+          "mimeType": {
+            "type": "string",
+            "nullable": false,
+            "description": "Mime-type da imagem."
+          },
+          "arquivo": {
+            "nullable": false,
+            "description": "Dados de saída para encontrar um arquivo por id.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ArquivoFindOneResultView"
+              }
+            ]
+          },
+          "dateCreated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da criação do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da alteração do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateDeleted": {
+            "type": "string",
+            "nullable": true,
+            "description": "Data e hora da exclusão do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "largura", "altura", "formato", "mimeType", "arquivo", "dateCreated", "dateUpdated", "dateDeleted"]
+      },
+      "ImagemFindOneResultView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid"
+          },
+          "descricao": {
+            "type": "string",
+            "nullable": true,
+            "description": "Descrição da imagem."
+          },
+          "versoes": {
+            "nullable": false,
+            "description": "Visão FindOneFromImagem de uma versão de imagem.",
+            "kind": "type",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImagemArquivoFindOneFromImagemResultView"
+            }
+          },
+          "dateCreated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da criação do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da alteração do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateDeleted": {
+            "type": "string",
+            "nullable": true,
+            "description": "Data e hora da exclusão do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "descricao", "versoes", "dateCreated", "dateUpdated", "dateDeleted"]
+      },
+      "UsuarioFindOneResultView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true,
+            "description": "Nome do usuário.",
+            "minLength": 1
+          },
+          "matriculaSiape": {
+            "type": "string",
+            "nullable": true,
+            "description": "Matrícula SIAPE do usuário.",
+            "minLength": 1
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "description": "E-mail do usuário.",
+            "format": "email"
+          },
+          "isSuperUser": {
+            "type": "boolean",
+            "nullable": false,
+            "description": "Diz que o usuário tem poderes de administrador."
+          },
+          "imagemCapa": {
+            "nullable": true,
+            "description": "Visão FindOne de uma imagem.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImagemFindOneResultView"
+              }
+            ]
+          },
+          "imagemPerfil": {
+            "nullable": true,
+            "description": "Visão FindOne de uma imagem.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImagemFindOneResultView"
+              }
+            ]
+          },
+          "dateCreated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da criação do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da alteração do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateDeleted": {
+            "type": "string",
+            "nullable": true,
+            "description": "Data e hora da exclusão do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "nome", "matriculaSiape", "email", "isSuperUser", "imagemCapa", "imagemPerfil", "dateCreated", "dateUpdated", "dateDeleted"]
+      },
       "EstadoFindOneResultView": {
         "type": "object",
         "properties": {
@@ -7930,414 +8135,6 @@
           }
         },
         "required": ["id", "nomeFantasia", "razaoSocial", "apelido", "cnpj", "endereco", "dateCreated", "dateUpdated", "dateDeleted"]
-      },
-      "ArquivoFindOneResultView": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": false,
-            "description": "Identificador do registro (uuid).",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/uuid.json",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true,
-            "description": "Nome do arquivo."
-          },
-          "mimeType": {
-            "type": "string",
-            "nullable": true,
-            "description": "Formato do arquivo."
-          },
-          "sizeBytes": {
-            "type": "integer",
-            "nullable": true,
-            "description": "Tamanho do arquivo (em bytes)."
-          },
-          "storageType": {
-            "type": "string",
-            "nullable": false,
-            "description": "Estratégia de armazenamento do conteúdo."
-          },
-          "dateCreated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da criação do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateUpdated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da alteração do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateDeleted": {
-            "type": "string",
-            "nullable": true,
-            "description": "Data e hora da exclusão do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "format": "date-time"
-          }
-        },
-        "required": ["id", "name", "mimeType", "sizeBytes", "storageType", "dateCreated", "dateUpdated", "dateDeleted"]
-      },
-      "ImagemArquivoFindOneFromImagemResultView": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": false,
-            "description": "Identificador do registro (uuid).",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/uuid.json",
-            "format": "uuid"
-          },
-          "largura": {
-            "type": "integer",
-            "nullable": false,
-            "description": "Largura da imagem."
-          },
-          "altura": {
-            "type": "integer",
-            "nullable": false,
-            "description": "Altura da imagem."
-          },
-          "formato": {
-            "type": "string",
-            "nullable": false,
-            "description": "Formato da imagem."
-          },
-          "mimeType": {
-            "type": "string",
-            "nullable": false,
-            "description": "Mime-type da imagem."
-          },
-          "arquivo": {
-            "nullable": false,
-            "description": "Dados de saída para encontrar um arquivo por id.",
-            "kind": "type",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ArquivoFindOneResultView"
-              }
-            ]
-          },
-          "dateCreated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da criação do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateUpdated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da alteração do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateDeleted": {
-            "type": "string",
-            "nullable": true,
-            "description": "Data e hora da exclusão do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "format": "date-time"
-          }
-        },
-        "required": ["id", "largura", "altura", "formato", "mimeType", "arquivo", "dateCreated", "dateUpdated", "dateDeleted"]
-      },
-      "ImagemFindOneResultView": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": false,
-            "description": "Identificador do registro (uuid).",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/uuid.json",
-            "format": "uuid"
-          },
-          "descricao": {
-            "type": "string",
-            "nullable": true,
-            "description": "Descrição da imagem."
-          },
-          "versoes": {
-            "nullable": false,
-            "description": "Visão FindOneFromImagem de uma versão de imagem.",
-            "kind": "type",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ImagemArquivoFindOneFromImagemResultView"
-            }
-          },
-          "dateCreated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da criação do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateUpdated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da alteração do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateDeleted": {
-            "type": "string",
-            "nullable": true,
-            "description": "Data e hora da exclusão do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "format": "date-time"
-          }
-        },
-        "required": ["id", "descricao", "versoes", "dateCreated", "dateUpdated", "dateDeleted"]
-      },
-      "BlocoFindOneResultView": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": false,
-            "description": "Identificador do registro (uuid).",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/uuid.json",
-            "format": "uuid"
-          },
-          "nome": {
-            "type": "string",
-            "nullable": false,
-            "description": "Nome do Bloco.",
-            "minLength": 1
-          },
-          "codigo": {
-            "type": "string",
-            "nullable": false,
-            "description": "Código do Bloco.",
-            "minLength": 1
-          },
-          "campus": {
-            "nullable": false,
-            "description": "Visão FindOne de um campus.",
-            "kind": "type",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CampusFindOneResultView"
-              }
-            ]
-          },
-          "imagemCapa": {
-            "nullable": true,
-            "description": "Visão FindOne de uma imagem.",
-            "kind": "type",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ImagemFindOneResultView"
-              }
-            ]
-          },
-          "dateCreated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da criação do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateUpdated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da alteração do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateDeleted": {
-            "type": "string",
-            "nullable": true,
-            "description": "Data e hora da exclusão do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "format": "date-time"
-          }
-        },
-        "required": ["id", "nome", "codigo", "campus", "imagemCapa", "dateCreated", "dateUpdated", "dateDeleted"]
-      },
-      "AmbienteFindOneResultView": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": false,
-            "description": "Identificador do registro (uuid).",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/uuid.json",
-            "format": "uuid"
-          },
-          "nome": {
-            "type": "string",
-            "nullable": false,
-            "description": "Nome do ambiente/sala.",
-            "minLength": 1
-          },
-          "descricao": {
-            "type": "string",
-            "nullable": true,
-            "description": "Descrição do ambiente/sala."
-          },
-          "codigo": {
-            "type": "string",
-            "nullable": false,
-            "description": "Código do ambiente/sala.",
-            "minLength": 1
-          },
-          "capacidade": {
-            "type": "integer",
-            "nullable": true,
-            "description": "Capacidade do ambiente/sala."
-          },
-          "tipo": {
-            "type": "string",
-            "nullable": true,
-            "description": "Tipo do ambiente/sala. Ex.: sala aula, auditório, laboratório de química."
-          },
-          "bloco": {
-            "nullable": false,
-            "description": "Visão FindOne de um bloco.",
-            "kind": "type",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BlocoFindOneResultView"
-              }
-            ]
-          },
-          "imagemCapa": {
-            "nullable": true,
-            "description": "Visão FindOne de uma imagem.",
-            "kind": "type",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ImagemFindOneResultView"
-              }
-            ]
-          },
-          "dateCreated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da criação do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateUpdated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da alteração do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateDeleted": {
-            "type": "string",
-            "nullable": true,
-            "description": "Data e hora da exclusão do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "format": "date-time"
-          }
-        },
-        "required": ["id", "nome", "descricao", "codigo", "capacidade", "tipo", "bloco", "imagemCapa", "dateCreated", "dateUpdated", "dateDeleted"]
-      },
-      "UsuarioFindOneResultView": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": false,
-            "description": "Identificador do registro (uuid).",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/uuid.json",
-            "format": "uuid"
-          },
-          "nome": {
-            "type": "string",
-            "nullable": true,
-            "description": "Nome do usuário.",
-            "minLength": 1
-          },
-          "matriculaSiape": {
-            "type": "string",
-            "nullable": true,
-            "description": "Matrícula SIAPE do usuário.",
-            "minLength": 1
-          },
-          "email": {
-            "type": "string",
-            "nullable": true,
-            "description": "E-mail do usuário.",
-            "format": "email"
-          },
-          "isSuperUser": {
-            "type": "boolean",
-            "nullable": false,
-            "description": "Diz que o usuário tem poderes de administrador."
-          },
-          "imagemCapa": {
-            "nullable": true,
-            "description": "Visão FindOne de uma imagem.",
-            "kind": "type",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ImagemFindOneResultView"
-              }
-            ]
-          },
-          "imagemPerfil": {
-            "nullable": true,
-            "description": "Visão FindOne de uma imagem.",
-            "kind": "type",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ImagemFindOneResultView"
-              }
-            ]
-          },
-          "dateCreated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da criação do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateUpdated": {
-            "type": "string",
-            "nullable": false,
-            "description": "Data e hora da alteração do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "ladesa://schemas/v3/generics/date_time.json",
-            "format": "date-time"
-          },
-          "dateDeleted": {
-            "type": "string",
-            "nullable": true,
-            "description": "Data e hora da exclusão do registro.",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "format": "date-time"
-          }
-        },
-        "required": ["id", "nome", "matriculaSiape", "email", "isSuperUser", "imagemCapa", "imagemPerfil", "dateCreated", "dateUpdated", "dateDeleted"]
       },
       "PerfilFindOneResultView": {
         "type": "object",
@@ -9166,6 +8963,75 @@
         },
         "required": ["meta", "data", "links"]
       },
+      "BlocoFindOneResultView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": false,
+            "description": "Nome do Bloco.",
+            "minLength": 1
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": false,
+            "description": "Código do Bloco.",
+            "minLength": 1
+          },
+          "campus": {
+            "nullable": false,
+            "description": "Visão FindOne de um campus.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CampusFindOneResultView"
+              }
+            ]
+          },
+          "imagemCapa": {
+            "nullable": true,
+            "description": "Visão FindOne de uma imagem.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImagemFindOneResultView"
+              }
+            ]
+          },
+          "dateCreated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da criação do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da alteração do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateDeleted": {
+            "type": "string",
+            "nullable": true,
+            "description": "Data e hora da exclusão do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "nome", "codigo", "campus", "imagemCapa", "dateCreated", "dateUpdated", "dateDeleted"]
+      },
       "BlocoListResultView": {
         "type": "object",
         "properties": {
@@ -9255,6 +9121,90 @@
             ]
           }
         }
+      },
+      "AmbienteFindOneResultView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false,
+            "description": "Identificador do registro (uuid).",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/uuid.json",
+            "format": "uuid"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": false,
+            "description": "Nome do ambiente/sala.",
+            "minLength": 1
+          },
+          "descricao": {
+            "type": "string",
+            "nullable": true,
+            "description": "Descrição do ambiente/sala."
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": false,
+            "description": "Código do ambiente/sala.",
+            "minLength": 1
+          },
+          "capacidade": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Capacidade do ambiente/sala."
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true,
+            "description": "Tipo do ambiente/sala. Ex.: sala aula, auditório, laboratório de química."
+          },
+          "bloco": {
+            "nullable": false,
+            "description": "Visão FindOne de um bloco.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BlocoFindOneResultView"
+              }
+            ]
+          },
+          "imagemCapa": {
+            "nullable": true,
+            "description": "Visão FindOne de uma imagem.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImagemFindOneResultView"
+              }
+            ]
+          },
+          "dateCreated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da criação do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "nullable": false,
+            "description": "Data e hora da alteração do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "ladesa://schemas/v3/generics/date_time.json",
+            "format": "date-time"
+          },
+          "dateDeleted": {
+            "type": "string",
+            "nullable": true,
+            "description": "Data e hora da exclusão do registro.",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "nome", "descricao", "codigo", "capacidade", "tipo", "bloco", "imagemCapa", "dateCreated", "dateUpdated", "dateDeleted"]
       },
       "AmbienteListResultView": {
         "type": "object",

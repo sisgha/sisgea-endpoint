@@ -36,7 +36,9 @@
     },
     "build": {
       "command": "tsc -p tsconfig.json",
-      "dependencies": ["generate"]
+      "dependencies": ["generate"],
+      "files": ["./src/**/*", "tsconfig.json"],
+      "output": ["./dist/**/*"]
     },
     "generate": {
       "dependencies": ["generate:client"]
@@ -48,7 +50,9 @@
       "output": ["./src/http/generated/**/*"]
     },
     "cleanup:generated": {
-      "command": "rimraf ./src/http/generated"
+      "command": "rimraf ./src/http/generated",
+      "files": ["../../openapi-json/generated.json", "./src/http/generated/**/*"],
+      "output": ["./src/http/generated/**/*"]
     }
   },
   "devDependencies": {

@@ -22,6 +22,7 @@ export default {
   input: "../../openapi-json/generated.json",
 
   output: {
+    lint: "biome",
     format: "biome",
     path: "./src/http/generated",
   },
