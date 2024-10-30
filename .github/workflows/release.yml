@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - development
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  node-version: 23
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install
+        uses: ./.github/actions/prepare/install
+        with:
+          install-node: "true"
+
+      - name: Install dependencies
+        run: pnpm install -w --frozen-lockfile
+
+      - name: Run changesets action
+        uses: changesets/action@v1
+        id: changesets
+        with:
+          # setupGitUser: false
+          createGithubReleases: false
+          title: "chore: version packages"
+          commit: "chore: version packages"
+          publish: pnpm run -w changeset:tag
+          version: pnpm run -w changeset:version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

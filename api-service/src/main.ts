@@ -1,11 +1,11 @@
-import { NestFactory } from '@nestjs/core';
-import { SwaggerModule } from '@nestjs/swagger';
-import compression from 'compression';
-import helmet from 'helmet';
-import 'reflect-metadata';
-import { SetupSwaggerDocument } from './adapters/adapter-http/swagger';
-import { AppConfigService } from './app-config';
-import { AppModule } from './app.module';
+import { AppConfigService } from "@/infrastructure/config";
+import { SetupSwaggerDocument } from "@/infrastructure/integrations/http/swagger";
+import { NestFactory } from "@nestjs/core";
+import { SwaggerModule } from "@nestjs/swagger";
+import compression from "compression";
+import helmet from "helmet";
+import "reflect-metadata";
+import { AppModule } from "./app.module";
 
 async function setupApp() {
   const app = await NestFactory.create(AppModule);
@@ -17,22 +17,12 @@ async function setupApp() {
   const prefix = configService.getRuntimePrefix();
 
   if (prefix) {
-    app.setGlobalPrefix(prefix, { exclude: ['health'] });
+    app.setGlobalPrefix(prefix, { exclude: ["health"] });
   }
 
   //
 
-  const isProduction = configService.getRuntimeIsProduction();
-
-  app.use(
-    helmet({
-      crossOriginEmbedderPolicy: false,
-      crossOriginResourcePolicy: {
-        policy: 'cross-origin',
-      },
-      contentSecurityPolicy: isProduction ? undefined : false,
-    }),
-  );
+  app.use(helmet());
 
   //
 
@@ -42,7 +32,7 @@ async function setupApp() {
   const config = SetupSwaggerDocument(configService);
   const document = SwaggerModule.createDocument(app, config.build());
   //
-  SwaggerModule.setup(`${prefix ?? ''}doc-api`, app, document);
+  SwaggerModule.setup(`${prefix ?? ""}doc-api`, app, document);
   //
 
   app.enableCors();

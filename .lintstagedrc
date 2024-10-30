@@ -1,3 +1,0 @@
-{
-  "**/*.ts": "eslint -c eslint.config.mjs"
-}

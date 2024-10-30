@@ -1,45 +1,50 @@
 {
-  "name": "@ladesa-ro/api-root",
+  "name": "@ladesa-ro/api.internal.root",
   "version": "0.0.0-freezed.0",
   "private": true,
   "scripts": {
     "commit": "git-cz",
     "prepare": "husky",
-    "lint:check": "eslint -c eslint.config.mjs src",
-    "lint:fix": "eslint -c eslint.config.mjs --fix src",
-    "check:static": "pnpm run -w format:check; pnpm run -w lint:check",
-    "format:check": "prettier --end-of-line lf --check \"src/**/*.ts\" \"test/**/*.ts\"",
-    "format:write": "prettier --end-of-line lf --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "w:release:base": "release-it -c .release-it.json",
-    "release:base": "./scripts/smart-release.sh",
-    "release:check": "pnpm run -w release:base --ci --dry-run -VV",
-    "release:patch": "pnpm run -w release:base patch --ci",
-    "release:minor": "pnpm run -w release:base minor --ci",
-    "release:major": "pnpm run -w release:base major --ci",
-    "release:patch:alpha": "pnpm run -w release:base patch --preRelease=alpha --ci",
-    "release:minor:alpha": "pnpm run -w release:base minor --preRelease=alpha --ci",
-    "release:major:alpha": "pnpm run -w release:base major --preRelease=alpha --ci",
-    "release:development": "pnpm run -w release:base --preRelease=alpha --ci",
-    "release:production": "pnpm run -w release:base --ci"
+    "build": "wireit",
+    "start:dev": "pnpm run --filter @ladesa-ro/api.service start:dev",
+    "lint:check": "biome lint --no-errors-on-unmatched",
+    "lint:fix": "biome lint --write --no-errors-on-unmatched",
+    "format:check": "biome format --no-errors-on-unmatched",
+    "format:fix": "biome format --write --no-errors-on-unmatched",
+    "code-static:check": "biome check --no-errors-on-unmatched",
+    "code-static:fix": "biome check --write --no-errors-on-unmatched",
+    "changeset:add": "changeset add",
+    "changeset:tag": "changeset tag",
+    "changeset:version": "changeset version && pnpm run -r --if-present patch-version",
+    "chore:update": "corepack use pnpm@latest && pnpm --filter=@ladesa-ro/api.service exec corepack use pnpm@latest && pnpm -r update"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": ["./api-service:build", "./integrations:build"]
+    }
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e",
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
+  "lint-staged": {
+    "**/*": "pnpm run code-static:fix"
+  },
   "dependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@changesets/cli": "^2.27.9",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@eslint/js": "^9.11.1",
-    "@release-it/bumper": "^6.0.1",
     "auto-changelog": "^2.5.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^9.1.6",
-    "prettier": "^3.3.3",
-    "release-it": "^17.6.0",
-    "typescript": "^5.6.2",
-    "typescript-eslint": "^8.8.0"
-  }
+    "lint-staged": "^15.2.10",
+    "wireit": "^0.14.9"
+  },
+  "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
 }

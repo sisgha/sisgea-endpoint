@@ -3,24 +3,28 @@
 export default {
   //
 
-  base: '#',
+  base: "#",
 
   //
 
-  client: 'fetch',
+  client: "legacy/fetch",
 
-  name: 'LadesaApiClient',
+  name: "LadesaApiClient",
   services: {
     asClass: true,
+  },
+  schemas: {
+    name: (name) => `$${name}`,
   },
 
   //
 
-  input: '../../openapi-json/generated.json',
+  input: "../../openapi-json/generated.json",
 
   output: {
-    format: 'prettier',
-    path: './src/http/generated',
+    lint: "biome",
+    format: "biome",
+    path: "./src/http/generated",
   },
 
   //

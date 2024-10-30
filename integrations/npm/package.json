@@ -1,0 +1,12 @@
+{
+  "name": "@ladesa-ro/api.internal.integrations.npm",
+  "private": true,
+  "scripts": {
+    "build": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": ["./api-client-fetch:build"]
+    }
+  }
+}
