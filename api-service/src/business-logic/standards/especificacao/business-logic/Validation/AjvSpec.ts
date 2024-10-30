@@ -3,7 +3,7 @@ import addFormats from "ajv-formats";
 import Ajv from "ajv/dist/2020";
 
 const ajvSpec = new Ajv({
-  coerceTypes: true,
+  coerceTypes: "array",
   useDefaults: true,
   removeAdditional: true,
   strict: "log",
