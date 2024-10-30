@@ -135,8 +135,8 @@ importers:
         specifier: ^11.0.1
         version: 11.0.1
       nestjs-paginate:
-        specifier: ^8.6.3
-        version: 8.6.3(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/swagger@7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2))(express@4.21.1)(fastify@4.28.1)(typeorm@0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.40)(@types/node@22.8.4)(typescript@5.6.3)))
+        specifier: ^9.3.0
+        version: 9.3.0(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/swagger@7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2))(express@4.21.1)(fastify@4.28.1)(typeorm@0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.40)(@types/node@22.8.4)(typescript@5.6.3)))
       openid-client:
         specifier: ^5.7.0
         version: 5.7.0
@@ -4070,8 +4070,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  nestjs-paginate@8.6.3:
-    resolution: {integrity: sha512-ul5qkC8OHNQRz4Cvm6TRh9wziCuP0Lw/nhR/3wxk1diVog9M8OVvrBUDoZKJt+3cWGDopdj+d+AvD0SIQt86Uw==}
+  nestjs-paginate@9.3.0:
+    resolution: {integrity: sha512-wqg7qzH0Li19oS0X9eN5n1r37adlZiUwcZM9QJ8iIdMyDAG/faD8U5uUgqOd+hGhBbIOgat5yRGNxfW4UlXhSw==}
     peerDependencies:
       '@nestjs/common': ^10.0.0
       '@nestjs/swagger': ^7.0.0
@@ -9478,7 +9478,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  nestjs-paginate@8.6.3(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/swagger@7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2))(express@4.21.1)(fastify@4.28.1)(typeorm@0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.40)(@types/node@22.8.4)(typescript@5.6.3))):
+  nestjs-paginate@9.3.0(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/swagger@7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2))(express@4.21.1)(fastify@4.28.1)(typeorm@0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.40)(@types/node@22.8.4)(typescript@5.6.3))):
     dependencies:
       '@nestjs/common': 10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/swagger': 7.4.2(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(reflect-metadata@0.2.2)
