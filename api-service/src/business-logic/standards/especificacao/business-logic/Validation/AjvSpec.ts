@@ -16,6 +16,23 @@ const setupAjvSpec = async () => {
 
   addFormats(ajvSpec);
 
+  const ignoreds = ["x-unispec-entity-id", "x-unispec-kind", "x-unispec-http-key", "x-unispec-gql-key"];
+
+  for (const ignored of ignoreds) {
+    ajvSpec.addKeyword({
+      keyword: ignored,
+      code() {},
+    });
+  }
+
+  ajvSpec.addKeyword({
+    keyword: "x-unispec-constraint-entity-exists",
+    code() {
+      // TODO
+      console.warn("TODO: validate keyword `x-unispec-constraint-entity-exists`");
+    },
+  });
+
   const store = getSpecNodesStore();
 
   for (const node of store.Nodes) {
