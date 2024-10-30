@@ -4,7 +4,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 import { DiarioProfessorEntity } from "../06-ensino-discente";
 import { HorarioGeradoEntity } from "./horario-gerado.entity";
 
-@Entity("horario_gerado_dia")
+@Entity("horario_gerado_aula")
 export class HorarioGeradoAulaEntity implements LadesaTypings.HorarioGeradoAula {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
