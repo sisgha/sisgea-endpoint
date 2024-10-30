@@ -1,4 +1,4 @@
-import { CheckNodeTypeArray, CheckNodeTypeObjectEntity, INodeTypeObjectEntity, ISpecNodesStore, getSpecNodesStore } from "@/business-logic/standards/especificacao";
+import { CheckNodeTypeArray, CheckNodeTypeObjectEntity, INodeCore, INodeTypeObjectEntity, ISpecNodesStore, getSpecNodesStore } from "@/business-logic/standards/especificacao";
 import { uniq } from "lodash";
 import { SelectQueryBuilder } from "typeorm";
 
@@ -39,10 +39,12 @@ export const QbEfficientLoadForEntity = (repository: ISpecNodesStore, nodeEntity
 
     const subPath = `${alias}.${propertyKey}`;
 
-    let { node: propertyNodeComposed } = repository.Compose(propertyNode);
+    let propertyNodeComposed: INodeCore;
+
+    propertyNodeComposed = repository.Compose(propertyNode).node;
 
     if (CheckNodeTypeArray(propertyNodeComposed)) {
-      propertyNodeComposed = repository.Compose(propertyNodeComposed.items);
+      propertyNodeComposed = repository.Compose(propertyNodeComposed.items).node;
     }
 
     if (CheckNodeTypeObjectEntity(propertyNodeComposed)) {
