@@ -4,6 +4,7 @@ import type { ISpecDecorateHandler, ISpecDecorateOperationContext } from "@/busi
 import { OPERATION_KEY } from "@/business-logic/standards/especificacao/business-logic/Decorators/Tokens";
 import { dtoCompiler } from "@/business-logic/standards/especificacao/business-logic/DtoCompiler";
 import type { ISpecNodesStore } from "@/business-logic/standards/especificacao/business-logic/SpecNodesStore";
+import { ValidationPipeAjv } from "@/business-logic/standards/especificacao/business-logic/Validation/ValidationPipeAjv";
 import { SetMetadata, applyDecorators, createParamDecorator } from "@nestjs/common";
 import type { ExecutionContextHost } from "@nestjs/core/helpers/execution-context-host";
 
@@ -66,9 +67,7 @@ export class SpecDecorate implements ISpecDecorate {
         if (combinedInputParam) {
           const { parameterIndex } = combinedInputParam;
 
-          // TODO: validate input
-          // const validationPipe = new ValidationPipeAjv(null);
-          const validationPipe = null;
+          const validationPipe = new ValidationPipeAjv(operationNode.properties.input);
 
           context.AddCombinedInputDecorator(
             createParamDecorator((_, executionContext: ExecutionContextHost) => {

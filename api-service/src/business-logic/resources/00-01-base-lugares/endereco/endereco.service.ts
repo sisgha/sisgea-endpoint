@@ -1,10 +1,10 @@
-import { QbEfficientLoad } from "@/business-logic/standards/ladesa-spec/QbEfficientLoad";
-import type { AccessContext } from "@/infrastructure/access-context";
-import { DatabaseContextService } from "@/infrastructure/integrations/database";
+import { QbEfficientLoad } from "@/business-logic/standards";
+import { ensureValidResult, makeValidatorForEntity } from "@/business-logic/standards/especificacao/business-logic/Validation/ajv-validate";
+import { AccessContext } from "@/infrastructure/access-context";
+import { DatabaseContextService } from "@/infrastructure/integrations";
 import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { pick } from "lodash";
-import { GetEnderecoInputSchema } from "./endereco.dtos";
 
 // ============================================================================
 
@@ -45,11 +45,11 @@ export class EnderecoService {
   }
 
   async internalEnderecoCreateOrUpdate(id: LadesaTypings.Endereco["id"] | null, payload: LadesaTypings.EnderecoInput) {
-    const enderecoInputSchema = GetEnderecoInputSchema();
+    const enderecoInputValidator = await makeValidatorForEntity<LadesaTypings.EnderecoInput>(LadesaTypings.Tokens.EnderecoInputView);
 
-    const dto = await enderecoInputSchema.validate(payload, {
-      stripUnknown: true,
-    });
+    const result = await enderecoInputValidator(payload);
+
+    const dto = ensureValidResult(result);
 
     const endereco = this.enderecoRepository.create();
 

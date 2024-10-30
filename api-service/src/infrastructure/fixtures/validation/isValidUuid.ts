@@ -1,5 +1,9 @@
-import { string } from "yup";
+import { validate } from "uuid";
 
 export const isValidUuid = (data: unknown) => {
-  return string().uuid().isValidSync(data);
+  if (typeof data === "string") {
+    return validate(data);
+  }
+
+  return false;
 };
