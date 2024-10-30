@@ -4,15 +4,19 @@
 
 ## Ambientes
 
-### Desenvolvimento
+Instância Pública (Ambiente de Desenvolvimento): <https://dev.ladesa.com.br/api>.
 
-Instância 1: <https://dev.ladesa.com.br/api>.
+## Integrações
 
-#### Cliente JavaScript para o ambiente de desenvolvimento
+### Cliente JavaScript
 
 [![NPM Package: @ladesa-ro/api-client-fetch alpha version][npm-package-alpha-version-src]][npm-package-versions-href]
 
-## Configuração Local
+```sh
+npm install @ladesa-ro/api-client-fetch@alpha
+```
+
+## Desenvolvimento
 
 ### Obter o código fonte do projeto
 
@@ -107,4 +111,4 @@ make logs; # Mostra os registros dos containers
 
 <!-- Badges / Integrations / NPM / Alpha -->
 
-[npm-package-alpha-version-src]: https://img.shields.io/badge/dynamic/json?url=https://registry.npmjs.com/@ladesa-ro/api-client-fetch&query=$[%22dist-tags%22].alpha&prefix=v&style=flat&logo=npm&logoColor=white&label=%40ladesa-ro%2Fapi-client-fetch@alpha&labelColor=%23CB3837&style=flat&colorA=18181B&colorB=ffffff
+[npm-package-alpha-version-src]: https://img.shields.io/badge/dynamic/json?url=https://registry.npmjs.com/@ladesa-ro/api-client-fetch&query=$[%22dist-tags%22].alpha&prefix=v&style=flat&logo=npm&logoColor=white&label=@alpha&labelColor=%23CB3837&style=flat&colorA=18181B&colorB=ffffff
