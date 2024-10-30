@@ -33,15 +33,18 @@ logs:
 	make setup;
 	docker compose $(compose_options) logs -f;
 
+INSIDE_PATH?=./
+
 shell:
 	make setup;
 	make up;
-	docker compose $(compose_options) exec $(d_container_app) bash;
+	
+	docker compose $(compose_options) exec $(d_container_app) bash -c "cd $(INSIDE_PATH); bash";
 
 shell-root:
 	make setup;
 	make up;
-	docker compose $(compose_options) exec -u root $(d_container_app) bash;
+	docker compose $(compose_options) exec -u root $(d_container_app) bash -c "cd $(INSIDE_PATH); bash";
 
 stop:
 	make setup;
