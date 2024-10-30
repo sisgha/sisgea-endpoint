@@ -36,7 +36,7 @@ cd api-service
 
 ### Scripts Make
 
-O projeto conta com um [arquivo make](./api-service/Makefile) que comporta scrips destinados ao desenvolvimento da aplicação.
+O projeto conta com um [arquivo make](./Makefile) que comporta scrips destinados ao desenvolvimento da aplicação.
 
 #### `setup`
 
