@@ -12,20 +12,6 @@ Instância 1: <https://dev.ladesa.com.br/api>.
 
 [![NPM Package: @ladesa-ro/api-client-fetch alpha version][npm-package-alpha-version-src]][npm-package-versions-href]
 
-```sh
-npm i @ladesa-ro/api-client-fetch@alpha
-```
-
-### Produção
-
-#### Cliente JavaScript para o ambiente de produção
-
-[![NPM Package: @ladesa-ro/api-client-fetch latest version][npm-package-latest-version-src]][npm-package-versions-href]
-
-```sh
-npm i @ladesa-ro/api-client-fetch@latest
-```
-
 ## Configuração Local
 
 ### Obter o código fonte do projeto
@@ -122,7 +108,3 @@ make logs; # Mostra os registros dos containers
 <!-- Badges / Integrations / NPM / Alpha -->
 
 [npm-package-alpha-version-src]: https://img.shields.io/badge/dynamic/json?url=https://registry.npmjs.com/@ladesa-ro/api-client-fetch&query=$[%22dist-tags%22].alpha&prefix=v&style=flat&logo=npm&logoColor=white&label=%40ladesa-ro%2Fapi-client-fetch@alpha&labelColor=%23CB3837&style=flat&colorA=18181B&colorB=ffffff
-
-<!-- Badges / Integrations / NPM / Latest -->
-
-[npm-package-latest-version-src]: https://img.shields.io/badge/dynamic/json?url=https://registry.npmjs.com/@ladesa-ro/api-client-fetch&query=$[%22dist-tags%22].latest&prefix=v&style=flat&logo=npm&logoColor=white&label=%40ladesa-ro%2Fapi-client-fetch@latest&labelColor=%23CB3837&style=flat&colorA=18181B&colorB=ffffff
