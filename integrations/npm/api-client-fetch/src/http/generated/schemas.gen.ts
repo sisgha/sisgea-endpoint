@@ -2235,6 +2235,16 @@ export const $OfertaFormacaoNivelFormacaoFindOneResultView = {
         },
       ],
     },
+    nivelFormacao: {
+      nullable: false,
+      description: "Visão FindOne de um nível de formação.",
+      kind: "type",
+      allOf: [
+        {
+          $ref: "#/components/schemas/NivelFormacaoFindOneResultView",
+        },
+      ],
+    },
     dateCreated: {
       type: "string",
       nullable: false,
@@ -2259,7 +2269,7 @@ export const $OfertaFormacaoNivelFormacaoFindOneResultView = {
       format: "date-time",
     },
   },
-  required: ["id", "ofertaFormacao", "dateCreated", "dateUpdated", "dateDeleted"],
+  required: ["id", "ofertaFormacao", "nivelFormacao", "dateCreated", "dateUpdated", "dateDeleted"],
 } as const;
 
 export const $OfertaFormacaoNivelFormacaoListResultView = {
@@ -2343,7 +2353,7 @@ export const $OfertaFormacaoNivelFormacaoInputCreateView = {
         },
       ],
     },
-    nivelFormcao: {
+    nivelFormacao: {
       nullable: false,
       description: "Dados de entrada para encontrar um nível de formação por ID.",
       kind: "type",
@@ -2354,7 +2364,7 @@ export const $OfertaFormacaoNivelFormacaoInputCreateView = {
       ],
     },
   },
-  required: ["ofertaFormacao", "nivelFormcao"],
+  required: ["ofertaFormacao", "nivelFormacao"],
 } as const;
 
 export const $OfertaFormacaoNivelFormacaoInputUpdateView = {
@@ -2370,7 +2380,7 @@ export const $OfertaFormacaoNivelFormacaoInputUpdateView = {
         },
       ],
     },
-    nivelFormcao: {
+    nivelFormacao: {
       nullable: false,
       description: "Dados de entrada para encontrar um nível de formação por ID.",
       kind: "type",

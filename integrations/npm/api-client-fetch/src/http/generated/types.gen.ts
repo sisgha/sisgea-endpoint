@@ -1164,6 +1164,10 @@ export type OfertaFormacaoNivelFormacaoFindOneResultView = {
    */
   ofertaFormacao: OfertaFormacaoFindOneResultView;
   /**
+   * Visão FindOne de um nível de formação.
+   */
+  nivelFormacao: NivelFormacaoFindOneResultView;
+  /**
    * Data e hora da criação do registro.
    */
   dateCreated: string;
@@ -1214,7 +1218,7 @@ export type OfertaFormacaoNivelFormacaoInputCreateView = {
   /**
    * Dados de entrada para encontrar um nível de formação por ID.
    */
-  nivelFormcao: NivelFormacaoFindOneInputView;
+  nivelFormacao: NivelFormacaoFindOneInputView;
 };
 
 export type OfertaFormacaoNivelFormacaoInputUpdateView = {
@@ -1225,7 +1229,7 @@ export type OfertaFormacaoNivelFormacaoInputUpdateView = {
   /**
    * Dados de entrada para encontrar um nível de formação por ID.
    */
-  nivelFormcao?: NivelFormacaoFindOneInputView;
+  nivelFormacao?: NivelFormacaoFindOneInputView;
 };
 
 export type CursoFindOneResultView = {
@@ -3099,6 +3103,7 @@ export type UsuarioSetImagemPerfilResponse = boolean;
 export type PerfilListData = {
   filterAtivo?: Array<string>;
   filterCampusId?: Array<string>;
+  filterCargo?: Array<string>;
   filterUsuarioId?: Array<string>;
   /**
    * Limite da quantidade de resultados por página.
@@ -3753,6 +3758,8 @@ export type CursoSetImagemCapaData = {
 export type CursoSetImagemCapaResponse = boolean;
 
 export type DisciplinaListData = {
+  filterDiariosId?: Array<string>;
+  filterTurmaId?: Array<string>;
   /**
    * Limite da quantidade de resultados por página.
    */

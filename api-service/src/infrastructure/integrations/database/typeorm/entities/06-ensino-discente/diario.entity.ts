@@ -1,5 +1,5 @@
 import * as LadesaTypings from "@ladesa-ro/especificacao";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Relation } from "typeorm";
 import { ImagemEntity } from "../00-00-base/imagem.entity";
 import { AmbienteEntity } from "../02-ambientes/ambiente.entity";
 import { DisciplinaEntity } from "../04-ensino-institucional/disciplina.entity";
@@ -19,23 +19,23 @@ export class DiarioEntity implements LadesaTypings.Diario {
 
   @ManyToOne(() => CalendarioLetivoEntity)
   @JoinColumn({ name: "id_calendario_letivo_fk" })
-  calendarioLetivo!: CalendarioLetivoEntity;
+  calendarioLetivo!: Relation<CalendarioLetivoEntity>;
 
   @ManyToOne(() => TurmaEntity)
   @JoinColumn({ name: "id_turma_fk" })
-  turma!: TurmaEntity;
+  turma!: Relation<TurmaEntity>;
 
   @ManyToOne(() => DisciplinaEntity)
   @JoinColumn({ name: "id_disciplina_fk" })
-  disciplina!: DisciplinaEntity;
+  disciplina!: Relation<DisciplinaEntity>;
 
   @ManyToOne(() => AmbienteEntity)
   @JoinColumn({ name: "id_ambiente_padrao_fk" })
-  ambientePadrao!: AmbienteEntity | null;
+  ambientePadrao!: Relation<AmbienteEntity> | null;
 
   @ManyToOne(() => ImagemEntity)
   @JoinColumn({ name: "id_imagem_capa_fk" })
-  imagemCapa!: ImagemEntity | null;
+  imagemCapa!: Relation<ImagemEntity> | null;
 
   //
 

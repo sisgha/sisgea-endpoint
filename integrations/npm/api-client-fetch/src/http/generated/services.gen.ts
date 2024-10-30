@@ -778,6 +778,7 @@ export class PerfisService {
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
    * @param data.sortBy Ordenação.
+   * @param data.filterCargo
    * @param data.filterAtivo
    * @param data.filterCampusId
    * @param data.filterUsuarioId
@@ -793,7 +794,8 @@ export class PerfisService {
         limit: data.limit,
         search: data.search,
         sortBy: data.sortBy,
-        filterAtivo: data.filterAtivo,
+        "filter.cargo": data.filterCargo,
+        "filter.ativo": data.filterAtivo,
         "filter.campus.id": data.filterCampusId,
         "filter.usuario.id": data.filterUsuarioId,
       },
@@ -2045,6 +2047,8 @@ export class DisciplinasService {
    * @param data.limit Limite da quantidade de resultados por página.
    * @param data.search Busca textual.
    * @param data.sortBy Ordenação.
+   * @param data.filterTurmaId
+   * @param data.filterDiariosId
    * @returns DisciplinaListResultView Resultados da busca a Disciplinas.
    * @throws ApiError
    */
@@ -2057,6 +2061,8 @@ export class DisciplinasService {
         limit: data.limit,
         search: data.search,
         sortBy: data.sortBy,
+        "filter.turma.id": data.filterTurmaId,
+        "filter.diarios.id": data.filterDiariosId,
       },
       errors: {
         403: "O solicitante não tem permissão para executar esta ação.",

@@ -1,3 +1,5 @@
+import { ArquivoService } from "@/business-logic/resources/00-00-base/arquivo/arquivo.service";
+import { ImagemService } from "@/business-logic/resources/00-00-base/imagem/imagem.service";
 import { QbEfficientLoad } from "@/business-logic/standards/ladesa-spec/QbEfficientLoad";
 import { LadesaPaginatedResultDto, LadesaSearch } from "@/business-logic/standards/ladesa-spec/search/search-strategies";
 import type { AccessContext } from "@/infrastructure/access-context";
@@ -7,8 +9,7 @@ import type { DisciplinaEntity } from "@/infrastructure/integrations/database/ty
 import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { map, pick } from "lodash";
-import { ArquivoService } from "../../00-00-base/arquivo/arquivo.service";
-import { ImagemService } from "../../00-00-base/imagem/imagem.service";
+import { FilterOperator, FilterSuffix } from "nestjs-paginate";
 
 // ============================================================================
 
@@ -47,6 +48,7 @@ export class DisciplinaService {
 
     const paginated = await LadesaSearch("#/", dto, qb, {
       ...paginateConfig,
+      relations: { diarios: true },
       select: [
         //
         "id",
@@ -74,7 +76,9 @@ export class DisciplinaService {
         //
         ["nome", "ASC"],
       ],
-      filterableColumns: {},
+      filterableColumns: {
+        "diarios.id": [FilterOperator.EQ, FilterOperator.NULL, FilterSuffix.NOT],
+      },
     });
 
     // =========================================================

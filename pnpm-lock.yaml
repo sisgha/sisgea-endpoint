@@ -54,8 +54,8 @@ importers:
         specifier: ^25.0.6
         version: 25.0.6
       '@ladesa-ro/especificacao':
-        specifier: ^3.3.5
-        version: 3.3.5
+        specifier: ^3.3.7
+        version: 3.3.7
       '@nestjs/apollo':
         specifier: ^12.2.1
         version: 12.2.1(@apollo/server@4.11.2(graphql@16.9.0))(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(@nestjs/graphql@12.2.1(@nestjs/common@10.4.6(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.6)(graphql@16.9.0)(reflect-metadata@0.2.2))(graphql@16.9.0)
@@ -174,8 +174,8 @@ importers:
         specifier: ^0.3.20
         version: 0.3.20(pg@8.13.1)(ts-node@10.9.2(@swc/core@1.7.40)(@types/node@22.8.4)(typescript@5.6.3))
       uuid:
-        specifier: ^10.0.0
-        version: 10.0.0
+        specifier: ^11.0.2
+        version: 11.0.2
       valibot:
         specifier: ^0.42.1
         version: 0.42.1(typescript@5.6.3)
@@ -1343,8 +1343,8 @@ packages:
     resolution: {integrity: sha512-rUvo6L0aT9+y/R2wFhDKb+lRD5rwj36XwnIGIbmC2HeQVfgroYB5u/79yc/Mo0inBFNIG8VuiwjRzU878fRE0Q==}
     engines: {node: '>=18'}
 
-  '@ladesa-ro/especificacao@3.3.5':
-    resolution: {integrity: sha512-FfkuRlReSsiK8P4aiwOZR8Rvu4WA/SfXZ+GG70v2c7gPikbv9N5rd8F8d9CFwgp1tpYkW0vYJ+d72hbBO1U4Vg==}
+  '@ladesa-ro/especificacao@3.3.7':
+    resolution: {integrity: sha512-KBsChD43loK6pWW9bSxM/boPzbf473TLaiCfZgaZEkVUvlZ2U8lPt1VbfCbRoAIuoapB5vOYjWlRF/8SenbE9Q==}
 
   '@ljharb/through@2.3.13':
     resolution: {integrity: sha512-/gKJun8NNiWGZJkGzI/Ragc53cOdcLNdzjLaIa+GEjguQs0ulsurx8WN0jijdK9yPqDvziX995sMRLyLt1uZMQ==}
@@ -5317,6 +5317,10 @@ packages:
     resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
     hasBin: true
 
+  uuid@11.0.2:
+    resolution: {integrity: sha512-14FfcOJmqdjbBPdDjFQyk/SdT4NySW4eM0zcG+HqbHP5jzuH56xO3J1DGhgs/cEMCfwYi3HQI1gnTO62iaG+tQ==}
+    hasBin: true
+
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
@@ -6558,7 +6562,7 @@ snapshots:
       url-join: 5.0.0
       url-template: 3.1.1
 
-  '@ladesa-ro/especificacao@3.3.5': {}
+  '@ladesa-ro/especificacao@3.3.7': {}
 
   '@ljharb/through@2.3.13':
     dependencies:
@@ -10679,6 +10683,8 @@ snapshots:
   utils-merge@1.0.1: {}
 
   uuid@10.0.0: {}
+
+  uuid@11.0.2: {}
 
   uuid@8.3.2: {}
 

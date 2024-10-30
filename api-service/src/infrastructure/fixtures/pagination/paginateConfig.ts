@@ -59,4 +59,6 @@ export const paginateConfig: any = {
    * Description: Overrides the origin of absolute resource links if set.
    */
   origin: "",
+
+  multiWordSearch: true,
 };

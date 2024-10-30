@@ -1193,7 +1193,21 @@
             }
           },
           {
-            "name": "filterAtivo",
+            "name": "filter.cargo",
+            "required": false,
+            "in": "query",
+            "kind": "schema",
+            "schema": {
+              "type": "array",
+              "nullable": false,
+              "items": {
+                "nullable": false,
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "filter.ativo",
             "required": false,
             "in": "query",
             "kind": "schema",
@@ -4480,6 +4494,34 @@
             "required": false,
             "in": "query",
             "description": "Ordenação.",
+            "kind": "schema",
+            "schema": {
+              "type": "array",
+              "nullable": false,
+              "items": {
+                "nullable": false,
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "filter.turma.id",
+            "required": false,
+            "in": "query",
+            "kind": "schema",
+            "schema": {
+              "type": "array",
+              "nullable": false,
+              "items": {
+                "nullable": false,
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "filter.diarios.id",
+            "required": false,
+            "in": "query",
             "kind": "schema",
             "schema": {
               "type": "array",
@@ -12214,6 +12256,16 @@
               }
             ]
           },
+          "nivelFormacao": {
+            "nullable": false,
+            "description": "Visão FindOne de um nível de formação.",
+            "kind": "type",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NivelFormacaoFindOneResultView"
+              }
+            ]
+          },
           "dateCreated": {
             "type": "string",
             "nullable": false,
@@ -12238,7 +12290,7 @@
             "format": "date-time"
           }
         },
-        "required": ["id", "ofertaFormacao", "dateCreated", "dateUpdated", "dateDeleted"]
+        "required": ["id", "ofertaFormacao", "nivelFormacao", "dateCreated", "dateUpdated", "dateDeleted"]
       },
       "OfertaFormacaoNivelFormacaoListResultView": {
         "type": "object",
@@ -12318,7 +12370,7 @@
               }
             ]
           },
-          "nivelFormcao": {
+          "nivelFormacao": {
             "nullable": false,
             "description": "Dados de entrada para encontrar um nível de formação por ID.",
             "kind": "type",
@@ -12329,7 +12381,7 @@
             ]
           }
         },
-        "required": ["ofertaFormacao", "nivelFormcao"]
+        "required": ["ofertaFormacao", "nivelFormacao"]
       },
       "OfertaFormacaoNivelFormacaoInputUpdateView": {
         "type": "object",
@@ -12344,7 +12396,7 @@
               }
             ]
           },
-          "nivelFormcao": {
+          "nivelFormacao": {
             "nullable": false,
             "description": "Dados de entrada para encontrar um nível de formação por ID.",
             "kind": "type",
