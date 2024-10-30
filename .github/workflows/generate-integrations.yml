@@ -3,12 +3,12 @@ name: Generate Integrations
 on:
   push:
     branches:
-      - next
+      - development
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
-  target-branch: next
+  target-branch: development
   generated-branch: robozinho-do-ladesa/generated-integrations
 
 jobs:
