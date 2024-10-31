@@ -8,6 +8,41 @@
         "responses": {
           "200": {
             "description": "Olá, Mundo!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "service": {
+                  "type": "string",
+                  "enum": ["@ladesa-ro/api.service"],
+                  "description": "O nome desta aplicação."
+                },
+                "status": {
+                  "type": "string",
+                  "enum": ["up"],
+                  "description": "Status desta aplicação."
+                },
+                "prefix": {
+                  "description": "Prefixo do serviço API.",
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "version": {
+                  "description": "Versão do serviço API.",
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "required": ["service", "status", "version"]
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -54,9 +89,8 @@
     },
     "/arquivos/{id}": {
       "get": {
-        "operationId": "ArquivoGetFile",
-        "summary": "",
         "description": "Obtêm o conteúdo de um Arquivo.",
+        "operationId": "ArquivoGetFile",
         "parameters": [
           {
             "name": "id",
@@ -108,6 +142,13 @@
         "responses": {
           "200": {
             "description": "Binário do Arquivo.",
+            "schema": {
+              "nullable": false,
+              "description": "Binário do Arquivo.",
+              "type": "string",
+              "format": "binary",
+              "mimeTypes": ["application/octet-stream"]
+            },
             "content": {
               "application/octet-stream": {
                 "schema": {
@@ -127,19 +168,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["arquivos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["arquivos"]
       }
     },
     "/base/estados": {
       "get": {
-        "operationId": "EstadoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EstadoList",
         "parameters": [
           {
             "name": "page",
@@ -212,19 +253,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["estados"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["estados"]
       }
     },
     "/base/estados/{id}": {
       "get": {
-        "operationId": "EstadoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EstadoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -261,19 +302,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["estados"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["estados"]
       }
     },
     "/base/cidades": {
       "get": {
-        "operationId": "CidadeList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CidadeList",
         "parameters": [
           {
             "name": "page",
@@ -360,19 +401,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["cidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["cidades"]
       }
     },
     "/base/cidades/{id}": {
       "get": {
-        "operationId": "CidadeFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CidadeFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -409,19 +450,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["cidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["cidades"]
       }
     },
     "/autenticacao/quem-sou-eu": {
       "get": {
-        "operationId": "AuthWhoAmI",
-        "summary": "",
         "description": "Obtêm informações sobre o estado de autenticação do ator.",
+        "operationId": "AuthWhoAmI",
         "parameters": [],
         "responses": {
           "200": {
@@ -443,19 +484,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["autenticacao"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["autenticacao"]
       }
     },
     "/autenticacao/login": {
       "post": {
-        "operationId": "AuthLogin",
-        "summary": "",
         "description": "Operação de login.",
+        "operationId": "AuthLogin",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -489,19 +530,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["autenticacao"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["autenticacao"]
       }
     },
     "/autenticacao/login/refresh": {
       "post": {
-        "operationId": "AuthRefresh",
-        "summary": "",
         "description": "Obtêm as credenciais de sessão por meio do envio do token de refresh.",
+        "operationId": "AuthRefresh",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -535,19 +576,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["autenticacao"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["autenticacao"]
       }
     },
     "/autenticacao/definir-senha": {
       "post": {
-        "operationId": "AuthSetInitialPassword",
-        "summary": "",
         "description": "Operação para definir a senha inicial.",
+        "operationId": "AuthSetInitialPassword",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -566,6 +607,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -581,19 +625,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["autenticacao"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["autenticacao"]
       }
     },
     "/usuarios": {
       "get": {
-        "operationId": "UsuarioList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "UsuarioList",
         "parameters": [
           {
             "name": "page",
@@ -666,17 +710,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["usuarios"]
       },
       "post": {
-        "operationId": "UsuarioCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "UsuarioCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -710,19 +754,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["usuarios"]
       }
     },
     "/usuarios/{id}": {
       "get": {
-        "operationId": "UsuarioFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "UsuarioFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -760,17 +804,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["usuarios"]
       },
       "patch": {
-        "operationId": "UsuarioUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "UsuarioUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -820,17 +864,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["usuarios"]
       },
       "delete": {
-        "operationId": "UsuarioDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "UsuarioDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -853,6 +897,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -868,19 +915,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["usuarios"]
       }
     },
     "/usuarios/{id}/imagem/capa": {
       "get": {
-        "operationId": "UsuarioGetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "UsuarioGetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -901,6 +948,13 @@
         "responses": {
           "200": {
             "description": "Binário.",
+            "schema": {
+              "nullable": false,
+              "description": "Binário.",
+              "type": "string",
+              "format": "binary",
+              "mimeTypes": ["image/jpeg"]
+            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -920,17 +974,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["usuarios"]
       },
       "put": {
-        "operationId": "UsuarioSetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "UsuarioSetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -982,6 +1036,10 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
+            "schema": {
+              "type": "boolean",
+              "description": "Resultado da operação."
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -998,19 +1056,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["usuarios"]
       }
     },
     "/usuarios/{id}/imagem/perfil": {
       "get": {
-        "operationId": "UsuarioGetImagemPerfil",
-        "summary": "",
         "description": "Obtêm a imagem de perfil.",
+        "operationId": "UsuarioGetImagemPerfil",
         "parameters": [
           {
             "name": "id",
@@ -1031,6 +1089,13 @@
         "responses": {
           "200": {
             "description": "Binário.",
+            "schema": {
+              "nullable": false,
+              "description": "Binário.",
+              "type": "string",
+              "format": "binary",
+              "mimeTypes": ["image/jpeg"]
+            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -1050,17 +1115,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["usuarios"]
       },
       "put": {
-        "operationId": "UsuarioSetImagemPerfil",
-        "summary": "",
         "description": "Define a imagem de perfil.",
+        "operationId": "UsuarioSetImagemPerfil",
         "parameters": [
           {
             "name": "id",
@@ -1112,6 +1177,10 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
+            "schema": {
+              "type": "boolean",
+              "description": "Resultado da operação."
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1128,19 +1197,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["usuarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["usuarios"]
       }
     },
     "/vinculos": {
       "get": {
-        "operationId": "PerfilList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "PerfilList",
         "parameters": [
           {
             "name": "page",
@@ -1269,17 +1338,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["perfis"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["perfis"]
       },
       "post": {
-        "operationId": "PerfilUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "PerfilUpdateOneById",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1313,19 +1382,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["perfis"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["perfis"]
       }
     },
     "/campi": {
       "get": {
-        "operationId": "CampusList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CampusList",
         "parameters": [
           {
             "name": "page",
@@ -1426,17 +1495,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["campi"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["campi"]
       },
       "post": {
-        "operationId": "CampusCreate",
-        "summary": "",
         "description": "Operação de criação de um campus.",
+        "operationId": "CampusCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1470,19 +1539,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["campi"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["campi"]
       }
     },
     "/campi/{id}": {
       "get": {
-        "operationId": "CampusFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CampusFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -1520,17 +1589,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["campi"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["campi"]
       },
       "patch": {
-        "operationId": "CampusUpdateOneById",
-        "summary": "",
         "description": "Operação de atualização de um campus.",
+        "operationId": "CampusUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -1580,17 +1649,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["campi"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["campi"]
       },
       "delete": {
-        "operationId": "CampusDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CampusDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -1613,6 +1682,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1628,19 +1700,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["campi"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["campi"]
       }
     },
     "/blocos": {
       "get": {
-        "operationId": "BlocoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "BlocoList",
         "parameters": [
           {
             "name": "page",
@@ -1727,17 +1799,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["blocos"]
       },
       "post": {
-        "operationId": "BlocoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "BlocoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1771,19 +1843,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["blocos"]
       }
     },
     "/blocos/{id}": {
       "get": {
-        "operationId": "BlocoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "BlocoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -1821,17 +1893,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["blocos"]
       },
       "patch": {
-        "operationId": "BlocoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "BlocoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -1881,17 +1953,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["blocos"]
       },
       "delete": {
-        "operationId": "BlocoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "BlocoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -1914,6 +1986,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1929,19 +2004,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["blocos"]
       }
     },
     "/blocos/{id}/imagem/capa": {
       "get": {
-        "operationId": "BlocoGetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "BlocoGetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -1962,6 +2037,13 @@
         "responses": {
           "200": {
             "description": "Binário.",
+            "schema": {
+              "nullable": false,
+              "description": "Binário.",
+              "type": "string",
+              "format": "binary",
+              "mimeTypes": ["image/jpeg"]
+            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -1981,17 +2063,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["blocos"]
       },
       "put": {
-        "operationId": "BlocoSetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "BlocoSetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -2043,6 +2125,10 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
+            "schema": {
+              "type": "boolean",
+              "description": "Resultado da operação."
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2059,19 +2145,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["blocos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["blocos"]
       }
     },
     "/ambientes": {
       "get": {
-        "operationId": "AmbienteList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AmbienteList",
         "parameters": [
           {
             "name": "page",
@@ -2172,17 +2258,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ambientes"]
       },
       "post": {
-        "operationId": "AmbienteCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AmbienteCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2216,19 +2302,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ambientes"]
       }
     },
     "/ambientes/{id}": {
       "get": {
-        "operationId": "AmbienteFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AmbienteFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -2266,17 +2352,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ambientes"]
       },
       "patch": {
-        "operationId": "AmbienteUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AmbienteUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -2326,17 +2412,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ambientes"]
       },
       "delete": {
-        "operationId": "AmbienteDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AmbienteDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -2359,6 +2445,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2374,19 +2463,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ambientes"]
       }
     },
     "/ambientes/{id}/imagem/capa": {
       "get": {
-        "operationId": "AmbienteGetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AmbienteGetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -2407,6 +2496,13 @@
         "responses": {
           "200": {
             "description": "Binário.",
+            "schema": {
+              "nullable": false,
+              "description": "Binário.",
+              "type": "string",
+              "format": "binary",
+              "mimeTypes": ["image/jpeg"]
+            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -2426,17 +2522,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ambientes"]
       },
       "put": {
-        "operationId": "AmbienteSetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AmbienteSetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -2488,6 +2584,10 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
+            "schema": {
+              "type": "boolean",
+              "description": "Resultado da operação."
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2504,19 +2604,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ambientes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ambientes"]
       }
     },
     "/reservas": {
       "get": {
-        "operationId": "ReservaList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ReservaList",
         "parameters": [
           {
             "name": "page",
@@ -2645,17 +2745,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["reservas"]
       },
       "post": {
-        "operationId": "ReservaCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ReservaCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2689,19 +2789,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["reservas"]
       }
     },
     "/reservas/{id}": {
       "get": {
-        "operationId": "ReservaFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ReservaFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -2739,17 +2839,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["reservas"]
       },
       "patch": {
-        "operationId": "ReservaUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ReservaUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -2799,17 +2899,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["reservas"]
       },
       "delete": {
-        "operationId": "ReservaDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ReservaDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -2832,6 +2932,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2847,19 +2950,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["reservas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["reservas"]
       }
     },
     "/niveis-formacoes": {
       "get": {
-        "operationId": "NivelFormacaoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "NivelFormacaoList",
         "parameters": [
           {
             "name": "page",
@@ -2932,17 +3035,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["niveis-formacoes"]
       },
       "post": {
-        "operationId": "NivelFormacaoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "NivelFormacaoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2976,19 +3079,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["niveis-formacoes"]
       }
     },
     "/niveis-formacoes/{id}": {
       "get": {
-        "operationId": "NivelFormacaoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "NivelFormacaoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -3026,17 +3129,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["niveis-formacoes"]
       },
       "patch": {
-        "operationId": "NivelFormacaoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "NivelFormacaoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -3086,17 +3189,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["niveis-formacoes"]
       },
       "delete": {
-        "operationId": "NivelFormacaoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "NivelFormacaoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -3119,6 +3222,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3134,19 +3240,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["niveis-formacoes"]
       }
     },
     "/modalidades": {
       "get": {
-        "operationId": "ModalidadeList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ModalidadeList",
         "parameters": [
           {
             "name": "page",
@@ -3219,17 +3325,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["modalidades"]
       },
       "post": {
-        "operationId": "ModalidadeCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ModalidadeCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -3263,19 +3369,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["modalidades"]
       }
     },
     "/modalidades/{id}": {
       "get": {
-        "operationId": "ModalidadeFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ModalidadeFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -3313,17 +3419,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["modalidades"]
       },
       "patch": {
-        "operationId": "ModalidadeUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ModalidadeUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -3373,17 +3479,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["modalidades"]
       },
       "delete": {
-        "operationId": "ModalidadeDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ModalidadeDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -3406,6 +3512,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3421,19 +3530,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["modalidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["modalidades"]
       }
     },
     "/ofertas-formacoes": {
       "get": {
-        "operationId": "OfertaFormacaoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoList",
         "parameters": [
           {
             "name": "page",
@@ -3506,17 +3615,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes"]
       },
       "post": {
-        "operationId": "OfertaFormacaoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -3550,19 +3659,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes"]
       }
     },
     "/ofertas-formacoes/{id}": {
       "get": {
-        "operationId": "OfertaFormacaoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -3600,17 +3709,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes"]
       },
       "patch": {
-        "operationId": "OfertaFormacaoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -3660,17 +3769,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes"]
       },
       "delete": {
-        "operationId": "OfertaFormacaoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -3693,6 +3802,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3708,19 +3820,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes"]
       }
     },
     "/ofertas-formacoes-niveis-formacoes": {
       "get": {
-        "operationId": "OfertaFormacaoNivelFormacaoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoNivelFormacaoList",
         "parameters": [
           {
             "name": "page",
@@ -3793,17 +3905,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes-niveis-formacoes"]
       },
       "post": {
-        "operationId": "OfertaFormacaoNivelFormacaoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoNivelFormacaoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -3837,19 +3949,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes-niveis-formacoes"]
       }
     },
     "/ofertas-formacoes-niveis-formacoes/{id}": {
       "get": {
-        "operationId": "OfertaFormacaoNivelFormacaoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoNivelFormacaoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -3887,17 +3999,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes-niveis-formacoes"]
       },
       "patch": {
-        "operationId": "OfertaFormacaoNivelFormacaoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoNivelFormacaoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -3947,17 +4059,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes-niveis-formacoes"]
       },
       "delete": {
-        "operationId": "OfertaFormacaoNivelFormacaoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "OfertaFormacaoNivelFormacaoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -3980,6 +4092,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3995,19 +4110,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["ofertas-formacoes-niveis-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["ofertas-formacoes-niveis-formacoes"]
       }
     },
     "/cursos": {
       "get": {
-        "operationId": "CursoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CursoList",
         "parameters": [
           {
             "name": "page",
@@ -4108,17 +4223,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["cursos"]
       },
       "post": {
-        "operationId": "CursoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CursoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4152,19 +4267,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["cursos"]
       }
     },
     "/cursos/{id}": {
       "get": {
-        "operationId": "CursoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CursoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -4202,17 +4317,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["cursos"]
       },
       "patch": {
-        "operationId": "CursoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CursoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -4262,17 +4377,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["cursos"]
       },
       "delete": {
-        "operationId": "CursoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CursoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -4295,6 +4410,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4310,19 +4428,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["cursos"]
       }
     },
     "/cursos/{id}/imagem/capa": {
       "get": {
-        "operationId": "CursoGetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CursoGetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -4343,6 +4461,13 @@
         "responses": {
           "200": {
             "description": "Binário.",
+            "schema": {
+              "nullable": false,
+              "description": "Binário.",
+              "type": "string",
+              "format": "binary",
+              "mimeTypes": ["image/jpeg"]
+            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -4362,17 +4487,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["cursos"]
       },
       "put": {
-        "operationId": "CursoSetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CursoSetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -4424,6 +4549,10 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
+            "schema": {
+              "type": "boolean",
+              "description": "Resultado da operação."
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4440,19 +4569,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["cursos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["cursos"]
       }
     },
     "/disciplinas": {
       "get": {
-        "operationId": "DisciplinaList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisciplinaList",
         "parameters": [
           {
             "name": "page",
@@ -4505,20 +4634,6 @@
             }
           },
           {
-            "name": "filter.turma.id",
-            "required": false,
-            "in": "query",
-            "kind": "schema",
-            "schema": {
-              "type": "array",
-              "nullable": false,
-              "items": {
-                "nullable": false,
-                "type": "string"
-              }
-            }
-          },
-          {
             "name": "filter.diarios.id",
             "required": false,
             "in": "query",
@@ -4553,17 +4668,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disciplinas"]
       },
       "post": {
-        "operationId": "DisciplinaCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisciplinaCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4597,19 +4712,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disciplinas"]
       }
     },
     "/disciplinas/{id}": {
       "get": {
-        "operationId": "DisciplinaFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisciplinaFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -4647,17 +4762,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disciplinas"]
       },
       "patch": {
-        "operationId": "DisciplinaUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisciplinaUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -4707,17 +4822,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disciplinas"]
       },
       "delete": {
-        "operationId": "DisciplinaDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisciplinaDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -4740,6 +4855,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4755,19 +4873,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disciplinas"]
       }
     },
     "/disciplinas/{id}/imagem/capa": {
       "get": {
-        "operationId": "DisciplinaGetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisciplinaGetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -4788,6 +4906,13 @@
         "responses": {
           "200": {
             "description": "Binário.",
+            "schema": {
+              "nullable": false,
+              "description": "Binário.",
+              "type": "string",
+              "format": "binary",
+              "mimeTypes": ["image/jpeg"]
+            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -4807,17 +4932,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disciplinas"]
       },
       "put": {
-        "operationId": "DisciplinaSetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisciplinaSetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -4869,6 +4994,10 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
+            "schema": {
+              "type": "boolean",
+              "description": "Resultado da operação."
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4885,19 +5014,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disciplinas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disciplinas"]
       }
     },
     "/calendarios-letivos": {
       "get": {
-        "operationId": "CalendarioLetivoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CalendarioLetivoList",
         "parameters": [
           {
             "name": "page",
@@ -4998,17 +5127,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["calendarios-letivos"]
       },
       "post": {
-        "operationId": "CalendarioLetivoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CalendarioLetivoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5042,19 +5171,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["calendarios-letivos"]
       }
     },
     "/calendarios-letivos/{id}": {
       "get": {
-        "operationId": "CalendarioLetivoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CalendarioLetivoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -5092,17 +5221,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["calendarios-letivos"]
       },
       "patch": {
-        "operationId": "CalendarioLetivoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CalendarioLetivoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -5152,17 +5281,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["calendarios-letivos"]
       },
       "delete": {
-        "operationId": "CalendarioLetivoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "CalendarioLetivoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -5185,6 +5314,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5200,19 +5332,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["calendarios-letivos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["calendarios-letivos"]
       }
     },
     "/grades-horarios-ofertas-formacoes": {
       "get": {
-        "operationId": "GradeHorarioOfertaFormacaoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoList",
         "parameters": [
           {
             "name": "page",
@@ -5285,17 +5417,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes"]
       },
       "post": {
-        "operationId": "GradeHorarioOfertaFormacaoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5329,19 +5461,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes"]
       }
     },
     "/grades-horarios-ofertas-formacoes/{id}": {
       "get": {
-        "operationId": "GradeHorarioOfertaFormacaoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -5379,17 +5511,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes"]
       },
       "patch": {
-        "operationId": "GradeHorarioOfertaFormacaoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -5439,17 +5571,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes"]
       },
       "delete": {
-        "operationId": "GradeHorarioOfertaFormacaoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -5472,6 +5604,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5487,19 +5622,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes"]
       }
     },
     "/grades-horarios-ofertas-formacoes-intervalos-de-tempo": {
       "get": {
-        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoList",
         "parameters": [
           {
             "name": "page",
@@ -5572,17 +5707,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"]
       },
       "post": {
-        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5616,19 +5751,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"]
       }
     },
     "/grades-horarios-ofertas-formacoes-intervalos-de-tempo/{id}": {
       "get": {
-        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -5666,17 +5801,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"]
       },
       "patch": {
-        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -5726,17 +5861,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"]
       },
       "delete": {
-        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "GradeHorarioOfertaFormacaoIntervaloDeTempoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -5759,6 +5894,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5774,19 +5912,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["grades-horarios-ofertas-formacoes-intervalos-de-tempo"]
       }
     },
     "/eventos": {
       "get": {
-        "operationId": "EventoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EventoList",
         "parameters": [
           {
             "name": "page",
@@ -5873,17 +6011,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["eventos"]
       },
       "post": {
-        "operationId": "EventoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EventoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5917,19 +6055,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["eventos"]
       }
     },
     "/eventos/{id}": {
       "get": {
-        "operationId": "EventoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EventoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -5967,17 +6105,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["eventos"]
       },
       "patch": {
-        "operationId": "EventoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EventoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -6027,17 +6165,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["eventos"]
       },
       "delete": {
-        "operationId": "EventoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EventoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -6060,6 +6198,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6075,19 +6216,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["eventos"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["eventos"]
       }
     },
     "/dias-calendario": {
       "get": {
-        "operationId": "DiaCalendarioList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiaCalendarioList",
         "parameters": [
           {
             "name": "page",
@@ -6174,17 +6315,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["dias-calendarios"]
       },
       "post": {
-        "operationId": "DiaCalendarioCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiaCalendarioCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -6218,19 +6359,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["dias-calendarios"]
       }
     },
     "/dias-calendario/{id}": {
       "get": {
-        "operationId": "DiaCalendarioFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiaCalendarioFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -6268,17 +6409,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["dias-calendarios"]
       },
       "patch": {
-        "operationId": "DiaCalendarioUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiaCalendarioUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -6328,17 +6469,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["dias-calendarios"]
       },
       "delete": {
-        "operationId": "DiaCalendarioDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiaCalendarioDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -6361,6 +6502,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6376,19 +6520,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["dias-calendarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["dias-calendarios"]
       }
     },
     "/etapas": {
       "get": {
-        "operationId": "EtapaList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EtapaList",
         "parameters": [
           {
             "name": "page",
@@ -6475,17 +6619,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["etapas"]
       },
       "post": {
-        "operationId": "EtapaCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EtapaCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -6519,19 +6663,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["etapas"]
       }
     },
     "/etapas/{id}": {
       "get": {
-        "operationId": "EtapaFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EtapaFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -6569,17 +6713,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["etapas"]
       },
       "patch": {
-        "operationId": "EtapaUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EtapaUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -6629,17 +6773,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["etapas"]
       },
       "delete": {
-        "operationId": "EtapaDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "EtapaDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -6662,6 +6806,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6677,19 +6824,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["etapas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["etapas"]
       }
     },
     "/turmas": {
       "get": {
-        "operationId": "TurmaList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaList",
         "parameters": [
           {
             "name": "page",
@@ -6874,17 +7021,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas"]
       },
       "post": {
-        "operationId": "TurmaCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -6918,19 +7065,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas"]
       }
     },
     "/turmas/{id}": {
       "get": {
-        "operationId": "TurmaFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -6968,17 +7115,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas"]
       },
       "patch": {
-        "operationId": "TurmaUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -7028,17 +7175,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas"]
       },
       "delete": {
-        "operationId": "TurmaDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -7061,6 +7208,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7076,19 +7226,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas"]
       }
     },
     "/turmas/{id}/imagem/capa": {
       "get": {
-        "operationId": "TurmaGetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaGetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -7109,6 +7259,13 @@
         "responses": {
           "200": {
             "description": "Binário.",
+            "schema": {
+              "nullable": false,
+              "description": "Binário.",
+              "type": "string",
+              "format": "binary",
+              "mimeTypes": ["image/jpeg"]
+            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -7128,17 +7285,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas"]
       },
       "put": {
-        "operationId": "TurmaSetImagemCapa",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaSetImagemCapa",
         "parameters": [
           {
             "name": "id",
@@ -7190,6 +7347,10 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
+            "schema": {
+              "type": "boolean",
+              "description": "Resultado da operação."
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7206,19 +7367,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas"]
       }
     },
     "/diarios": {
       "get": {
-        "operationId": "DiarioList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioList",
         "parameters": [
           {
             "name": "page",
@@ -7347,17 +7508,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios"]
       },
       "post": {
-        "operationId": "DiarioCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7391,19 +7552,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios"]
       }
     },
     "/diarios/{id}": {
       "get": {
-        "operationId": "DiarioFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -7441,17 +7602,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios"]
       },
       "patch": {
-        "operationId": "DiarioUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -7501,17 +7662,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios"]
       },
       "delete": {
-        "operationId": "DiarioDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -7534,6 +7695,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7549,19 +7713,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios"]
       }
     },
     "/diario-professor": {
       "get": {
-        "operationId": "DiarioProfessorList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioProfessorList",
         "parameters": [
           {
             "name": "page",
@@ -7662,17 +7826,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diario-professor"]
       },
       "post": {
-        "operationId": "DiarioProfessorCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioProfessorCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7706,19 +7870,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diario-professor"]
       }
     },
     "/diario-professor/{id}": {
       "get": {
-        "operationId": "DiarioProfessorFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioProfessorFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -7756,17 +7920,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diario-professor"]
       },
       "patch": {
-        "operationId": "DiarioProfessorUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioProfessorUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -7816,17 +7980,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diario-professor"]
       },
       "delete": {
-        "operationId": "DiarioProfessorDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioProfessorDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -7849,6 +8013,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7864,19 +8031,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diario-professor"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diario-professor"]
       }
     },
     "/aulas": {
       "get": {
-        "operationId": "AulaList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AulaList",
         "parameters": [
           {
             "name": "page",
@@ -7977,17 +8144,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["aulas"]
       },
       "post": {
-        "operationId": "AulaCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AulaCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8021,19 +8188,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["aulas"]
       }
     },
     "/aulas/{id}": {
       "get": {
-        "operationId": "AulaFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AulaFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -8071,17 +8238,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["aulas"]
       },
       "patch": {
-        "operationId": "AulaUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AulaUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -8131,17 +8298,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["aulas"]
       },
       "delete": {
-        "operationId": "AulaDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "AulaDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -8164,6 +8331,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8179,19 +8349,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["aulas"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["aulas"]
       }
     },
     "/disponibilidades": {
       "get": {
-        "operationId": "DisponibilidadeList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisponibilidadeList",
         "parameters": [
           {
             "name": "page",
@@ -8264,17 +8434,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disponibilidades"]
       },
       "post": {
-        "operationId": "DisponibilidadeCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisponibilidadeCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8308,19 +8478,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disponibilidades"]
       }
     },
     "/disponibilidades/{id}": {
       "get": {
-        "operationId": "DisponibilidadeFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisponibilidadeFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -8358,17 +8528,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disponibilidades"]
       },
       "patch": {
-        "operationId": "DisponibilidadeUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisponibilidadeUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -8418,17 +8588,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disponibilidades"]
       },
       "delete": {
-        "operationId": "DisponibilidadeDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DisponibilidadeDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -8451,6 +8621,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8466,19 +8639,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["disponibilidades"]
       }
     },
     "/diarios-preferencia-agrupamento": {
       "get": {
-        "operationId": "DiarioPreferenciaAgrupamentoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioPreferenciaAgrupamentoList",
         "parameters": [
           {
             "name": "page",
@@ -8565,17 +8738,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios-preferencia-agrupamento"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios-preferencia-agrupamento"]
       },
       "post": {
-        "operationId": "DiarioPreferenciaAgrupamentoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioPreferenciaAgrupamentoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8609,19 +8782,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios-preferencia-agrupamento"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios-preferencia-agrupamento"]
       }
     },
     "/diarios-preferencia-agrupamento/{id}": {
       "get": {
-        "operationId": "DiarioPreferenciaAgrupamentoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioPreferenciaAgrupamentoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -8659,17 +8832,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios-preferencia-agrupamento"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios-preferencia-agrupamento"]
       },
       "patch": {
-        "operationId": "DiarioPreferenciaAgrupamentoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioPreferenciaAgrupamentoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -8719,17 +8892,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios-preferencia-agrupamento"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios-preferencia-agrupamento"]
       },
       "delete": {
-        "operationId": "DiarioPreferenciaAgrupamentoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "DiarioPreferenciaAgrupamentoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -8752,6 +8925,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8767,19 +8943,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["diarios-preferencia-agrupamento"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["diarios-preferencia-agrupamento"]
       }
     },
     "/turmas-disponibilidades": {
       "get": {
-        "operationId": "TurmaDisponibilidadeList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaDisponibilidadeList",
         "parameters": [
           {
             "name": "page",
@@ -8866,17 +9042,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas-disponibilidades"]
       },
       "post": {
-        "operationId": "TurmaDisponibilidadeCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaDisponibilidadeCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8910,19 +9086,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas-disponibilidades"]
       }
     },
     "/turmas-disponibilidades/{id}": {
       "get": {
-        "operationId": "TurmaDisponibilidadeFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaDisponibilidadeFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -8960,17 +9136,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas-disponibilidades"]
       },
       "patch": {
-        "operationId": "TurmaDisponibilidadeUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaDisponibilidadeUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -9020,17 +9196,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas-disponibilidades"]
       },
       "delete": {
-        "operationId": "TurmaDisponibilidadeDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "TurmaDisponibilidadeDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -9053,6 +9229,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9068,19 +9247,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["turmas-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["turmas-disponibilidades"]
       }
     },
     "/professores-disponibilidades": {
       "get": {
-        "operationId": "ProfessorDisponibilidadeList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ProfessorDisponibilidadeList",
         "parameters": [
           {
             "name": "page",
@@ -9167,17 +9346,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["professores-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["professores-disponibilidades"]
       },
       "post": {
-        "operationId": "ProfessorDisponibilidadeCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ProfessorDisponibilidadeCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9211,19 +9390,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["professores-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["professores-disponibilidades"]
       }
     },
     "/professores-disponibilidades/{id}": {
       "get": {
-        "operationId": "ProfessorDisponibilidadeFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ProfessorDisponibilidadeFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -9261,17 +9440,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["professores-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["professores-disponibilidades"]
       },
       "patch": {
-        "operationId": "ProfessorDisponibilidadeUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ProfessorDisponibilidadeUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -9321,17 +9500,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["professores-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["professores-disponibilidades"]
       },
       "delete": {
-        "operationId": "ProfessorDisponibilidadeDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "ProfessorDisponibilidadeDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -9354,6 +9533,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9369,19 +9551,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["professores-disponibilidades"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["professores-disponibilidades"]
       }
     },
     "/horarios-gerados": {
       "get": {
-        "operationId": "HorarioGeradoList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoList",
         "parameters": [
           {
             "name": "page",
@@ -9454,17 +9636,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados"]
       },
       "post": {
-        "operationId": "HorarioGeradoCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9498,19 +9680,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados"]
       }
     },
     "/horarios-gerados/{id}": {
       "get": {
-        "operationId": "HorarioGeradoFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -9548,17 +9730,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados"]
       },
       "patch": {
-        "operationId": "HorarioGeradoUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -9608,17 +9790,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados"]
       },
       "delete": {
-        "operationId": "HorarioGeradoDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -9641,6 +9823,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9656,19 +9841,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados"]
       }
     },
     "/horarios-gerados-aula": {
       "get": {
-        "operationId": "HorarioGeradoAulaList",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoAulaList",
         "parameters": [
           {
             "name": "page",
@@ -9741,17 +9926,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados-aula"]
       },
       "post": {
-        "operationId": "HorarioGeradoAulaCreate",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoAulaCreate",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9785,19 +9970,19 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados-aula"]
       }
     },
     "/horarios-gerados-aula/{id}": {
       "get": {
-        "operationId": "HorarioGeradoAulaFindOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoAulaFindOneById",
         "parameters": [
           {
             "name": "id",
@@ -9835,17 +10020,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados-aula"]
       },
       "patch": {
-        "operationId": "HorarioGeradoAulaUpdateOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoAulaUpdateOneById",
         "parameters": [
           {
             "name": "id",
@@ -9895,17 +10080,17 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados-aula"]
       },
       "delete": {
-        "operationId": "HorarioGeradoAulaDeleteOneById",
-        "summary": "",
         "description": "Sem descrição.",
+        "operationId": "HorarioGeradoAulaDeleteOneById",
         "parameters": [
           {
             "name": "id",
@@ -9928,6 +10113,9 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
+            "schema": {
+              "type": "boolean"
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9943,12 +10131,13 @@
             "description": "Registro não encontrado."
           }
         },
-        "tags": ["horarios-gerados-aula"],
         "security": [
           {
             "bearer": []
           }
-        ]
+        ],
+        "summary": "",
+        "tags": ["horarios-gerados-aula"]
       }
     }
   },
