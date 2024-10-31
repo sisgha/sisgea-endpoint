@@ -17,8 +17,8 @@ RUN corepack install
 FROM base AS build
 COPY . "/ldsa"
 
-ENV GIT_COMMIT_HASH=
 ENV NX_DAEMON=true
+ENV GIT_COMMIT_HASH=
 # ENV NX_VERBOSE_LOGGING=true
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile 
