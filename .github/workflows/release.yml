@@ -95,9 +95,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Extract tag
+        id: extract-tag
+        run: |
+          TAG=latest
+          FILE=.changeset/pre.json
+
+          if [ -f ${FILE} ]; then
+            TAG=$(cat ${FILE} | jq .tag);
+          fi
+
+          echo tag: ${TAG}
+
+          echo "TAG=${TAG}" >> $GITHUB_OUTPUT
+
       - name: Publish to the NPM registry
         uses: ./.github/actions/publish/npm
         with:
+          tag: "${{ steps.extract-tag.outputs.tag }}"
           npm-token: "${{ secrets.NPM_TOKEN }}"
 
   edge-publish-npm:
