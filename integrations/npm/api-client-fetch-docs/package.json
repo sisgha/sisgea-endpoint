@@ -2,6 +2,7 @@
   "name": "@ladesa-ro/api-client-fetch.docs",
   "version": "1.0.0-alpha.27",
   "files": ["dist/**/*.*"],
+  "private": true,
   "scripts": {
     "generate": "nx generate",
     "generate:watch": "typedoc --options .config/typedoc.jsonc --watch --preserveWatchOutput",
