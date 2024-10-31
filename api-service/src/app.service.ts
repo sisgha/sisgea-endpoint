@@ -15,6 +15,8 @@ export class AppService {
       service: "@ladesa-ro/api.service",
       prefix: this.configService.getRuntimePrefix(),
       version: this.configService.getRuntimeVersion(),
+      buildTime: this.configService.getRuntimeBuildTime(),
+      gitCommitHash: this.configService.getRuntimeGitCommitHash(),
     };
   }
 }

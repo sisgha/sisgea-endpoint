@@ -13,4 +13,6 @@ export interface IConfigRuntime {
   //
   getStoragePath(): string;
   //
+  getRuntimeBuildTime(): Date;
+  getRuntimeGitCommitHash(): string | null;
 }

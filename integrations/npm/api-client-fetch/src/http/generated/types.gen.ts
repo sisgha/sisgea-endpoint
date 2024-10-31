@@ -2889,6 +2889,14 @@ export type AppControllerGetHelloResponse = {
    * Versão do serviço API.
    */
   version: string;
+  /**
+   * Horário do build da aplicação.
+   */
+  buildTime?: string;
+  /**
+   * Hash atrelado ao commit git no horário do build da aplicação.
+   */
+  gitCommitHash?: string | null;
 };
 
 export type ArquivoGetFileData = {

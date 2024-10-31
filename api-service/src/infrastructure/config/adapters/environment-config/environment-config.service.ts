@@ -7,6 +7,8 @@ import pkg from "../../../../../version.json";
 import type { IConfig } from "../../types";
 import type { IConfigIntegrateAuthKeycloakCredentials, IConfigIntegrateAuthOidcClientCredentials } from "../../types/IConfigIntegrateAuth";
 
+const now = new Date();
+
 @Injectable()
 export class EnvironmentConfigService implements IConfig {
   constructor(
@@ -39,7 +41,28 @@ export class EnvironmentConfigService implements IConfig {
 
   getRuntimeNodeEnv(): string {
     const runtimeNodeEnv = (this.nestConfigService.get<string>("NODE_ENV") ?? "production").trim().toLocaleLowerCase();
+
     return runtimeNodeEnv;
+  }
+
+  getRuntimeBuildTime() {
+    const buildTime = this.nestConfigService.get<string>("BUILD_TIME");
+
+    if (buildTime) {
+      return new Date(buildTime);
+    }
+
+    return now;
+  }
+
+  getRuntimeGitCommitHash() {
+    const gitCommitHash = this.nestConfigService.get<string>("GIT_COMMIT_HASH");
+
+    if (gitCommitHash) {
+      return gitCommitHash;
+    }
+
+    return null;
   }
 
   getStoragePath(): string {

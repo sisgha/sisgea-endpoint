@@ -32,6 +32,14 @@ export class AppController {
           description: "Versão do serviço API.",
           oneOf: [{ type: "string" }],
         },
+        buildTime: {
+          description: "Horário do build da aplicação.",
+          oneOf: [{ type: "string", format: "date-time" }],
+        },
+        gitCommitHash: {
+          description: "Hash atrelado ao commit git no horário do build da aplicação.",
+          oneOf: [{ type: "string" }, { type: "null" }],
+        },
       },
       required: ["service", "status", "version"],
     },

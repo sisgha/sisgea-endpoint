@@ -1,5 +1,6 @@
 {
-  "name": "@ladesa-ro/api-client-fetch-docs",
+  "name": "@ladesa-ro/api-client-fetch.docs",
+  "version": "1.0.0-alpha.27",
   "files": ["dist/**/*.*"],
   "scripts": {
     "prebuild": "wireit",

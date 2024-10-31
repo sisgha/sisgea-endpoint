@@ -1,6 +1,6 @@
 {
   "name": "@ladesa-ro/api-client-fetch",
-  "version": "1.0.0-alpha.21",
+  "version": "1.0.0-alpha.27",
   "main": "dist/index.js",
   "license": "MIT",
   "files": ["*.md", "dist/**/*.*"],
@@ -41,7 +41,7 @@
       "output": ["./dist/**/*"]
     },
     "copy-assets": {
-      "command": "cp ../../../CHANGELOG.md ./CHANGELOG.md",
+      "command": "cp ../../../CHANGELOG.md ./CHANGELOG.md 2>/dev/null; exit 0",
       "files": ["../../../CHANGELOG.md"],
       "output": ["./CHANGELOG.md"]
     },

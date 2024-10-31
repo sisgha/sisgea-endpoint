@@ -1,7 +1,8 @@
 {
   "name": "@ladesa-ro/api.service",
-  "version": "0.0.0-freezed.0",
+  "version": "1.0.0-alpha.27",
   "private": true,
+  "files": ["version.json", "dist/**/*"],
   "scripts": {
     "build": "wireit",
     "generate:openapi": "wireit",
@@ -25,7 +26,7 @@
   },
   "wireit": {
     "build": {
-      "command": "nest build",
+      "command": "BUILD_TIME=${BUILD_TIME:-$(date -Ins)} nest build",
       "files": ["tsconfig*", "src", "version.json"],
       "output": ["dist"]
     },
