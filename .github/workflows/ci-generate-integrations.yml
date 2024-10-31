@@ -1,4 +1,4 @@
-name: Generate Integrations
+name: "CI: Generate Integrations"
 
 on:
   push:

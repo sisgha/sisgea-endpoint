@@ -1,11 +1,12 @@
-name: Build, Push and Deploy
+name: "CD: Build, Push and Deploy"
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - development
-      - production
+  workflow_call:
+  # workflow_dispatch:
+  # push:
+  #   branches:
+  #     - development
+  #     - production
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
