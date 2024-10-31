@@ -1,5 +1,7 @@
 *.tsbuildinfo
 
+CHANGELOG.md
+
 docs
 
 #
