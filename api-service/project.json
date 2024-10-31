@@ -4,7 +4,7 @@
   "sourceRoot": "{projectRoot}/src",
   "implicitDependencies": [],
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "{projectRoot}/{package.json,version.json,tsconfig.json}"]
+    "default": ["{projectRoot}/**/*", "{projectRoot}/{package.json,tsconfig.json}"]
   },
   "targets": {
     "build": {

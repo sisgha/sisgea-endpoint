@@ -2,7 +2,7 @@
   "name": "@ladesa-ro/api.service",
   "version": "1.0.0-alpha.27",
   "private": true,
-  "files": ["version.json", "dist/**/*"],
+  "files": ["dist/**/*"],
   "scripts": {
     "build": "nx build",
     "generate:openapi": "nx generate:openapi",

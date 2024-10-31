@@ -3,7 +3,7 @@ import * as entities from "@/infrastructure/integrations/database/typeorm/entiti
 import { Inject, Injectable } from "@nestjs/common";
 import { ConfigService as NestConfigService } from "@nestjs/config";
 import type { DataSourceOptions } from "typeorm";
-import pkg from "../../../../../version.json";
+import pkg from "../../../../../package.json";
 import type { IConfig } from "../../types";
 import type { IConfigIntegrateAuthKeycloakCredentials, IConfigIntegrateAuthOidcClientCredentials } from "../../types/IConfigIntegrateAuth";
 
