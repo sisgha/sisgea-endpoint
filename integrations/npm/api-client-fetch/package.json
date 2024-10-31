@@ -36,9 +36,14 @@
     },
     "build": {
       "command": "tsc -p tsconfig.json",
-      "dependencies": ["generate"],
+      "dependencies": ["generate", "copy-assets"],
       "files": ["./src/**/*", "tsconfig.json"],
       "output": ["./dist/**/*"]
+    },
+    "copy-assets": {
+      "command": "cp ../../../CHANGELOG.md ./CHANGELOG.md",
+      "files": ["../../../CHANGELOG.md"],
+      "output": ["./CHANGELOG.md"]
     },
     "generate": {
       "dependencies": ["generate:client"]
