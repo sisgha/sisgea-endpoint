@@ -49,7 +49,7 @@
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.4.6",
     "@nestjs/schedule": "^4.1.1",
-    "@nestjs/swagger": "^7.4.2",
+    "@nestjs/swagger": "^8.0.1",
     "@nestjs/throttler": "^6.2.1",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
