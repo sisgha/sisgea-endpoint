@@ -63,6 +63,7 @@ jobs:
           push: ${{ env.ENABLE_PUSH_IMAGE == 'true' }}
           target: api-service
           tags: ${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME_SERVICE }}:${{ env.IMAGE_TAG }}
+          build-args: GIT_COMMIT_HASH=${{ github.sha }}
           # cache-from: type=gha
           # cache-to: type=gha,mode=max
 
