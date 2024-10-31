@@ -1,10 +1,12 @@
 # Web API Integrada
 
-[![CI/CD Release][action-release-src]][action-release-href]
+[![CI/CD - Generate Integrations][action-generate-integrations-src]][action-generate-integrations-href]
+[![CI/CD - Build, Push and Deploy][action-build-push-deploy-src]][action-build-push-deploy-href]
+[![CI/CD - Release][action-release-src]][action-release-href]
 
 ## Ambientes
 
-Instância Pública (Ambiente de Desenvolvimento): <https://dev.ladesa.com.br/api>.
+Instância Pública de Desenvolvimento: <https://dev.ladesa.com.br/api>.
 
 ## Integrações
 
@@ -100,8 +102,19 @@ make logs; # Mostra os registros dos containers
 
 <!-- Badges / Actions / Release  -->
 
-[action-release-src]: https://img.shields.io/github/actions/workflow/status/ladesa-ro/api/release.yml?style=flat&logo=github&logoColor=white&label=CI/CD%20Release&branch=development&labelColor=18181B
+[action-release-src]: https://img.shields.io/github/actions/workflow/status/ladesa-ro/api/release.yml?style=flat&logo=github&logoColor=white&label=Release&branch=development&labelColor=18181B
 [action-release-href]: https://github.com/ladesa-ro/api/actions/workflows/release.yml?query=branch%3Adevelopment
+
+<!-- Badges / Actions / Build, Push and Deploy  -->
+
+[action-build-push-deploy-src]: https://img.shields.io/github/actions/workflow/status/ladesa-ro/api/build-push-deploy.yml?style=flat&logo=github&logoColor=white&label=Build,%20Push%20and%20Deploy&branch=development&labelColor=18181B
+[action-build-push-deploy-href]: https://github.com/ladesa-ro/api/actions/workflows/build-push-deploy.yml?query=branch%3Adevelopment
+
+<!-- Badges / Actions / Generate Integrations  -->
+
+[action-generate-integrations-src]: https://img.shields.io/github/actions/workflow/status/ladesa-ro/api/generate-integrations.yml?style=flat&logo=github&logoColor=white&label=Generate%20Integrations&branch=development&labelColor=18181B
+[action-generate-integrations-href]: https://github.com/ladesa-ro/api/actions/workflows/generate-integrations.yml?query=branch%3Adevelopment
+
 
 <!-- Badges / Source Code  -->
 
