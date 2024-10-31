@@ -1,0 +1,32 @@
+name: "Continuos Release: Publish any commit"
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - development
+      - production
+    tags:
+      - "!**"
+
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install
+        uses: ./.github/actions/prepare/install
+        with:
+          install-node: "true"
+
+      - name: Build
+        run: pnpm run --filter "@ladesa-ro/api-client-fetch" build
+
+      - name: "Continuos Release: publish to pkg.pr.new"
+        run: pnpx pkg-pr-new publish --comment=update './integrations/npm/api-client-fetch'
