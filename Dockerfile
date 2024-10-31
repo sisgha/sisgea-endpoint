@@ -17,6 +17,7 @@ RUN corepack install
 FROM base AS build
 COPY . "/ldsa"
 
+ENV GIT_COMMIT_HASH=
 ENV NX_DAEMON=true
 # ENV NX_VERBOSE_LOGGING=true
 
