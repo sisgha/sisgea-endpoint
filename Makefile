@@ -8,13 +8,18 @@ setup:
 	$(shell (cd .; find . -type f -name "*.example" -exec sh -c 'cp -n {} $$(basename {} .example)' \;))
 	$(shell (bash -c "docker network create $(d_network) &>/dev/null"))
 
+prepare:
+	docker compose $(compose_options) exec $(d_container_app) bash -c "pnpm install";
+
 up:
 	make setup;
-	docker compose $(compose_options) up --remove-orphans -d; 
+	docker compose $(compose_options) up --remove-orphans -d;
+	make prepare;
 
 up-recreate:
 	make setup;
-	docker compose $(compose_options) up --remove-orphans -d --force-recreate; 
+	docker compose $(compose_options) up --remove-orphans -d --force-recreate;
+	make prepare;
 
 start:
 	make setup;
