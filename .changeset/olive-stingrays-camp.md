@@ -6,4 +6,4 @@
 "@ladesa-ro/api": minor
 ---
 
-refactor: a lot of breaking changes and new resources
+feat: v1 with a lot of new resources
