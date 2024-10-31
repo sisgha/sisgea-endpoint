@@ -9,16 +9,16 @@ setup:
 	$(shell (bash -c "docker network create $(d_network) &>/dev/null"))
 
 prepare:
-	docker compose $(compose_options) exec $(d_container_app) bash -c "pnpm install";
+	docker compose $(compose_options) exec $(d_container_app) bash -c "corepack install && pnpm install";
 
 up:
 	make setup;
-	docker compose $(compose_options) up --remove-orphans -d;
+	docker compose $(compose_options) up --build --quiet-pull --remove-orphans -d;
 	make prepare;
 
 up-recreate:
 	make setup;
-	docker compose $(compose_options) up --remove-orphans -d --force-recreate;
+	docker compose $(compose_options) up --build --quiet-pull --remove-orphans -d --force-recreate;
 	make prepare;
 
 start:
@@ -44,12 +44,12 @@ shell:
 	make setup;
 	make up;
 	
-	docker compose $(compose_options) exec $(d_container_app) bash -c "cd $(INSIDE_PATH); bash";
+	docker compose $(compose_options) exec $(d_container_app) bash -c "cd $(INSIDE_PATH); clear; bash";
 
 shell-root:
 	make setup;
 	make up;
-	docker compose $(compose_options) exec -u root $(d_container_app) bash -c "cd $(INSIDE_PATH); bash";
+	docker compose $(compose_options) exec -u root $(d_container_app) bash -c "cd $(INSIDE_PATH); clear; bash";
 
 stop:
 	make setup;
