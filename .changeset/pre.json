@@ -8,5 +8,7 @@
     "@ladesa-ro/api-client-fetch.docs": "1.0.0-alpha.27",
     "@ladesa-ro/api.integrations.openapi-json": "1.0.0-alpha.27"
   },
-  "changesets": []
+  "changesets": [
+    "olive-stingrays-camp"
+  ]
 }

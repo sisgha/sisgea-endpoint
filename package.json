@@ -1,6 +1,6 @@
 {
   "name": "@ladesa-ro/api",
-  "version": "1.0.0-alpha.27",
+  "version": "1.0.0-next.28",
   "private": true,
   "scripts": {
     "commit": "git-cz",
@@ -34,7 +34,9 @@
     }
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "lint-staged": {
     "**/*": "pnpm run code-static:fix"
