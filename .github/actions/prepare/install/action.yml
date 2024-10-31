@@ -70,4 +70,6 @@ runs:
       env:
         HUSKY: "0"
 
-    - uses: nrwl/nx-set-shas@v4
+    # - uses: nrwl/nx-set-shas@v4
+    #   with:
+    #     main-branch-name: "development"
