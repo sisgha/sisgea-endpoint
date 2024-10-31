@@ -4,8 +4,8 @@
   "private": true,
   "files": ["version.json", "dist/**/*"],
   "scripts": {
-    "build": "wireit",
-    "generate:openapi": "wireit",
+    "build": "nx build",
+    "generate:openapi": "nx generate:openapi",
     "check:static": "tsc --noEmit",
     "start": "nest start -e 'node --experimental-require-module --trace-warnings'",
     "start:dev": "nest start --watch -e 'node --experimental-require-module --trace-warnings'",
@@ -23,17 +23,6 @@
     "test:cov": "vitest run --coverage",
     "test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts"
-  },
-  "wireit": {
-    "build": {
-      "command": "BUILD_TIME=${BUILD_TIME:-$(date -Ins)} nest build",
-      "files": ["tsconfig*", "src", "version.json"],
-      "output": ["dist"]
-    },
-    "generate:openapi": {
-      "command": "node --experimental-require-module dist/scripts/codegen-openapi-json",
-      "dependencies": ["build"]
-    }
   },
   "dependencies": {
     "@apollo/server": "^4.11.2",
@@ -116,7 +105,6 @@
     "typescript": "^5.6.3",
     "unplugin-swc": "^1.5.1",
     "vite-tsconfig-paths": "^5.0.1",
-    "vitest": "^2.1.4",
-    "wireit": "^0.14.9"
+    "vitest": "^2.1.4"
   }
 }

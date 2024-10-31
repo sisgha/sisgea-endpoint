@@ -35,6 +35,8 @@ runs:
       working-directory: ${{ inputs.working-directory }}
       run: echo ${{ github.ref }}
 
+    - uses: ../tasks-cache
+
     - name: "node.js: enable corepack"
       run: corepack enable
       if: ${{ inputs.install-node == 'true' }}
@@ -52,10 +54,6 @@ runs:
       env:
         HUSKY: "0"
 
-    - name: "node.js: setup wireit cache"
-      uses: google/wireit@setup-github-actions-caching/v2
-      if: ${{ inputs.install-node == 'true' }}
-
     - name: "node.js: install dependencies"
       if: ${{ inputs.install-node == 'true' }} && ${{ inputs.install-node-dependencies == 'true' }}
       working-directory: ${{ inputs.working-directory }}
@@ -63,3 +61,5 @@ runs:
       run: pnpm install --frozen-lockfile
       env:
         HUSKY: "0"
+
+    - uses: nrwl/nx-set-shas@v4

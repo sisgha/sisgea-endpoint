@@ -5,6 +5,8 @@
   "entryPoints": ["../../api-client-fetch/src/index.ts"],
   "tsconfig": "../../api-client-fetch/tsconfig.json",
 
+  "cleanOutputDir": true,
+
   "out": "../dist",
 
   "includeVersion": true,

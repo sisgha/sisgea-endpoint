@@ -3,34 +3,53 @@
   "version": "1.0.0-alpha.27",
   "files": ["dist/**/*.*"],
   "scripts": {
-    "prebuild": "wireit",
-    "generate": "wireit",
-    "generate:watch": "wireit",
-    "build": "wireit",
-    "serve": "wireit"
+    "generate": "nx generate",
+    "generate:watch": "typedoc --options .config/typedoc.jsonc --watch --preserveWatchOutput",
+    "build": "nx build",
+    "serve": "nx serve"
   },
-  "wireit": {
-    "serve": {
-      "command": "serve dist",
-      "dependencies": ["build"]
+  "nx": {
+    "tags": ["integrations", "integrations:npm"],
+    "root": "integrations/npm/api-client-fetch-docs",
+    "namedInputs": {
+      "default": ["{projectRoot}/.config/**/*"]
     },
-    "prebuild": {
-      "command": "rimraf dist"
-    },
-    "build": {
-      "dependencies": ["generate"]
-    },
-    "generate": {
-      "command": "typedoc --options .config/typedoc.jsonc",
-      "dependencies": ["../api-client-fetch:build"]
-    },
-    "generate:watch": {
-      "command": "typedoc --options .config/typedoc.jsonc --watch --preserveWatchOutput",
-      "dependencies": ["../api-client-fetch:build"]
+    "targets": {
+      "serve": {
+        "cache": false,
+        "executor": "nx:run-commands",
+        "options": {
+          "cwd": "{projectRoot}",
+          "command": "serve dist"
+        },
+        "dependsOn": ["build"]
+      },
+      "build": {
+        "cache": false,
+        "executor": "nx:run-commands",
+        "inputs": [],
+        "options": {
+          "cwd": "{projectRoot}",
+          "command": "echo noop"
+        },
+        "outputs": [],
+        "dependsOn": ["generate"]
+      },
+
+      "generate": {
+        "cache": true,
+        "executor": "nx:run-commands",
+        "inputs": ["default", "^default"],
+        "options": {
+          "cwd": "{projectRoot}",
+          "command": "typedoc --options .config/typedoc.jsonc"
+        },
+        "outputs": [],
+        "dependsOn": ["@ladesa-ro/api-client-fetch:build"]
+      }
     }
   },
   "devDependencies": {
-    "rimraf": "^6.0.1",
     "serve": "^14.2.4",
     "typedoc": "^0.26.10",
     "typedoc-plugin-mdn-links": "^3.3.5"

@@ -1,25 +1,40 @@
 {
-  "version": "1.0.0-alpha.27",
   "name": "@ladesa-ro/api.integrations.openapi-json",
+  "version": "1.0.0-alpha.27",
   "files": ["generated.json"],
   "scripts": {
-    "build": "wireit",
-    "generate": "wireit"
-  },
-  "wireit": {
-    "build": {
-      "dependencies": ["generate"]
-    },
-    "generate": {
-      "command": "OUT_FILE=$(pwd)/generated.json pnpm run --filter '@ladesa-ro/api.service' generate:openapi && pnpm run -w code-static:fix $(pwd)/generated.json",
-      "files": ["../../api-service/package.json", "../../api-service/src/**/*", "../../pnpm-lock.yaml"],
-      "output": ["./generated.json"]
-    }
+    "build": "nx build"
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "^0.49.0",
     "rimraf": "^6.0.1",
     "typedoc": "^0.26.10",
     "typedoc-plugin-mdn-links": "^3.3.5"
+  },
+  "nx": {
+    "tags": ["integrations", "integrations:openapi-json"],
+
+    "root": "integrations/openapi-json",
+
+    "namedInputs": {
+      "default": []
+    },
+
+    "targets": {
+      "build": {
+        "executor": "nx:run-commands",
+
+        "inputs": ["default"],
+
+        "options": {
+          "cwd": "{projectRoot}",
+          "command": "OUT_FILE=$(pwd)/generated.json pnpm run --filter '@ladesa-ro/api.service' generate:openapi && pnpm run -w code-static:fix $(pwd)/generated.json"
+        },
+
+        "outputs": ["{projectRoot}/generated.json"],
+
+        "dependsOn": ["@ladesa-ro/api.service:build"]
+      }
+    }
   }
 }

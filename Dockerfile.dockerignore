@@ -13,3 +13,8 @@
 
 Dockerfile*
 *.dockerignore
+
+dist
+.wireit
+
+volumes
