@@ -35,7 +35,6 @@
         "outputs": [],
         "dependsOn": ["generate"]
       },
-
       "generate": {
         "cache": true,
         "executor": "nx:run-commands",
