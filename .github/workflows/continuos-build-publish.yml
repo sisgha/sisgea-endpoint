@@ -26,7 +26,7 @@ jobs:
           install-node: "true"
 
       - name: Build
-        run: pnpm run --filter "@ladesa-ro/api-client-fetch" build
+        run: pnpm exec nx run @ladesa-ro/api-client-fetch:build
 
       - name: "Continuos Release: publish to pkg.pr.new"
         run: pnpx pkg-pr-new publish --comment=update './integrations/npm/api-client-fetch'

@@ -32,7 +32,7 @@ jobs:
       - id: build-integrations
         name: Build integrations
         run: |
-          pnpm run --filter "@ladesa-ro/api.internal.integrations" build
+          pnpm exec nx run-many -t build --projects=tag:integrations
 
           if [ "$(git diff --exit-code > /dev/null; echo $?)" -eq "1" ]; then
             echo "has_changes=true" >> "$GITHUB_OUTPUT";

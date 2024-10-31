@@ -15,7 +15,7 @@
     "code-static:fix": "biome check --write --no-errors-on-unmatched",
     "changeset:add": "changeset add",
     "changeset:tag": "changeset tag",
-    "changeset:version": "changeset version && pnpm run -r --if-present patch-version",
+    "changeset:version": "changeset version",
     "chore:update": "corepack use pnpm@latest && pnpm --filter=@ladesa-ro/api.service exec corepack use pnpm@latest && pnpm -r update"
   },
   "dependencies": {
@@ -34,9 +34,7 @@
     }
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "extends": ["@commitlint/config-conventional"]
   },
   "lint-staged": {
     "**/*": "pnpm run code-static:fix"
