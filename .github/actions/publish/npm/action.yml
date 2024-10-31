@@ -1,0 +1,34 @@
+name: "Publish to the NuGet registry"
+description: "This action builds and pushes the dotnet libraries to nuget regitry."
+
+inputs:
+  npm-token:
+    required: true
+    description: "NPM API Token for publish packages."
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Print Tag
+      shell: bash
+      run: echo ${{ github.ref_name }}
+
+    - name: Install
+      uses: ./.github/actions/prepare/install
+      with:
+        install-node: "true"
+
+    - name: Build
+      uses: ./.github/actions/prepare/build
+      with:
+        workspace-build: "true"
+
+    - name: Prepare NPM token
+      uses: ./.github/actions/prepare/npm-token
+      with:
+        npm-token: ${{ inputs.npm-token }}
+
+    - name: Publish
+      shell: bash
+      run: pnpm publish -r --no-git-checks

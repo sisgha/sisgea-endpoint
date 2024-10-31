@@ -4,7 +4,6 @@ volumes
 # compiled output
 dist
 node_modules
-build
 .wireit
 
 semicolon_delimited_script

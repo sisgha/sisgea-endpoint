@@ -1,0 +1,19 @@
+name: "Prepare: Build"
+description: "Prepares the repo for a job by running the build"
+
+inputs:
+  workspace-build:
+    description: "workspace project build"
+    required: false
+    default: "false"
+
+# outputs: - no outputs
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: "Build: all build scripts"
+      if: ${{ inputs.workspace-build == 'true' }}
+      shell: bash
+      run: pnpm run -w build
