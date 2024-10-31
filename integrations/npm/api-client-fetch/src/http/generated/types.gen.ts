@@ -3759,7 +3759,6 @@ export type CursoSetImagemCapaResponse = boolean;
 
 export type DisciplinaListData = {
   filterDiariosId?: Array<string>;
-  filterTurmaId?: Array<string>;
   /**
    * Limite da quantidade de resultados por página.
    */
