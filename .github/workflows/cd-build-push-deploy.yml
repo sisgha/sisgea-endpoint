@@ -8,7 +8,7 @@ on:
   #     - development
   #     - production
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency: ${{ github.job_workflow_sha }}-build-push---${{ github.ref }}
 
 env:
   # BUILD

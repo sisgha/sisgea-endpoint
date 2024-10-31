@@ -35,15 +35,15 @@ runs:
       working-directory: ${{ inputs.working-directory }}
       run: echo ${{ github.ref }}
 
-    # - name: Nx Cache
-    #   id: nx-cache
-    #   uses: actions/cache@v4
-    #   with:
-    #     path: .nx/cache
-    #     key: nx-${{ github.ref_name }}-${{ github.sha }}
-    #     restore-keys: |
-    #       nx-${{ github.ref_name }}-
-    #       nx-
+    - name: Nx Cache
+      id: nx-cache
+      uses: actions/cache@v4
+      with:
+        path: .nx/cache
+        key: nx-${{ github.ref_name }}-${{ github.sha }}
+        restore-keys: |
+          nx-${{ github.ref_name }}-
+          nx-
 
     - name: "node.js: enable corepack"
       run: corepack enable
@@ -70,6 +70,6 @@ runs:
       env:
         HUSKY: "0"
 
-    # - uses: nrwl/nx-set-shas@v4
-    #   with:
-    #     main-branch-name: "development"
+    - uses: nrwl/nx-set-shas@v4
+      with:
+        main-branch-name: "development"
