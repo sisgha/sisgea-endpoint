@@ -138,7 +138,7 @@ jobs:
           workspace-build: "true"
 
       - name: "Continuos Release: publish to pkg.pr.new"
-        run: pnpx pkg-pr-new publish --comment=update './integrations/npm/especificacao'
+        run: pnpx pkg-pr-new publish --comment=update './integrations/npm/api-client-fetch'
 
   cd-build-push-deploy:
     name: "CD: Build, Push and Deploy"
