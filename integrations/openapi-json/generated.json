@@ -14197,7 +14197,7 @@
             ]
           },
           "ambientePadraoAula": {
-            "nullable": false,
+            "nullable": true,
             "description": "Dados de entrada para encontrar um ambiente por id.",
             "kind": "type",
             "allOf": [
@@ -14229,7 +14229,7 @@
             ]
           },
           "ambientePadraoAula": {
-            "nullable": false,
+            "nullable": true,
             "description": "Dados de entrada para encontrar um ambiente por id.",
             "kind": "type",
             "allOf": [

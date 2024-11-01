@@ -3992,7 +3992,7 @@ export const $TurmaInputCreateView = {
       ],
     },
     ambientePadraoAula: {
-      nullable: false,
+      nullable: true,
       description: "Dados de entrada para encontrar um ambiente por id.",
       kind: "type",
       allOf: [
@@ -4025,7 +4025,7 @@ export const $TurmaInputUpdateView = {
       ],
     },
     ambientePadraoAula: {
-      nullable: false,
+      nullable: true,
       description: "Dados de entrada para encontrar um ambiente por id.",
       kind: "type",
       allOf: [

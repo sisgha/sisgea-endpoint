@@ -1,8 +1,7 @@
 # Web API Integrada
 
-[![CI/CD - Generate Integrations][action-generate-integrations-src]][action-generate-integrations-href]
-[![CI/CD - Build, Push and Deploy][action-build-push-deploy-src]][action-build-push-deploy-href]
 [![CI/CD - Release][action-release-src]][action-release-href]
+[![CI/CD - Generate Integrations][action-generate-integrations-src]][action-generate-integrations-href]
 
 ## Ambientes
 
@@ -12,10 +11,10 @@ Instância Pública de Desenvolvimento: <https://dev.ladesa.com.br/api>.
 
 ### Cliente JavaScript
 
-[![NPM Package: @ladesa-ro/api-client-fetch alpha version][npm-package-alpha-version-src]][npm-package-versions-href]
+[![NPM Package: @ladesa-ro/api-client-fetch latest version][npm-package-latest-version-src]][npm-package-versions-href]
 
 ```sh
-npm install @ladesa-ro/api-client-fetch@alpha
+npm install @ladesa-ro/api-client-fetch@latest
 ```
 
 ## Desenvolvimento
@@ -27,11 +26,15 @@ git clone https://github.com/ladesa-ro/api.git
 cd api
 ```
 
-## `api-service`
+### Estrutura de Pastas
+
+[`./api-service`](./api-service/)
 
 ```bash
 cd api-service
 ```
+
+> A pasta API service contém o código fonte do Serviço de API, que utiliza o framework NestJS no NodeJS.
 
 ### Serviços do [docker-compose.yml](./docker-compose.yml)
 
@@ -44,53 +47,64 @@ cd api-service
 
 O projeto conta com um [arquivo make](./Makefile) que comporta scrips destinados ao desenvolvimento da aplicação.
 
-#### `setup`
+<details>
+<summary>Visão geral dos scripts make</summary>
 
-```sh
-make setup; # Configura o ambiente de deselvolvimento, como a criação da rede ladesa-net e os arquivos .env.
+- `setup`
 
-```
+  ```sh
+  make setup;
+  ```
 
-#### `up`
+  > Configura o ambiente de deselvolvimento, como a criação da rede ladesa-net e os arquivos .env.
 
-```sh
-make up; # Inicia os containers docker.
-```
+- `up`
 
-#### `shell`
+  ```sh
+  make up;
+  ```
 
-```sh
-make shell; # Inicia os containers docker e abre o bash na aplicação node.
-```
+  > Inicia os containers da api e do banco de dados usando o docker.
 
-- Após este processo, talvez você queira executar dentro do shell do container:
+- `shell`
 
-```sh
-pnpm install;
+  ```sh
+  make shell;
+  ```
 
-```
+  > Inicia os containers docker e abre o bash na aplicação node.
 
-```sh
-pnpm run start:dev;
-```
+  - Após este processo, talvez você queira executar dentro do shell do container:
 
-#### `down`
+    ```sh
+    pnpm run start:dev;
+    ```
 
-```sh
-make down; # Para todos os containers.
-```
+- `down`
 
-#### `cleanup`
+  ```sh
+  make down;
+  ```
 
-```sh
-make cleanup; # Para todos os containers e remove os containers e volumes associados.
-```
+  > Encerra todos os containers.
 
-#### `logs`
+- `cleanup`
 
-```sh
-make logs; # Mostra os registros dos containers
-```
+  ```sh
+  make cleanup;
+  ```
+
+  > Encerra todos os containers e remove os containers e volumes associados.
+
+- `logs`
+
+  ```sh
+  make logs;
+  ```
+
+  > Mostra os registros dos containers
+
+</details>
 
 ## Licença
 
@@ -105,23 +119,15 @@ make logs; # Mostra os registros dos containers
 [action-release-src]: https://img.shields.io/github/actions/workflow/status/ladesa-ro/api/release.yml?style=flat&logo=github&logoColor=white&label=Release&branch=development&labelColor=18181B
 [action-release-href]: https://github.com/ladesa-ro/api/actions/workflows/release.yml?query=branch%3Adevelopment
 
-<!-- Badges / Actions / Build, Push and Deploy  -->
-
-[action-build-push-deploy-src]: https://img.shields.io/github/actions/workflow/status/ladesa-ro/api/build-push-deploy.yml?style=flat&logo=github&logoColor=white&label=Build,%20Push%20and%20Deploy&branch=development&labelColor=18181B
-[action-build-push-deploy-href]: https://github.com/ladesa-ro/api/actions/workflows/build-push-deploy.yml?query=branch%3Adevelopment
-
 <!-- Badges / Actions / Generate Integrations  -->
 
-[action-generate-integrations-src]: https://img.shields.io/github/actions/workflow/status/ladesa-ro/api/generate-integrations.yml?style=flat&logo=github&logoColor=white&label=Generate%20Integrations&branch=development&labelColor=18181B
-[action-generate-integrations-href]: https://github.com/ladesa-ro/api/actions/workflows/generate-integrations.yml?query=branch%3Adevelopment
-
-
-<!-- Badges / Source Code  -->
+[action-generate-integrations-src]: https://img.shields.io/github/actions/workflow/status/ladesa-ro/api/ci-generate-integrations.yml?style=flat&logo=github&logoColor=white&label=Generate%20Integrations&branch=development&labelColor=18181B
+[action-generate-integrations-href]: https://github.com/ladesa-ro/api/actions/workflows/ci-generate-integrations.yml?query=branch%3Adevelopment
 
 <!-- Badges / Integrations / NPM -->
 
 [npm-package-versions-href]: https://www.npmjs.com/package/@ladesa-ro/api-client-fetch?activeTab=versions
 
-<!-- Badges / Integrations / NPM / Alpha -->
+<!-- Badges / Integrations / NPM / Latest -->
 
-[npm-package-alpha-version-src]: https://img.shields.io/badge/dynamic/json?url=https://registry.npmjs.com/@ladesa-ro/api-client-fetch&query=$[%22dist-tags%22].alpha&prefix=v&style=flat&logo=npm&logoColor=white&label=@alpha&labelColor=%23CB3837&style=flat&colorA=18181B&colorB=ffffff
+[npm-package-latest-version-src]: https://img.shields.io/badge/dynamic/json?url=https://registry.npmjs.com/@ladesa-ro/api-client-fetch&query=$[%22dist-tags%22].latest&prefix=v&style=flat&logo=npm&logoColor=white&label=@latest&labelColor=%23CB3837&style=flat&colorA=18181B&colorB=ffffff

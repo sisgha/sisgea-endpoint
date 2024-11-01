@@ -130,7 +130,6 @@ jobs:
         uses: ./.github/actions/prepare/install
         with:
           install-node: "true"
-          install-dotnet: "true"
 
       - name: Build
         uses: ./.github/actions/prepare/build

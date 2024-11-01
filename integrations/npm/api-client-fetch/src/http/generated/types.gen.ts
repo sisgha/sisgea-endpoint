@@ -1975,7 +1975,7 @@ export type TurmaInputCreateView = {
   /**
    * Dados de entrada para encontrar um ambiente por id.
    */
-  ambientePadraoAula: AmbienteFindOneInputView;
+  ambientePadraoAula: AmbienteFindOneInputView | null;
 };
 
 export type TurmaInputUpdateView = {
@@ -1990,7 +1990,7 @@ export type TurmaInputUpdateView = {
   /**
    * Dados de entrada para encontrar um ambiente por id.
    */
-  ambientePadraoAula?: AmbienteFindOneInputView;
+  ambientePadraoAula?: AmbienteFindOneInputView | null;
 };
 
 export type DiarioFindOneResultView = {

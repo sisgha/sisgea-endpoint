@@ -1,3 +1,4 @@
+MAKEFLAGS += --silent
 
 d_network=ladesa-net
 d_container_app=ladesa-api
@@ -7,18 +8,20 @@ compose_options=--file docker-compose.yml -p ladesa-api
 setup:
 	$(shell (cd .; find . -type f -name "*.example" -exec sh -c 'cp -n {} $$(basename {} .example)' \;))
 	$(shell (bash -c "docker network create $(d_network) &>/dev/null"))
+	
+	docker compose $(compose_options) build -q
 
 prepare:
 	docker compose $(compose_options) exec $(d_container_app) bash -c "corepack install && pnpm install";
 
 up:
 	make setup;
-	docker compose $(compose_options) up --build --quiet-pull --remove-orphans -d;
+	docker compose $(compose_options) up --remove-orphans -d;
 	make prepare;
 
 up-recreate:
 	make setup;
-	docker compose $(compose_options) up --build --quiet-pull --remove-orphans -d --force-recreate;
+	docker compose $(compose_options) up --remove-orphans -d --force-recreate;
 	make prepare;
 
 start:
