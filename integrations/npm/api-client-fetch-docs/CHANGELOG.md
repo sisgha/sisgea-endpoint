@@ -1,5 +1,12 @@
 # @ladesa-ro/api-client-fetch.docs
 
+## 1.0.0-next.29
+
+### Minor Changes
+
+- 0fc8146: feat: accept null ambientePadraoAula on create and update at turma
+- 0fc8146: feat: add relationship with o_f_n_f on oferta_formacao
+
 ## 1.0.0-next.28
 
 ### Minor Changes
