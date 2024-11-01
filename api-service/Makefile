@@ -1,3 +1,5 @@
+MAKEFLAGS += --silent
+
 all:
 	@make -C .. $@
 %:
