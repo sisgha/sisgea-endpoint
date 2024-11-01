@@ -4,7 +4,14 @@ import { SelectQueryBuilder } from "typeorm";
 
 // ==========================
 
-export const QbEfficientLoadForEntity = (repository: ISpecNodesStore, nodeEntity: INodeTypeObjectEntity, qb: SelectQueryBuilder<any>, alias: string, selection: boolean | string[] = true) => {
+export const QbEfficientLoadForEntity = (
+  repository: ISpecNodesStore,
+  nodeEntity: INodeTypeObjectEntity,
+  qb: SelectQueryBuilder<any>,
+  alias: string,
+  selection: boolean | string[] = true,
+  parent: string[] = [],
+) => {
   let counter = 0;
 
   let rootSelection: boolean | string[] = [];
@@ -50,24 +57,30 @@ export const QbEfficientLoadForEntity = (repository: ISpecNodesStore, nodeEntity
     if (CheckNodeTypeObjectEntity(propertyNodeComposed)) {
       const propertyNodeEntityId = propertyNodeComposed["x-unispec-entity-id"];
 
+      if (parent.includes(propertyNodeEntityId)) {
+        console.warn(`${QbEfficientLoadForEntity.name}: detected infinite recursion for ${propertyNodeEntityId}`);
+        console.debug({ propertyNodeEntityId, parent });
+        continue;
+      }
+
       const childSelection = rootSelection === true ? true : uniq(rootSelection.filter((i) => i.startsWith(`${propertyKey}.`)).map((i) => i.slice(i.indexOf(".") + 1)));
 
       const childAlias = `${alias}_${propertyKey[0]}${counter}`;
 
       qb.leftJoin(subPath, childAlias);
-      QbEfficientLoad(propertyNodeEntityId, qb, childAlias, childSelection);
+      QbEfficientLoad(propertyNodeEntityId, qb, childAlias, childSelection, parent);
     } else {
       qb.addSelect(subPath);
     }
   }
 };
 
-export const QbEfficientLoad = (entityId: string, qb: SelectQueryBuilder<any>, alias: string, selection: boolean | string[] = true) => {
+export const QbEfficientLoad = (entityId: string, qb: SelectQueryBuilder<any>, alias: string, selection: boolean | string[] = true, parent: string[] = []) => {
   const store = getSpecNodesStore();
 
   const targetEntity = store.GetEntityNode(entityId);
 
   if (CheckNodeTypeObjectEntity(targetEntity)) {
-    return QbEfficientLoadForEntity(store, targetEntity, qb, alias, selection);
+    return QbEfficientLoadForEntity(store, targetEntity, qb, alias, selection, [...parent, entityId]);
   }
 };
