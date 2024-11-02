@@ -45,12 +45,11 @@ runs:
           nx-${{ github.ref_name }}-
           nx-
 
-    - name: "node.js: enable corepack"
-      run: corepack enable
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
       if: ${{ inputs.install-node == 'true' }}
-      shell: bash
-      env:
-        HUSKY: "0"
+      with:
+        run_install: false
 
     - name: "node.js: use ${{ inputs.node-version }}"
       if: ${{ inputs.install-node == 'true' }}

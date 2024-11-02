@@ -99,6 +99,7 @@ export class TurmaService {
         "ambientePadraoAula.capacidade": [FilterOperator.EQ, FilterOperator.GT, FilterOperator.GTE, FilterOperator.LT, FilterOperator.LTE],
         "ambientePadraoAula.tipo": [FilterOperator.EQ],
         //
+        "curso.id": [FilterOperator.EQ],
         "curso.nome": [FilterOperator.EQ],
         "curso.nomeAbreviado": [FilterOperator.EQ],
         "curso.campus.id": [FilterOperator.EQ],
