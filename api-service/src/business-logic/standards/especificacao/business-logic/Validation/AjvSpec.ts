@@ -6,10 +6,15 @@ const ajvSpec = new Ajv({
   coerceTypes: "array",
   useDefaults: true,
   removeAdditional: true,
+
   strict: "log",
+  strictTypes: false,
+  allowUnionTypes: false,
 });
 
 let setup = false;
+
+const logKeywords = new Set<string>();
 
 const setupAjvSpec = async () => {
   if (setup) return;
@@ -25,13 +30,21 @@ const setupAjvSpec = async () => {
     });
   }
 
-  ajvSpec.addKeyword({
-    keyword: "x-unispec-constraint-entity-exists",
-    code() {
-      // TODO
-      console.warn("TODO: validate keyword `x-unispec-constraint-entity-exists`");
-    },
-  });
+  // TODO
+  const toImplement = ["x-unispec-constraint-entity-exists", "x-unispec-constraint-cep"];
+
+  for (const keywork of toImplement) {
+    ajvSpec.addKeyword({
+      keyword: keywork,
+      code() {
+        if (!logKeywords.has(keywork)) {
+          console.warn(`TODO: validate keyword ${keywork}`);
+
+          logKeywords.add(keywork);
+        }
+      },
+    });
+  }
 
   const store = getSpecNodesStore();
 
