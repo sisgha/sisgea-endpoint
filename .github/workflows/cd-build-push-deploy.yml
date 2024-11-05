@@ -41,8 +41,8 @@ jobs:
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        # with:
-        #   driver: docker
+        with:
+          driver: docker
 
       - name: Login into Registry
         if: ${{ env.ENABLE_PUSH_IMAGE == 'true' }}
@@ -56,28 +56,35 @@ jobs:
         if: ${{ env.ENABLE_BUILD_IMAGE == 'true' }}
         uses: docker/build-push-action@v6
         with:
-          # load: true
-          outputs: type=cacheonly
-          # provenance: true
-          platforms: linux/amd64
-          push: ${{ env.ENABLE_PUSH_IMAGE == 'true' }}
           target: api-service
           tags: ${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME_SERVICE }}:${{ env.IMAGE_TAG }}
+          
           build-args: GIT_COMMIT_HASH=${{ github.sha }}
           
+          push: ${{ env.ENABLE_PUSH_IMAGE == 'true' }}
+          
+          platforms: linux/amd64
+          # load: true
+          outputs: type=docker
+          # outputs: type=cacheonly
+          # provenance: true
+    
       - name: Build and push @ladesa-ro/api-client-fetch-docs
         if: ${{ env.ENABLE_BUILD_IMAGE == 'true' }}
         uses: docker/build-push-action@v6
         with:
-          # DISABLED LOAD, THAT IS AN ALIAS FOR type=docker
-          # load: true
-          outputs: type=cacheonly
-          # provenance: true
-          # platforms: amd64,linux/arm64,linux/arm/v7
-          platforms: linux/amd64
-          push: ${{ env.ENABLE_PUSH_IMAGE == 'true' }}
           target: npm-api-client-fetch-docs
           tags: ${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME_DOCS_NPM_API_CLIENT_FETCH }}:${{ env.IMAGE_TAG }}
+
+          build-args: GIT_COMMIT_HASH=${{ github.sha }}
+
+          push: ${{ env.ENABLE_PUSH_IMAGE == 'true' }}
+
+          platforms: linux/amd64
+          # load: true
+          outputs: type=docker
+          # outputs: type=cacheonly
+          # provenance: true
 
   deploy:
     runs-on: ubuntu-latest
