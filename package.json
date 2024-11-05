@@ -34,9 +34,7 @@
     }
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "extends": ["@commitlint/config-conventional"]
   },
   "lint-staged": {
     "**/*": "pnpm run code-static:fix"

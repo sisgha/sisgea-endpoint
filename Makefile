@@ -9,6 +9,7 @@ setup:
 	$(shell (cd .; find . -type f -name "*.example" -exec sh -c 'cp -n {} $$(basename {} .example)' \;))
 	$(shell (bash -c "docker network create $(d_network) &>/dev/null"))
 	
+	echo "baixando imagens base dos containers (node e postgres), isso pode levar alguns minutos..."
 	docker compose $(compose_options) build -q
 
 prepare:
