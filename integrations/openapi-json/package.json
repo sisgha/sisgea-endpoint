@@ -10,7 +10,7 @@
     "@hey-api/openapi-ts": "^0.49.0",
     "rimraf": "^6.0.1",
     "typedoc": "^0.26.11",
-    "typedoc-plugin-mdn-links": "^3.3.6"
+    "typedoc-plugin-mdn-links": "^3.3.7"
   },
   "nx": {
     "tags": ["integrations", "integrations:openapi-json"],
