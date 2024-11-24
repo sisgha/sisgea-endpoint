@@ -8,61 +8,6 @@
         "responses": {
           "200": {
             "description": "Olá, Mundo!",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "service": {
-                  "type": "string",
-                  "enum": ["@ladesa-ro/api.service"],
-                  "description": "O nome desta aplicação."
-                },
-                "status": {
-                  "type": "string",
-                  "enum": ["up"],
-                  "description": "Status desta aplicação."
-                },
-                "prefix": {
-                  "description": "Prefixo do serviço API.",
-                  "oneOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
-                },
-                "version": {
-                  "description": "Versão do serviço API.",
-                  "oneOf": [
-                    {
-                      "type": "string"
-                    }
-                  ]
-                },
-                "buildTime": {
-                  "description": "Horário do build da aplicação.",
-                  "oneOf": [
-                    {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  ]
-                },
-                "gitCommitHash": {
-                  "description": "Hash atrelado ao commit git no horário do build da aplicação.",
-                  "oneOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
-                }
-              },
-              "required": ["service", "status", "version"]
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -182,13 +127,6 @@
         "responses": {
           "200": {
             "description": "Binário do Arquivo.",
-            "schema": {
-              "nullable": false,
-              "description": "Binário do Arquivo.",
-              "type": "string",
-              "format": "binary",
-              "mimeTypes": ["application/octet-stream"]
-            },
             "content": {
               "application/octet-stream": {
                 "schema": {
@@ -647,9 +585,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -937,9 +872,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -988,13 +920,6 @@
         "responses": {
           "200": {
             "description": "Binário.",
-            "schema": {
-              "nullable": false,
-              "description": "Binário.",
-              "type": "string",
-              "format": "binary",
-              "mimeTypes": ["image/jpeg"]
-            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -1076,10 +1001,6 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
-            "schema": {
-              "type": "boolean",
-              "description": "Resultado da operação."
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1129,13 +1050,6 @@
         "responses": {
           "200": {
             "description": "Binário.",
-            "schema": {
-              "nullable": false,
-              "description": "Binário.",
-              "type": "string",
-              "format": "binary",
-              "mimeTypes": ["image/jpeg"]
-            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -1217,10 +1131,6 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
-            "schema": {
-              "type": "boolean",
-              "description": "Resultado da operação."
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1722,9 +1632,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2026,9 +1933,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2077,13 +1981,6 @@
         "responses": {
           "200": {
             "description": "Binário.",
-            "schema": {
-              "nullable": false,
-              "description": "Binário.",
-              "type": "string",
-              "format": "binary",
-              "mimeTypes": ["image/jpeg"]
-            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -2165,10 +2062,6 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
-            "schema": {
-              "type": "boolean",
-              "description": "Resultado da operação."
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2485,9 +2378,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2536,13 +2426,6 @@
         "responses": {
           "200": {
             "description": "Binário.",
-            "schema": {
-              "nullable": false,
-              "description": "Binário.",
-              "type": "string",
-              "format": "binary",
-              "mimeTypes": ["image/jpeg"]
-            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -2624,10 +2507,6 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
-            "schema": {
-              "type": "boolean",
-              "description": "Resultado da operação."
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2972,9 +2851,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3262,9 +3138,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3552,9 +3425,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3842,9 +3712,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4132,9 +3999,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4450,9 +4314,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4501,13 +4362,6 @@
         "responses": {
           "200": {
             "description": "Binário.",
-            "schema": {
-              "nullable": false,
-              "description": "Binário.",
-              "type": "string",
-              "format": "binary",
-              "mimeTypes": ["image/jpeg"]
-            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -4589,10 +4443,6 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
-            "schema": {
-              "type": "boolean",
-              "description": "Resultado da operação."
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4895,9 +4745,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4946,13 +4793,6 @@
         "responses": {
           "200": {
             "description": "Binário.",
-            "schema": {
-              "nullable": false,
-              "description": "Binário.",
-              "type": "string",
-              "format": "binary",
-              "mimeTypes": ["image/jpeg"]
-            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -5034,10 +4874,6 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
-            "schema": {
-              "type": "boolean",
-              "description": "Resultado da operação."
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5354,9 +5190,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5644,9 +5477,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -5934,9 +5764,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6238,9 +6065,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6542,9 +6366,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -6846,9 +6667,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7248,9 +7066,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7299,13 +7114,6 @@
         "responses": {
           "200": {
             "description": "Binário.",
-            "schema": {
-              "nullable": false,
-              "description": "Binário.",
-              "type": "string",
-              "format": "binary",
-              "mimeTypes": ["image/jpeg"]
-            },
             "content": {
               "image/jpeg": {
                 "schema": {
@@ -7387,10 +7195,6 @@
             "nullable": false,
             "description": "Resultado da operação.",
             "kind": "schema",
-            "schema": {
-              "type": "boolean",
-              "description": "Resultado da operação."
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7735,9 +7539,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8053,9 +7854,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8371,9 +8169,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8661,9 +8456,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8965,9 +8757,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9269,9 +9058,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9573,9 +9359,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9863,9 +9646,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -10153,9 +9933,6 @@
             "nullable": false,
             "description": "",
             "kind": "schema",
-            "schema": {
-              "type": "boolean"
-            },
             "content": {
               "application/json": {
                 "schema": {
