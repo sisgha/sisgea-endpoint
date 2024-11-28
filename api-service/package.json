@@ -28,7 +28,7 @@
     "@apollo/server": "^4.11.2",
     "@apollo/utils.keyvaluecache": "^3.1.0",
     "@fastify/merge-json-schemas": "^0.2.0",
-    "@keycloak/keycloak-admin-client": "^25.0.6",
+    "@keycloak/keycloak-admin-client": "^26.0.6",
     "@ladesa-ro/especificacao": "^3.3.9",
     "@nestjs/apollo": "^12.2.1",
     "@nestjs/common": "^10.4.11",
