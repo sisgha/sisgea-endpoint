@@ -2,7 +2,7 @@ ARG GIT_COMMIT_HASH
 ARG PATH_SOURCE=/tmp/ldsa/.source
 ARG PATH_LOCAL_BUILDS=/tmp/ldsa/.builds
 ARG NX_CACHE_DIRECTORY=/tmp/ldsa/.cache/nx
-ARG PATH_FINAL_BUILDS=/usr/local/ladesa-ro/services/
+ARG PATH_FINAL_BUILDS=/usr/local/ladesa-ro/services
 ARG NX_SOCKET_DIR=/tmp/nx-tmp
 
 # ========================================
