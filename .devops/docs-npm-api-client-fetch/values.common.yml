@@ -4,6 +4,10 @@ deployment:
   replicas: 1
   enabled: false
 
+  containerSecurityContext:
+    runAsNonRoot: false
+    readOnlyRootFilesystem: false
+
   ports:
     - containerPort: 80
       name: web-port

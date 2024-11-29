@@ -1,23 +1,21 @@
 applicationName: ladesa-ro-api
 
-service:
-  enabled: true
-  type: NodePort
-  ports:
-    - name: web-service
-      port: 80
-      targetPort: web-port
-
 deployment:
+  replicas: 1
   enabled: false
 
-  replicas: 1
-
-  containerSecurityContext: false
+  containerSecurityContext:
+    runAsNonRoot: false
+    readOnlyRootFilesystem: false
 
   ports:
     - containerPort: 3000
       name: web-port
+
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "1Gi"
 
   readinessProbe:
     httpGet:
@@ -37,6 +35,14 @@ deployment:
       port: 3000
     failureThreshold: 30
     periodSeconds: 10
+
+service:
+  enabled: true
+  type: NodePort
+  ports:
+    - name: web-service
+      port: 80
+      targetPort: web-port
 
 ingress:
   enabled: false
