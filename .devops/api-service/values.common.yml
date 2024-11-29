@@ -1,4 +1,4 @@
-applicationName: ladesa-ro-sso
+applicationName: ladesa-ro-api
 
 service:
   enabled: true
