@@ -44,9 +44,9 @@ export class JwksRsaClientService {
 
   private async createJwksClient() {
     try {
-      const trustIssuerClient = await this.openidConnectService.getTrustIssuerClient();
+      const config = await this.openidConnectService.getClientConfig();
 
-      const jwksUri = trustIssuerClient.issuer.metadata.jwks_uri;
+      const jwksUri = config.serverMetadata().jwks_uri;
 
       if (jwksUri) {
         return new JwksClient({

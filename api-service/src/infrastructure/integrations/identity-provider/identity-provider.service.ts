@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException, UnauthorizedException } from 
 import { GetPublicKeyOrSecret, JwtPayload, verify } from "jsonwebtoken";
 import { LRUCache } from "lru-cache";
 import type { IntrospectionResponse } from "openid-client";
+import { tokenIntrospection } from "openid-client";
 import { JwksRsaClientService } from "./jwks-rsa-client";
 import { OpenidConnectService } from "./openid-connect";
 
@@ -25,10 +26,11 @@ export class IdentityProviderService {
   });
 
   async getIdentityResponseFromAccessTokenHard(accessToken: string) {
-    const trustIssuerClient = await this.openIdConnectService.getTrustIssuerClient();
+    const config = await this.openIdConnectService.getClientConfig();
 
     try {
-      const tokenset = await trustIssuerClient.introspect(accessToken);
+      const tokenset = await tokenIntrospection(config, accessToken);
+
       if (tokenset.active !== false) {
         return tokenset as IntrospectionResponseWithUser;
       }

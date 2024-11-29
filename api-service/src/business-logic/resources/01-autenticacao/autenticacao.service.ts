@@ -3,7 +3,7 @@ import { DatabaseContextService } from "@/infrastructure/integrations/database";
 import { KeycloakService, OpenidConnectService } from "@/infrastructure/integrations/identity-provider";
 import * as LadesaTypings from "@ladesa-ro/especificacao";
 import { BadRequestException, ForbiddenException, HttpException, Injectable, ServiceUnavailableException } from "@nestjs/common";
-import type { BaseClient, TokenSet } from "openid-client";
+import * as client from "openid-client";
 import { PerfilService } from "../03-autorizacao/perfil/perfil.service";
 import { UsuarioService } from "./usuario/usuario.service";
 
@@ -52,10 +52,10 @@ export class AutenticacaoService {
       throw new BadRequestException("Você não pode usar a rota de login caso já esteja logado.");
     }
 
-    let trustIssuerClient: BaseClient;
+    let config: client.Configuration;
 
     try {
-      trustIssuerClient = await this.openidConnectService.getTrustIssuerClient();
+      config = await this.openidConnectService.getClientConfig();
     } catch (_error) {
       throw new ServiceUnavailableException();
     }
@@ -63,9 +63,8 @@ export class AutenticacaoService {
     const { usuario, userRepresentation } = await this.findByMatriculaSiape(dto.body.matriculaSiape);
 
     try {
-      if (usuario && userRepresentation) {
-        const tokenset = await trustIssuerClient.grant({
-          grant_type: "password",
+      if (usuario && userRepresentation?.username) {
+        const tokenset = await client.genericGrantRequest(config, "password", {
           username: userRepresentation.username,
           password: dto.body.senha,
           scope: "openid profile",
@@ -81,10 +80,10 @@ export class AutenticacaoService {
   }
 
   async refresh(_: AccessContext, dto: LadesaTypings.AuthRefreshOperationInput): Promise<LadesaTypings.AuthLoginOperationOutput["success"]> {
-    let trustIssuerClient: BaseClient;
+    let config: client.Configuration;
 
     try {
-      trustIssuerClient = await this.openidConnectService.getTrustIssuerClient();
+      config = await this.openidConnectService.getClientConfig();
     } catch (_error) {
       throw new ServiceUnavailableException();
     }
@@ -93,7 +92,7 @@ export class AutenticacaoService {
       const refreshToken = dto.body.refreshToken;
 
       if (refreshToken) {
-        const tokenset = await trustIssuerClient.refresh(refreshToken);
+        const tokenset = await client.refreshTokenGrant(config, refreshToken);
         const formattedTokenSet = this.formatTokenSet(tokenset);
         return formattedTokenSet;
       }

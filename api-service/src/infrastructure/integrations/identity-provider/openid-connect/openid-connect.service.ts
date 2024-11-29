@@ -1,10 +1,11 @@
 import { AppConfigService } from "@/infrastructure/config";
 import { Inject, Injectable } from "@nestjs/common";
-import { BaseClient, Issuer } from "openid-client";
+import * as client from "openid-client";
 
 @Injectable()
 export class OpenidConnectService {
-  trustIssuerClient: BaseClient | null = null;
+  config: client.Configuration | null = null;
+
   #initialized = false;
 
   constructor(
@@ -22,14 +23,9 @@ export class OpenidConnectService {
       try {
         const oidcClientCredentials = this.oidcClientCredentials;
 
-        const TrustIssuer = await Issuer.discover(oidcClientCredentials.issuer);
+        const config = await client.discovery(new URL(oidcClientCredentials.issuer), oidcClientCredentials.clientId, oidcClientCredentials.clientSecret);
 
-        const trustIssuerClient = new TrustIssuer.Client({
-          client_id: oidcClientCredentials.clientId,
-          client_secret: oidcClientCredentials.clientSecret,
-        });
-
-        this.trustIssuerClient = trustIssuerClient;
+        this.config = config;
 
         this.#initialized = true;
       } catch (error) {
@@ -40,15 +36,15 @@ export class OpenidConnectService {
     return this.#initialized;
   }
 
-  async getTrustIssuerClient() {
+  async getClientConfig() {
     while (!this.#initialized) {
       await this.setup();
     }
 
-    const trustIssuerClient = this.trustIssuerClient;
+    const config = this.config;
 
-    if (trustIssuerClient) {
-      return trustIssuerClient;
+    if (config) {
+      return config;
     }
 
     throw new Error("[OpenidConnectService::error] trustIssuerClient is null");
