@@ -81,7 +81,7 @@ jobs:
     name: Deploy to Cluster
 
     runs-on: deploy
-    needs: [cd_build_push_api]
+    needs: [cd_build_push_api, cd_build_push_docs]
 
     environment:
       name: ${{ github.ref_name == 'development' && 'development' || 'production' }}
