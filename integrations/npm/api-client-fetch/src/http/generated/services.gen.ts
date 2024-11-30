@@ -3222,7 +3222,7 @@ export class DiariosService {
   }
 }
 
-export class DiarioProfessorService {
+export class DiariosProfessoresService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
 
   /**
@@ -3240,7 +3240,7 @@ export class DiarioProfessorService {
   public diarioProfessorList(data: DiarioProfessorListData = {}): CancelablePromise<DiarioProfessorListResponse> {
     return this.httpRequest.request({
       method: "GET",
-      url: "/diario-professor",
+      url: "/diarios-professores",
       query: {
         page: data.page,
         limit: data.limit,
@@ -3266,7 +3266,7 @@ export class DiarioProfessorService {
   public diarioProfessorCreate(data: DiarioProfessorCreateData): CancelablePromise<DiarioProfessorCreateResponse> {
     return this.httpRequest.request({
       method: "POST",
-      url: "/diario-professor",
+      url: "/diarios-professores",
       body: data.requestBody,
       mediaType: "application/json",
       errors: {
@@ -3286,7 +3286,7 @@ export class DiarioProfessorService {
   public diarioProfessorFindOneById(data: DiarioProfessorFindOneByIdData): CancelablePromise<DiarioProfessorFindOneByIdResponse> {
     return this.httpRequest.request({
       method: "GET",
-      url: "/diario-professor/{id}",
+      url: "/diarios-professores/{id}",
       path: {
         id: data.id,
       },
@@ -3308,7 +3308,7 @@ export class DiarioProfessorService {
   public diarioProfessorUpdateOneById(data: DiarioProfessorUpdateOneByIdData): CancelablePromise<DiarioProfessorUpdateOneByIdResponse> {
     return this.httpRequest.request({
       method: "PATCH",
-      url: "/diario-professor/{id}",
+      url: "/diarios-professores/{id}",
       path: {
         id: data.id,
       },
@@ -3331,7 +3331,7 @@ export class DiarioProfessorService {
   public diarioProfessorDeleteOneById(data: DiarioProfessorDeleteOneByIdData): CancelablePromise<DiarioProfessorDeleteOneByIdResponse> {
     return this.httpRequest.request({
       method: "DELETE",
-      url: "/diario-professor/{id}",
+      url: "/diarios-professores/{id}",
       path: {
         id: data.id,
       },

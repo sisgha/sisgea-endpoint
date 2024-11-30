@@ -7563,7 +7563,7 @@
         "tags": ["diarios"]
       }
     },
-    "/diario-professor": {
+    "/diarios-professores": {
       "get": {
         "description": "Sem descrição.",
         "operationId": "DiarioProfessorList",
@@ -7673,7 +7673,7 @@
           }
         ],
         "summary": "",
-        "tags": ["diario-professor"]
+        "tags": ["diarios-professores"]
       },
       "post": {
         "description": "Sem descrição.",
@@ -7717,10 +7717,10 @@
           }
         ],
         "summary": "",
-        "tags": ["diario-professor"]
+        "tags": ["diarios-professores"]
       }
     },
-    "/diario-professor/{id}": {
+    "/diarios-professores/{id}": {
       "get": {
         "description": "Sem descrição.",
         "operationId": "DiarioProfessorFindOneById",
@@ -7767,7 +7767,7 @@
           }
         ],
         "summary": "",
-        "tags": ["diario-professor"]
+        "tags": ["diarios-professores"]
       },
       "patch": {
         "description": "Sem descrição.",
@@ -7827,7 +7827,7 @@
           }
         ],
         "summary": "",
-        "tags": ["diario-professor"]
+        "tags": ["diarios-professores"]
       },
       "delete": {
         "description": "Sem descrição.",
@@ -7875,7 +7875,7 @@
           }
         ],
         "summary": "",
-        "tags": ["diario-professor"]
+        "tags": ["diarios-professores"]
       }
     },
     "/aulas": {
