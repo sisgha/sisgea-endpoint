@@ -1,5 +1,12 @@
 # @ladesa-ro/api.integrations.openapi-json
 
+## 1.0.0-next.30
+
+### Patch Changes
+
+- 2d1fba4: chore: generate integrations
+  change(diario-professor/controller): tag diarios-professores
+
 ## 1.0.0-next.29
 
 ### Minor Changes
