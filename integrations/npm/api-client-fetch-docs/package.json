@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "serve": "^14.2.4",
-    "typedoc": "^0.27.1",
-    "typedoc-plugin-mdn-links": "^4.0.2"
+    "typedoc": "^0.27.2",
+    "typedoc-plugin-mdn-links": "^4.0.3"
   }
 }
