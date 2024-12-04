@@ -11,7 +11,7 @@
   "devDependencies": {
     "@hey-api/openapi-ts": "^0.49.0",
     "rimraf": "^6.0.1",
-    "typedoc": "^0.27.2",
+    "typedoc": "^0.27.3",
     "typedoc-plugin-mdn-links": "^4.0.3"
   },
   "nx": {
