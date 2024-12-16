@@ -49,7 +49,7 @@
     "date-fns": "^3.6.0",
     "defu": "^6.1.4",
     "fs-jetpack": "^5.1.0",
-    "graphql": "^16.9.0",
+    "graphql": "^16.10.0",
     "graphql-list-fields": "^2.0.4",
     "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
