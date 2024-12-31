@@ -1,6 +1,7 @@
 name: Continuos Deployment - API
 
 on:
+  workflow_dispatch: 
   push:
     branches:
       - production
